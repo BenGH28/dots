@@ -58,7 +58,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #Window compositor
-exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
