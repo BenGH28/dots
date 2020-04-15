@@ -101,7 +101,10 @@ alias gcm="git commit -m"
 alias gpl="git pull" 
 alias gps="git push"
 alias ga="git add"
-alias ghci="stack ghci"
+alias open="xdg-open"
+alias vpn="sudo openconnect https://vpn.uleth.ca"
+alias gstat="git status"
+alias ..="cd .."
 
 #using vim mode?
 #set -o vi
