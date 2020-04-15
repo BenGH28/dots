@@ -36,8 +36,8 @@ exec --no-startup-id pamac-tray
 # ----
 # Gaps and border size
 # ----
-gaps inner 8
-gaps outer 6
+gaps inner 6
+gaps outer 2
 default_border pixel 3
 default_floating_border pixel 3
 
@@ -133,7 +133,7 @@ set $ws1 "1: Web"
 set $ws2 "2: Code"
 set $ws3 "3: Music"
 set $ws4 "4: Docs"
-set $ws5 "5"
+set $ws5 "5: Chat"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -164,12 +164,34 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+#move back and forth between workspaces
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+Ctrl+z mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -199,14 +221,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #colours
-set $bronze #f2b424
-set $tan    #ddc563
 set $white  #f4f9f8
 set $black  #000000
 set $teal   #0cd6a0 
 set $grey   #515957
 set $lt_grey #98a5a2
-set $siren  #f23009
 set $sky    #8fa3e0
 set $cloudy #7786b5
 set $polar4 #2e3440
@@ -217,41 +236,53 @@ set $frost4 #5381ac
 set $frost3 #81a1c1
 set $frost2 #88c0d0
 set $frost1 #8fbcbb
-
+set $aurora5 #b48ead
+set $aurora4 #a3be8c
+set $aurora3 #ebcb8b
+set $aurora2 #d08770
+set $aurora1 #bf616a
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-	colors {
-		background $polar4
-		statusline $sky
-		separator  $frost4
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#bar {
+    ##status_command i3blocks -c ~/.config/i3blocks/config 
+    #status_command i3status 
+	#colors {
+		#background $polar4
+		#statusline $sky
+		#separator  $frost4
 		
-		#colourclass		border		background	text
-		focused_workspace 	$frost3		$frost4		$white
-		active_workspace	$frost3		$polar2		$white
-		inactive_workspace  $polar4		$polar4		$white
-		urgent_workspace	$cloudy		$sky		$black			
-	}
-}
+		##colourclass		border		background	text
+		#focused_workspace 	$frost3		$frost4		$white
+		#active_workspace	$frost3		$polar2		$white
+		#inactive_workspace  $polar4		$polar4		$white
+		#urgent_workspace	$cloudy		$sky		$black			
+	#}
+#}
 # User defined bindings
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+m exec --no-startup-id com.spotify.Client
-bindsym $mod+f exec --no-startup-id thunar
+bindsym $mod+f exec $terminal -e ranger 
 bindsym $mod+F3 exec $terminal -e vim  ~/.config/i3/config
 bindsym $mod+z exec $terminal -e vim ~/.zshrc
+bindsym $mod+Shift+d exec --no-startup-id discord
+
+# User Startup
+exec nitrogen --restore
+
 
 # class                 border 		 backgr. 	text    	indicator 
 client.focused          $sky         $sky       $white		$teal		
 client.focused_inactive $grey 		 $polar4	$lt_grey	$grey 
 client.unfocused        $grey 		 $polar4	$lt_grey	$grey 
-client.urgent           $siren		 $grey		$lt_grey	$grey          
+client.urgent           $aurora2	 $grey		$lt_grey	$grey          
 client.background       $white 
 
 #where certain apps should go
 for_window [class="Spotify"] move container to workspace $ws3; workspace $ws3
+assign [class="discord"] $ws5 
+
 #where certian workspaces should go
 workspace $ws1 output DP-2
 workspace $ws2 output HDMI-0
 workspace $ws3 output DP-2
-
