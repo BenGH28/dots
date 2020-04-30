@@ -13,11 +13,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Fira Mono for Powerline 8
+font pango: Monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Inconsolata for Powerline
+font pango: Font Awesome 5 Free 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -58,7 +58,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #Window compositor
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -71,8 +71,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
+bindsym $mod+d exec rofi -show run
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -129,11 +128,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Web"
-set $ws2 "2: Code"
-set $ws3 "3: Music"
-set $ws4 "4: Docs"
-set $ws5 "5: Chat"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -175,8 +174,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# Set shut down, restart and locking features
-bindsym $mod+Ctrl+z mode "$mode_system"
+# Set shut down, restart and locking features.  Need to install i3exit
+bindsym $mod+Delete mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -241,35 +240,33 @@ set $aurora4 #a3be8c
 set $aurora3 #ebcb8b
 set $aurora2 #d08770
 set $aurora1 #bf616a
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-#bar {
-    ##status_command i3blocks -c ~/.config/i3blocks/config 
-    #status_command i3status 
-	#colors {
-		#background $polar4
-		#statusline $sky
-		#separator  $frost4
+bar {
+    status_command i3status 
+	colors {
+		background $polar4
+		statusline $sky
+		separator  $frost4
 		
-		##colourclass		border		background	text
-		#focused_workspace 	$frost3		$frost4		$white
-		#active_workspace	$frost3		$polar2		$white
-		#inactive_workspace  $polar4		$polar4		$white
-		#urgent_workspace	$cloudy		$sky		$black			
-	#}
-#}
+		#colourclass		border		background	text
+		focused_workspace 	$frost3		$frost4		$white
+		active_workspace	$frost3		$polar2		$white
+		inactive_workspace  $polar4		$polar4		$white
+		urgent_workspace	$cloudy		$sky		$black			
+	}
+}
 # User defined bindings
 bindsym $mod+w exec --no-startup-id firefox
-bindsym $mod+m exec --no-startup-id com.spotify.Client
-bindsym $mod+f exec $terminal -e ranger 
+bindsym $mod+m exec --no-startup-id spotify
+bindsym $mod+f exec thunar 
 bindsym $mod+F3 exec $terminal -e vim  ~/.config/i3/config
 bindsym $mod+z exec $terminal -e vim ~/.zshrc
 bindsym $mod+Shift+d exec --no-startup-id discord
 
 # User Startup
 exec nitrogen --restore
-
 
 # class                 border 		 backgr. 	text    	indicator 
 client.focused          $sky         $sky       $white		$teal		
@@ -280,7 +277,12 @@ client.background       $white
 
 #where certain apps should go
 for_window [class="Spotify"] move container to workspace $ws3; workspace $ws3
+for_window [class="Lxappearance"] floating enable
+for_window [class="Skype"] floating enable
+for_window [class="Firefox"] move container to workspace $ws1; 
+assign [class="Skype"] $ws5
 assign [class="discord"] $ws5 
+
 
 #where certian workspaces should go
 workspace $ws1 output DP-2
