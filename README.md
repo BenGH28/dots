@@ -12,6 +12,7 @@ There are a couple extensions/apps/plugins that I use:
   - [Rofi]: A window switcher, application launcher and dmenu replacement 
   - [Oh-My-ZSH] for some sweet zsh.
   - [Vim-plugged] to handle plugins.
+  - [Font Awesome] for workspaces
   
   [Oh-My-ZSH]: https://ohmyz.sh/
   [Vim-plugged]: https://github.com/junegunn/vim-plug
@@ -19,4 +20,5 @@ There are a couple extensions/apps/plugins that I use:
   [Rofi]: https://github.com/davatorium/rofi
   [i3]: https://i3wm.org/
   [Picom]: https://wiki.archlinux.org/index.php/Picom
+  [Font Awesome]: https://fontawesome.com/
   
