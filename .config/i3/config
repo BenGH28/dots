@@ -279,9 +279,11 @@ client.background       $white
 for_window [class="Spotify"] move container to workspace $ws3; workspace $ws3
 for_window [class="Lxappearance"] floating enable
 for_window [class="Skype"] floating enable
-for_window [class="Firefox"] move container to workspace $ws1; 
+assign [class="firefox"] $ws1 
+assign [class="Alacritty"] $ws2
 assign [class="Skype"] $ws5
 assign [class="discord"] $ws5 
+
 
 
 #where certian workspaces should go
