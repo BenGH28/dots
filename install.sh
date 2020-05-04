@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -S alacritty i3 i3-gaps picom rofi ttf-font-awesome i3exit lxappearance
+sudo pacman -Syu gvim alacritty i3 i3-gaps picom rofi ttf-font-awesome i3exit lxappearance nitrogen
 
 #install those utilities that aren't on ARCH repos
 #Oh-my-zsh
