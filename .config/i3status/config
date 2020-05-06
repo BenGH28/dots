@@ -7,18 +7,21 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-	output_format = "i3bar"
-        colors = true
-        interval = 5
+  interval = 5
+  output_format = "i3bar"
+  colors = true
+  color_good = "#50FA7B"
+  color_degraded = "#F1FA8C"
+  color_bad = "#FF5555"
 }
 
 #order += "ipv6"
 #order += "cpu_temperature 0"
 order += "cpu_usage"
 order += "volume master"
-order += "wireless _first_"
+# order += "wireless _first_"
 #order += "ethernet _first_"
-#order += "battery all"
+# order += "battery all"
 #order += "disk /"
 #order += "load"
 order += "memory"
@@ -35,7 +38,7 @@ ethernet _first_ {
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "BAT: %percentage"
 }
 
 disk "/" {
@@ -47,7 +50,7 @@ load {
 }
 
 memory {
-        format = "%used / %available"
+        format = "RAM: %used"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }

@@ -25,9 +25,9 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  position:
-    x: 0
-    y: 0
+  # position:
+  #   x: 0
+  #   y: 0
 
   # Window padding (changes require restart)
   #
@@ -57,9 +57,6 @@ window:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
   startup_mode: Windowed
 
   # Window title
@@ -136,7 +133,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
