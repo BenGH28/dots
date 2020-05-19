@@ -1,23 +1,23 @@
-"Plugins using vim-plug
+"=========================================================================
+"									Plugins 
+"=========================================================================
 call plug#begin('~/.vim/plugged')
-
 "themes
-Plug 'itchyny/lightline.vim'
 Plug 'dracula/vim'
 "tools
-Plug 'valloric/youcompleteme' "you need to run install.py to compile YCM core on first install
+Plug 'itchyny/lightline.vim'
+Plug 'valloric/youcompleteme' "run install.py to compile YCM core on first install
 Plug 'lilydjwg/colorizer'
 Plug 'honza/vim-snippets'
 Plug 'sirver/ultisnips'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
-Plug 'python-mode/python-mode',{'for':'python', 'branch':'develop'}"
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
-
 
 "=========================================================================
 "									Basics
@@ -43,6 +43,7 @@ let g:lightline = { 'colorscheme': 'darcula',}
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
 set notimeout ttimeout ttimeoutlen=200 "timeout on keycodes not on mappings
+set cursorline
 filetype plugin on "detect filetype
 
 "========================================================================
@@ -52,30 +53,33 @@ filetype plugin on "detect filetype
 set statusline+=%#Warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list  = 1
+let g:syntastic_auto_loc_list             = 1
+let g:syntastic_check_on_open             = 1
+let g:syntastic_check_on_wq               = 0
 
 "UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-f>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger       = "<C-f>"
+let g:UltiSnipsJumpForwardTrigger  = "<C-l>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-h>"
+let g:UltiSnipsEditSplit           = "vertical"
 
 "Vim-clang-format config
-let g:clang_format#code_style = "google"
+let g:clang_format#code_style  = "google"
 let g:clang_format#auto_format = 1
 
-"python-mode
-let g:pymode_indent = 1
-let g:pymode_doc = 1
-let g:pymod_doc_bind = 'K' 
+
+"EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 "========================================================================
 "								User Mappings
 "========================================================================
-"copy and paste from clipboard
-map <C-a> gg0vG$
+"select all, copy and paste from clipboard in that order
+nnoremap <C-a> gg0vG$ 
 vnoremap <C-c> "+y 
 nnoremap <C-p> "+P 
 
