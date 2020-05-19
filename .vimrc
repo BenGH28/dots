@@ -47,7 +47,7 @@ set cursorline
 filetype plugin on "detect filetype
 
 "========================================================================
-"									PLUGINS
+"									Plugin-Config
 "========================================================================
 "syntastic config
 set statusline+=%#Warningmsg#
