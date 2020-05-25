@@ -7,7 +7,7 @@ Plug 'dracula/vim'
 
 "tools
 Plug 'itchyny/lightline.vim'
-Plug 'valloric/youcompleteme' "you need to run install.py to compile YCM core on first install
+Plug 'valloric/youcompleteme', { 'do': './install.py'}
 Plug 'lilydjwg/colorizer'
 Plug 'honza/vim-snippets'
 Plug 'sirver/ultisnips'
