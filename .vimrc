@@ -109,3 +109,6 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
+
+"get to the end of the line while still in insert mode
+inoremap <C-e> <C-o>A
