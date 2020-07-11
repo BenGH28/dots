@@ -2,7 +2,7 @@
 ![screenshot of desktop](https://github.com/BenGH28/dots/blob/master/.screenshots/dracula_murtagh_2.png)
 certain dotfiles for my system including:
   - Window managers
-  - Vim
+  - Neovim
   - Shell
   - terminal
 ## Dependencies

@@ -4,28 +4,27 @@
 call plug#begin('~/.vim/plugged')
 "themes
 Plug 'dracula/vim'
-Plug 'ajh17/spacegray.vim'
-Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
-Plug 'sainnhe/edge'
-Plug 'kiddos/malokai.vim'
+Plug 'altercation/vim-colors-solarized'
+
 "tools
-Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/vim-easy-align'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-signify'
+
 call plug#end()
 
 "=============================================================
@@ -55,6 +54,10 @@ set cursorline
 set splitbelow 
 set splitright
 filetype plugin on "detect filetype
+set foldmethod=syntax
+set foldnestmax=10
+set nofoldenable
+
 
 "=============================================================
 "							Plugin-Configs
@@ -75,20 +78,10 @@ let g:clang_format#auto_format = 1
 "Rust-lang config
 let g:rustfmt_autosave = 1
 
-"LightLine Config
-let g:lightline = {
-	\ 'colorscheme':'darcula',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'component_function': {
-	\   'gitbranch': 'FugitiveHead'
-	\ },
-	\ 'cocstatus_bar': {
-	\   'cocstatus': 'coc#status'
-	\ },
-	\ }
+"airline config
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+
+
 "Easy align config
 "easy align in visual mode (ex. vipga select inner paragraph easy align)
 xmap ga <Plug>(EasyAlign) 
@@ -251,7 +244,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 "=============================================================
-"							User Mappings
+"							User Configs/Mappings
 "=============================================================
 "select all, copy and paste from clipboard
 map <C-a> gg0vG$
@@ -289,7 +282,14 @@ inoremap <C-e> <C-o>A
 noremap <Leader>do <C-o>:Dox<CR>
 
 "Vim-Plug bindings
-noremap <leader>pi :PlugInstall
-noremap <leader>pu :PlugUpdate
-noremap <leader>pc :PlugClean
+noremap <leader>pi :PlugInstall<CR>
+noremap <leader>pu :PlugUpdate<CR>
+noremap <leader>pc :PlugClean<CR>
 
+"lets no use ESC
+imap ii <ESC>
+
+augroup VIMRC_SOURCING
+	"I think this will source init.vim once save
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup end
