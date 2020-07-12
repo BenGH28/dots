@@ -13,7 +13,7 @@ There are a couple extensions/apps/plugins that I use:
   - [Rofi]: A window switcher, application launcher and dmenu replacement 
   - [Oh-My-ZSH] for some sweet zsh.
   - [Vim-plugged] to handle plugins.
-  - [Font Awesome] for workspaces
+  - [Font Awesome] for icons
   
   [Oh-My-ZSH]: https://ohmyz.sh/
   [Vim-plugged]: https://github.com/junegunn/vim-plug
