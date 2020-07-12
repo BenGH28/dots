@@ -11,11 +11,11 @@ yay -S nerd-fonts-mononoki
 
 #vim-plugged for vim
 case $1 in
-	"vim")echo "installing vim-plug for vim"
+	vim)echo "installing vim-plug for vim"
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	;;
-	"nvim") echo "installing vim-plug for neovim"
+	nvim) echo "installing vim-plug for neovim"
 		sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     ;;
