@@ -57,8 +57,10 @@ alias vim="nvim"
 alias alconf="nvim $HOME/.config/alacritty/alacritty.yml"
 alias qconf="nvim $HOME/.config/qtile/config.py"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-  	 
+alias da="dots add"
+alias dcm="dots commit -m"
+alias dp="dots push"
+alias dstat="dots status"  	 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
 #  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
