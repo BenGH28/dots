@@ -55,6 +55,7 @@ alias zrc="nvim $HOME/.zshrc"
 alias nv="nvim"
 alias vim="nvim"
 alias alconf="nvim $HOME/.config/alacritty/alacritty.yml"
+alias qconf="nvim $HOME/.config/qtile/config.py"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
   	 
