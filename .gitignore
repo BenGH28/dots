@@ -86,3 +86,4 @@ snap/
 vcpkg/
 .ICEauthority
 .dotfiles
+.config/qtile/__pycache__/
