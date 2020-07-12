@@ -98,13 +98,12 @@ layout_theme = {
     "border_width": 4,
     "margin": 6,
     "border_focus": dracula["purple"],
-    "border_normal": dracula["background"],
 }
 
 layouts = [
     layout.MonadTall(**layout_theme),
     layout.Tile(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(),
 ]
 
 widget_defaults = dict(font="Mononoki Nerd Font", fontsize=14, padding=3,)
