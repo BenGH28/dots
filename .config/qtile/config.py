@@ -104,9 +104,10 @@ layouts = [
     layout.MonadTall(**layout_theme),
     layout.Tile(**layout_theme),
     layout.Max(),
+    layout.Floating(**layout_theme)
 ]
 
-widget_defaults = dict(font="Mononoki Nerd Font", fontsize=14, padding=3,)
+widget_defaults = dict(font="Mononoki Nerd Font", fontsize=18, padding=3,)
 extension_defaults = widget_defaults.copy()
 
 widget_padding = 10
@@ -120,6 +121,21 @@ def initMyWidgets():
         widget.AGroupBox(foreground=dracula["cyan"], borderwidth=0),
         widget.CurrentLayout(foreground=dracula["yellow"], padding=widget_padding),
         widget.Volume(foreground=dracula["cyan"], fmt=" {}", padding=widget_padding),
+        widget.Backlight(
+            foreground=dracula["green"],
+            backlight_name="intel_backlight",
+            brightness_file="/sys/class/backlight/intel_backlight/brightness",
+            padding=widget_padding,
+            fmt=" {}",
+        ),
+        widget.Battery(
+            foreground=dracula["orange"],
+            charge_char="",
+            discharge_char="",
+            full_char="",
+            format="{char}  {percent:2.0%}",
+            padding=widget_padding,
+        ),
         widget.Clock(foreground=dracula["purple"], padding=widget_padding, format="%H:%M"),
         widget.Systray(padding=widget_padding),
     ]
