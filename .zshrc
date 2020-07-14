@@ -3,6 +3,7 @@
 export EDITOR="nvim"
 export VIMRC="$HOME/.config/nvim/init.vim"
 export ZRC="$HOME/.zshrc"
+export RANGER_LOAD_DEFAULT_RC=false
 
 #custom web search 
 ZSH_WEB_SEARCH_ENGINES=(
@@ -61,6 +62,7 @@ alias da="dots add"
 alias dcm="dots commit -m"
 alias dp="dots push"
 alias dstat="dots status"  	 
+alias rn="ranger"
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
 #  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/

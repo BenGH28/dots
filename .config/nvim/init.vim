@@ -57,6 +57,7 @@ filetype plugin on "detect filetype
 set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
+set nowrap
 
 
 "=============================================================
@@ -100,8 +101,6 @@ let g:qs_max_chars=150
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="-------------------------------"
-let g:DoxygenToolkit_blockFooter="---------------------------------"
 let g:DoxygenToolkit_authorName="Ben Hunt"
 
 "Coc.nvim config
@@ -286,9 +285,14 @@ noremap <leader>pi :PlugInstall<CR>
 noremap <leader>pu :PlugUpdate<CR>
 noremap <leader>pc :PlugClean<CR>
 
-"lets no use ESC
+"lets not use ESC
 imap ii <ESC>
+imap jk <ESC>
+imap kj <ESC>
 
+"fuzzyfinder
+nnoremap <leader>gf :GFiles<CR>
+nnoremap <leader>f :Files<CR>
 augroup VIMRC_SOURCING
 	"I think this will source init.vim once save
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC
