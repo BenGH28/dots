@@ -8,10 +8,10 @@ Plug 'altercation/vim-colors-solarized'
 
 "tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -63,14 +63,7 @@ set nowrap
 "=============================================================
 "							Plugin-Configs
 "=============================================================
-"syntastic config
-set statusline+=%#Warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"ALE config
 
 "Vim-clang-format config
 let g:clang_format#code_style = "google"
@@ -81,7 +74,7 @@ let g:rustfmt_autosave = 1
 
 "airline config
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-
+let g:airline#extentions#ale#enabled = 1
 
 "Easy align config
 "easy align in visual mode (ex. vipga select inner paragraph easy align)
