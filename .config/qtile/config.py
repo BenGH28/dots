@@ -13,14 +13,14 @@ MOD = "mod4"
 ALT = "mod1"
 TERM = "alacritty"
 
-##### STARTUP APPLICATIONS #####
+# STARTUP APPLICATIONS
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([home])
 
 
-#### KEY BINDINGS ####
+# KEY BINDINGS 
 keys = [
     # Switch between windows in current stack pane
     Key([MOD], "j", lazy.layout.down()),
@@ -38,9 +38,9 @@ keys = [
     Key([MOD], "q", lazy.window.kill()),
     Key([MOD, "shift"], "r", lazy.restart()),
     Key([MOD, "shift"], "q", lazy.shutdown()),
-    #Screen focus
-    Key([ALT], "h", lazy.to_screen(0),desc="Move to screen 1"),
-    Key([ALT], "l", lazy.to_screen(1),desc="Move to screen 2"),
+    # Screen focus
+    Key([ALT], "h", lazy.to_screen(0), desc="Move to screen 1"),
+    Key([ALT], "l", lazy.to_screen(1), desc="Move to screen 2"),
     # screen brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
@@ -66,6 +66,7 @@ keys = [
     Key([ALT], "Tab", lazy.spawn("rofi -show window")),
     Key([MOD], "m", lazy.spawn("com.spotify.Client")),
     Key([MOD], "f", lazy.spawn("thunar")),
+    Key([MOD, "shift"], "f", lazy.spawn("alacritty -e ranger")),
     Key([MOD], "z", lazy.spawn("alacritty -e nvim /home/ben/.zshrc")),
     Key([MOD], "F3", lazy.spawn("alacritty -e nvim /home/ben/.config/qtile/config.py")),
 ]
@@ -107,16 +108,17 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-widget_defaults = dict(font="Mononoki Nerd Font", fontsize=18, padding=3,)
+widget_defaults = dict(font="Hack", fontsize=18, padding=3,)
 extension_defaults = widget_defaults.copy()
 
 widget_padding = 10
+
 
 def initMyWidgets():
     myWidgets = [
         widget.GroupBox(),
         widget.WindowName(foreground=dracula["purple"]),
-        widget.CPU(foreground=dracula["pink"],padding=widget_padding),
+        widget.CPU(foreground=dracula["pink"], padding=widget_padding),
         widget.Memory(foreground=dracula["purple"], padding=widget_padding),
         widget.AGroupBox(foreground=dracula["cyan"], borderwidth=0),
         widget.CurrentLayout(foreground=dracula["yellow"], padding=widget_padding),
@@ -141,16 +143,16 @@ def initMyWidgets():
     ]
     return myWidgets
 
-widgets1=initMyWidgets()
-widgets2=initMyWidgets()
+widgets1 = initMyWidgets()
+# widgets2=initMyWidgets()
 
-#### My Screens ####
+# My Screens
 screens = [
     Screen(top=bar.Bar(widgets1, size=24, background=dracula["background"])),
-    Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
+    # Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
 ]
 
-#### Drag floating layouts. ####
+# Drag floating layouts
 mouse = [
     Drag(
         [MOD],
