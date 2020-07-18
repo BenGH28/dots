@@ -63,7 +63,8 @@ set nowrap
 "=============================================================
 "							Plugin-Configs
 "=============================================================
-"ALE config
+"NERDtree config
+let g:NERDtreeShowHidden=1
 
 "Vim-clang-format config
 let g:clang_format#code_style = "google"
