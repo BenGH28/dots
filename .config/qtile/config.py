@@ -13,14 +13,15 @@ MOD = "mod4"
 ALT = "mod1"
 TERM = "alacritty"
 
-# STARTUP APPLICATIONS
+
 @hook.subscribe.startup_once
 def start_once():
+    """ Startup Applications """
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([home])
 
 
-# KEY BINDINGS 
+# KEY BINDINGS
 keys = [
     # Switch between windows in current stack pane
     Key([MOD], "j", lazy.layout.down()),
@@ -97,7 +98,7 @@ dracula = {
 }
 layout_theme = {
     "border_width": 4,
-    "margin": 6,
+    "margin": 10,
     "border_focus": dracula["purple"],
 }
 
@@ -105,29 +106,32 @@ layouts = [
     layout.MonadTall(**layout_theme),
     layout.Tile(**layout_theme),
     layout.Max(),
-    layout.Floating(**layout_theme)
+    layout.Floating(**layout_theme),
 ]
 
-widget_defaults = dict(font="Hack", fontsize=18, padding=3,)
+widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=3,)
 extension_defaults = widget_defaults.copy()
 
-widget_padding = 10
+widg_pad = 5
 
 
 def initMyWidgets():
     myWidgets = [
         widget.GroupBox(),
         widget.WindowName(foreground=dracula["purple"]),
-        widget.CPU(foreground=dracula["pink"], padding=widget_padding),
-        widget.Memory(foreground=dracula["purple"], padding=widget_padding),
+        widget.CPU(foreground=dracula["pink"], padding=widg_pad),
+        widget.Memory(foreground=dracula["purple"], padding=widg_pad),
         widget.AGroupBox(foreground=dracula["cyan"], borderwidth=0),
-        widget.CurrentLayout(foreground=dracula["yellow"], padding=widget_padding),
-        widget.Volume(foreground=dracula["cyan"], fmt=" {}", padding=widget_padding),
+        widget.CurrentLayout(foreground=dracula["yellow"], padding=widg_pad),
+        widget.Pacman(
+            foreground=dracula["pink"], execute="sudo pacman -Sy", fmt=" {}"
+        ),
+        widget.Volume(foreground=dracula["cyan"], fmt="{}", padding=widg_pad),
         widget.Backlight(
-            foreground=dracula["green"],
+            foreground=dracula["yellow"],
             backlight_name="intel_backlight",
             brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            padding=widget_padding,
+            padding=widg_pad,
             fmt=" {}",
         ),
         widget.Battery(
@@ -135,21 +139,22 @@ def initMyWidgets():
             charge_char="",
             discharge_char="",
             full_char="",
-            format="{char}  {percent:2.0%}",
-            padding=widget_padding,
+            format="{char} {percent:2.0%}",
+            padding=widg_pad,
         ),
-        widget.Clock(foreground=dracula["purple"], padding=widget_padding, format="%H:%M"),
-        widget.Systray(padding=widget_padding),
+        widget.Clock(foreground=dracula["purple"], padding=widg_pad, format="%H:%M"),
+        widget.Systray(padding=widg_pad),
     ]
     return myWidgets
 
-widgets1 = initMyWidgets()
-# widgets2=initMyWidgets()
 
-# My Screens
+widgets1 = initMyWidgets()
+widgets2 = initMyWidgets()
+
+# My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
     Screen(top=bar.Bar(widgets1, size=24, background=dracula["background"])),
-    # Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
+    Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
 ]
 
 # Drag floating layouts

@@ -4,7 +4,7 @@ XTerm.termName: xterm-256color
 XTerm.vt100.local: true
 XTerm.vt100.metaSendsEscape: true
 XTerm*renderFont: true
-XTerm*faceName: Mononoki Nerd Font:size=20;antialias=true
+XTerm*faceName: JetBrainsMono Nerd Font:size=20;antialias=true
 XTerm*faceSize: 12
 
 ! dracula palette
