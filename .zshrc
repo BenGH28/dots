@@ -28,7 +28,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 	 
-# stty -ixon
 #	  ___    ___
 #    /   |  / (_)___ _________  _____
 #   / /| | / / / __ `/ ___/ _ \/ ___/
@@ -63,6 +62,7 @@ alias dcm="dots commit -m"
 alias dp="dots push"
 alias dstat="dots status"  	 
 alias rn="ranger"
+
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
 #  / /_  / / / / __ \/ ___/ __/ / __ \/ __ \/ ___/
@@ -91,4 +91,3 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
