@@ -154,9 +154,11 @@ layouts = [
     layout.Max(),
 ]
 
-widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
+widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=14, padding=5,)
 extension_defaults = widget_defaults.copy()
 
+def mem():
+    lazy.spawn(f"{TERM} -e sudo pacman -Syu")
 
 def initMyWidgets():
     myWidgets = [
@@ -164,45 +166,56 @@ def initMyWidgets():
         widget.WindowName(foreground=dracula["purple"]),
         widget.CPU(
             foreground=dracula["pink"],
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
             ),
+        widget.Sep(),
         widget.Memory(
             foreground=dracula["purple"],
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
             ),
-        # widget.AGroupBox(
-        #     foreground=dracula["cyan"],
-        #     borderwidth=0
-        #     ),
+        widget.Sep(),
+        widget.AGroupBox(
+            foreground=dracula["cyan"],
+            borderwidth=0
+            ),
+        widget.Sep(),
         widget.CurrentLayout(
             foreground=dracula["yellow"],
             ),
+        widget.Sep(),
         widget.Pacman(
             foreground=dracula["pink"],
             execute="sudo pacman -Sy",
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
             fmt=" {}"
         ),
+        widget.Sep(),
         widget.Volume(
             foreground=dracula["cyan"],
             fmt="{}",
             ),
-        widget.Backlight(
-            foreground=dracula["yellow"],
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt=" {}",
-        ),
-        widget.Battery(
-            foreground=dracula["orange"],
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="{char} {percent:2.0%}",
-        ),
+        widget.Sep(),
+        # widget.Backlight(
+        #     foreground=dracula["yellow"],
+        #     backlight_name="intel_backlight",
+        #     brightness_file="/sys/class/backlight/intel_backlight/brightness",
+        #     fmt=" {}",
+        # ),
+        # widget.Sep(),
+        # widget.Battery(
+        #     foreground=dracula["orange"],
+        #     charge_char="",
+        #     discharge_char="",
+        #     full_char="",
+        #     format="{char} {percent:2.0%}",
+        # ),
+        # widget.Sep(),
         widget.Clock(
             foreground=dracula["purple"],
             format="%H:%M"
             ),
-        widget.Systray(
-            ),
+        widget.Sep(),
+        widget.Systray(),
     ]
     return myWidgets
 
@@ -213,7 +226,7 @@ widgets2 = initMyWidgets()
 # My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
     Screen(top=bar.Bar(widgets1, size=24, background=dracula["background"])),
-    # Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
+    Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
 ]
 
 # Drag floating layouts
