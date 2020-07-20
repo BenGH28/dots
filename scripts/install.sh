@@ -3,8 +3,7 @@
 #installing my favourite packages and utilities
 sudo pacman -Syu nvim alacritty i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen
 
-yay -S nerd-fonts-mononoki
-
+yay -S nerd-fonts-jetbrains-mono
 #install those utilities that aren't on ARCH repos
 #Oh-my-zsh
  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
