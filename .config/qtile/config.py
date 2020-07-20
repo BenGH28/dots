@@ -24,27 +24,49 @@ def start_once():
 # KEY BINDINGS
 keys = [
     # Switch between windows in current stack pane
-    Key([MOD], "j", lazy.layout.down()),
-    Key([MOD], "k", lazy.layout.up()),
+    Key([MOD], "j",
+        lazy.layout.down()),
+    Key([MOD], "k",
+        lazy.layout.up()),
+
     # Move windows up or down in current stack
-    Key([MOD, "control"], "j", lazy.layout.shuffle_down()),
-    Key([MOD, "control"], "k", lazy.layout.shuffle_up()),
+    Key([MOD, "control"], "j",
+        lazy.layout.shuffle_down()),
+    Key([MOD, "control"], "k",
+        lazy.layout.shuffle_up()),
+
     # change window size
-    Key([MOD], "h", lazy.layout.grow()),
-    Key([MOD], "l", lazy.layout.shrink()),
+    Key([MOD], "h",
+        lazy.layout.grow()),
+    Key([MOD], "l",
+        lazy.layout.shrink()),
+
     # Switch window focus to other pane(s) of stack
-    Key([MOD], "space", lazy.layout.next()),
+    Key([MOD], "space",
+        lazy.layout.next()),
+
     # Toggle between different layouts as defined below
-    Key([MOD], "Tab", lazy.next_layout()),
-    Key([MOD], "q", lazy.window.kill()),
-    Key([MOD, "shift"], "r", lazy.restart()),
-    Key([MOD, "shift"], "q", lazy.shutdown()),
+    Key([MOD], "Tab",
+        lazy.next_layout()),
+    Key([MOD], "q",
+        lazy.window.kill()),
+    Key([MOD, "shift"], "r",
+        lazy.restart()),
+    Key([MOD, "shift"], "q",
+        lazy.shutdown()),
+
     # Screen focus
-    Key([ALT], "h", lazy.to_screen(0), desc="Move to screen 1"),
-    Key([ALT], "l", lazy.to_screen(1), desc="Move to screen 2"),
+    Key([ALT], "h",
+        lazy.to_screen(0)),
+    Key([ALT], "l",
+        lazy.to_screen(1)),
+
     # screen brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
+    Key([], "XF86MonBrightnessUp",
+        lazy.spawn("xbacklight -inc 10")),
+    Key([], "XF86MonBrightnessDown",
+        lazy.spawn("xbacklight -dec 10")),
+
     # Audio Control
     Key(
         [],
@@ -56,31 +78,54 @@ keys = [
         "XF86AudioLowerVolume",
         lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"),
     ),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioMute",
+        lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+    Key([], "XF86AudioPlay",
+        lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext",
+        lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev",
+        lazy.spawn("playerctl previous")),
+
     # Key bindings for applications
-    Key([MOD], "Return", lazy.spawn(TERM)),
-    Key([MOD], "w", lazy.spawn("firefox")),
-    Key([MOD], "d", lazy.spawn("rofi -show run")),
-    Key([ALT], "Tab", lazy.spawn("rofi -show window")),
-    Key([MOD], "m", lazy.spawn("com.spotify.Client")),
-    Key([MOD], "f", lazy.spawn("thunar")),
-    Key([MOD, "shift"], "f", lazy.spawn("alacritty -e ranger")),
-    Key([MOD], "z", lazy.spawn("alacritty -e nvim /home/ben/.zshrc")),
-    Key([MOD], "F3", lazy.spawn("alacritty -e nvim /home/ben/.config/qtile/config.py")),
+    Key([MOD], "Return",
+        lazy.spawn(TERM)),
+    Key([MOD], "w",
+        lazy.spawn("firefox")),
+    Key([MOD], "d",
+        lazy.spawn("rofi -show run")),
+    Key([ALT], "Tab",
+        lazy.spawn("rofi -show window")),
+    Key([MOD], "m",
+        lazy.spawn("com.spotify.Client")),
+    Key([MOD], "f",
+        lazy.spawn("thunar")),
+    Key([MOD, "shift"], "f",
+        lazy.spawn(f"{TERM} -e ranger")),
+    Key([MOD], "z",
+        lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
+    Key([MOD], "F3",
+        lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
 ]
 
 groups = [Group(i) for i in "123456789"]
 
+# groups = [
+#         Group("1", position=1),
+#         Group("2: ", position=2),
+#         Group("3: ", position=3),
+#         Group("4: ", position=4),
+#         Group("5: ", position=5),
+#         ]
 for i in groups:
     keys.extend(
         [
-            # MOD1 + letter of group = switch to group
-            Key([MOD], i.name, lazy.group[i.name].toscreen()),
-            # MOD1 + shift + letter of group = switch to & move focused window to group
-            Key([MOD, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
+            # MOD4 + letter of group = switch to group
+            Key([MOD], i.name,
+                lazy.group[i.name].toscreen()),
+            # MOD4 + shift + num of group = switch and move window to group
+            Key([MOD, "shift"], i.name,
+                lazy.window.togroup(i.name, switch_group=True)),
         ]
     )
 
@@ -106,7 +151,6 @@ layouts = [
     layout.MonadTall(**layout_theme),
     layout.Tile(**layout_theme),
     layout.Max(),
-    layout.Floating(**layout_theme),
 ]
 
 widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=3,)
@@ -119,14 +163,32 @@ def initMyWidgets():
     myWidgets = [
         widget.GroupBox(),
         widget.WindowName(foreground=dracula["purple"]),
-        widget.CPU(foreground=dracula["pink"], padding=widg_pad),
-        widget.Memory(foreground=dracula["purple"], padding=widg_pad),
-        widget.AGroupBox(foreground=dracula["cyan"], borderwidth=0),
-        widget.CurrentLayout(foreground=dracula["yellow"], padding=widg_pad),
+        widget.CPU(
+            foreground=dracula["pink"],
+            padding=widg_pad
+            ),
+        widget.Memory(
+            foreground=dracula["purple"],
+            padding=widg_pad
+            ),
+        widget.AGroupBox(
+            foreground=dracula["cyan"],
+            borderwidth=0
+            ),
+        widget.CurrentLayout(
+            foreground=dracula["yellow"],
+            padding=widg_pad
+            ),
         widget.Pacman(
-            foreground=dracula["pink"], execute="sudo pacman -Sy", fmt=" {}"
+            foreground=dracula["pink"],
+            execute="sudo pacman -Sy",
+            fmt=" {}"
         ),
-        widget.Volume(foreground=dracula["cyan"], fmt="{}", padding=widg_pad),
+        widget.Volume(
+            foreground=dracula["cyan"],
+            fmt="{}",
+            padding=widg_pad
+            ),
         widget.Backlight(
             foreground=dracula["yellow"],
             backlight_name="intel_backlight",
@@ -142,8 +204,14 @@ def initMyWidgets():
             format="{char} {percent:2.0%}",
             padding=widg_pad,
         ),
-        widget.Clock(foreground=dracula["purple"], padding=widg_pad, format="%H:%M"),
-        widget.Systray(padding=widg_pad),
+        widget.Clock(
+            foreground=dracula["purple"],
+            padding=widg_pad,
+            format="%H:%M"
+            ),
+        widget.Systray(
+            padding=widg_pad
+            ),
     ]
     return myWidgets
 
@@ -166,7 +234,10 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [MOD], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [MOD],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size()
     ),
     Click([MOD], "Button2", lazy.window.bring_to_front()),
 ]
@@ -179,7 +250,7 @@ bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
+        # Run the utility of `xprop` to see the wm class and name of X client.
         {"wmclass": "confirm"},
         {"wmclass": "dialog"},
         {"wmclass": "download"},
@@ -194,7 +265,7 @@ floating_layout = layout.Floating(
         {"wname": "branchdialog"},  # gitk
         {"wname": "pinentry"},  # GPG key password entry
         {"wmclass": "ssh-askpass"},  # ssh-askpass
-    ]
+    ], **layout_theme
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
