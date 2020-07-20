@@ -108,15 +108,16 @@ keys = [
         lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
 ]
 
-groups = [Group(i) for i in "123456789"]
+# groups = [Group(i) for i in "123456789"]
 
-# groups = [
-#         Group("1", position=1),
-#         Group("2: ", position=2),
-#         Group("3: ", position=3),
-#         Group("4: ", position=4),
-#         Group("5: ", position=5),
-#         ]
+groups = [
+        Group(name="1", label="1:  "),
+        Group(name="2", label="2: "),
+        Group(name="3", label="3: "),
+        Group(name="4", label="4: "),
+        Group(name="5", label="5: "),
+        ]
+
 for i in groups:
     keys.extend(
         [
@@ -153,10 +154,8 @@ layouts = [
     layout.Max(),
 ]
 
-widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=3,)
+widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
-
-widg_pad = 5
 
 
 def initMyWidgets():
@@ -165,19 +164,16 @@ def initMyWidgets():
         widget.WindowName(foreground=dracula["purple"]),
         widget.CPU(
             foreground=dracula["pink"],
-            padding=widg_pad
             ),
         widget.Memory(
             foreground=dracula["purple"],
-            padding=widg_pad
             ),
-        widget.AGroupBox(
-            foreground=dracula["cyan"],
-            borderwidth=0
-            ),
+        # widget.AGroupBox(
+        #     foreground=dracula["cyan"],
+        #     borderwidth=0
+        #     ),
         widget.CurrentLayout(
             foreground=dracula["yellow"],
-            padding=widg_pad
             ),
         widget.Pacman(
             foreground=dracula["pink"],
@@ -187,13 +183,11 @@ def initMyWidgets():
         widget.Volume(
             foreground=dracula["cyan"],
             fmt="{}",
-            padding=widg_pad
             ),
         widget.Backlight(
             foreground=dracula["yellow"],
             backlight_name="intel_backlight",
             brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            padding=widg_pad,
             fmt=" {}",
         ),
         widget.Battery(
@@ -202,15 +196,12 @@ def initMyWidgets():
             discharge_char="",
             full_char="",
             format="{char} {percent:2.0%}",
-            padding=widg_pad,
         ),
         widget.Clock(
             foreground=dracula["purple"],
-            padding=widg_pad,
             format="%H:%M"
             ),
         widget.Systray(
-            padding=widg_pad
             ),
     ]
     return myWidgets
@@ -222,7 +213,7 @@ widgets2 = initMyWidgets()
 # My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
     Screen(top=bar.Bar(widgets1, size=24, background=dracula["background"])),
-    Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
+    # Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
 ]
 
 # Drag floating layouts
