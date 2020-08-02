@@ -130,10 +130,10 @@ for i in groups:
         ]
     )
 
-dracula = {
-    "background": "282A36",
-    "foreground": "f8f8f2",
-    "comment": "6272a4",
+colours = {
+    "foreground": "282A36",
+    "background": "ffffff",
+    "inactive": "d8d8d2",
     "cyan": "8be9fd",
     "green": "50fa7b",
     "orange": "ffb86c",
@@ -145,77 +145,77 @@ dracula = {
 layout_theme = {
     "border_width": 4,
     "margin": 10,
-    "border_focus": dracula["purple"],
+    "border_focus": colours["purple"],
+    "border_normal": colours["background"]
 }
 
 layouts = [
     layout.MonadTall(**layout_theme),
-    layout.Tile(**layout_theme),
     layout.Max(),
 ]
 
-widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=14, padding=5,)
+widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
-def mem():
-    lazy.spawn(f"{TERM} -e sudo pacman -Syu")
 
 def initMyWidgets():
     myWidgets = [
-        widget.GroupBox(),
-        widget.WindowName(foreground=dracula["purple"]),
+        widget.GroupBox(
+            active=colours["foreground"],
+            inactive=colours["inactive"]),
+        widget.WindowName(foreground=colours["foreground"]),
         widget.CPU(
-            foreground=dracula["pink"],
+            foreground=colours["foreground"],
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
             ),
         widget.Sep(),
         widget.Memory(
-            foreground=dracula["purple"],
+            foreground=colours["foreground"],
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
             ),
         widget.Sep(),
         widget.AGroupBox(
-            foreground=dracula["cyan"],
+            foreground=colours["foreground"],
             borderwidth=0
             ),
         widget.Sep(),
         widget.CurrentLayout(
-            foreground=dracula["yellow"],
+            foreground=colours["foreground"],
             ),
         widget.Sep(),
         widget.Pacman(
-            foreground=dracula["pink"],
+            foreground=colours["foreground"],
             execute="sudo pacman -Sy",
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
             fmt=" {}"
         ),
         widget.Sep(),
         widget.Volume(
-            foreground=dracula["cyan"],
+            foreground=colours["foreground"],
             fmt="{}",
             ),
         widget.Sep(),
-        # widget.Backlight(
-        #     foreground=dracula["yellow"],
-        #     backlight_name="intel_backlight",
-        #     brightness_file="/sys/class/backlight/intel_backlight/brightness",
-        #     fmt=" {}",
-        # ),
-        # widget.Sep(),
-        # widget.Battery(
-        #     foreground=dracula["orange"],
-        #     charge_char="",
-        #     discharge_char="",
-        #     full_char="",
-        #     format="{char} {percent:2.0%}",
-        # ),
-        # widget.Sep(),
+        widget.Backlight(
+            foreground=colours["foreground"],
+            backlight_name="intel_backlight",
+            brightness_file="/sys/class/backlight/intel_backlight/brightness",
+            fmt=" {}",
+        ),
+        widget.Sep(),
+        widget.Battery(
+            foreground=colours["foreground"],
+            charge_char="",
+            discharge_char="",
+            full_char="",
+            format="{char} {percent:2.0%}",
+        ),
+        widget.Sep(),
         widget.Clock(
-            foreground=dracula["purple"],
+            foreground=colours["foreground"],
             format="%H:%M"
             ),
         widget.Sep(),
-        widget.Systray(),
+        widget.Systray(foreground=colours["foreground"]),
     ]
     return myWidgets
 
@@ -225,8 +225,16 @@ widgets2 = initMyWidgets()
 
 # My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
-    Screen(top=bar.Bar(widgets1, size=24, background=dracula["background"])),
-    Screen(top=bar.Bar(widgets2, size=24, background=dracula["background"])),
+    Screen(top=bar.Bar(
+        widgets1,
+        size=24,
+        background=colours["background"],
+        foreground=colours["foreground"],)),
+    Screen(top=bar.Bar(
+        widgets1,
+        size=24,
+        background=colours["background"],
+        foreground=colours["foreground"],)),
 ]
 
 # Drag floating layouts
