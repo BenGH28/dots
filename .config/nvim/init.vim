@@ -4,7 +4,8 @@
 call plug#begin('~/.vim/plugged')
 "themes
 Plug 'dracula/vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'rakr/vim-one'
+Plug 'sainnhe/edge'
 
 "tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -31,7 +32,9 @@ call plug#end()
 "							Basics
 "=============================================================
 let mapleader = " "
-colorscheme dracula
+colorscheme edge
+set background=light
+hi Normal guibg=NONE ctermbg=NONE 
 set number relativenumber
 syntax on
 set ignorecase
@@ -87,8 +90,8 @@ nmap ga <Plug>(EasyAlign)
 "Quick scope config
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=underline
+highlight QuickScopePrimary guifg='#0007DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#008800' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=150
 
 "DoxygenToolkit config
@@ -215,7 +218,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 " Show all diagnostics.
@@ -287,6 +290,7 @@ imap kj <ESC>
 "fuzzyfinder
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>f :Files<CR>
+
 augroup VIMRC_SOURCING
 	"I think this will source init.vim once save
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC

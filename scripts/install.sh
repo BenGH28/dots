@@ -1,10 +1,18 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -Syu nvim alacritty i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen
+sudo pacman -Syu nvim alacritty i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen nodejs yay qtile
 
+#only found in the aur
 yay -S nerd-fonts-jetbrains-mono
+
+##################################################
 #install those utilities that aren't on ARCH repos
+##################################################
+
+#alacritty theming via npm
+npm i -g alacritty-themes
+
 #Oh-my-zsh
  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

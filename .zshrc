@@ -13,7 +13,7 @@ ZSH_WEB_SEARCH_ENGINES=(
 export ZSH="/home/ben/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-ZSH_THEME="agnoster"
+ZSH_THEME="simple"
 
 # auto-correction.
 ENABLE_CORRECTION="true"
@@ -62,6 +62,7 @@ alias dcm="dots commit -m"
 alias dp="dots push"
 alias dstat="dots status"  	 
 alias rn="ranger"
+alias alts="alacritty-themes"
 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
