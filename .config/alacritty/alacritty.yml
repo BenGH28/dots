@@ -32,7 +32,7 @@ window:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   title: Alacritty
