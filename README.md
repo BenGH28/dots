@@ -1,5 +1,5 @@
 # Dots 
-![Qtile Layout](https://github.com/BenGH28/dots/blob/.screenshots/qtile_conf.png)
+![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_conf.png)
 certain dotfiles for my system including:
   - Window managers
   - Neovim
