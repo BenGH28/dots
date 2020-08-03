@@ -166,12 +166,12 @@ def initMyWidgets():
         widget.WindowName(foreground=colours["foreground"]),
         widget.CPU(
             foreground=colours["foreground"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Sep(),
         widget.Memory(
             foreground=colours["foreground"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e bashtop")}
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Sep(),
         widget.AGroupBox(
@@ -215,7 +215,7 @@ def initMyWidgets():
             format="%H:%M"
             ),
         widget.Sep(),
-        widget.Systray(foreground=colours["foreground"]),
+        widget.Systray(),
     ]
     return myWidgets
 
