@@ -1,4 +1,5 @@
 # Dots 
+## Qtile Layout
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_conf.png)
 certain dotfiles for my system including:
   - Window managers
@@ -8,7 +9,7 @@ certain dotfiles for my system including:
 ## Dependencies
 There are a couple extensions/apps/plugins that I use:
   - [Alacritty] a quick terminal.
-  - [i3] window manager
+  - [i3] and [Qtile] window managers
   - [Picom] window compositor
   - [Rofi]: A window switcher, application launcher and dmenu replacement 
   - [Oh-My-ZSH] for some sweet zsh.
@@ -22,4 +23,4 @@ There are a couple extensions/apps/plugins that I use:
   [i3]: https://i3wm.org/
   [Picom]: https://wiki.archlinux.org/index.php/Picom
   [Font Awesome]: https://fontawesome.com/
-  
+  [Qtile]: https://qtile.org/
