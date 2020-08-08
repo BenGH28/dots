@@ -222,17 +222,20 @@ def initMyWidgets():
 
 widgets1 = initMyWidgets()
 widgets2 = initMyWidgets()
-
+opaque = 0.8
+bar_size = 30
 # My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
     Screen(top=bar.Bar(
         widgets1,
-        size=24,
+        size=bar_size,
+        opacity=opaque,
         background=colours["background"],
         foreground=colours["foreground"],)),
     Screen(top=bar.Bar(
         widgets1,
-        size=24,
+        size=bar_size,
+        opacity=opaque,
         background=colours["background"],
         foreground=colours["foreground"],)),
 ]
