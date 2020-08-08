@@ -5,32 +5,53 @@ XTerm.vt100.local: true
 XTerm.vt100.metaSendsEscape: true
 XTerm*renderFont: true
 XTerm*faceName: JetBrainsMono Nerd Font:size=20;antialias=true
-XTerm*faceSize: 12
+XTerm*faceSize: 16
 
-! dracula palette
-*.foreground: #f8f8f2
-*.background: #282a36
+/* ! dracula palette */
+/* *.foreground: #f8f8f2 */
+/* *.background: #282a36 */
 
-*.color0:     #000000
-*.color8:     #4d4d4d
+/* *.color0:     #000000 */
+/* *.color8:     #4d4d4d */
 
-*.color1:     #ff5555
-*.color9:     #ff6e67
+/* *.color1:     #ff5555 */
+/* *.color9:     #ff6e67 */
 
-*.color2:     #50fa7b
-*.color10:    #5af78e
+/* *.color2:     #50fa7b */
+/* *.color10:    #5af78e */
 
-*.color3:     #f1fa8c
-*.color11:    #f4f99d
+/* *.color3:     #f1fa8c */
+/* *.color11:    #f4f99d */
 
-*.color4:     #bd93f9
-*.color12:    #caa9fa
+/* *.color4:     #bd93f9 */
+/* *.color12:    #caa9fa */
 
-*.color5:     #ff79c6
-*.color13:    #ff92d0
+/* *.color5:     #ff79c6 */
+/* *.color13:    #ff92d0 */
 
-*.color6:     #8be9fd
-*.color14:    #9aedfe
+/* *.color6:     #8be9fd */
+/* *.color14:    #9aedfe */
 
-*.color7:     #bfbfbf
-*.color15:    #e6e6e6
+/* *.color7:     #bfbfbf */
+/* *.color15:    #e6e6e6 */
+!
+! Atom One Light theme
+xterm*background: #f9f9f9
+xterm*foreground: #383a42
+xterm*cursorColor: #d0d0d0
+xterm*color0: #000000
+xterm*color1: #E45649
+xterm*color2: #50A14F
+xterm*color3: #986801
+xterm*color4: #4078F2
+xterm*color5: #A626A4
+xterm*color6: #0184BC
+xterm*color7: #A0A1A7
+xterm*color8: #5c6370
+xterm*color9: #e06c75
+xterm*color10: #50A14F
+xterm*color11: #986801
+xterm*color12: #4078F2
+xterm*color13: #A626A4
+xterm*color14: #0184BC
+xterm*color15: #ffffff
