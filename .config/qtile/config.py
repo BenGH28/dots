@@ -135,7 +135,7 @@ colours = {
     "foreground": "282A36",
     "background": "ffffff",
     "inactive": "d8d8d2",
-    "blue": "4078f2",
+    "blue": "61afef",
 }
 layout_theme = {
     "border_width": 4,
@@ -156,6 +156,7 @@ extension_defaults = widget_defaults.copy()
 def initMyWidgets():
     myWidgets = [
         widget.GroupBox(
+            this_current_screen_border=colours["blue"],
             active=colours["foreground"],
             inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),

@@ -34,7 +34,6 @@ call plug#end()
 let mapleader = " "
 colorscheme edge
 set background=light
-hi Normal guibg=NONE ctermbg=NONE 
 set number relativenumber
 syntax on
 set ignorecase
@@ -56,7 +55,8 @@ set notimeout ttimeout ttimeoutlen=200 "timeout on keycodes not on mappings
 set cursorline
 set splitbelow 
 set splitright
-filetype plugin on "detect filetype
+set nocompatible
+filetype pluginon "detect filetype
 set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
