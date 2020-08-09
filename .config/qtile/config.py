@@ -172,7 +172,7 @@ def initMyWidgets():
         widget.Sep(),
         widget.AGroupBox(
             foreground=colours["foreground"],
-            borderwidth=0
+            borderwidth=0,
             ),
         widget.Sep(),
         widget.CurrentLayout(
@@ -191,24 +191,24 @@ def initMyWidgets():
             fmt="{}",
             ),
         widget.Sep(),
-        widget.Backlight(
-            foreground=colours["foreground"],
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt=" {}",
-        ),
-        widget.Sep(),
-        widget.Battery(
-            foreground=colours["foreground"],
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="{char} {percent:2.0%}",
-        ),
-        widget.Sep(),
+        # widget.Backlight(
+        #     foreground=colours["foreground"],
+        #     backlight_name="intel_backlight",
+        #     brightness_file="/sys/class/backlight/intel_backlight/brightness",
+        #     fmt=" {}",
+        # ),
+        # widget.Sep(),
+        # widget.Battery(
+        #     foreground=colours["foreground"],
+        #     charge_char="",
+        #     discharge_char="",
+        #     full_char="",
+        #     format="{char} {percent:2.0%}",
+        # ),
+        # widget.Sep(),
         widget.Clock(
             foreground=colours["foreground"],
-            format="%H:%M"
+            format="%D %H:%M"
             ),
         widget.Sep(),
         widget.Systray(),
@@ -229,7 +229,7 @@ screens = [
         background=colours["background"],
         foreground=colours["foreground"],)),
     Screen(top=bar.Bar(
-        widgets1,
+        widgets2,
         size=bar_size,
         opacity=opaque,
         background=colours["background"],
