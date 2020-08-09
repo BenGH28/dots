@@ -32,7 +32,7 @@ call plug#end()
 "							Basics
 "=============================================================
 let mapleader = " "
-colorscheme edge
+colorscheme one
 set background=light
 set number relativenumber
 syntax on
