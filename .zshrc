@@ -50,7 +50,7 @@ alias Ss="pacman -Ss"
 alias Q="pacman -Q"
 alias Syu="sudo pacman -Syu"
 alias pi="ssh pi@192.168.1.63"
-alias zrc="nvim $HOME/.zshrc"
+alias zrc="nvim $ZRC"
 alias nv="nvim"
 alias vim="nvim"
 alias alconf="nvim $HOME/.config/alacritty/alacritty.yml"
@@ -62,6 +62,7 @@ alias dp="dots push"
 alias dstat="dots status"  	 
 alias rn="ranger"
 alias alts="alacritty-themes"
+alias cat="bat --theme OneHalfLight"
 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____

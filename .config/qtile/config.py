@@ -41,6 +41,9 @@ keys = [
     Key([MOD], "l",
         lazy.layout.shrink()),
 
+    # Toggle floating
+    Key([MOD], "n", lazy.window.toggle_floating()),
+
     # Switch window focus to other pane(s) of stack
     Key([MOD], "space",
         lazy.layout.next()),
@@ -48,8 +51,12 @@ keys = [
     # Toggle between different layouts as defined below
     Key([MOD], "Tab",
         lazy.next_layout()),
+
+    # Close Windows
     Key([MOD], "q",
         lazy.window.kill()),
+
+    # Restart and Shutdown Qtile
     Key([MOD, "shift"], "r",
         lazy.restart()),
     Key([MOD, "shift"], "q",
@@ -68,16 +75,10 @@ keys = [
         lazy.spawn("xbacklight -dec 10")),
 
     # Audio Control
-    Key(
-        [],
-        "XF86AudioRaiseVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"),
-    ),
-    Key(
-        [],
-        "XF86AudioLowerVolume",
-        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"),
-    ),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")),
     Key([], "XF86AudioMute",
         lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([], "XF86AudioPlay",
@@ -134,18 +135,12 @@ colours = {
     "foreground": "282A36",
     "background": "ffffff",
     "inactive": "d8d8d2",
-    "cyan": "8be9fd",
-    "green": "50fa7b",
-    "orange": "ffb86c",
-    "pink": "ff79c6",
-    "purple": "bd93f9",
-    "red": "ff5555",
-    "yellow": "f1fa8c",
+    "blue": "4078f2",
 }
 layout_theme = {
     "border_width": 4,
     "margin": 10,
-    "border_focus": colours["purple"],
+    "border_focus": colours["blue"],
     "border_normal": colours["background"]
 }
 
