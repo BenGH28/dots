@@ -1,6 +1,8 @@
 # Dots 
 ## Qtile Layout
-![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_conf.png)
+![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf.png)
+![Qtile Desktop](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_desktop.png)
+![Qtile Floating](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_floating.png)
 certain dotfiles for my system including:
   - Window managers
   - Neovim
