@@ -107,6 +107,8 @@ keys = [
         lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
     Key([MOD], "F3",
         lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
+    Key([MOD], "F1",
+        lazy.spawn("sgtk-menu -f -a")),
 ]
 
 # groups = [Group(i) for i in "123456789"]
@@ -135,7 +137,8 @@ colours = {
     "foreground": "282A36",
     "background": "ffffff",
     "inactive": "d8d8d2",
-    "blue": "61afef",
+    "blue": "61afe0",
+    "green": "98d379",
 }
 layout_theme = {
     "border_width": 4,
@@ -160,58 +163,96 @@ def initMyWidgets():
             active=colours["foreground"],
             inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),
+        widget.Image(
+            filename="~/.config/qtile/BlueEnd.png",
+            margin=0,
+            ),
         widget.CPU(
             foreground=colours["foreground"],
+            background=colours["blue"],
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
-        widget.Sep(),
+        widget.Image(
+            filename="~/.config/qtile/BlueGreen.png",
+            margin=0,
+            ),
         widget.Memory(
             foreground=colours["foreground"],
+            background=colours["green"],
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
-        widget.Sep(),
+        widget.Image(
+            filename="~/.config/qtile/GreenBlue.png",
+            margin=0,
+            ),
         widget.AGroupBox(
             foreground=colours["foreground"],
+            background=colours["blue"],
             borderwidth=0,
             ),
-        widget.Sep(),
+        widget.Image(
+            filename="~/.config/qtile/BlueGreen.png",
+            margin=0,
+            ),
         widget.CurrentLayout(
             foreground=colours["foreground"],
+            background=colours["green"],
             ),
-        widget.Sep(),
+        widget.Image(
+            filename="~/.config/qtile/GreenBlue.png",
+            margin=0,
+            ),
         widget.Pacman(
             foreground=colours["foreground"],
+            background=colours["blue"],
             execute="sudo pacman -Sy",
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
             fmt=" {}"
-        ),
-        widget.Sep(),
+            ),
+        widget.Image(
+            filename="~/.config/qtile/BlueGreen.png",
+            margin=0,
+            ),
         widget.Volume(
             foreground=colours["foreground"],
+            background=colours["green"],
             fmt="{}",
             ),
-        widget.Sep(),
-        # widget.Backlight(
-        #     foreground=colours["foreground"],
-        #     backlight_name="intel_backlight",
-        #     brightness_file="/sys/class/backlight/intel_backlight/brightness",
-        #     fmt=" {}",
-        # ),
-        # widget.Sep(),
-        # widget.Battery(
-        #     foreground=colours["foreground"],
-        #     charge_char="",
-        #     discharge_char="",
-        #     full_char="",
-        #     format="{char} {percent:2.0%}",
-        # ),
-        # widget.Sep(),
+        widget.Image(
+            filename="~/.config/qtile/GreenBlue.png",
+            margin=0,
+            ),
+        widget.Backlight(
+            foreground=colours["foreground"],
+            background=colours["blue"],
+            backlight_name="intel_backlight",
+            brightness_file="/sys/class/backlight/intel_backlight/brightness",
+            fmt=" {}",
+            ),
+        widget.Image(
+            filename="~/.config/qtile/BlueGreen.png",
+            margin=0,
+            ),
+        widget.Battery(
+            foreground=colours["foreground"],
+            background=colours["green"],
+            charge_char="",
+            discharge_char="",
+            full_char="",
+            format="{char} {percent:2.0%}",
+        ),
+        widget.Image(
+            filename="~/.config/qtile/GreenBlue.png",
+            margin=0,
+            ),
         widget.Clock(
             foreground=colours["foreground"],
+            background=colours["blue"],
             format="%D %H:%M"
             ),
-        widget.Sep(),
-        widget.Systray(),
+        widget.Systray(
+            background=colours["blue"],
+            ),
     ]
     return myWidgets
 
