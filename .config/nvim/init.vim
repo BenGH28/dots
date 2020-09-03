@@ -25,6 +25,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
 call plug#end()
 
@@ -56,7 +57,7 @@ set cursorline
 set splitbelow 
 set splitright
 set nocompatible
-filetype pluginon "detect filetype
+filetype plugin on "detect filetype
 set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
@@ -99,6 +100,13 @@ let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Ben Hunt"
+
+"Markdown
+let g:instant_markdown_autostart = 1
+let g:instant_markdown_allow_external_content = 0
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_browser = "firefox --new-window"
+let g:instant_markdown_autoscroll = 0
 
 "Coc.nvim config
 set nobackup
@@ -291,7 +299,7 @@ imap kj <ESC>
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>f :Files<CR>
 
-augroup VIMRC_SOURCING
-	"I think this will source init.vim once save
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup end
+"augroup VIMRC_SOURCING
+"	"I think this will source init.vim once save
+"	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"augroup end
