@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 "themes
 Plug 'dracula/vim'
 Plug 'rakr/vim-one'
-Plug 'sainnhe/edge'
 
 "tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -13,7 +12,6 @@ Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -67,8 +65,6 @@ set nowrap
 "=============================================================
 "							Plugin-Configs
 "=============================================================
-"NERDtree config
-let g:NERDtreeShowHidden=1
 
 "Vim-clang-format config
 let g:clang_format#code_style = "google"
@@ -253,7 +249,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "select all, copy and paste from clipboard
 map <C-a> gg0vG$
 vnoremap <C-c> "+y 
-noremap <C-P> "+P 
+noremap <C-p> "+P 
 
 "run make/binary
 noremap <Leader>m :!make<CR>
@@ -276,9 +272,6 @@ nnoremap <Leader>k :resize +3<CR>
 nnoremap <Leader>l :vertical resize +3<CR>
 nnoremap <Leader>= <C-W>=
 
-"NERDtree
-nnoremap <C-n> :NERDTreeToggle<CR>
-
 "go to end of line while in insert mode
 inoremap <C-e> <C-o>A
 
@@ -291,7 +284,6 @@ noremap <leader>pu :PlugUpdate<CR>
 noremap <leader>pc :PlugClean<CR>
 
 "lets not use ESC
-imap ii <ESC>
 imap jk <ESC>
 imap kj <ESC>
 
