@@ -22,11 +22,6 @@ def start_once():
     subprocess.call([home])
 
 
-def set_is_dark():
-    global is_dark
-    is_dark = not is_dark
-
-
 # KEY BINDINGS
 keys = keys.GetKeys()
 
