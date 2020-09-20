@@ -2,6 +2,15 @@
 Various widgets based on colour theme
 """
 from libqtile import widget
+from constants import TERM
+
+
+def initialize_widgets(colours, style) -> list:
+    """return widgets based on a colour scheme"""
+    if style == "light":
+        return light_widgets(colours)
+    else:
+        return widgets_no_images(colours)
 
 
 def widgets_no_images(colours) -> list:
@@ -13,7 +22,7 @@ def widgets_no_images(colours) -> list:
             this_current_screen_border=colours["primary"],
             active=colours["foreground"],
             inactive=colours["inactive"]),
-        widget.WindowName(foreground=colours["inactive"]),
+        widget.WindowName(foreground=colours["foreground"]),
         widget.CPU(
             foreground=colours["primary"],
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")},
@@ -33,13 +42,13 @@ def widgets_no_images(colours) -> list:
             foreground=colours["secondary"],
             fmt="|{}|",
             ),
-        # widget.CheckUpdates(
-        #     foreground=colours["primary"],
-        #     custom_command="sudo pacman -Sy | wc -l",
-        #     mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
-        #     display_format=" {}",
-        #     colour_no_updates=colours["primary"],
-        #     ),
+        widget.CheckUpdates(
+            foreground=colours["primary"],
+            custom_command="pamac checkupdates",
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
+            display_format=" {}",
+            colour_no_updates=colours["primary"],
+            ),
         widget.Volume(
             foreground=colours["primary"],
             fmt="|{}|",
@@ -120,14 +129,14 @@ def light_widgets(colours) -> list:
             filename=secondary_primary,
             margin=0,
             ),
-        # widget.CheckUpdates(
-        #     foreground=colours["foreground"],
-        #     background=colours["primary"],
-        #     custom_command="sudo pacman -Sy | wc -l",
-        #     mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
-        #     display_format=" {}",
-        #     colour_no_updates=colours["foreground"],
-        #     ),
+        widget.CheckUpdates(
+            foreground=colours["foreground"],
+            background=colours["primary"],
+            custom_command="pamac checkupdates",
+            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
+            display_format=" {}",
+            colour_no_updates=colours["foreground"],
+            ),
         widget.Image(
             filename=primary_secondary,
             margin=0,
@@ -172,5 +181,5 @@ def light_widgets(colours) -> list:
         widget.Systray(
             background=colours["primary"],
             ),
-    ]
+        ]
     return myWidgets

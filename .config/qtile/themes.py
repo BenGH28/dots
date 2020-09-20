@@ -1,6 +1,7 @@
 def SetLightTheme():
     """
     Set a light theme based on One-Light
+    Return a tuple of dictionary and string describing the dictionary
     """
     light = {
         "foreground": "282A36",
@@ -15,6 +16,7 @@ def SetLightTheme():
 def SetDarkTheme():
     """
     Set a dark theme based on Dracula
+    Return a tuple of dictionary and string describing the dictionary
     """
     dark = {
         "foreground": "f8f8f2",
@@ -24,8 +26,3 @@ def SetDarkTheme():
         "secondary": "ffb86c",
         }
     return (dark, "dark")
-
-
-if __name__ == "__main__":
-    colours, style = SetDarkTheme()
-    print(f"{colours}, {style}")
