@@ -3,10 +3,12 @@ Ben Hunt's Qtile Config
 """
 import os
 import subprocess
+import themes
+import widgets
 from typing import List  # noqa: F401
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.lazy import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, hook
 
 
 MOD = "mod4"
@@ -133,22 +135,19 @@ for i in groups:
         ]
     )
 
-colours = {
-    "foreground": "282A36",
-    "background": "ffffff",
-    "inactive": "d8d8d2",
-    "blue": "61afe0",
-    "green": "98d379",
-}
+# colours, style = themes.SetLightTheme()
+colours, style = themes.SetDarkTheme()
+
 layout_theme = {
     "border_width": 4,
     "margin": 10,
-    "border_focus": colours["blue"],
+    "border_focus": colours["primary"],
     "border_normal": colours["background"]
 }
 
 layouts = [
     layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
     layout.Max(),
 ]
 
@@ -156,109 +155,18 @@ widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
 
-def initMyWidgets():
-    myWidgets = [
-        widget.GroupBox(
-            this_current_screen_border=colours["blue"],
-            active=colours["foreground"],
-            inactive=colours["inactive"]),
-        widget.WindowName(foreground=colours["foreground"]),
-        widget.Image(
-            filename="~/.config/qtile/BlueEnd.png",
-            margin=0,
-            ),
-        widget.CPU(
-            foreground=colours["foreground"],
-            background=colours["blue"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
-            ),
-        widget.Image(
-            filename="~/.config/qtile/BlueGreen.png",
-            margin=0,
-            ),
-        widget.Memory(
-            foreground=colours["foreground"],
-            background=colours["green"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
-            ),
-        widget.Image(
-            filename="~/.config/qtile/GreenBlue.png",
-            margin=0,
-            ),
-        widget.AGroupBox(
-            foreground=colours["foreground"],
-            background=colours["blue"],
-            borderwidth=0,
-            ),
-        widget.Image(
-            filename="~/.config/qtile/BlueGreen.png",
-            margin=0,
-            ),
-        widget.CurrentLayout(
-            foreground=colours["foreground"],
-            background=colours["green"],
-            ),
-        widget.Image(
-            filename="~/.config/qtile/GreenBlue.png",
-            margin=0,
-            ),
-        widget.Pacman(
-            foreground=colours["foreground"],
-            background=colours["blue"],
-            execute="sudo pacman -Sy",
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
-            fmt=" {}"
-            ),
-        widget.Image(
-            filename="~/.config/qtile/BlueGreen.png",
-            margin=0,
-            ),
-        widget.Volume(
-            foreground=colours["foreground"],
-            background=colours["green"],
-            fmt="{}",
-            ),
-        widget.Image(
-            filename="~/.config/qtile/GreenBlue.png",
-            margin=0,
-            ),
-        widget.Backlight(
-            foreground=colours["foreground"],
-            background=colours["blue"],
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt=" {}",
-            ),
-        widget.Image(
-            filename="~/.config/qtile/BlueGreen.png",
-            margin=0,
-            ),
-        widget.Battery(
-            foreground=colours["foreground"],
-            background=colours["green"],
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="{char} {percent:2.0%}",
-        ),
-        widget.Image(
-            filename="~/.config/qtile/GreenBlue.png",
-            margin=0,
-            ),
-        widget.Clock(
-            foreground=colours["foreground"],
-            background=colours["blue"],
-            format="%D %H:%M"
-            ),
-        widget.Systray(
-            background=colours["blue"],
-            ),
-    ]
-    return myWidgets
+def initialize_widgets(colours) -> List:
+    """return widgets based on a colour scheme"""
+    if style == "light":
+        return widgets.light_widgets(colours)
+    else:
+        return widgets.widgets_no_images(colours)
 
 
-widgets1 = initMyWidgets()
-widgets2 = initMyWidgets()
+widgets1 = initialize_widgets(colours)
+widgets2 = initialize_widgets(colours)
+
+
 opaque = 0.8
 bar_size = 30
 # My Screens: I have 2 monitors so add as many screens as monitors
