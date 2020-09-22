@@ -12,7 +12,11 @@ from libqtile.lazy import lazy
 from libqtile import layout, bar, hook
 from constants import MOD
 
-is_dark = False
+# True for dark theme in bar, False for light
+is_dark = True
+
+# True for powerline-esque bar
+powerline = True
 
 
 @hook.subscribe.startup_once
@@ -55,8 +59,8 @@ else:
 widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
-widgets1 = widgets.initialize_widgets(colours, style)
-widgets2 = widgets.initialize_widgets(colours, style)
+widgets1 = widgets.initialize_widgets(colours, style, powerline)
+widgets2 = widgets.initialize_widgets(colours, style, powerline)
 
 layout_theme = {
     "border_width": 4,

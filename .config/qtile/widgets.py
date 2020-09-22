@@ -5,17 +5,18 @@ from libqtile import widget
 from constants import TERM
 
 
-def initialize_widgets(colours, style) -> list:
+def initialize_widgets(colours, style, powerline=True) -> list:
     """return widgets based on a colour scheme"""
-    if style == "light":
-        return light_widgets(colours)
+    if powerline is True:
+        return powerline_widgets(colours, style)
     else:
+        # return no_powerline(colours, style)
         return widgets_no_images(colours)
 
 
 def widgets_no_images(colours) -> list:
     """
-    Return list of widgets which based on colour scheme passed in
+    Return list of widgets with no powerline effects
     """
     widgets = [
         widget.GroupBox(
@@ -41,13 +42,6 @@ def widgets_no_images(colours) -> list:
         widget.CurrentLayout(
             foreground=colours["secondary"],
             fmt="|{}|",
-            ),
-        widget.CheckUpdates(
-            foreground=colours["primary"],
-            custom_command="pamac checkupdates",
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
-            display_format=" {}",
-            colour_no_updates=colours["primary"],
             ),
         widget.Volume(
             foreground=colours["primary"],
@@ -75,18 +69,29 @@ def widgets_no_images(colours) -> list:
     return widgets
 
 
-def light_widgets(colours) -> list:
+def powerline_widgets(colours, style) -> list:
     """
     returns list of widgets based on light scheme
     """
 
-    begin_image = "~/.config/qtile/resources/BlueEnd.png"
-    primary_secondary = "~/.config/qtile/resources/BlueGreen.png"
-    secondary_primary = "~/.config/qtile/resources/GreenBlue.png"
+    if style == "light":
+        begin_image = "~/.config/qtile/resources/GreenEnd.png"
+        secondary_primary = "~/.config/qtile/resources/BlueGreen.png"
+        primary_secondary = "~/.config/qtile/resources/GreenBlue.png"
+        widget_foreground = colours["foreground"]
+    else:
+        begin_image = "~/.config/qtile/resources/OrangeEnd.png"
+        secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
+        primary_secondary = "~/.config/qtile/resources/OrangePurple.png"
+        widget_foreground = colours["background"]
+
+    # the background colours of the widgets
+    firstcolour = colours["secondary"]
+    secondcolour = colours["primary"]
 
     myWidgets = [
         widget.GroupBox(
-            this_current_screen_border=colours["primary"],
+            this_current_screen_border=firstcolour,
             active=colours["foreground"],
             inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),
@@ -95,8 +100,8 @@ def light_widgets(colours) -> list:
             margin=0,
             ),
         widget.CPU(
-            foreground=colours["foreground"],
-            background=colours["primary"],
+            foreground=widget_foreground,
+            background=firstcolour,
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Image(
@@ -104,8 +109,8 @@ def light_widgets(colours) -> list:
             margin=0,
             ),
         widget.Memory(
-            foreground=colours["foreground"],
-            background=colours["secondary"],
+            foreground=widget_foreground,
+            background=secondcolour,
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Image(
@@ -113,8 +118,8 @@ def light_widgets(colours) -> list:
             margin=0,
             ),
         widget.AGroupBox(
-            foreground=colours["foreground"],
-            background=colours["primary"],
+            foreground=widget_foreground,
+            background=firstcolour,
             borderwidth=0,
             ),
         widget.Image(
@@ -122,64 +127,64 @@ def light_widgets(colours) -> list:
             margin=0,
             ),
         widget.CurrentLayout(
-            foreground=colours["foreground"],
-            background=colours["secondary"],
+            foreground=widget_foreground,
+            background=secondcolour,
             ),
         widget.Image(
             filename=secondary_primary,
             margin=0,
             ),
-        widget.CheckUpdates(
-            foreground=colours["foreground"],
-            background=colours["primary"],
-            custom_command="pamac checkupdates",
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e sudo pacman -Syu")},
-            display_format=" {}",
-            colour_no_updates=colours["foreground"],
+        widget.Volume(
+            foreground=widget_foreground,
+            background=firstcolour,
+            fmt="{}",
             ),
         widget.Image(
             filename=primary_secondary,
             margin=0,
             ),
-        widget.Volume(
-            foreground=colours["foreground"],
-            background=colours["secondary"],
-            fmt="{}",
-            ),
-        widget.Image(
-            filename=secondary_primary,
-            margin=0,
-            ),
         widget.Backlight(
-            foreground=colours["foreground"],
-            background=colours["primary"],
+            foreground=widget_foreground,
+            background=secondcolour,
             backlight_name="intel_backlight",
             brightness_file="/sys/class/backlight/intel_backlight/brightness",
             fmt=" {}",
             ),
         widget.Image(
-            filename=primary_secondary,
+            filename=secondary_primary,
             margin=0,
             ),
         widget.Battery(
-            foreground=colours["foreground"],
-            background=colours["secondary"],
+            foreground=widget_foreground,
+            background=firstcolour,
             charge_char="",
             discharge_char="",
             full_char="",
             format="{char} {percent:2.0%}",
-        ),
+            ),
         widget.Image(
-            filename=secondary_primary,
+            filename=primary_secondary,
             margin=0,
             ),
         widget.Clock(
-            foreground=colours["foreground"],
-            background=colours["primary"],
-            format="%D %H:%M"
+            foreground=widget_foreground,
+            background=secondcolour,
+            format="%d/%m/%y %H:%M"
             ),
         widget.Systray(
-            background=colours["primary"],
+            background=secondcolour,
             ),
         ]
     return myWidgets
+
+
+def no_powerline(colours, style):
+    """
+    remove the powerline images
+    return a list of widgets
+    """
+    widgets = powerline_widgets(colours, style)
+    for widg in widgets:
+        if type(widg) is widget.image.Image:
+            widgets.remove(widg)
+    return widgets

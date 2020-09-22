@@ -3,4 +3,5 @@ picom &
 nitrogen --restore &
 nm-applet &
 xfce4-power-manager &
+pamac-tray &
 lshift &
