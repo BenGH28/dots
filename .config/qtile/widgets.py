@@ -3,6 +3,7 @@ Various widgets based on colour theme
 """
 from libqtile import widget
 from constants import TERM
+from themes import Light, Dark
 
 
 def initialize_widgets(colours, style, powerline=True) -> list:
@@ -74,12 +75,13 @@ def powerline_widgets(colours, style) -> list:
     returns list of widgets based on light scheme
     """
 
-    if style == "light":
+    # use colours for One
+    if style == Dark.OneDark or style == Light.OneLight:
         begin_image = "~/.config/qtile/resources/GreenEnd.png"
         secondary_primary = "~/.config/qtile/resources/BlueGreen.png"
         primary_secondary = "~/.config/qtile/resources/GreenBlue.png"
         widget_foreground = colours["foreground"]
-    else:
+    elif style == Dark.Dracula:
         begin_image = "~/.config/qtile/resources/OrangeEnd.png"
         secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
         primary_secondary = "~/.config/qtile/resources/OrangePurple.png"

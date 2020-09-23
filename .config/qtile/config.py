@@ -52,9 +52,10 @@ for i in groups:
 
 
 if is_dark is True:
-    colours, style = themes.SetDarkTheme()
+    # colours, style = themes.SetOneDarkTheme()
+    colours, style = themes.SetDraculaTheme()
 else:
-    colours, style = themes.SetLightTheme()
+    colours, style = themes.SetOneLightTheme()
 
 widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
