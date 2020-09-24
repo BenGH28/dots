@@ -11,8 +11,8 @@ certain dotfiles for my system including:
 ## Qtile Scrots
 
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
-![Qtile Desktop](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_desktop.png)
-![Qtile Floating](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_floating.png)
+![Qtile OneDark](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_OneDark.png)
+![Qtile Dracula](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_dracula.png)
 
 ## Dependencies
 
