@@ -45,3 +45,6 @@ imap kj <ESC>
 "fuzzyfinder
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>f :Files<CR>
+
+"Switch between bufferNext easier
+nnoremap <leader><leader> :bNext<CR>

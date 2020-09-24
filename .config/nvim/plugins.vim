@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 "themes
 Plug 'dracula/vim'
 Plug 'rakr/vim-one'
+Plug 'Soares/base16.nvim'
 
 "tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
