@@ -52,8 +52,8 @@ for i in groups:
 
 
 if is_dark is True:
-    # colours, style = themes.SetOneDarkTheme()
-    colours, style = themes.SetDraculaTheme()
+    colours, style = themes.SetOneDarkTheme()
+    # colours, style = themes.SetDraculaTheme()
 else:
     colours, style = themes.SetOneLightTheme()
 

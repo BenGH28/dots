@@ -6,94 +6,56 @@ from constants import TERM
 from themes import Light, Dark
 
 
-def initialize_widgets(colours, style, powerline=True) -> list:
+def initialize_widgets(colours: dict, style, powerline=True) -> list:
     """return widgets based on a colour scheme"""
-    if powerline is True:
-        return powerline_widgets(colours, style)
-    else:
-        # return no_powerline(colours, style)
-        return widgets_no_images(colours)
+    if powerline:
+        return powerline_widgets(colours, style, powerline)
+    return no_powerline(colours, style, powerline)
 
 
-def widgets_no_images(colours) -> list:
-    """
-    Return list of widgets with no powerline effects
-    """
-    widgets = [
-        widget.GroupBox(
-            this_current_screen_border=colours["primary"],
-            active=colours["foreground"],
-            inactive=colours["inactive"]),
-        widget.WindowName(foreground=colours["foreground"]),
-        widget.CPU(
-            foreground=colours["primary"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")},
-            fmt="|{}|",
-            ),
-        widget.Memory(
-            foreground=colours["secondary"],
-            mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")},
-            fmt="|{}|",
-            ),
-        widget.AGroupBox(
-            foreground=colours["primary"],
-            borderwidth=0,
-            fmt="|{}|",
-            ),
-        widget.CurrentLayout(
-            foreground=colours["secondary"],
-            fmt="|{}|",
-            ),
-        widget.Volume(
-            foreground=colours["primary"],
-            fmt="|{}|",
-            ),
-        widget.Backlight(
-            foreground=colours["secondary"],
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt="| {}|",
-            ),
-        widget.Battery(
-            foreground=colours["primary"],
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="|{char} {percent:2.0%}|",
-        ),
-        widget.Clock(
-            foreground=colours["secondary"],
-            format="|%d/%m/%y %H:%M|"
-            ),
-        widget.Systray(),
-        ]
-    return widgets
-
-
-def powerline_widgets(colours, style) -> list:
-    """
-    returns list of widgets based on light scheme
-    """
-
+def set_images_for_widgets(style) -> tuple:
     # use colours for One
     if style == Dark.OneDark or style == Light.OneLight:
         begin_image = "~/.config/qtile/resources/GreenEnd.png"
         secondary_primary = "~/.config/qtile/resources/BlueGreen.png"
         primary_secondary = "~/.config/qtile/resources/GreenBlue.png"
-        widget_foreground = colours["foreground"]
+
+        return(begin_image, secondary_primary, primary_secondary)
+
     elif style == Dark.Dracula:
         begin_image = "~/.config/qtile/resources/OrangeEnd.png"
         secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
         primary_secondary = "~/.config/qtile/resources/OrangePurple.png"
+
+        return(begin_image, secondary_primary, primary_secondary)
+
+
+def powerline_widgets(colours: dict, style, powerline: bool) -> list:
+    """
+    style is an enumeration of Light or Dark
+
+    returns list of widgets
+    """
+    begin_image, secondary_primary, primary_secondary = set_images_for_widgets(style)
+
+    widget_foreground = colours["tertiary"]
+
+    if style == Dark.Dracula or style == Dark.OneDark and powerline:
         widget_foreground = colours["background"]
+    elif style == Light.OneLight and powerline:
+        widget_foreground = colours["foreground"]
 
     # the background colours of the widgets
-    firstcolour = colours["secondary"]
-    secondcolour = colours["primary"]
+    if powerline:
+        firstcolour = colours["secondary"]
+        secondcolour = colours["primary"]
+    else:
+        firstcolour = colours["background"]
+        secondcolour = firstcolour
 
     myWidgets = [
         widget.GroupBox(
-            this_current_screen_border=firstcolour,
+            this_current_screen_border=colours["secondary"],
             active=colours["foreground"],
             inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),
@@ -104,6 +66,7 @@ def powerline_widgets(colours, style) -> list:
         widget.CPU(
             foreground=widget_foreground,
             background=firstcolour,
+            format='CPU {load_percent}%',
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Image(
@@ -113,6 +76,7 @@ def powerline_widgets(colours, style) -> list:
         widget.Memory(
             foreground=widget_foreground,
             background=secondcolour,
+            format='{MemUsed}M',
             mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
             ),
         widget.Image(
@@ -180,12 +144,12 @@ def powerline_widgets(colours, style) -> list:
     return myWidgets
 
 
-def no_powerline(colours, style):
+def no_powerline(colours, style, powerline):
     """
     remove the powerline images
     return a list of widgets
     """
-    widgets = powerline_widgets(colours, style)
+    widgets = powerline_widgets(colours, style, powerline)
     for widg in widgets:
         if type(widg) is widget.image.Image:
             widgets.remove(widg)
