@@ -4,6 +4,7 @@ export EDITOR="nvim"
 export VIMRC="$HOME/.config/nvim/init.vim"
 export ZRC="$HOME/.zshrc"
 export RANGER_LOAD_DEFAULT_RC=false
+export IPYTHONDIR="~/.config/ipython"
 
 #custom web search 
 ZSH_WEB_SEARCH_ENGINES=(
@@ -78,7 +79,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
