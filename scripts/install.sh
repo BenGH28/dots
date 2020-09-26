@@ -10,23 +10,28 @@ yay -S nerd-fonts-jetbrains-mono
 #install those utilities that aren't on ARCH repos
 ##################################################
 
-#alacritty theming via npm
-npm i -g alacritty-themes
+# install rustup to gain access to cargo 
+echo "Installing rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# installing commandline to for changing your alacritty theme
+echo "Installing alacritty-theme from cargo"
+~/.cargo/bin/cargo install alacritty-theme
 
 #Oh-my-zsh
+echo "Installing ZSH"
  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #vim-plugged for vim
 case $1 in
-	vim)echo "installing vim-plug for vim"
+	vim)echo "Installing vim-plug for vim"
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	;;
-	nvim) echo "installing vim-plug for neovim"
+	nvim) echo "Installing vim-plug for neovim"
 		sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     ;;
 	*) echo "vim-plug not installed"
 	;;
 esac
-
