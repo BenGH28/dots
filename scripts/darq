@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+"""
+script to change qtile colourscheme from light to dark
+
+This script looks at your config.py for Qtile and looks for a
+variable called 'is_dark'.  This variable, as the same suggests,
+determines whether or not your bar and window colours are dark.
+To affect change in the config file, darq is used like so:
+
+        darq true
+
+        or
+
+        darq false
+
+The script will save the current config to a '.bak' file should anything
+go wrong.  darq proceeds to change your config and then restart Qtile.
+
+"""
+
+import os
+import sys
+
+
+def main():
+    try:
+        capbool = sys.argv[1].lower().capitalize()
+        assert(capbool == "True" or capbool == "False")
+    except IndexError:
+        print("Error: Dark needs one boolean (true/false) argument")
+        return
+    except AssertionError:
+        print(f"Invalid argument: '{sys.argv[1]}'\n"
+              "Usage:\n"
+              "\tdarq true\n"
+              "\tdarq false\n")
+        return
+
+    file = "/home/ben/.config/qtile/config.py"
+    with open(file, 'r') as f:
+        filelines = f.readlines()
+
+    # backup the original just incase
+    with open(file + ".bak", 'w') as f:
+        f.writelines(filelines)
+
+    # looking for is_dark
+    for i in range(0, len(filelines)):
+        if filelines[i].startswith("is_dark"):
+            ls = filelines[i].split('=')
+            if ls[1] != capbool:
+                filelines[i] = f"is_dark = {capbool}\n"
+            break
+
+    # rewrite the config
+    with open(file, "w") as f:
+        f.writelines(filelines)
+
+    # execute a shell command to restart qtile
+    os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
+
+
+if __name__ == "__main__":
+    main()
