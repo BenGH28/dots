@@ -44,7 +44,13 @@ imap kj <ESC>
 
 "fuzzyfinder
 nnoremap <leader>gf :GFiles<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>ff :Files<CR>
 
 "Switch between bufferNext easier
 nnoremap <leader><leader> :bNext<CR>
+
+"Go to the settings
+nmap <leader>fvd :e $MYVIMRC<CR>
+
+"substitute word under cursor
+nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
