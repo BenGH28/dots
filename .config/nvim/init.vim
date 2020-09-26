@@ -31,9 +31,8 @@ call plug#end()
 "		Basics
 "=======================
 let mapleader = " "
-set nocompatible
 colorscheme edge
-set background=light
+set nocompatible
 set number relativenumber
 syntax on
 set ignorecase
@@ -61,6 +60,7 @@ set foldnestmax=10
 set nofoldenable
 set nowrap
 set clipboard+=unnamedplus
+set noswapfile
 
 
 "=============================================================
@@ -181,3 +181,34 @@ nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
 nmap <leader>coc :CocList marketplace<CR>
+
+
+"=============================================================
+"							User Functions
+"=============================================================
+
+"see https://lib.rs/crates/alacritty-theme
+"
+" This function will set Vim's background to "light" or "dark"
+" depending on if the current color scheme Alacritty is using
+" has those keywords in its name.
+function! AlignBackground()
+  let &background = ( system('alacritty-theme current') =~ "light" ? "light" : "dark" )
+  hi Normal guibg=NONE ctermbg=NONE
+endfunc
+
+" This function will toggle Alacritty's color scheme back and
+" forth between light and dark themes. You can find them
+" in their entirety in `test/alacritty.yml` in this repository.
+function! ToggleAlacrittyTheme()
+  if (system('alacritty-theme current') =~ "light")
+    call system('alacritty-theme change one_dark')
+  else
+    call system('alacritty-theme change one_light')
+  endif
+  call AlignBackground()
+endfunc
+
+nmap <leader>l :call ToggleAlacrittyTheme()<cr>
+
+call AlignBackground()
