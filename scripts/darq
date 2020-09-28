@@ -36,7 +36,9 @@ def main():
               "\tdarq false\n")
         return
 
-    file = "/home/ben/.config/qtile/config.py"
+
+    restart = True
+    file = os.path.expanduser("~/.config/qtile/config.py")
     with open(file, 'r') as f:
         filelines = f.readlines()
 
@@ -49,6 +51,7 @@ def main():
         if filelines[i].startswith("is_dark"):
             ls = filelines[i].split('=')
             if ls[1] != capbool:
+                restart = False
                 filelines[i] = f"is_dark = {capbool}\n"
             break
 
