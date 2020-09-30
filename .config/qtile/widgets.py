@@ -15,16 +15,17 @@ def is_laptop() -> bool:
     returns True for batter, False otherwise
     """
 
-    result = os.open('acpi').read()
+    result = os.popen('acpi').read()
     splits = result.split(" ")
     if splits[0] == 'Battery':
         return True
-    return False
+    else:
+        return False
 
 
-def make_desktop_widgets(colours: dict,
-                         style,
-                         powerline: bool) -> list:
+def make_laptop_widgets(colours: dict,
+                        style,
+                        powerline: bool) -> list:
     """
     Make a list of widgets that do no have battery or brightnesss.
     I use the same config between a laptop and desktop and I am
@@ -33,20 +34,44 @@ def make_desktop_widgets(colours: dict,
 
     returns list of widgets
     """
+    laptop_exclusive = [
+        widget.Image(
+            filename=primary_secondary,
+            margin=0,
+        ),
+        widget.Backlight(
+            foreground=widget_foreground,
+            background=secondcolour,
+            backlight_name="intel_backlight",
+            brightness_file="/sys/class/backlight/intel_backlight/brightness",
+            fmt=" {}",
+        ),
+        widget.Image(
+            filename=secondary_primary,
+            margin=0,
+        ),
+        widget.Battery(
+            foreground=widget_foreground,
+            background=firstcolour,
+            charge_char="",
+            discharge_char="",
+            full_char="",
+            format="{char} {percent:2.0%}",
+        ),
+    ]
 
     widgets = powerline_widgets(colours, style, powerline)
-    del widgets[12:16]
-
+    widgets.insert(-3, laptop_exclusive)
     return widgets
 
 
 def initialize_widgets(colours: dict, style, powerline=True) -> list:
     """return list of widgets based on a colour scheme"""
     if powerline:
-        if is_laptop:
-            return powerline_widgets(colours, style, powerline)
+        if is_laptop():
+            return make_laptop_widgets(colours, style, powerline)
         else:
-            return make_desktop_widgets(colours, style, powerline)
+            return powerline_widgets(colours, style, powerline)
 
     return no_powerline(colours, style, powerline)
 
@@ -145,29 +170,6 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
             foreground=widget_foreground,
             background=firstcolour,
             fmt="{}",
-        ),
-        widget.Image(
-            filename=primary_secondary,
-            margin=0,
-        ),
-        widget.Backlight(
-            foreground=widget_foreground,
-            background=secondcolour,
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt=" {}",
-        ),
-        widget.Image(
-            filename=secondary_primary,
-            margin=0,
-        ),
-        widget.Battery(
-            foreground=widget_foreground,
-            background=firstcolour,
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="{char} {percent:2.0%}",
         ),
         widget.Image(
             filename=primary_secondary,
