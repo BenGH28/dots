@@ -23,7 +23,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-
+Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 
@@ -50,7 +51,7 @@ set laststatus=2
 set noshowmode "gets rid of the redundant --insert--
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
-set timeoutlen=500 ttimeout ttimeoutlen=100 "timeout on keycodes 
+set notimeout ttimeout ttimeoutlen=100 "timeout on keycodes not on mappings
 set cursorline
 set splitbelow 
 set splitright
@@ -59,8 +60,9 @@ set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
 set nowrap
-set clipboard+=unnamedplus
-set noswapfile
+set clipboard+=unnamedplus "the system clipboard is enabled"
+set noswapfile  "no more pesky .swp file warnings"
+set inccommand=split
 
 
 "=============================================================
@@ -104,7 +106,7 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
 "fzf Search and access from $HOME directory
-let $FZF_DEFAULT_COMMAND="cd && rg --files --hidden --ignore-case" 
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case" 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -167,7 +169,7 @@ imap kj <ESC>
 
 "fuzzyfinder
 nnoremap <leader>gf :GFiles<CR>
-nnoremap <leader>f :Files<CR>
+nnoremap <leader>ff :Files<CR>
 
 "Switch between bufferNext easier
 nnoremap <leader><leader> :bNext<CR>
@@ -177,11 +179,26 @@ nnoremap <leader><leader> :bNext<CR>
 nmap <leader>fvd :e $MYVIMRC<CR>
 
 "substitute word under cursor
-nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
 nmap <leader>coc :CocList marketplace<CR>
 
+nmap <leader>fo :Format<CR>
+
+"Gets rid of the highlightswhen you leave commandline
+augroup vimrc-incsearch-highlight
+  autocmd!
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+
+"Set foldmethod based on filetype
+augroup foldmethod-on-filetype
+	au!
+	au BufEnter *.py,*.sh,*.vim set foldmethod=indent
+	au BufLeave *.py,*.sh,*.vim set foldmethod=syntax
+augroup END
 
 "=============================================================
 "							User Functions
