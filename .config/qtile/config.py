@@ -13,8 +13,7 @@ from libqtile import layout, bar, hook
 from constants import MOD
 
 # True for dark theme in bar, False for light
-is_dark = True
-
+is_dark = False
 # True for powerline-esque bar
 powerline = True
 
@@ -53,7 +52,6 @@ for i in groups:
 
 if is_dark is True:
     colours, style = themes.SetOneDarkTheme()
-    # colours, style = themes.SetDraculaTheme()
 else:
     colours, style = themes.SetOneLightTheme()
 
