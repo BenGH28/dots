@@ -34,6 +34,7 @@ def make_laptop_widgets(colours: dict,
 
     returns list of widgets
     """
+    begin_image, secondary_primary, primary_secondary, set_images_for_widgets(style)
     laptop_exclusive = [
         widget.Image(
             filename=primary_secondary,
@@ -74,6 +75,7 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
             return powerline_widgets(colours, style, powerline)
 
     return no_powerline(colours, style, powerline)
+
 
 
 def set_images_for_widgets(style) -> tuple:
