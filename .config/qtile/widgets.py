@@ -34,7 +34,13 @@ def make_laptop_widgets(colours: dict,
 
     returns list of widgets
     """
-    begin_image, secondary_primary, primary_secondary, set_images_for_widgets(style)
+    begin_image, secondary_primary, primary_secondary = set_images_for_widgets(
+        style)
+
+    widget_foreground = set_widget_foreground(colours, style, powerline)
+
+    firstcolour, secondcolour = set_widget_background(colours, powerline)
+
     laptop_exclusive = [
         widget.Image(
             filename=primary_secondary,
@@ -62,7 +68,8 @@ def make_laptop_widgets(colours: dict,
     ]
 
     widgets = powerline_widgets(colours, style, powerline)
-    widgets.insert(-3, laptop_exclusive)
+    for item in laptop_exclusive:
+        widgets.insert(-3, item)
     return widgets
 
 
@@ -75,7 +82,6 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
             return powerline_widgets(colours, style, powerline)
 
     return no_powerline(colours, style, powerline)
-
 
 
 def set_images_for_widgets(style) -> tuple:
@@ -95,6 +101,29 @@ def set_images_for_widgets(style) -> tuple:
         return(begin_image, secondary_primary, primary_secondary)
 
 
+def set_widget_foreground(colours, style, powerline):
+    if style == Dark.Dracula or style == Dark.OneDark and powerline:
+        widget_foreground = colours["background"]
+    elif style == Light.OneLight and powerline:
+        widget_foreground = colours["foreground"]
+    else:
+        widget_foreground = colours["tertiary"]
+
+    return widget_foreground
+
+
+def set_widget_background(colours, powerline):
+    # the background colours of the widgets
+    if powerline:
+        firstcolour = colours["secondary"]
+        secondcolour = colours["primary"]
+    else:
+        firstcolour = colours["background"]
+        secondcolour = firstcolour
+
+    return (firstcolour, secondcolour)
+
+
 def powerline_widgets(colours: dict, style, powerline: bool) -> list:
     """
     style is an enumeration of Light or Dark
@@ -104,20 +133,9 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
     begin_image, secondary_primary, primary_secondary = set_images_for_widgets(
         style)
 
-    widget_foreground = colours["tertiary"]
+    widget_foreground = set_widget_foreground(colours, style, powerline)
 
-    if style == Dark.Dracula or style == Dark.OneDark and powerline:
-        widget_foreground = colours["background"]
-    elif style == Light.OneLight and powerline:
-        widget_foreground = colours["foreground"]
-
-    # the background colours of the widgets
-    if powerline:
-        firstcolour = colours["secondary"]
-        secondcolour = colours["primary"]
-    else:
-        firstcolour = colours["background"]
-        secondcolour = firstcolour
+    firstcolour, secondcolour = set_widget_background(colours, powerline)
 
     myWidgets = [
         widget.GroupBox(
@@ -186,6 +204,7 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
             background=secondcolour,
         ),
     ]
+
     return myWidgets
 
 
