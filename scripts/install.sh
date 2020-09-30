@@ -20,7 +20,7 @@ echo "Installing alacritty-theme from cargo"
 
 #Oh-my-zsh
 echo "Installing ZSH"
- sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #vim-plugged for vim
 case $1 in
