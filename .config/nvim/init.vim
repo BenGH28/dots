@@ -2,9 +2,11 @@
 "							vim-plug
 "=============================================================
 call plug#begin('~/.vim/plugged')
-"themes
+"Pretty
 Plug 'rakr/vim-one'
 Plug 'sainnhe/edge'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-startify'
 
 "tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -23,8 +25,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'ryanoasis/vim-devicons'
-Plug 'mhinz/vim-startify'
 call plug#end()
 
 
@@ -47,13 +47,13 @@ set tabstop=4
 set autoindent "keeps indent from the line above
 set nostartofline "stop certain movements from going to the first character of the line
 set confirm "ask to save file before quit
-set laststatus=2 
+set laststatus=2
 set noshowmode "gets rid of the redundant --insert--
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
 set notimeout ttimeout ttimeoutlen=100 "timeout on keycodes not on mappings
 set cursorline
-set splitbelow 
+set splitbelow
 set splitright
 filetype plugin on "detect filetype
 set foldmethod=syntax
@@ -77,11 +77,16 @@ let g:rustfmt_autosave = 1
 
 "airline config
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extentions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#show_line_numbers = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#battery#enabled = 1
+let g:airline#extensions#capslock#enabled = 1
+let g:airline#extensions#fzf#enabled = 1
 
 "Easy align config
 "easy align in visual mode (ex. vipga select inner paragraph easy align)
-xmap ga <Plug>(EasyAlign) 
+xmap ga <Plug>(EasyAlign)
 "interactive mode for a motion/text object (ex.gaip = ga (easy align) inner
 "paragraph)
 nmap ga <Plug>(EasyAlign)
@@ -106,21 +111,21 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
 "fzf Search and access from $HOME directory
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case" 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
+" let g:fzf_colors =
+"   \ { 'fg':      ['fg', 'Normal'],
+" 	\ 'bg':      ['bg', 'Normal'],
+" 	\ 'hl':      ['fg', 'Comment'],
+" 	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+" 	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+" 	\ 'hl+':     ['fg', 'Statement'],
+" 	\ 'info':    ['fg', 'PreProc'],
+" 	\ 'border':  ['fg', 'Ignore'],
+" 	\ 'prompt':  ['fg', 'Conditional'],
+" 	\ 'pointer': ['fg', 'Exception'],
+" 	\ 'marker':  ['fg', 'Keyword'],
+" 	\ 'spinner': ['fg', 'Label'],
+" 	\ 'header':  ['fg', 'Comment'] }
 
 "Conquer of Completion is too big for this file
 source ~/.config/nvim/coc.vim
@@ -135,6 +140,11 @@ map <C-a> gg0vG$
 noremap <Leader>m :!make<CR>
 noremap <Leader>c :!make clean<CR>
 noremap <Leader>r :!./
+
+"set background quickly if I'm not using alacritty
+nnoremap <leader>bl :set background=light<CR>
+nnoremap <leader>bd :set background=dark<CR>
+
 
 "source vimrc
 nnoremap <leader>so :source $MYVIMRC<CR>
@@ -184,13 +194,14 @@ nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 "CoC shortand
 nmap <leader>coc :CocList marketplace<CR>
 
+"formating if we can
 nmap <leader>fo :Format<CR>
 
 "Gets rid of the highlightswhen you leave commandline
 augroup vimrc-incsearch-highlight
-  autocmd!
-  autocmd CmdlineEnter /,\? :set hlsearch
-  autocmd CmdlineLeave /,\? :set nohlsearch
+	autocmd!
+  	autocmd CmdlineEnter /,\? :set hlsearch
+	autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
 
 "Set foldmethod based on filetype
@@ -209,23 +220,23 @@ augroup END
 " This function will set Vim's background to "light" or "dark"
 " depending on if the current color scheme Alacritty is using
 " has those keywords in its name.
-function! AlignBackground()
-  let &background = ( system('alacritty-theme current') =~ "light" ? "light" : "dark" )
-  hi Normal guibg=NONE ctermbg=NONE
+function! AlignAlacrittyBackground()
+	let &background = ( system('alacritty-theme current') =~ "light" ? "light" : "dark" )
+  	hi Normal guibg=NONE ctermbg=NONE
 endfunc
 
 " This function will toggle Alacritty's color scheme back and
 " forth between light and dark themes. You can find them
 " in their entirety in `test/alacritty.yml` in this repository.
 function! ToggleAlacrittyTheme()
-  if (system('alacritty-theme current') =~ "light")
-    call system('alacritty-theme change one_dark')
-  else
-    call system('alacritty-theme change one_light')
-  endif
-  call AlignBackground()
+	if (system('alacritty-theme current') =~ "light")
+	  	call system('alacritty-theme change one_dark')
+	else
+	  	call system('alacritty-theme change one_light')
+	endif
+	call AlignAlacrittyBackground()
 endfunc
 
-nmap <leader>l :call ToggleAlacrittyTheme()<cr>
+nmap <leader>al :call ToggleAlacrittyTheme()<cr>
 
-call AlignBackground()
+call AlignAlacrittyBackground()

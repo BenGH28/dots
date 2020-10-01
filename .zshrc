@@ -44,18 +44,18 @@ alias gco="git checkout"
 alias open="xdg-open"
 alias ..="cd .."
 alias pipes="pipes.sh"
-alias vimrc="nvim $HOME/.config/nvim/init.vim"
+alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
 alias S="sudo pacman -S"
 alias Rs="sudo pacman -Rs" 
 alias Ss="pacman -Ss"
 alias Q="pacman -Q"
 alias Syu="sudo pacman -Syu"
 alias pi="ssh pi@192.168.1.63"
-alias zrc="nvim $ZRC"
-alias nv="nvim"
-alias vim="nvim"
-alias alconf="nvim $HOME/.config/alacritty/alacritty.yml"
-alias qconf="nvim $HOME/.config/qtile/config.py"
+alias zrc="$EDITOR $ZRC"
+alias nv="$EDITOR"
+alias vim="$EDITOR"
+alias alconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
+alias qconf="$EDITOR $HOME/.config/qtile/config.py"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias da="dots add"
 alias dcm="dots commit -m"
@@ -92,4 +92,26 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+### The Kitty Terminal ###
+Atom()
+{
+	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
+	ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf
+}
+
+AtomOneLight()
+{
+	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
+	ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf
+}
+
+kitco()
+{
+	case $1 in
+		dark) Atom ;;
+		light) AtomOneLight ;;
+		*) echo "this is not the theme you are looking for..."
+	esac
 }
