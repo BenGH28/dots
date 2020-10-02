@@ -111,21 +111,7 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
 "fzf Search and access from $HOME directory
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
-" let g:fzf_colors =
-"   \ { 'fg':      ['fg', 'Normal'],
-" 	\ 'bg':      ['bg', 'Normal'],
-" 	\ 'hl':      ['fg', 'Comment'],
-" 	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-" 	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-" 	\ 'hl+':     ['fg', 'Statement'],
-" 	\ 'info':    ['fg', 'PreProc'],
-" 	\ 'border':  ['fg', 'Ignore'],
-" 	\ 'prompt':  ['fg', 'Conditional'],
-" 	\ 'pointer': ['fg', 'Exception'],
-" 	\ 'marker':  ['fg', 'Keyword'],
-" 	\ 'spinner': ['fg', 'Label'],
-" 	\ 'header':  ['fg', 'Comment'] }
+let $FZF_DEFAULT_COMMAND="cd && rg --files --hidden --ignore-case"
 
 "Conquer of Completion is too big for this file
 source ~/.config/nvim/coc.vim
@@ -137,9 +123,9 @@ source ~/.config/nvim/coc.vim
 map <C-a> gg0vG$
 
 "run make/binary
-noremap <Leader>m :!make<CR>
-noremap <Leader>c :!make clean<CR>
-noremap <Leader>r :!./
+nnoremap <Leader>m :!make<CR>
+nnoremap <Leader>c :!make clean<CR>
+nnoremap <Leader>r :!./
 
 "set background quickly if I'm not using alacritty
 nnoremap <leader>bl :set background=light<CR>
@@ -181,6 +167,9 @@ imap kj <ESC>
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>ff :Files<CR>
 
+"Netrw
+nnoremap <leader>ex :Ex<cr>"
+
 "Switch between bufferNext easier
 nnoremap <leader><leader> :bNext<CR>
 
@@ -193,6 +182,8 @@ nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
 nmap <leader>coc :CocList marketplace<CR>
+
+nmap <leader>al :call ToggleAlacrittyTheme()<cr>
 
 "formating if we can
 nmap <leader>fo :Format<CR>
@@ -226,8 +217,7 @@ function! AlignAlacrittyBackground()
 endfunc
 
 " This function will toggle Alacritty's color scheme back and
-" forth between light and dark themes. You can find them
-" in their entirety in `test/alacritty.yml` in this repository.
+" forth between light and dark themes. 
 function! ToggleAlacrittyTheme()
 	if (system('alacritty-theme current') =~ "light")
 	  	call system('alacritty-theme change one_dark')
@@ -236,7 +226,5 @@ function! ToggleAlacrittyTheme()
 	endif
 	call AlignAlacrittyBackground()
 endfunc
-
-nmap <leader>al :call ToggleAlacrittyTheme()<cr>
 
 call AlignAlacrittyBackground()

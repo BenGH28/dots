@@ -22,28 +22,15 @@ import os
 import sys
 
 
-def main():
-    try:
-        capbool = sys.argv[1].lower().capitalize()
-        assert(capbool == "True" or capbool == "False")
-    except IndexError:
-        print("Error: Dark needs one boolean (true/false) argument")
-        return
-    except AssertionError:
-        print(f"Invalid argument: '{sys.argv[1]}'\n"
-              "Usage:\n"
-              "\tdarq true\n"
-              "\tdarq false\n")
-        return
-
+def toggle_qtile_theme(capbool: bool):
     restart = False
     file = os.path.expanduser("~/.config/qtile/config.py")
     with open(file, 'r') as f:
         filelines = f.readlines()
 
-    # backup the original just incase
-    with open(file + ".bak", 'w') as f:
-        f.writelines(filelines)
+    # # backup the original just incase
+    # with open(file + ".bak", 'w') as f:
+    #     f.writelines(filelines)
 
     # looking for is_dark
     for i in range(0, len(filelines)):
@@ -61,6 +48,22 @@ def main():
     # execute a shell command to restart qtile
     if restart:
         os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
+
+
+def main():
+    try:
+        capbool = sys.argv[1].lower().capitalize()
+        assert(capbool == "True" or capbool == "False")
+    except IndexError:
+        print("Error: Dark needs one boolean (true/false) argument")
+        return
+    except AssertionError:
+        print(f"Invalid argument: '{sys.argv[1]}'\n"
+              "Usage:\n"
+              "\tdarq true\n"
+              "\tdarq false\n")
+        return
+    toggle_qtile_theme(capbool)
 
 
 if __name__ == "__main__":
