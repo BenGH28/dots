@@ -22,23 +22,19 @@ import os
 import sys
 
 
-def toggle_qtile_theme(capbool: bool):
+def toggle_qtile_theme(strbool: str):
     restart = False
     file = os.path.expanduser("~/.config/qtile/config.py")
     with open(file, 'r') as f:
         filelines = f.readlines()
 
-    # # backup the original just incase
-    # with open(file + ".bak", 'w') as f:
-    #     f.writelines(filelines)
-
     # looking for is_dark
     for i in range(0, len(filelines)):
         if filelines[i].startswith("is_dark"):
             ls = filelines[i].split('=')
-            if ls[1].strip() != capbool:
+            if ls[1].strip() != strbool:
                 restart = True
-                filelines[i] = f"is_dark = {capbool}\n"
+                filelines[i] = f"is_dark = {strbool}\n"
                 break
 
     # rewrite the config
@@ -50,10 +46,24 @@ def toggle_qtile_theme(capbool: bool):
         os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
 
 
+def toggle_gtk_theme(strbool: str):
+    file = os.path.expanduser("~/.config/gtk-3.0/settings.ini")
+    with open(file, 'r') as f:
+        filelines = f.readlines()
+
+    if strbool == "True":
+        filelines[1] = "gtk-theme-name=Matcha-dark-azul\n"
+    else:
+        filelines[1] = "gtk-theme-name=Matcha-light-azul\n"
+
+    with open(file, 'w') as f:
+        f.writelines(filelines)
+
+
 def main():
     try:
-        capbool = sys.argv[1].lower().capitalize()
-        assert(capbool == "True" or capbool == "False")
+        strbool = sys.argv[1].lower().capitalize()
+        assert(strbool == "True" or strbool == "False")
     except IndexError:
         print("Error: Dark needs one boolean (true/false) argument")
         return
@@ -63,7 +73,8 @@ def main():
               "\tdarq true\n"
               "\tdarq false\n")
         return
-    toggle_qtile_theme(capbool)
+    toggle_qtile_theme(strbool)
+    toggle_gtk_theme(strbool)
 
 
 if __name__ == "__main__":
