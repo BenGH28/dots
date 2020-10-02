@@ -36,8 +36,7 @@ def main():
               "\tdarq false\n")
         return
 
-
-    restart = True
+    restart = False
     file = os.path.expanduser("~/.config/qtile/config.py")
     with open(file, 'r') as f:
         filelines = f.readlines()
@@ -50,17 +49,18 @@ def main():
     for i in range(0, len(filelines)):
         if filelines[i].startswith("is_dark"):
             ls = filelines[i].split('=')
-            if ls[1] != capbool:
-                restart = False
+            if ls[1].strip() != capbool:
+                restart = True
                 filelines[i] = f"is_dark = {capbool}\n"
-            break
+                break
 
     # rewrite the config
     with open(file, "w") as f:
         f.writelines(filelines)
 
     # execute a shell command to restart qtile
-    os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
+    if restart:
+        os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
 
 
 if __name__ == "__main__":
