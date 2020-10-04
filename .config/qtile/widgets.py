@@ -23,9 +23,9 @@ def is_laptop() -> bool:
         return False
 
 
-def make_laptop_widgets(colours: dict,
-                        style,
-                        powerline: bool) -> list:
+def make_powerline_laptop_widgets(colours: dict,
+                                  style,
+                                  powerline: bool) -> list:
     """
     Make a list of widgets that do no have battery or brightnesss.
     I use the same config between a laptop and desktop and I am
@@ -77,10 +77,10 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
     """return list of widgets based on a colour scheme"""
     if powerline:
         if is_laptop():
-            return make_laptop_widgets(colours, style, powerline)
+            return make_powerline_laptop_widgets(colours, style, powerline)
         else:
             return powerline_widgets(colours, style, powerline)
-
+    # This will return non laptop widgets (no battery/brightness)
     return no_powerline(colours, style, powerline)
 
 
@@ -124,6 +124,10 @@ def set_widget_background(colours, powerline):
     return (firstcolour, secondcolour)
 
 
+def make_image_widget(filename: str) -> widget:
+    return widget.Image(filename=filename, margin=0, padding=0)
+
+
 def powerline_widgets(colours: dict, style, powerline: bool) -> list:
     """
     style is an enumeration of Light or Dark
@@ -143,10 +147,7 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
             active=colours["foreground"],
             inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),
-        widget.Image(
-            filename=begin_image,
-            margin=0,
-        ),
+        make_image_widget(begin_image),
         widget.CPU(
             foreground=widget_foreground,
             background=firstcolour,
@@ -154,10 +155,7 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
             mouse_callbacks={
                 "Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
         ),
-        widget.Image(
-            filename=primary_secondary,
-            margin=0,
-        ),
+        make_image_widget(primary_secondary),
         widget.Memory(
             foreground=widget_foreground,
             background=secondcolour,
@@ -165,36 +163,24 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
             mouse_callbacks={
                 "Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
         ),
-        widget.Image(
-            filename=secondary_primary,
-            margin=0,
-        ),
+        make_image_widget(secondary_primary),
         widget.AGroupBox(
             foreground=widget_foreground,
             background=firstcolour,
             borderwidth=0,
         ),
-        widget.Image(
-            filename=primary_secondary,
-            margin=0,
-        ),
-        widget.CurrentLayout(
+        make_image_widget(primary_secondary),
+        widget.CurrentLayoutIcon(
             foreground=widget_foreground,
             background=secondcolour,
         ),
-        widget.Image(
-            filename=secondary_primary,
-            margin=0,
-        ),
+        make_image_widget(secondary_primary),
         widget.Volume(
             foreground=widget_foreground,
             background=firstcolour,
             fmt="{}",
         ),
-        widget.Image(
-            filename=primary_secondary,
-            margin=0,
-        ),
+        make_image_widget(primary_secondary),
         widget.Clock(
             foreground=widget_foreground,
             background=secondcolour,

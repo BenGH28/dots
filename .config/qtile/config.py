@@ -7,13 +7,13 @@ import themes
 import widgets
 import keys
 from typing import List  # noqa: F401
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.lazy import lazy
 from libqtile import layout, bar, hook
-from constants import MOD
+from constants import MOD, BAR_SIZE, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = False
+is_dark = True
 # True for powerline-esque bar
 powerline = True
 
@@ -21,8 +21,8 @@ powerline = True
 @hook.subscribe.startup_once
 def start_once():
     """ Startup Applications """
-    home = os.path.expanduser("~/.config/qtile/autostart.sh")
-    subprocess.call([home])
+    autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
+    subprocess.call([autostart])
 
 
 # KEY BINDINGS
@@ -30,12 +30,13 @@ keys = keys.GetKeys()
 
 # Groups
 groups = [
-        Group(name="1", label="1:  "),
-        Group(name="2", label="2: "),
-        Group(name="3", label="3: "),
-        Group(name="4", label="4: "),
-        Group(name="5", label="5: "),
-        ]
+    Group(name="1", label=""),
+    Group(name="2", label=""),
+    Group(name="3", matches=[Match(wm_class=["Spotify"]),
+                             Match(title=["Spotify Premium"])], label=""),
+    Group(name="4", label=""),
+    Group(name="5", label=""),
+]
 
 for i in groups:
     keys.extend(
@@ -62,7 +63,7 @@ widgets1 = widgets.initialize_widgets(colours, style, powerline)
 widgets2 = widgets.initialize_widgets(colours, style, powerline)
 
 layout_theme = {
-    "border_width": 4,
+    "border_width": 3,
     "margin": 10,
     "border_focus": colours["primary"],
     "border_normal": colours["background"]
@@ -75,20 +76,18 @@ layouts = [
 ]
 
 
-opaque = 0.8
-bar_size = 30
 # My Screens: I have 2 monitors so add as many screens as monitors
 screens = [
     Screen(top=bar.Bar(
         widgets1,
-        size=bar_size,
-        opacity=opaque,
+        size=BAR_SIZE,
+        opacity=OPAQUE,
         background=colours["background"],
         foreground=colours["foreground"],)),
     Screen(top=bar.Bar(
         widgets2,
-        size=bar_size,
-        opacity=opaque,
+        size=BAR_SIZE,
+        opacity=OPAQUE,
         background=colours["background"],
         foreground=colours["foreground"],)),
 ]
