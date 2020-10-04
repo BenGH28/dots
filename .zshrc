@@ -62,7 +62,8 @@ alias dcm="dots commit -m"
 alias dp="dots push"
 alias dstat="dots status"  	 
 alias rn="ranger"
-alias alt="alacritty-theme change"
+alias atd="alacritty-theme change one_dark"
+alias atl="alacritty-theme change one_light"
 alias cat="bat --theme OneHalfLight"
 
 #  	 ______                 __  _
