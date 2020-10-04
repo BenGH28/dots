@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 "Pretty
 Plug 'rakr/vim-one'
 Plug 'sainnhe/edge'
-Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
 
 "tools
@@ -25,6 +24,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 
@@ -78,11 +78,7 @@ let g:rustfmt_autosave = 1
 "airline config
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#show_line_numbers = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#battery#enabled = 1
-let g:airline#extensions#capslock#enabled = 1
-let g:airline#extensions#fzf#enabled = 1
+let g:airline#extensions#whitespace#checks = []
 
 "Easy align config
 "easy align in visual mode (ex. vipga select inner paragraph easy align)
@@ -110,8 +106,22 @@ let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
-"fzf Search and access from $HOME directory
-let $FZF_DEFAULT_COMMAND="cd && rg --files --hidden --ignore-case"
+"fzf 
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
+let g:fzf_colors =
+	\ { 'fg':      ['fg', 'Normal'],
+	\ 'bg':      ['bg', 'Normal'],
+	\ 'hl':      ['fg', 'Comment'],
+	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+	\ 'hl+':     ['fg', 'Statement'],
+	\ 'info':    ['fg', 'PreProc'],
+	\ 'border':  ['fg', 'Ignore'],
+	\ 'prompt':  ['fg', 'Conditional'],
+	\ 'pointer': ['fg', 'Exception'],
+	\ 'marker':  ['fg', 'Keyword'],
+	\ 'spinner': ['fg', 'Label'],
+	\ 'header':  ['fg', 'Comment'] }
 
 "Conquer of Completion is too big for this file
 source ~/.config/nvim/coc.vim
@@ -165,7 +175,7 @@ imap kj <ESC>
 
 "fuzzyfinder
 nnoremap <leader>gf :GFiles<CR>
-nnoremap <leader>ff :Files<CR>
+nnoremap <leader>ff :Files ~<CR>
 
 "Netrw
 nnoremap <leader>ex :Ex<cr>"
@@ -200,6 +210,12 @@ augroup foldmethod-on-filetype
 	au!
 	au BufEnter *.py,*.sh,*.vim set foldmethod=indent
 	au BufLeave *.py,*.sh,*.vim set foldmethod=syntax
+augroup END
+
+augroup do-not-autoformat-suckless
+	au!
+	au BufEnter config.def.h,config.h let g:clang_format#auto_format = 0
+	au BufLeave config.def.h,config.h let g:clang_format#auto_format = 1
 augroup END
 
 "=============================================================
