@@ -24,6 +24,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'voldikss/vim-floaterm'
+
+"this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -31,7 +35,7 @@ call plug#end()
 "=======================
 "		Basics
 "=======================
-let mapleader = " "
+let mapleader = "\<Space>"
 colorscheme edge
 set nocompatible
 set number relativenumber
@@ -51,7 +55,7 @@ set laststatus=2
 set noshowmode "gets rid of the redundant --insert--
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
-set notimeout ttimeout ttimeoutlen=100 "timeout on keycodes not on mappings
+set notimeout  timeoutlen=500 
 set cursorline
 set splitbelow
 set splitright
@@ -89,8 +93,8 @@ nmap ga <Plug>(EasyAlign)
 
 "Quick scope config
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#0007DF' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#008800' gui=underline ctermfg=81 cterm=underline
+highlight QuickScopePrimary guifg='#0067DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#02cc62' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=150
 
 "DoxygenToolkit config
@@ -125,6 +129,14 @@ let g:fzf_colors =
 
 "Conquer of Completion is too big for this file
 source ~/.config/nvim/coc.vim
+
+"Ranger
+"to see dotfiles hit 'zh'
+let g:rnvimr_ex_enable = 1
+
+"Ale
+let g:ale_disable_lsp = 1
+
 
 "=============================================================
 "							User Configs/Mappings
@@ -173,19 +185,27 @@ noremap <leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
 imap jk <ESC>
 imap kj <ESC>
 
-"fuzzyfinder
-nnoremap <leader>gf :GFiles<CR>
-nnoremap <leader>ff :Files ~<CR>
-
-"Netrw
-nnoremap <leader>ex :Ex<cr>"
-
-"Switch between bufferNext easier
-nnoremap <leader><leader> :bNext<CR>
+"formating if we can
+nmap <leader>fo :Format<CR>
 
 "Go to the settings
 "_files -> _vim -> _dotfiles = fvd
 nmap <leader>fvd :e $MYVIMRC<CR>
+
+"fuzzyfinder
+"Search from pwd
+"_files -> _directory
+nnoremap <leader>fd :Files<CR>
+"search from $HOME
+"_files -> _find
+nnoremap <leader>ff :Files ~<CR>
+
+"Ranger
+"_files -> _ranger
+nnoremap <leader>fr :RnvimrToggle<CR>"
+
+"Switch between bufferNext easier
+nnoremap <leader><leader> :bNext<CR>
 
 "substitute word under cursor
 nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
@@ -193,54 +213,17 @@ nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 "CoC shortand
 nmap <leader>coc :CocList marketplace<CR>
 
-nmap <leader>al :call ToggleAlacrittyTheme()<cr>
+nmap <leader>al :call ToggleAlacrittyTheme()<CR>
 
-"formating if we can
-nmap <leader>fo :Format<CR>
 
-"Gets rid of the highlightswhen you leave commandline
-augroup vimrc-incsearch-highlight
-	autocmd!
-  	autocmd CmdlineEnter /,\? :set hlsearch
-	autocmd CmdlineLeave /,\? :set nohlsearch
-augroup END
+"Floaterm
+let g:floaterm_keymap_new = '<Leader>tn'
+let g:floaterm_keymap_prev = '<Leader>tp'
+let g:floaterm_keymap_next = '<Leader>tx'
+let g:floaterm_keymap_hide = '<Leader>th'
+let g:floaterm_keymap_toggle = '<Leader>tt'
+let g:floaterm_keymap_kill = '<Leader>tk'
 
-"Set foldmethod based on filetype
-augroup foldmethod-on-filetype
-	au!
-	au BufEnter *.py,*.sh,*.vim set foldmethod=indent
-	au BufLeave *.py,*.sh,*.vim set foldmethod=syntax
-augroup END
-
-augroup do-not-autoformat-suckless
-	au!
-	au BufEnter config.def.h,config.h let g:clang_format#auto_format = 0
-	au BufLeave config.def.h,config.h let g:clang_format#auto_format = 1
-augroup END
-
-"=============================================================
-"							User Functions
-"=============================================================
-
-"see https://lib.rs/crates/alacritty-theme
-"
-" This function will set Vim's background to "light" or "dark"
-" depending on if the current color scheme Alacritty is using
-" has those keywords in its name.
-function! AlignAlacrittyBackground()
-	let &background = ( system('alacritty-theme current') =~ "light" ? "light" : "dark" )
-  	hi Normal guibg=NONE ctermbg=NONE
-endfunc
-
-" This function will toggle Alacritty's color scheme back and
-" forth between light and dark themes. 
-function! ToggleAlacrittyTheme()
-	if (system('alacritty-theme current') =~ "light")
-	  	call system('alacritty-theme change one_dark')
-	else
-	  	call system('alacritty-theme change one_light')
-	endif
-	call AlignAlacrittyBackground()
-endfunc
-
-call AlignAlacrittyBackground()
+"sourcing some funcs and autocmds
+source ~/.config/nvim/autocommands.vim
+source ~/.config/nvim/functions.vim
