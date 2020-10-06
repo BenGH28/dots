@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -Syu nvim alacritty i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen nodejs yay qtile
+sudo pacman -Syu nvim i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen nodejs yay qtile
 
 #only found in the aur
-yay -S nerd-fonts-jetbrains-mono
+yay -S nerd-fonts-jetbrains-mono alacritty-ligatures-git
 
 ##################################################
 #install those utilities that aren't on ARCH repos
@@ -19,7 +19,7 @@ echo "Installing alacritty-theme from cargo"
 ~/.cargo/bin/cargo install alacritty-theme
 
 #Oh-my-zsh
-echo "Installing ZSH"
+echo "Installing Oh-My-ZSH"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #vim-plugged for vim
