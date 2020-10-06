@@ -13,7 +13,7 @@ certain dotfiles for my system including:
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
 ![Qtile OneDark](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_OneDark.png)
 
-[##](##) Dependencies
+## Dependencies
 
 There are a couple extensions/apps/plugins that I use:
 
