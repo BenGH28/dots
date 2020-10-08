@@ -1,6 +1,7 @@
 """
 Various widgets based on colour theme
 """
+from typing import List, Dict, Tuple
 from libqtile import widget
 from constants import TERM
 from themes import Light, Dark
@@ -23,7 +24,7 @@ def is_laptop() -> bool:
         return False
 
 
-def make_powerline_laptop_widgets(colours: dict,
+def make_powerline_laptop_widgets(colours: Dict[str, str],
                                   style,
                                   powerline: bool) -> list:
     """
@@ -84,7 +85,7 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
     return no_powerline(colours, style, powerline)
 
 
-def set_images_for_widgets(style) -> tuple:
+def set_images_for_widgets(style) -> Tuple[str, str, str]:
     # use colours for One
     if style == Dark.OneDark or style == Light.OneLight:
         begin_image = "~/.config/qtile/resources/GreenEnd.png"
@@ -93,7 +94,8 @@ def set_images_for_widgets(style) -> tuple:
 
         return(begin_image, secondary_primary, primary_secondary)
 
-    elif style == Dark.Dracula:
+    else:
+        # style == Dark.Dracula:
         begin_image = "~/.config/qtile/resources/OrangeEnd.png"
         secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
         primary_secondary = "~/.config/qtile/resources/OrangePurple.png"
@@ -101,7 +103,9 @@ def set_images_for_widgets(style) -> tuple:
         return(begin_image, secondary_primary, primary_secondary)
 
 
-def set_widget_foreground(colours, style, powerline):
+def set_widget_foreground(colours: Dict[str, str],
+                          style,
+                          powerline: bool) -> str:
     if style == Dark.Dracula or style == Dark.OneDark and powerline:
         widget_foreground = colours["background"]
     elif style == Light.OneLight and powerline:
@@ -112,7 +116,8 @@ def set_widget_foreground(colours, style, powerline):
     return widget_foreground
 
 
-def set_widget_background(colours, powerline):
+def set_widget_background(colours: Dict[str, str],
+                          powerline: bool) -> Tuple[str, str]:
     # the background colours of the widgets
     if powerline:
         firstcolour = colours["secondary"]
@@ -128,7 +133,9 @@ def make_image_widget(filename: str) -> widget:
     return widget.Image(filename=filename, margin=0, padding=0)
 
 
-def powerline_widgets(colours: dict, style, powerline: bool) -> list:
+def powerline_widgets(colours: Dict[str, str],
+                      style,
+                      powerline: bool) -> list:
     """
     style is an enumeration of Light or Dark
 
@@ -194,7 +201,9 @@ def powerline_widgets(colours: dict, style, powerline: bool) -> list:
     return myWidgets
 
 
-def no_powerline(colours: dict, style, powerline: bool) -> list:
+def no_powerline(colours: Dict[str, str],
+                 style,
+                 powerline: bool) -> list:
     """
     remove the powerline images
     return a list of widgets

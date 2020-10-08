@@ -5,7 +5,7 @@ import os
 import subprocess
 import themes
 import widgets
-import keys
+import keybinding
 from typing import List  # noqa: F401
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.lazy import lazy
@@ -26,7 +26,7 @@ def start_once():
 
 
 # KEY BINDINGS
-keys = keys.GetKeys()
+keys = keybinding.GetKeys()
 
 # Groups
 groups = [
