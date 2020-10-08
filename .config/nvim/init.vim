@@ -26,6 +26,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-which-key'
+Plug 'metakirby5/codi.vim'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -89,7 +91,7 @@ let g:airline#extensions#whitespace#checks = []
 xmap ga <Plug>(EasyAlign)
 "interactive mode for a motion/text object (ex.gaip = ga (easy align) inner
 "paragraph)
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
 "Quick scope config
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -186,11 +188,11 @@ imap jk <ESC>
 imap kj <ESC>
 
 "formating if we can
-nmap <leader>fo :Format<CR>
+nnoremap <leader>fo :Format<CR>
 
 "Go to the settings
 "_files -> _vim -> _dotfiles = fvd
-nmap <leader>fvd :e $MYVIMRC<CR>
+nnoremap <leader>fvd :e $MYVIMRC<CR>
 
 "fuzzyfinder
 "Search from pwd
@@ -204,17 +206,19 @@ nnoremap <leader>ff :Files ~<CR>
 "_files -> _ranger
 nnoremap <leader>fr :RnvimrToggle<CR>"
 
+"_files -> _write
+nnoremap <leader>fw :w<CR>
+
 "Switch between bufferNext easier
-nnoremap <leader><leader> :bNext<CR>
+nnoremap <silent> <leader><leader> :bNext<CR>
 
 "substitute word under cursor
-nmap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
-nmap <leader>coc :CocList marketplace<CR>
+nnoremap <leader>coc :CocList marketplace<CR>
 
-nmap <leader>al :call ToggleAlacrittyTheme()<CR>
-
+nnoremap <leader>al :call ToggleAlacrittyTheme()<CR>
 
 "Floaterm
 let g:floaterm_keymap_new = '<Leader>tn'
