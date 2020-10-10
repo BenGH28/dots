@@ -23,7 +23,7 @@ ENABLE_CORRECTION="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Plugins
-plugins=(web-search vi-mode zsh_reload common-aliases themes)
+plugins=(z vi-mode zsh_reload common-aliases themes)
 
 source $ZSH/oh-my-zsh.sh
 
