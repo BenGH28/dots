@@ -3,7 +3,6 @@
 "=============================================================
 call plug#begin('~/.vim/plugged')
 "Pretty
-Plug 'rakr/vim-one'
 Plug 'sainnhe/edge'
 Plug 'mhinz/vim-startify'
 
@@ -23,11 +22,11 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'voldikss/vim-floaterm'
-Plug 'liuchengxu/vim-which-key'
 Plug 'metakirby5/codi.vim'
+Plug 'airblade/vim-rooter'
+Plug 'coacher/vim-virtualenv'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -104,13 +103,6 @@ let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Ben Hunt"
-
-"Markdown
-let g:instant_markdown_autostart = 1
-let g:instant_markdown_allow_external_content = 0
-let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-let g:instant_markdown_browser = "firefox --new-window"
-let g:instant_markdown_autoscroll = 0
 
 "fzf 
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
@@ -207,7 +199,9 @@ nnoremap <leader>ff :Files ~<CR>
 nnoremap <leader>fr :RnvimrToggle<CR>"
 
 "_files -> _write
-nnoremap <leader>fw :w<CR>
+nnoremap <leader>fww :w<CR>
+nnoremap <leader>fwq :wq<CR>
+nnoremap <leader>fq :q<CR>
 
 "Switch between bufferNext easier
 nnoremap <silent> <leader><leader> :bNext<CR>
