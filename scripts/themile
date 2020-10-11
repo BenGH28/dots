@@ -94,7 +94,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option("-g", "--gtk", is_flag=True,
               default=False, help="toggle gtk theme")
 @click.option("-t", "--terminal", is_flag=True,
-              default=False, help="toggle terminal theme")
+              default=False, help="toggle terminal theme (alacritty only)")
 @click.option("-a", "--all", is_flag=True,
               default=False, help="toggle gtk and terminal theme")
 @click.argument("toggle")
