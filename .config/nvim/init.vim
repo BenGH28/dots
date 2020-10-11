@@ -22,11 +22,11 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'voldikss/vim-floaterm'
 Plug 'metakirby5/codi.vim'
 Plug 'airblade/vim-rooter'
 Plug 'coacher/vim-virtualenv'
+Plug 'kevinhwang91/rnvimr'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -189,10 +189,10 @@ nnoremap <leader>fvd :e $MYVIMRC<CR>
 "fuzzyfinder
 "Search from pwd
 "_files -> _directory
-nnoremap <leader>fd :Files<CR>
+nnoremap <silent> <leader>fd :Files<CR>
 "search from $HOME
 "_files -> _find
-nnoremap <leader>ff :Files ~<CR>
+nnoremap <silent> <leader>ff :Files ~<CR>
 
 "Ranger
 "_files -> _ranger
