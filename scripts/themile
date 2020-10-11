@@ -1,0 +1,134 @@
+#!/usr/bin/env python
+"""
+A script to change my qtile colourscheme from light to dark
+This script is specific to this configuration.  It looks for a
+boolean variable called 'is_dark' and will alter it
+according to user input.
+
+Usage: qtile-themer [OPTIONS] TOGGLE
+
+themile has the option to change your GTK theme.
+Pass in the option '--gtk' to apply you desired theme. You will have
+to edit this script first to ensure you apply the correct themes.
+
+If you use alacritty and have the tool alacritty-theme installed
+from Cargo then you can also use the option '--terminal' to toggle
+its theme also.
+
+Setting the option '--all' will toggle both gtk and alacritty themes.
+"""
+
+import os
+import click
+
+
+def toggle_qtile_theme(toggle: str) -> None:
+    """Change the qtile theme
+    :param toggle: the commandline argumet that is passed in
+    :return None
+    """
+    string_to_bool = {"light": False, "dark": True}
+    if toggle in string_to_bool:
+        boolean_toggle = string_to_bool[toggle]
+    else:
+        raise Exception(f"{toggle} not found")
+        return
+
+    restart = False
+    file = os.path.expanduser("~/.config/qtile/config.py")
+    with open(file, 'r') as f:
+        filelines = f.readlines()
+
+    # looking for is_dark
+    for i in range(0, len(filelines)):
+        if filelines[i].startswith("is_dark"):
+            ls = filelines[i].split('=')
+            if ls[1].strip() != str(boolean_toggle):
+                restart = True
+                filelines[i] = f"is_dark = {boolean_toggle}\n"
+                break
+
+    # rewrite the config
+    with open(file, "w") as f:
+        f.writelines(filelines)
+
+    # execute a shell command to restart qtile
+    if restart:
+        os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
+
+
+def toggle_gtk_theme(toggle: str) -> None:
+    """Change the gtk theme
+    :param toggle: the commandline argumet that is passed in
+    :return None
+    """
+    file = os.path.expanduser("~/.config/gtk-3.0/settings.ini")
+    with open(file, 'r') as f:
+        filelines = f.readlines()
+
+    if toggle == "dark":
+        filelines[1] = "gtk-theme-name=Matcha-dark-azul\n"
+    elif toggle == "light":
+        filelines[1] = "gtk-theme-name=Matcha-light-azul\n"
+
+    with open(file, 'w') as f:
+        f.writelines(filelines)
+
+
+def toggle_terminal_theme(toggle: str) -> None:
+    """
+    This is only for the alacritty terminal
+    :param toggle: the commandline argumet that is passed in
+    :return None
+    """
+    if toggle == "dark":
+        os.system("alacritty-theme change one_dark")
+    elif toggle == "light":
+        os.system("alacritty-theme change one_light")
+
+
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option("-g", "--gtk", is_flag=True,
+              default=False, help="toggle gtk theme")
+@click.option("-t", "--terminal", is_flag=True,
+              default=False, help="toggle terminal theme")
+@click.option("-a", "--all", is_flag=True,
+              default=False, help="toggle gtk and terminal theme")
+@click.argument("toggle")
+def main(gtk, terminal, all, toggle):
+    """
+    A tool to toggle the theme in BenGH28's
+    qtile config from 'light' to 'dark'
+
+    \b
+    Toggle:
+      light -- toggle light theme
+      dark  -- toggle dark theme
+    """
+    try:
+        toggle = toggle.lower()
+        assert(toggle == "light" or toggle == "dark")
+    except AssertionError:
+        print(f"Invalid argument: '{toggle}'\n"
+              "Usage:\n"
+              "\tthemile [options] light\n"
+              "\t\tor\n"
+              "\tthemile [options] dark\n")
+        return
+
+    toggle_qtile_theme(toggle)
+
+    if gtk:
+        toggle_gtk_theme(toggle)
+    if terminal:
+        toggle_terminal_theme(toggle)
+    if all and not terminal and not gtk:
+        toggle_gtk_theme(toggle)
+        toggle_terminal_theme(toggle)
+
+
+if __name__ == "__main__":
+    main()
