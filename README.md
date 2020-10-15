@@ -1,35 +1,49 @@
 
-# Dots
 
-certain dotfiles for my system including:
+## Install
 
-- Window managers
-- Neovim
-- Shell
-- terminal
+```sh
+alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+git clone --bare https://github.com/BenGH28/dots ~/.dotfiles
+dots checkout
+
+#install packages related to the dotfiles
+cd scripts/
+#note this is for arch-based distros
+./install_packages.sh
+```
+For more information about managing dotfiles with git checkout this Atlassian [tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
+
+Download all the software related to this repos:
+```sh
+```
 
 ## Qtile Scrots
 
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
 ![Qtile OneDark](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_OneDarkTheme.png)
 
-## Dependencies
+## Themile: theming qtile and bit more ...
 
-There are a couple extensions/apps/plugins that I use:
+Themile is a small script that will change the theme of 3 things:
 
-- [Alacritty] a quick terminal.
-- [i3] and [Qtile] window managers
-- [Picom] window compositor
-- [Rofi]: A window switcher, application launcher and dmenu replacement
-- [Oh-My-ZSH] for some sweet zsh.
-- [Vim-plugged] to handle plugins.
-- [Font Awesome] for icons
-  
-  [Oh-My-ZSH]: https://ohmyz.sh/
-  [Vim-plugged]: https://github.com/junegunn/vim-plug
-  [Alacritty]: https://github.com/alacritty/alacritty
-  [Rofi]: https://github.com/davatorium/rofi
-  [i3]: https://i3wm.org/
-  [Picom]: https://wiki.archlinux.org/index.php/Picom
-  [Font Awesome]: https://fontawesome.com/
-  [Qtile]: https://qtile.org/
+- qtile
+- gtk3
+- alacritty (be sure to `cargo install alacritty-theme` for this to work)
+
+Themile will change the theme of qtile by default but you can set options in the commandline to toggle 
+gtk, alacritty or both.
+
+```sh
+#only qtile is themed
+themile light
+
+#toggle qtile, alacritty and gtk to light theme
+themile -a light
+
+#toggle alacritty and qtile to dark theme
+themile -t dark
+
+#toggle gtk3 and qtile to light theme
+themile -g light
+```
