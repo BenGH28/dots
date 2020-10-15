@@ -129,7 +129,7 @@ def set_widget_background(colours: Dict[str, str],
     return (firstcolour, secondcolour)
 
 
-def make_image_widget(filename: str) -> widget:
+def make_image_widget(filename: str) -> widget.Image:
     return widget.Image(filename=filename, margin=0, padding=0)
 
 

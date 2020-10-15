@@ -1,4 +1,4 @@
-"=============================================================
+"============================================================m
 "							vim-plug
 "=============================================================
 call plug#begin('~/.vim/plugged')
@@ -27,6 +27,7 @@ Plug 'metakirby5/codi.vim'
 Plug 'airblade/vim-rooter'
 Plug 'coacher/vim-virtualenv'
 Plug 'kevinhwang91/rnvimr'
+Plug 'suan/vim-instant-markdown'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -94,8 +95,8 @@ nnoremap ga <Plug>(EasyAlign)
 
 "Quick scope config
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#0067DF' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#02cc62' gui=underline ctermfg=81 cterm=underline
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=150
 
 "DoxygenToolkit config
@@ -131,6 +132,12 @@ let g:rnvimr_ex_enable = 1
 "Ale
 let g:ale_disable_lsp = 1
 
+"Markdown
+let g:instant_markdown_autostart = 1
+let g:instant_markdown_allow_external_content = 1
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_browser = "firefox --new-window"
+let g:instant_markdown_autoscroll = 0
 
 "=============================================================
 "							User Configs/Mappings

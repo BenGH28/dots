@@ -13,7 +13,7 @@ from libqtile import layout, bar, hook
 from constants import MOD, BAR_SIZE, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = True
+is_dark = False
 # True for powerline-esque bar
 powerline = True
 
