@@ -14,10 +14,6 @@ cd scripts/
 ```
 For more information about managing dotfiles with git checkout this Atlassian [tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 
-Download all the software related to this repos:
-```sh
-```
-
 ## Qtile Scrots
 
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
