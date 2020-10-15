@@ -21,3 +21,9 @@ augroup do-not-autoformat-suckless
 	au BufEnter config.def.h,config.h let g:clang_format#auto_format = 0
 	au BufLeave config.def.h,config.h let g:clang_format#auto_format = 1
 augroup END
+
+augroup qs_colors
+	autocmd!
+	autocmd ColorScheme * highlight QuickScopePrimary guifg='#61afe0' gui=underline ctermfg=155 cterm=underline
+	autocmd ColorScheme * highlight QuickScopeSecondary guifg='#98d379' gui=underline ctermfg=81 cterm=underline
+augroup END

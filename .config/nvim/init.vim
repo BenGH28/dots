@@ -1,3 +1,5 @@
+source ~/.config/nvim/autocommands.vim
+
 "============================================================m
 "							vim-plug
 "=============================================================
@@ -66,9 +68,11 @@ set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable
 set nowrap
-set clipboard+=unnamedplus "the system clipboard is enabled"
 set noswapfile  "no more pesky .swp file warnings"
-set inccommand=split
+if has("nvim")
+	set clipboard+=unnamedplus "the system clipboard is enabled"
+	set inccommand=split
+endif
 
 
 "=============================================================
@@ -95,8 +99,6 @@ nnoremap ga <Plug>(EasyAlign)
 
 "Quick scope config
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=150
 
 "DoxygenToolkit config
@@ -107,6 +109,7 @@ let g:DoxygenToolkit_authorName="Ben Hunt"
 
 "fzf 
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6, } }
 let g:fzf_colors =
 	\ { 'fg':      ['fg', 'Normal'],
 	\ 'bg':      ['bg', 'Normal'],
@@ -154,15 +157,14 @@ nnoremap <Leader>r :!./
 nnoremap <leader>bl :set background=light<CR>
 nnoremap <leader>bd :set background=dark<CR>
 
-
 "source vimrc
 nnoremap <leader>so :source $MYVIMRC<CR>
 
 "split windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 
 "resizing splits
 nnoremap <Leader>h :vertical resize -3<CR>
@@ -183,8 +185,8 @@ noremap <leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
 noremap <leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
 
 "lets not use ESC
-imap jk <ESC>
-imap kj <ESC>
+inoremap jk <ESC>
+inoremap kj <ESC>
 
 "formating if we can
 nnoremap <leader>fo :Format<CR>
@@ -230,5 +232,4 @@ let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
 
 "sourcing some funcs and autocmds
-source ~/.config/nvim/autocommands.vim
 source ~/.config/nvim/functions.vim
