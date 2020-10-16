@@ -15,6 +15,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'unblevable/quick-scope'
@@ -25,7 +27,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
-Plug 'metakirby5/codi.vim'
 Plug 'airblade/vim-rooter'
 Plug 'coacher/vim-virtualenv'
 Plug 'kevinhwang91/rnvimr'
@@ -39,7 +40,7 @@ call plug#end()
 "=======================
 "		Basics
 "=======================
-let mapleader = "\<Space>"
+let mapleader = '\<Space>'
 colorscheme edge
 set nocompatible
 set number relativenumber
@@ -66,20 +67,18 @@ set splitright
 filetype plugin on "detect filetype
 set foldmethod=syntax
 set foldnestmax=10
-set nofoldenable
+set foldenable
 set nowrap
 set noswapfile  "no more pesky .swp file warnings"
-if has("nvim")
-	set clipboard+=unnamedplus "the system clipboard is enabled"
-	set inccommand=split
-endif
+set clipboard+=unnamedplus "the system clipboard is enabled"
+set inccommand=split
 
 
 "=============================================================
 "							Plugin-Configs
 "=============================================================
 "Vim-clang-format config
-let g:clang_format#code_style = "google"
+let g:clang_format#code_style = 'google'
 let g:clang_format#auto_format = 1
 
 "Rust-lang config
