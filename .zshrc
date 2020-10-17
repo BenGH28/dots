@@ -6,10 +6,6 @@ export ZRC="$HOME/.zshrc"
 export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 
-#custom web search 
-ZSH_WEB_SEARCH_ENGINES=(
-	archwiki "https://wiki.archlinux.org/index.php?title=Special%3ASearch&search="
-	)
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ben/.oh-my-zsh"
 
@@ -19,11 +15,9 @@ ZSH_THEME="simple"
 # auto-correction.
 ENABLE_CORRECTION="true"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Plugins
-plugins=(z vi-mode zsh_reload common-aliases themes)
+plugins=(z vi-mode zsh_reload common-aliases)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -44,7 +38,7 @@ alias gco="git checkout"
 alias open="xdg-open"
 alias ..="cd .."
 alias pipes="pipes.sh"
-alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
+alias vimrc="$EDITOR $VIMRC"
 alias S="sudo pacman -S"
 alias Rs="sudo pacman -Rs" 
 alias Ss="pacman -Ss"
@@ -64,7 +58,6 @@ alias dstat="dots status"
 alias rn="ranger"
 alias atd="alacritty-theme change one_dark"
 alias atl="alacritty-theme change one_light"
-alias cat="bat --theme OneHalfLight"
 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
@@ -93,6 +86,16 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+cat()
+{
+	THEME=$(alacritty-theme current | sed '/C/d' | awk '{print $2}')
+	case $THEME in 
+		one_light) bat --theme OneHalfLight $@;;
+		one_dark)  bat --theme OneHalfDark $@;;
+		*) 		   echo "'$1' is incorrect";;
+	esac
 }
 
 ### The Kitty Terminal ###
