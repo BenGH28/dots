@@ -40,7 +40,7 @@ call plug#end()
 "=======================
 "		Basics
 "=======================
-let mapleader = '\<Space>'
+let mapleader = "\<Space>"
 colorscheme edge
 set nocompatible
 set number relativenumber
@@ -67,7 +67,7 @@ set splitright
 filetype plugin on "detect filetype
 set foldmethod=syntax
 set foldnestmax=10
-set foldenable
+set nofoldenable
 set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
@@ -153,11 +153,11 @@ nnoremap <Leader>c :!make clean<CR>
 nnoremap <Leader>r :!./
 
 "set background quickly if I'm not using alacritty
-nnoremap <leader>bl :set background=light<CR>
-nnoremap <leader>bd :set background=dark<CR>
+nnoremap <Leader>bl :set background=light<CR>
+nnoremap <Leader>bd :set background=dark<CR>
 
 "source vimrc
-nnoremap <leader>so :source $MYVIMRC<CR>
+nnoremap <Leader>so :source $MYVIMRC<CR>
 
 "split windows
 nnoremap <silent> <C-h> :wincmd h<CR>
@@ -179,48 +179,48 @@ inoremap <C-e> <C-o>A
 noremap <Leader>do <C-o>:Dox<CR>
 
 "Vim-Plug bindings
-noremap <leader>pi :so $MYVIMRC<CR> :PlugInstall<CR>
-noremap <leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
-noremap <leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
+noremap <Leader>pi :so $MYVIMRC<CR> :PlugInstall<CR>
+noremap <Leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
+noremap <Leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
 
 "lets not use ESC
 inoremap jk <ESC>
 inoremap kj <ESC>
 
 "formating if we can
-nnoremap <leader>fo :Format<CR>
+nnoremap <Leader>fo :Format<CR>
 
 "Go to the settings
 "_files -> _vim -> _dotfiles = fvd
-nnoremap <leader>fvd :e $MYVIMRC<CR>
+nnoremap <Leader>fvd :e $MYVIMRC<CR>
 
 "fuzzyfinder
 "Search from pwd
 "_files -> _directory
-nnoremap <silent> <leader>fd :Files<CR>
+nnoremap <silent> <Leader>fd :Files<CR>
 "search from $HOME
 "_files -> _find
-nnoremap <silent> <leader>ff :Files ~<CR>
+nnoremap <silent> <Leader>ff :Files ~<CR>
 
 "Ranger
 "_files -> _ranger
-nnoremap <leader>fr :RnvimrToggle<CR>"
+nnoremap <Leader>fr :RnvimrToggle<CR>"
 
 "_files -> _write
-nnoremap <leader>fww :w<CR>
-nnoremap <leader>fwq :wq<CR>
-nnoremap <leader>fq :q<CR>
+nnoremap <Leader>fww :w<CR>
+nnoremap <Leader>fwq :wq<CR>
+nnoremap <Leader>fq :q<CR>
 
 "Switch between bufferNext easier
-nnoremap <silent> <leader><leader> :bNext<CR>
+nnoremap <silent> <Leader><Leader> :bNext<CR>
 
 "substitute word under cursor
-nnoremap <leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
-nnoremap <leader>coc :CocList marketplace<CR>
+nnoremap <Leader>coc :CocList marketplace<CR>
 
-nnoremap <leader>al :call ToggleAlacrittyTheme()<CR>
+nnoremap <Leader>al :call ToggleAlacrittyTheme()<CR>
 
 "Floaterm
 let g:floaterm_keymap_new = '<Leader>tn'
