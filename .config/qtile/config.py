@@ -3,14 +3,16 @@ Ben Hunt's Qtile Config
 """
 import os
 import subprocess
+from typing import List  # noqa: F401
+
+from libqtile import bar, hook, layout
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+
+import keybinding
 import themes
 import widgets
-import keybinding
-from typing import List  # noqa: F401
-from libqtile.config import Key, Screen, Group, Drag, Click, Match
-from libqtile.lazy import lazy
-from libqtile import layout, bar, hook
-from constants import MOD, BAR_SIZE, OPAQUE
+from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
 is_dark = False

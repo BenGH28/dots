@@ -1,11 +1,13 @@
 """
 Various widgets based on colour theme
 """
-from typing import List, Dict, Tuple
-from libqtile import widget
-from constants import TERM
-from themes import Light, Dark
 import os
+from typing import Dict, Tuple
+
+from libqtile import widget
+
+from constants import TERM
+from themes import Dark, Light
 
 
 def is_laptop() -> bool:
