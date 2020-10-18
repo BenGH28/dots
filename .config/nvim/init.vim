@@ -1,3 +1,5 @@
+"sourcing some funcs and autocommands
+source ~/.config/nvim/functions.vim
 source ~/.config/nvim/autocommands.vim
 
 "============================================================m
@@ -31,6 +33,9 @@ Plug 'airblade/vim-rooter'
 Plug 'coacher/vim-virtualenv'
 Plug 'kevinhwang91/rnvimr'
 Plug 'suan/vim-instant-markdown'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -195,7 +200,6 @@ nnoremap <Leader>fo :Format<CR>
 nnoremap <Leader>fvd :e $MYVIMRC<CR>
 
 "fuzzyfinder
-"Search from pwd
 "_files -> _directory
 nnoremap <silent> <Leader>fd :Files<CR>
 "search from $HOME
@@ -211,6 +215,9 @@ nnoremap <Leader>fww :w<CR>
 nnoremap <Leader>fwq :wq<CR>
 nnoremap <Leader>fq :q<CR>
 
+"Tagbar
+nmap <Leader>ft :TagbarToggle<CR>
+
 "Switch between bufferNext easier
 nnoremap <silent> <Leader><Leader> :bNext<CR>
 
@@ -220,6 +227,7 @@ nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 "CoC shortand
 nnoremap <Leader>coc :CocList marketplace<CR>
 
+"alacritty themes
 nnoremap <Leader>al :call ToggleAlacrittyTheme()<CR>
 
 "Floaterm
@@ -230,5 +238,3 @@ let g:floaterm_keymap_hide = '<Leader>th'
 let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
 
-"sourcing some funcs and autocmds
-source ~/.config/nvim/functions.vim
