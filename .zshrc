@@ -101,14 +101,22 @@ cat()
 ### The Kitty Terminal ###
 Atom()
 {
-	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
-	ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf
+	IN_KITTY=$(echo $TERM)
+	case $IN_KITTY in
+		xterm-kitty)    kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
+						ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf;;
+			*) 			echo "this is not kitty"
+	esac
 }
 
 AtomOneLight()
 {
-	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
-	ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf
+	IN_KITTY=$(echo $TERM)
+	case $IN_KITTY in
+		xterm-kitty)	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
+						ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf;;
+			*) 			echo "this is not kitty"
+	esac
 }
 
 kitco()
