@@ -2,7 +2,7 @@
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/autocommands.vim
 
-"============================================================m
+"=============================================================
 "							vim-plug
 "=============================================================
 call plug#begin('~/.vim/plugged')
@@ -30,7 +30,6 @@ Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-rooter'
-Plug 'coacher/vim-virtualenv'
 Plug 'kevinhwang91/rnvimr'
 Plug 'suan/vim-instant-markdown'
 Plug 'xolox/vim-easytags'
@@ -177,9 +176,6 @@ nnoremap <Leader>k :resize +3<CR>
 nnoremap <Leader>l :vertical resize +3<CR>
 nnoremap <Leader>= <C-W>=
 
-"go to end of line while in insert mode
-inoremap <C-e> <C-o>A
-
 "launch Doxygen quickly
 noremap <Leader>do <C-o>:Dox<CR>
 
@@ -237,4 +233,3 @@ let g:floaterm_keymap_next = '<Leader>tx'
 let g:floaterm_keymap_hide = '<Leader>th'
 let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
-

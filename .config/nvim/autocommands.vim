@@ -4,9 +4,9 @@
 
 "Gets rid of the highlightswhen you leave commandline
 augroup vimrc-incsearch-highlight
-	autocmd!
-  	autocmd CmdlineEnter /,\? :set hlsearch
-	autocmd CmdlineLeave /,\? :set nohlsearch
+	au!
+  	au CmdlineEnter /,\? :set hlsearch
+	au CmdlineLeave /,\? :set nohlsearch
 augroup END
 
 "Set foldmethod based on filetype
@@ -22,8 +22,13 @@ augroup do-not-autoformat-suckless
 	au BufLeave config.def.h,config.h let g:clang_format#auto_format = 1
 augroup END
 
-augroup qs_colors
-	autocmd!
-	autocmd ColorScheme * highlight QuickScopePrimary guifg='#61afe0' gui=underline ctermfg=155 cterm=underline
-	autocmd ColorScheme * highlight QuickScopeSecondary guifg='#98d379' gui=underline ctermfg=81 cterm=underline
+augroup quick-scope-colours
+	au!
+	au ColorScheme * highlight QuickScopePrimary guifg='#61afe0' gui=underline ctermfg=155 cterm=underline
+	au ColorScheme * highlight QuickScopeSecondary guifg='#98d379' gui=underline ctermfg=81 cterm=underline
+augroup END
+
+augroup keep-transparent-terminal
+	au!
+	au BufEnter * hi Normal guibg=NONE ctermbg=NONE
 augroup END
