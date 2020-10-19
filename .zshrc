@@ -7,7 +7,7 @@ export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/ben/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 ZSH_THEME="simple"
@@ -16,7 +16,8 @@ ZSH_THEME="simple"
 ENABLE_CORRECTION="true"
 
 # Plugins
-plugins=(z vi-mode zsh_reload common-aliases)
+# 
+plugins=(z vi-mode zsh_reload zsh-autosuggestions common-aliases)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -94,7 +95,7 @@ cat()
 	case $THEME in 
 		one_light) bat --theme OneHalfLight $@;;
 		one_dark)  bat --theme OneHalfDark $@;;
-		*) 		   echo "'$1' is incorrect";;
+		*) 		   echo "I don't know what to do with '$THEME'";;
 	esac
 }
 
