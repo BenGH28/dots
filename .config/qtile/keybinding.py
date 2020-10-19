@@ -15,9 +15,9 @@ def GetKeys() -> List[Key]:
             lazy.layout.up()),
 
         # Move windows up or down in current stack
-        Key([MOD, "control"], "j",
+        Key([MOD, "shift"], "j",
             lazy.layout.shuffle_down()),
-        Key([MOD, "control"], "k",
+        Key([MOD, "shift"], "k",
             lazy.layout.shuffle_up()),
 
         # change window size
@@ -94,14 +94,5 @@ def GetKeys() -> List[Key]:
             lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
         Key([MOD], "F1",
             lazy.spawn("sgtk-menu -f -a")),
-        Key([MOD], 'r', lazy.run_extension(extension.DmenuRun(
-            dmenu_prompt=">",
-            dmenu_font="Andika-8",
-            background="#15181a",
-            foreground="#00ff00",
-            selected_background="#079822",
-            selected_foreground="#fff",
-            dmenu_height=24,  # Only supported by some dmenu forks
-        ))),
     ]
     return keys
