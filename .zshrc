@@ -17,7 +17,15 @@ ENABLE_CORRECTION="true"
 
 # Plugins
 # 
-plugins=(z vi-mode zsh_reload zsh-autosuggestions common-aliases)
+plugins=(
+	z 
+	vi-mode
+	zsh_reload
+	zsh-autosuggestions
+	zsh-completions
+	common-aliases
+)
+autoload -U compinit && compinit
 
 
 source $ZSH/oh-my-zsh.sh
