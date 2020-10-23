@@ -30,7 +30,7 @@ Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-rooter'
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'suan/vim-instant-markdown'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
