@@ -15,7 +15,7 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = False
+is_dark = True
 # True for powerline-esque bar
 powerline = True
 
@@ -78,21 +78,32 @@ layouts = [
 ]
 
 
-# My Screens: I have 2 monitors so add as many screens as monitors
-screens = [
-    Screen(top=bar.Bar(
-        widgets1,
-        size=BAR_SIZE,
-        opacity=OPAQUE,
-        background=colours["background"],
-        foreground=colours["foreground"],)),
-    Screen(top=bar.Bar(
-        widgets2,
-        size=BAR_SIZE,
-        opacity=OPAQUE,
-        background=colours["background"],
-        foreground=colours["foreground"],)),
-]
+if widgets.is_laptop():
+    screens = [
+        Screen(top=bar.Bar(
+            widgets1,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"]))
+    ]
+else:
+    screens = [
+        Screen(top=bar.Bar(
+            widgets1,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"],
+        )),
+        Screen(top=bar.Bar(
+            widgets2,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"],)),
+    ]
+
 
 # Drag floating layouts
 mouse = [
