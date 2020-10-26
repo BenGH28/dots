@@ -83,7 +83,6 @@ set inccommand=split
 "=============================================================
 "Vim-clang-format config
 let g:clang_format#code_style = 'google'
-let g:clang_format#auto_format = 1
 
 "Rust-lang config
 let g:rustfmt_autosave = 1
@@ -177,12 +176,12 @@ nnoremap <Leader>l :vertical resize +3<CR>
 nnoremap <Leader>= <C-W>=
 
 "launch Doxygen quickly
-noremap <Leader>do <C-o>:Dox<CR>
+nnoremap <Leader>do <ESC>:Dox<CR>
 
 "Vim-Plug bindings
-noremap <Leader>pi :so $MYVIMRC<CR> :PlugInstall<CR>
-noremap <Leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
-noremap <Leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
+nnoremap <Leader>pi :so $MYVIMRC<CR> :PlugInstall<CR>
+nnoremap <Leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
+nnoremap <Leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
 
 "lets not use ESC
 inoremap jk <ESC>
@@ -214,8 +213,13 @@ nnoremap <Leader>fq :q<CR>
 "Tagbar
 nmap <Leader>ft :TagbarToggle<CR>
 
-"Switch between bufferNext easier
-nnoremap <silent> <Leader><Leader> :bNext<CR>
+"Switch between buffers easier
+nnoremap <silent> <Leader>bn :bNext<CR>
+nnoremap <silent> <Leader>bp :bprevious<CR>
+
+"Switch between Tabs easy-peasy
+nnoremap <silent> <Leader><Tab> :tabn<CR>
+nnoremap <silent> <Leader><S-Tab> :tabp<CR>
 
 "substitute word under cursor
 nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>

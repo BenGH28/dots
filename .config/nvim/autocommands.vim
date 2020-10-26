@@ -16,12 +16,6 @@ augroup foldmethod-on-filetype
 	au BufLeave *.py,*.sh,*.vim set foldmethod=syntax
 augroup END
 
-augroup do-not-autoformat-suckless
-	au!
-	au BufEnter config.def.h,config.h let g:clang_format#auto_format = 0
-	au BufLeave config.def.h,config.h let g:clang_format#auto_format = 1
-augroup END
-
 augroup quick-scope-colours
 	au!
 	au ColorScheme * highlight QuickScopePrimary guifg='#61afe0' gui=underline ctermfg=155 cterm=underline
