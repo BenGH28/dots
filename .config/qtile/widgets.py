@@ -20,10 +20,10 @@ def is_laptop() -> bool:
 
     result = os.popen('acpi').read()
     splits = result.split(" ")
-    if splits[0] == 'Battery':
-        return True
-    else:
+    if splits[6].strip() == 'unavailable':
         return False
+    else:
+        return True
 
 
 def make_powerline_laptop_widgets(colours: Dict[str, str],
