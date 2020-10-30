@@ -28,7 +28,7 @@ augroup quick-scope-colours
 	au ColorScheme * highlight QuickScopeSecondary guifg='#98d379' gui=underline ctermfg=81 cterm=underline
 augroup END
 
-augroup keep-transparent-terminal
-	au!
-	au BufEnter * hi Normal guibg=NONE ctermbg=NONE
-augroup END
+" augroup keep-transparent-terminal
+" 	au!
+" 	au BufEnter * hi Normal guibg=NONE ctermbg=NONE
+" augroup END

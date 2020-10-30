@@ -1,3 +1,4 @@
+set encoding=utf-8
 "sourcing some funcs and autocommands
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/autocommands.vim
@@ -10,19 +11,22 @@ call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/edge'
 Plug 'mhinz/vim-startify'
 
-"tools
+"Languages and Syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
+Plug 'rust-lang/rust.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'suan/vim-instant-markdown'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+
+"Tools
 Plug 'vim-airline/vim-airline'
 Plug 'lilydjwg/colorizer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'rhysd/vim-clang-format'
-Plug 'rust-lang/rust.vim'
 Plug 'unblevable/quick-scope'
-Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -31,10 +35,11 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-rooter'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
-Plug 'suan/vim-instant-markdown'
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-Plug 'majutsushi/tagbar'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+" tags
+" Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-misc'
+" Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -76,6 +81,7 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
+set showtabline=0
 
 
 "=============================================================
@@ -92,6 +98,21 @@ let g:rustfmt_autosave = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#whitespace#checks = []
+let g:airline_statusline_ontop = 0
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰ '
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
 
 "Easy align config
 "easy align in visual mode (ex. vipga select inner paragraph easy align)
@@ -137,13 +158,23 @@ let g:rnvimr_ex_enable = 1
 
 "Ale
 let g:ale_disable_lsp = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '❗'
 
 "Markdown
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_autostart = 0
 let g:instant_markdown_allow_external_content = 1
 let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
+
+"ctrlspace
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+if executable("ag")
+	let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
+endif
+let g:CtrlSpaceUseTabline = 1
+let g:CtrlSpaceFileEngine = "auto"
 
 "=============================================================
 "							User Configs/Mappings
