@@ -1,0 +1,39 @@
+{
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": [
+				"c",
+				"cpp",
+				"cuda",
+				"objc",
+				"objcpp"
+			],
+			"rootPatterns": [
+				".ccls-root",
+				"compile_commands.json"
+			],
+			"initializationOptions": {
+				"cache": {
+					"directory": ".ccls-cache"
+				},
+				"client": {
+					"snippetSupport": true
+				}
+			}
+		}
+	},
+	"jedi.enable": true,
+	"jedi.startupMessage": true,
+	"jedi.markupKindPreferred": "plaintext",
+	"jedi.trace.server": "verbose",
+	"jedi.jediSettings.autoImportModules": [],
+	"jedi.executable.command": "jedi-language-server",
+	"jedi.executable.args": [],
+	"jedi.completion.disableSnippets": false,
+	"jedi.diagnostics.enable": true,
+	"jedi.diagnostics.didOpen": true,
+	"jedi.diagnostics.didChange": true,
+	"jedi.diagnostics.didSave": true,
+	"coc.preferences.hoverTarget": "float"
+}
