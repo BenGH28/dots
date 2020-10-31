@@ -20,9 +20,11 @@ def is_laptop() -> bool:
 
     result = os.popen('acpi').read()
     splits = result.split(" ")
-    if splits[6].strip() == 'unavailable':
-        return False
-    else:
+    try:
+        if splits[6].strip() == 'unavailable':
+            return False
+        return True  # dead code but it keeps the linter happy
+    except IndexError:
         return True
 
 
