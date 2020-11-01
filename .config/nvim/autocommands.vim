@@ -22,6 +22,12 @@ augroup quick-scope-colours
 	au ColorScheme * highlight QuickScopeSecondary guifg='#98d379' gui=underline ctermfg=81 cterm=underline
 augroup END
 
+augroup cpp-indent
+	au!
+	au BufEnter *.cpp :set tabstop=2 | :set shiftwidth=2
+	au BufLeave *.cpp :set tabstop=4 | :set shiftwidth=4
+augroup END
+
 " augroup keep-transparent-terminal
 " 	au!
 " 	au BufEnter * hi Normal guibg=NONE ctermbg=NONE

@@ -110,29 +110,23 @@ cat()
 ### The Kitty Terminal ###
 Atom()
 {
-	IN_KITTY=$(echo $TERM)
-	case $IN_KITTY in
-		xterm-kitty)    kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
-						ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf;;
-			*) 			echo "this is not kitty"
-	esac
+	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
+		ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf
 }
 
 AtomOneLight()
 {
-	IN_KITTY=$(echo $TERM)
-	case $IN_KITTY in
-		xterm-kitty)	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
-						ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf;;
-			*) 			echo "this is not kitty"
-	esac
+	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
+		ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf
 }
 
 kitco()
 {
-	case $1 in
-		dark) Atom ;;
-		light) AtomOneLight ;;
-		*) echo "this is not the theme you are looking for..."
+	IN_KITTY=$(echo $TERM)
+	case $IN_KITTY:$1 in 
+		xterm-kitty:dark) Atom ;;
+		xterm-kitty:light) AtomOneLight ;;
+		xterm-kitty:*) echo "this is not the theme you are looking for..." ;;
+		*) echo "this is not kitty" ;;
 	esac
 }

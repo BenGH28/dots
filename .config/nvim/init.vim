@@ -1,4 +1,3 @@
-set encoding=utf-8
 "sourcing some funcs and autocommands
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/autocommands.vim
@@ -37,9 +36,9 @@ Plug 'airblade/vim-rooter'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'vim-ctrlspace/vim-ctrlspace'
 " tags
-" Plug 'xolox/vim-easytags'
-" Plug 'xolox/vim-misc'
-" Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -50,6 +49,7 @@ call plug#end()
 "		Basics
 "=======================
 let mapleader = "\<Space>"
+set encoding=utf-8
 colorscheme edge
 set nocompatible
 set number relativenumber
@@ -81,7 +81,6 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
-set showtabline=0
 
 
 "=============================================================
@@ -168,7 +167,7 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
 "ctrlspace
-let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+let g:CtrlSpaceDefaultMappingKey = "<Leader><Leader>"
 if executable("ag")
 	let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
 endif
@@ -184,7 +183,7 @@ map <C-a> gg0vG$
 "run make/binary
 nnoremap <Leader>m :!make<CR>
 nnoremap <Leader>c :!make clean<CR>
-nnoremap <Leader>r :!./
+nnoremap <Leader>rb :!./
 
 "set background quickly if I'm not using alacritty
 nnoremap <Leader>bl :set background=light<CR>

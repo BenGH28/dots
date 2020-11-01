@@ -137,6 +137,10 @@ def make_image_widget(filename: str) -> widget.Image:
     return widget.Image(filename=filename, margin=0, padding=0)
 
 
+def make_unicode_char() -> str:
+    pass
+
+
 def powerline_widgets(colours: Dict[str, str],
                       style,
                       powerline: bool) -> list:
