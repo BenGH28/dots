@@ -6,5 +6,6 @@ xfce4-power-manager &
 pamac-tray &
 lshift &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-xset 600 &
-xss-lock xlock +resetsaver &
+xset 500 &
+xss-lock i3lock +resetsaver &
+emacs --daemon &

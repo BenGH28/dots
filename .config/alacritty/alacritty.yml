@@ -62,19 +62,19 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: JetbrainsMono Nerd Font
+    family: CascadiaCode
     style: Regular
 
   bold:
-    family: JetbrainsMono Nerd Font
+    family: CascadiaCode
     style: Bold
 
   italic:
-    family: JetbrainsMono Nerd Font
+    family: CascadiaCode
     style: Italic
 
   bold_italic:
-    family: JetbrainsMono Nerd Font
+    family: CascadiaCode
     style: Bold Italic
 
   # Point size
@@ -147,7 +147,7 @@ color_schemes:
         cyan: '#56b6c2'
         white: '#ffffff'
 
-colors: *one_dark
+colors: *one_light
 
 # Background opacity
 #

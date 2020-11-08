@@ -94,5 +94,6 @@ def GetKeys() -> List[Key]:
             lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
         Key([MOD], "F1",
             lazy.spawn("sgtk-menu -f -a")),
+        Key([MOD], "e", lazy.spawn('emacsclient -c')),
     ]
     return keys
