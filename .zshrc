@@ -19,6 +19,7 @@ ENABLE_CORRECTION="true"
 # 
 plugins=(
 	z 
+	themes
 	vi-mode
 	zsh_reload
 	zsh-autosuggestions

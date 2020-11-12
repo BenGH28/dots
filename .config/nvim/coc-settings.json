@@ -35,5 +35,6 @@
 	"jedi.diagnostics.didOpen": true,
 	"jedi.diagnostics.didChange": true,
 	"jedi.diagnostics.didSave": true,
-	"coc.preferences.hoverTarget": "float"
+	"coc.preferences.hoverTarget": "float",
+	"codeLens.enable":true
 }

@@ -132,20 +132,20 @@ let g:DoxygenToolkit_authorName="Ben Hunt"
 "fzf 
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6, } }
-let g:fzf_colors =
-	\ { 'fg':      ['fg', 'Normal'],
-	\ 'bg':      ['bg', 'Normal'],
-	\ 'hl':      ['fg', 'Comment'],
-	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-	\ 'hl+':     ['fg', 'Statement'],
-	\ 'info':    ['fg', 'PreProc'],
-	\ 'border':  ['fg', 'Ignore'],
-	\ 'prompt':  ['fg', 'Conditional'],
-	\ 'pointer': ['fg', 'Exception'],
-	\ 'marker':  ['fg', 'Keyword'],
-	\ 'spinner': ['fg', 'Label'],
-	\ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" 	\ { 'fg':      ['fg', 'Normal'],
+" 	\ 'bg':      ['bg', 'Normal'],
+" 	\ 'hl':      ['fg', 'Comment'],
+" 	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+" 	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+" 	\ 'hl+':     ['fg', 'Statement'],
+" 	\ 'info':    ['fg', 'PreProc'],
+" 	\ 'border':  ['fg', 'Ignore'],
+" 	\ 'prompt':  ['fg', 'Conditional'],
+" 	\ 'pointer': ['fg', 'Exception'],
+" 	\ 'marker':  ['fg', 'Keyword'],
+" 	\ 'spinner': ['fg', 'Label'],
+" 	\ 'header':  ['fg', 'Comment'] }
 
 "Conquer of Completion is too big for this file
 source ~/.config/nvim/coc.vim
@@ -186,8 +186,8 @@ nnoremap <Leader>c :!make clean<CR>
 nnoremap <Leader>rb :!./
 
 "set background quickly if I'm not using alacritty
-nnoremap <Leader>bl :set background=light<CR>
-nnoremap <Leader>bd :set background=dark<CR>
+nnoremap <silent> <Leader>bl :set background=light<CR>
+nnoremap <silent> <Leader>bd :set background=dark<CR>
 
 "source vimrc
 nnoremap <Leader>so :source $MYVIMRC<CR>
@@ -267,3 +267,5 @@ let g:floaterm_keymap_next = '<Leader>tx'
 let g:floaterm_keymap_hide = '<Leader>th'
 let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
+
+nnoremap  <leader> :<c-u>WhichKey '<Space>'<CR>

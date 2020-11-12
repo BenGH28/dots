@@ -59,39 +59,75 @@ scrolling:
   multiplier: 3
 
 # Font configuration
-font:
-  # Normal (roman) font face
-  normal:
-    family: CascadiaCode
-    style: Regular
+fonts:
+    jet_brains_mono: &jet_brains_mono 
+      # Normal (roman) font face
+      normal:
+        family: JetBrainsMono Nerd Font
+        style: Regular
 
-  bold:
-    family: CascadiaCode
-    style: Bold
+      bold:
+        family: JetBrainsMono Nerd Font
+        style: Bold
 
-  italic:
-    family: CascadiaCode
-    style: Italic
+      italic:
+        family: JetBrainsMono Nerd Font
+        style: Italic
 
-  bold_italic:
-    family: CascadiaCode
-    style: Bold Italic
+      bold_italic:
+        family: JetBrainsMono Nerd Font
+        style: Bold Italic
 
-  # Point size
-  size: 12.0
+      # Point size
+      size: 12.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 0
+      # Offset is the extra space around each character. `offset.y` can be thought of
+      # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+      offset:
+        x: 0
+        y: 0
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
-  glyph_offset:
-    x: 0
-    y: 0
+      # Glyph offset determines the locations of the glyphs within their cells with
+      # the default being at the bottom. Increasing `x` moves the glyph to the right,
+      # increasing `y` moves the glyph upwards.
+      glyph_offset:
+        x: 0
+        y: 0
+
+    fira_code: &fira_code
+      # Normal (roman) font face
+      normal:
+        family: FiraCode Retina
+        style: Regular
+
+      bold:
+        family: FiraCode Retina
+        style: Bold
+
+      italic:
+        family: FiraCode Retina
+        style: Italic
+
+      bold_italic:
+        family: FiraCode Retina
+        style: Bold Italic
+
+      # Point size
+      size: 12.0
+
+      # Offset is the extra space around each character. `offset.y` can be thought of
+      # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+      offset:
+        x: 0
+        y: 0
+
+      # Glyph offset determines the locations of the glyphs within their cells with
+      # the default being at the bottom. Increasing `x` moves the glyph to the right,
+      # increasing `y` moves the glyph upwards.
+      glyph_offset:
+        x: 0
+        y: 0
+font: *jet_brains_mono
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -242,6 +278,6 @@ key_bindings:
   - { key: Insert, mods: Shift, action: PasteSelection }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
-  - { key: Add, mods: Control, action: IncreaseFontSize }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize }
+  - { key: NumpadAdd, mods: Control, action: IncreaseFontSize }
+  - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }

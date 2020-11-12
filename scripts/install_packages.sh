@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -Syu nvim i3 i3-gaps picom rofi ttf-hack ttf-font-awesome i3exit lxappearance nitrogen nodejs yay qtile
+sudo pacman -Syu nvim i3 i3-gaps picom rofi ttf-font-awesome \
+				i3exit lxappearance nitrogen nodejs yay qtile emacs \
+				betterlockscreen 
 
 #only found in the aur
 yay -S nerd-fonts-jetbrains-mono alacritty-ligatures-git

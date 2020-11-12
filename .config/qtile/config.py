@@ -15,7 +15,7 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = True
+is_dark = False
 # True for powerline-esque bar
 powerline = True
 

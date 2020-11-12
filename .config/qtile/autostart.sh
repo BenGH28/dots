@@ -6,6 +6,5 @@ xfce4-power-manager &
 pamac-tray &
 lshift &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-xset 500 &
-xss-lock i3lock +resetsaver &
+betterlockscreen -u ~/Pictures/Wallpapers/ -l blur --off 300 &
 emacs --daemon &
