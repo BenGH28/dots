@@ -9,9 +9,11 @@ call plug#begin('~/.vim/plugged')
 "Pretty
 Plug 'sainnhe/edge'
 Plug 'mhinz/vim-startify'
-
 "Languages and Syntax
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
@@ -20,25 +22,25 @@ Plug 'vim-scripts/DoxygenToolkit.vim'
 
 "Tools
 Plug 'vim-airline/vim-airline'
-Plug 'lilydjwg/colorizer'
+Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'lilydjwg/colorizer'
+Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
-Plug 'airblade/vim-rooter'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'vim-ctrlspace/vim-ctrlspace'
 " tags
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-Plug 'majutsushi/tagbar'
+" Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-misc'
+" Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -81,7 +83,10 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
-
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect,preview
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 "=============================================================
 "							Plugin-Configs
@@ -96,7 +101,6 @@ let g:rustfmt_autosave = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#whitespace#checks = []
-let g:airline_statusline_ontop = 0
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -132,23 +136,6 @@ let g:DoxygenToolkit_authorName="Ben Hunt"
 "fzf 
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6, } }
-" let g:fzf_colors =
-" 	\ { 'fg':      ['fg', 'Normal'],
-" 	\ 'bg':      ['bg', 'Normal'],
-" 	\ 'hl':      ['fg', 'Comment'],
-" 	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-" 	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-" 	\ 'hl+':     ['fg', 'Statement'],
-" 	\ 'info':    ['fg', 'PreProc'],
-" 	\ 'border':  ['fg', 'Ignore'],
-" 	\ 'prompt':  ['fg', 'Conditional'],
-" 	\ 'pointer': ['fg', 'Exception'],
-" 	\ 'marker':  ['fg', 'Keyword'],
-" 	\ 'spinner': ['fg', 'Label'],
-" 	\ 'header':  ['fg', 'Comment'] }
-
-"Conquer of Completion is too big for this file
-source ~/.config/nvim/coc.vim
 
 "Ranger
 "to see dotfiles hit 'zh'
@@ -174,12 +161,26 @@ endif
 let g:CtrlSpaceUseTabline = 1
 let g:CtrlSpaceFileEngine = "auto"
 
+"LSP
+lua << EOF
+local on_attach_vim = function(client)
+	require'completion'.on_attach(client)
+	require'diagnostic'.on_attach(client)
+end
+
+require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.jsonls.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.vimls.setup{on_attach=on_attach_vim}
+require'nvim_lsp'.yamlls.setup{on_attach=on_attach_vim}
+EOF
+
+"nvim-lua/completion config
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+
 "=============================================================
 "							User Configs/Mappings
 "=============================================================
-"select all
-map <C-a> gg0vG$
-
 "run make/binary
 nnoremap <Leader>m :!make<CR>
 nnoremap <Leader>c :!make clean<CR>
@@ -260,6 +261,10 @@ nnoremap <Leader>coc :CocList marketplace<CR>
 "alacritty themes
 nnoremap <Leader>al :call ToggleAlacrittyTheme()<CR>
 
+" Use <Tab> and <S-Tab> to navigate through completion popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 "Floaterm
 let g:floaterm_keymap_new = '<Leader>tn'
 let g:floaterm_keymap_prev = '<Leader>tp'
@@ -267,5 +272,3 @@ let g:floaterm_keymap_next = '<Leader>tx'
 let g:floaterm_keymap_hide = '<Leader>th'
 let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
-
-nnoremap  <leader> :<c-u>WhichKey '<Space>'<CR>
