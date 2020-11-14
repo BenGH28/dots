@@ -10,10 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/edge'
 Plug 'mhinz/vim-startify'
 "Languages and Syntax
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug 'nvim-lua/completion-nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
@@ -33,19 +30,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'lilydjwg/colorizer'
 Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
-Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'vim-ctrlspace/vim-ctrlspace'
 " tags
-" Plug 'xolox/vim-easytags'
-" Plug 'xolox/vim-misc'
-" Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
-
 
 "=======================
 "		Basics
@@ -83,10 +78,6 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect,preview
-" Avoid showing message extra message when using completion
-set shortmess+=c
 
 "=============================================================
 "							Plugin-Configs
@@ -134,8 +125,12 @@ let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Ben Hunt"
 
 "fzf 
+command! -bang -nargs=? -complete=dir Files
+			\ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--preview', 'cat {}']}, <bang>0)
+
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6, } }
+let g:fzf_layout = {'down': '35%'}
+
 
 "Ranger
 "to see dotfiles hit 'zh'
@@ -146,6 +141,7 @@ let g:ale_disable_lsp = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '❗'
 
+source ~/.config/nvim/coc.vim
 "Markdown
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_allow_external_content = 1
@@ -160,23 +156,6 @@ if executable("ag")
 endif
 let g:CtrlSpaceUseTabline = 1
 let g:CtrlSpaceFileEngine = "auto"
-
-"LSP
-lua << EOF
-local on_attach_vim = function(client)
-	require'completion'.on_attach(client)
-	require'diagnostic'.on_attach(client)
-end
-
-require'nvim_lsp'.clangd.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.pyls.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.jsonls.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.vimls.setup{on_attach=on_attach_vim}
-require'nvim_lsp'.yamlls.setup{on_attach=on_attach_vim}
-EOF
-
-"nvim-lua/completion config
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 
 "=============================================================
 "							User Configs/Mappings

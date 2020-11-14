@@ -59,7 +59,7 @@ scrolling:
   multiplier: 3
 
 # Font configuration
-fonts:
+myfonts:
     jet_brains_mono: &jet_brains_mono 
       # Normal (roman) font face
       normal:
