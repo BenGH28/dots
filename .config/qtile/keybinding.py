@@ -97,6 +97,8 @@ def GetKeys() -> List[Key]:
         Key([MOD], "e",
             lazy.spawn('emacsclient -c')),
         Key([MOD], "l",
-            lazy.spawn("betterlockscreen -l blur"))
+            lazy.spawn("betterlockscreen -l blur")),
+        Key([MOD], "p",
+            lazy.spawn("/home/ben/scripts/power.sh")),
     ]
     return keys
