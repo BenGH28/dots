@@ -1,3 +1,6 @@
 [submodule ".config/.config/dmenu-5.0"]
 	path = .config/.config/dmenu-5.0
 	url = https://github.com/BenGH28/dmenu-plusplus.git
+[submodule ".config/kitty/kitty-themes"]
+	path = .config/kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git
