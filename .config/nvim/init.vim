@@ -125,20 +125,17 @@ let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Ben Hunt"
 
 "fzf 
-command! -bang -nargs=? -complete=dir Files
-			\ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--preview', 'cat {}']}, <bang>0)
-
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
+let $FZF_DEFAULT_OPTS="--height 35% --layout=reverse --preview 'cat {}'"
 let g:fzf_layout = {'down': '35%'}
-
 
 "Ranger
 "to see dotfiles hit 'zh'
 let g:rnvimr_ex_enable = 1
 
 "Ale
-let g:ale_disable_lsp = 1
-let g:ale_sign_error = '✗'
+let g:ale_disable_lsp  = 1
+let g:ale_sign_error   = '✗'
 let g:ale_sign_warning = '❗'
 
 source ~/.config/nvim/coc.vim
@@ -210,6 +207,7 @@ nnoremap <silent> <Leader>fd :Files<CR>
 "search from $HOME
 "_files -> _find
 nnoremap <silent> <Leader>ff :Files ~<CR>
+nnoremap <silent> <Leader>fl :Buffers<CR>
 
 "Ranger
 "_files -> _ranger

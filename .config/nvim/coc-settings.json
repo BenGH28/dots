@@ -68,6 +68,9 @@
 	"jedi.diagnostics.didOpen": true,
 	"jedi.diagnostics.didChange": true,
 	"jedi.diagnostics.didSave": true,
+	//sh
+	"sh.enable":true,
+	"sh.highlightParsingErrors": true,
 	//misc
 	"coc.preferences.hoverTarget": "float",
 	"diagnostic.virtualText": true,
