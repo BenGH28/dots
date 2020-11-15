@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
-cmd=$(echo -e "Shutdown\nLog Out\nReboot" | dmenu -c -l 3 -bw 5) 
+cmd=$(echo -e "Lock\nShutdown\nLog out\nReboot" | dmenu -c -l 4 -bw 5) 
 
 case $cmd in
 	Shutdown) shutdown now;;
-	"Log Out") qtile-cmd -o cmd -f shutdown;;
+	"Log out") qtile-cmd -o cmd -f shutdown;;
 	Reboot) reboot;;
+	Lock) betterlockscreen -l blur;;
 	*);;
 esac
