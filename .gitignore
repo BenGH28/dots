@@ -107,3 +107,21 @@ vcpkg/
 .zcompdump-murtagh-5.8
 Documents/
 vimwiki/
+.config/Code - OSS/
+.config/ReText project/
+.config/ctags-5.8/
+.config/hexchat/
+.config/jesseduffield/
+.config/kazam/
+.config/obs-studio/
+.config/pipewire-media-session/
+.config/qalculate/
+.config/ranger/plugins/
+.config/slock/
+.config/st/
+.emacs.d/
+.vimtags
+.vscode-oss/
+.z
+.zcompdump
+scripts/__pycache__/
