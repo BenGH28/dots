@@ -12,6 +12,10 @@ yay -S nerd-fonts-jetbrains-mono alacritty-ligatures-git
 #install those utilities that aren't on ARCH repos
 ##################################################
 
+#get my version of dmenu
+echo "Cloning dmenu-plusplus from github"
+git clone https://github.com/BenGH28/dmenu-plusplus.git
+
 # install rustup to gain access to cargo 
 echo "Installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -25,7 +29,9 @@ echo "Installing Oh-My-ZSH"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #vim-plugged for vim
-case $1 in
+echo "Use vim-plug for vim or nvim? (enter vim or nvim)"
+read editor
+case $editor in
 	vim)echo "Installing vim-plug for vim"
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
