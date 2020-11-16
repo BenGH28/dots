@@ -79,7 +79,7 @@ def GetKeys() -> List[Key]:
         Key([MOD], "w",
             lazy.spawn("firefox")),
         Key([MOD], "space",
-            lazy.spawn("rofi -show run")),
+            lazy.spawn("dmenu_run -c -l 10 -bw 5")),
         Key([ALT], "Tab",
             lazy.spawn("rofi -show window")),
         Key([MOD], "m",
