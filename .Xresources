@@ -7,24 +7,17 @@ XTerm*renderFont: true
 XTerm*faceName: JetBrainsMono Nerd Font:size=12;antialias=true
 XTerm*faceSize: 16
 
-! do not scroll with output
-URxvt*scrollTtyOutput: false
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-URxvt*scrollWithBuffer: true
-! scroll back to the bottom on keypress
-URxvt*scrollTtyKeypress: true
-URxvt.font: xft:JetBrainsMono Nerd Font:size=16
-URxvt.perl-ext-common:  ...,clipboard,...
-URxvt.clipboard.autocopy: true
+! dmenu
+/* dmenu.font : Fira Code */
+/* dmenu.background : #383a42 */
+/* dmenu.foreground : #f9f9f9 */
+/* dmenu.selbackground : #383a42 */
+/* dmenu.selforeground : #0184BC */
 
 ! Atom One Light theme
 xterm*background: #f9f9f9
 xterm*foreground: #383a42
 xterm*cursorColor: #d0d0d0
-
-urxvt*background: #f9f9f9
-urxvt*foreground: #383a42
-urxvt*cursorColor: #d0d0d0
 
 *.color0: #000000
 *.color1: #E45649
