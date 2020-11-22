@@ -1,27 +1,5 @@
 {
 	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [
-				"c",
-				"cpp",
-				"cuda",
-				"objc",
-				"objcpp"
-			],
-			"rootPatterns": [
-				".ccls-root",
-				"compile_commands.json"
-			],
-			"initializationOptions": {
-				"cache": {
-					"directory": ".ccls-cache"
-				},
-				"client": {
-					"snippetSupport": true
-				}
-			}
-		},
 		"vimls": {
 			"command": "vim-language-server",
 			"args": [

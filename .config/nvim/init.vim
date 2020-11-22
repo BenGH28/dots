@@ -207,6 +207,7 @@ nnoremap <silent> <Leader>fd :Files<CR>
 "search from $HOME
 "_files -> _find
 nnoremap <silent> <Leader>ff :Files ~<CR>
+"_files -> _list
 nnoremap <silent> <Leader>fl :Buffers<CR>
 
 "Ranger
@@ -217,6 +218,10 @@ nnoremap <Leader>fr :RnvimrToggle<CR>"
 nnoremap <Leader>fww :w<CR>
 nnoremap <Leader>fwq :wq<CR>
 nnoremap <Leader>fq :q<CR>
+
+nmap <Leader>gad :Gwrite<CR>
+nmap <Leader>gcm :Gcommit<CR>
+nmap <Leader>gps :Gpush<CR>
 
 "Tagbar
 nmap <Leader>ft :TagbarToggle<CR>
@@ -233,7 +238,8 @@ nnoremap <silent> <Leader><S-Tab> :tabp<CR>
 nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "CoC shortand
-nnoremap <Leader>coc :CocList marketplace<CR>
+nnoremap <Leader>com :CocList marketplace<CR>
+nnoremap <Leader>coc :CocConfig<CR>
 
 "alacritty themes
 nnoremap <Leader>al :call ToggleAlacrittyTheme()<CR>
