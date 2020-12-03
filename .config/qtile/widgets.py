@@ -15,17 +15,13 @@ def is_laptop() -> bool:
     Determines if the machine running the code is a laptop
     by checking if it has a battery
 
-    returns True for batter, False otherwise
+    returns True for battery, False otherwise
     """
 
-    result = os.popen('acpi').read()
-    splits = result.split(" ")
-    try:
-        if splits[6].strip() == 'unavailable':
-            return False
-        return True  # dead code but it keeps the linter happy
-    except IndexError:
-        return True
+    result = os.popen('hostname').read()
+    if result.strip() == 'Jotunheim':
+        return False
+    return True
 
 
 def make_powerline_laptop_widgets(colours: Dict[str, str],
