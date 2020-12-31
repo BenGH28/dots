@@ -59,6 +59,9 @@ scrolling:
   multiplier: 3
 
 # Font configuration
+myfontsize: 
+    fontsize: &fontsize
+        12
 myfonts:
     jet_brains_mono: &jet_brains_mono 
       # Normal (roman) font face
@@ -79,7 +82,7 @@ myfonts:
         style: Bold Italic
 
       # Point size
-      size: 12.0
+      size: *fontsize
 
       # Offset is the extra space around each character. `offset.y` can be thought of
       # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -113,7 +116,7 @@ myfonts:
         style: Bold Italic
 
       # Point size
-      size: 12.0
+      size: *fontsize
 
       # Offset is the extra space around each character. `offset.y` can be thought of
       # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -127,7 +130,7 @@ myfonts:
       glyph_offset:
         x: 0
         y: 0
-font: *jet_brains_mono
+font: *fira_code
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true

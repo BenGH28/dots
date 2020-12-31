@@ -1,0 +1,2 @@
+!make left backslash into shift on bilingual keyboard
+keycode 94 = Shift_L

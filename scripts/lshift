@@ -1,4 +1,0 @@
-#!/bin/sh
-#Turn a bilingual keyboard left \ into a left shift
-xmodmap -e "keycode 94 = Shift_L"
-

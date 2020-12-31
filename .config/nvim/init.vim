@@ -32,11 +32,6 @@ Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
-" Plug 'vim-ctrlspace/vim-ctrlspace'
-" tags
-" Plug 'xolox/vim-easytags'
-" Plug 'xolox/vim-misc'
-Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
@@ -139,7 +134,21 @@ let g:ale_disable_lsp  = 1
 let g:ale_sign_error   = '✗'
 let g:ale_sign_warning = '❗'
 
+"CoC
 source ~/.config/nvim/coc.vim
+let g:coc_global_extensions = [
+			\'coc-clangd',
+			\'coc-jedi',
+			\'coc-json',
+			\'coc-marketplace',
+			\'coc-pairs',
+			\'coc-python',
+			\'coc-sh',
+			\'coc-vimlsp',
+			\'coc-yaml',
+			\'coc-syntax',
+			\'coc-snippets',
+			\]
 
 "Markdown
 let g:instant_markdown_autostart = 0

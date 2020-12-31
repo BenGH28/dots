@@ -1,12 +1,7 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -Syu nvim i3 i3-gaps picom rofi ttf-font-awesome \
-				i3exit lxappearance nitrogen nodejs yay qtile emacs \
-				betterlockscreen 
-
-#only found in the aur
-yay -S nerd-fonts-jetbrains-mono alacritty-ligatures-git
+sudo pacman -Syu - < ./pacman-pkgs.txt
 
 ##################################################
 #install those utilities that aren't on ARCH repos
@@ -14,7 +9,7 @@ yay -S nerd-fonts-jetbrains-mono alacritty-ligatures-git
 
 #get my version of dmenu
 echo "Cloning dmenu-plusplus from github"
-git clone https://github.com/BenGH28/dmenu-plusplus.git
+git clone https://github.com/BenGH28/dmenu-plusplus.git ~/.config/dmenu/ && cd ~/.config/ && sudo make clean install && cd
 
 # install rustup to gain access to cargo 
 echo "Installing rust"
@@ -23,10 +18,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # installing commandline to for changing your alacritty theme
 echo "Installing alacritty-theme from cargo"
 ~/.cargo/bin/cargo install alacritty-theme
-
-#Oh-my-zsh
-echo "Installing Oh-My-ZSH"
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 #vim-plugged for vim
 echo "Use vim-plug for vim or nvim? (enter vim or nvim)"
@@ -43,3 +34,9 @@ case $editor in
 	*) echo "vim-plug not installed"
 	;;
 esac
+
+#Oh-my-zsh
+echo "Installing Oh-My-ZSH"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions && \
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
