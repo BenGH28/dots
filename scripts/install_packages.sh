@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 #installing my favourite packages and utilities
-sudo pacman -Syu - < ./pacman-pkgs.txt
+sudo pacman -Syu - < $HOME/scripts/pacman-pkgs.txt
 
 ##################################################
 #install those utilities that aren't on ARCH repos
@@ -9,7 +9,7 @@ sudo pacman -Syu - < ./pacman-pkgs.txt
 
 #get my version of dmenu
 echo "Cloning dmenu-plusplus from github"
-git clone https://github.com/BenGH28/dmenu-plusplus.git ~/.config/dmenu/ && cd ~/.config/ && sudo make clean install && cd
+git clone https://github.com/BenGH28/dmenu-plusplus.git ~/.config/dmenu/ && cd ~/.config/dmenu && sudo make clean install && cd
 
 # install rustup to gain access to cargo 
 echo "Installing rust"
