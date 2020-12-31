@@ -28,6 +28,7 @@ augroup cpp-indent
 	au BufLeave *.cpp :set tabstop=4 | :set shiftwidth=4
 augroup END
 
+"auto PlugInstall
 autocmd VimEnter *
 			\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 			\| PlugInstall --sync | q

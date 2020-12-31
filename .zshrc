@@ -68,7 +68,7 @@ alias dstat="dots status"
 alias rn="ranger"
 alias atd="alacritty-theme change one_dark"
 alias atl="alacritty-theme change one_light"
-alias mirrorUp="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
+alias mirrorUpdate="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
