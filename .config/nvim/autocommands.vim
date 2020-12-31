@@ -28,6 +28,11 @@ augroup cpp-indent
 	au BufLeave *.cpp :set tabstop=4 | :set shiftwidth=4
 augroup END
 
+autocmd VimEnter *
+			\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+			\| PlugInstall --sync | q
+			\|endif
+
 " augroup keep-transparent-terminal
 " 	au!
 " 	au BufEnter * hi Normal guibg=NONE ctermbg=NONE

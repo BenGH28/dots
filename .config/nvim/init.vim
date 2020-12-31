@@ -32,10 +32,10 @@ Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
-Plug 'vim-ctrlspace/vim-ctrlspace'
+" Plug 'vim-ctrlspace/vim-ctrlspace'
 " tags
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
 
 "this needs to be called at the end to work correctly
@@ -78,7 +78,7 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
-
+let g:python3_host_prog = '/usr/bin/python3'
 "=============================================================
 "							Plugin-Configs
 "=============================================================
@@ -134,11 +134,13 @@ let g:fzf_layout = {'down': '35%'}
 let g:rnvimr_ex_enable = 1
 
 "Ale
+let g:ale_lint_on_text_changed = 1
 let g:ale_disable_lsp  = 1
 let g:ale_sign_error   = '✗'
 let g:ale_sign_warning = '❗'
 
 source ~/.config/nvim/coc.vim
+
 "Markdown
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_allow_external_content = 1
@@ -255,3 +257,6 @@ let g:floaterm_keymap_next = '<Leader>tx'
 let g:floaterm_keymap_hide = '<Leader>th'
 let g:floaterm_keymap_toggle = '<Leader>tt'
 let g:floaterm_keymap_kill = '<Leader>tk'
+
+"rooter
+let g:rooter_manual_only = 0
