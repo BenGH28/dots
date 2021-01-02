@@ -66,19 +66,19 @@ myfonts:
     jet_brains_mono: &jet_brains_mono 
       # Normal (roman) font face
       normal:
-        family: JetBrainsMono Nerd Font
+        family: JetBrainsMono 
         style: Regular
 
       bold:
-        family: JetBrainsMono Nerd Font
+        family: JetBrainsMono 
         style: Bold
 
       italic:
-        family: JetBrainsMono Nerd Font
+        family: JetBrainsMono 
         style: Italic
 
       bold_italic:
-        family: JetBrainsMono Nerd Font
+        family: JetBrainsMono 
         style: Bold Italic
 
       # Point size
@@ -186,7 +186,7 @@ color_schemes:
         cyan: '#56b6c2'
         white: '#ffffff'
 
-colors: *one_light
+colors: *one_dark
 
 # Background opacity
 #
