@@ -15,7 +15,7 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = True
+is_dark = False
 # True for powerline-esque bar
 powerline = True
 
@@ -57,7 +57,7 @@ if is_dark is True:
 else:
     colours, style = themes.SetOneLightTheme()
 
-widget_defaults = dict(font="JetBrainsMono Nerd Font", fontsize=18, padding=5,)
+widget_defaults = dict(font="JetBrainsMono", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
 widgets1 = widgets.initialize_widgets(colours, style, powerline)
