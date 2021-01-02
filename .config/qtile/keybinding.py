@@ -1,6 +1,5 @@
 from typing import List
 from libqtile.config import Key
-from libqtile import extension
 from libqtile.lazy import lazy
 from constants import MOD, ALT, TERM
 

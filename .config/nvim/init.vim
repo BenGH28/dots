@@ -138,7 +138,7 @@ let g:ale_sign_warning = '❗'
 source ~/.config/nvim/coc.vim
 let g:coc_global_extensions = [
 			\'coc-clangd',
-			\'coc-jedi',
+			\'coc-pyright',
 			\'coc-json',
 			\'coc-marketplace',
 			\'coc-pairs',
