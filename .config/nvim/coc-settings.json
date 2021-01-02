@@ -1,5 +1,20 @@
 {
 	"languageserver": {
+		"clangd": {
+			"command": "clangd",
+			"rootPatterns": [
+				"compile_flags.txt",
+				"compile_commands.json"
+			],
+			"filetypes": [
+				"c",
+				"cc",
+				"cpp",
+				"c++",
+				"objc",
+				"objcpp"
+			]
+		},
 		"vimls": {
 			"command": "vim-language-server",
 			"args": [
@@ -39,10 +54,15 @@
 	//clangd
 	"clangd.enabled": true,
 	"clangd.path": "/usr/bin/clangd",
-	//misc
+	//coc
 	"coc.preferences.hoverTarget": "float",
+	"coc.preferences.colorSupport": true,
+	"coc.preferences.floatActions": true,
+	"coc.preferences.formatOnType": true,
 	"diagnostic.virtualText": true,
 	"diagnostic.showUnused": true,
 	"diagnostic.format": "message",
+	"diagnostic.infoSign": "❗",
+	"diagnostic.errorSign": "✗",
 	"codeLens.enable": true
 }
