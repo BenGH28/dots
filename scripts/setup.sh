@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # link the appropriate scripts in the appropriate places
 echo "linking your scripts to your PATH (~/.local/bin)"
 dir=$HOME/.local/bin
