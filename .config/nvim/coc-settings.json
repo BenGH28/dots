@@ -47,8 +47,11 @@
 	"jedi.diagnostics.didChange": true,
 	"jedi.diagnostics.didSave": true,
 	//sh
-	"sh.enable":true,
+	"sh.enable": true,
 	"sh.highlightParsingErrors": true,
+	//clangd
+	"clangd.enabled": true,
+	"clangd.path": "/usr/bin/clangd",
 	//misc
 	"coc.preferences.hoverTarget": "float",
 	"diagnostic.virtualText": true,

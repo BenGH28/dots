@@ -32,7 +32,7 @@ Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
-
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -157,14 +157,15 @@ let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autoscroll = 0
 
-"ctrlspace
-let g:CtrlSpaceDefaultMappingKey = "<Leader><Leader>"
-if executable("ag")
-	let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
-endif
-let g:CtrlSpaceUseTabline = 1
-let g:CtrlSpaceFileEngine = "auto"
-
+"tree-sitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 "=============================================================
 "							User Configs/Mappings
 "=============================================================
@@ -185,6 +186,7 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
+nmap <silent> <Leader>on :on<CR>
 
 "resizing splits
 nnoremap <Leader>h :vertical resize -3<CR>
