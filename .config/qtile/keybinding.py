@@ -95,7 +95,7 @@ def GetKeys() -> List[Key]:
         Key([MOD], "F1",
             lazy.spawn("sgtk-menu -f -a")),
         Key([MOD], "e",
-            lazy.spawn('emacsclient -c')),
+            lazy.spawn('emacsclient -c -a"emacs"')),
         Key([MOD, "shift"], "l",
             lazy.spawn("betterlockscreen -l blur")),
         Key([MOD], "p",

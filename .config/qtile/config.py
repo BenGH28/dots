@@ -15,7 +15,7 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = False
+is_dark = True
 # True for powerline-esque bar
 powerline = True
 
@@ -34,8 +34,7 @@ keys = keybinding.GetKeys()
 groups = [
     Group(name="1", label=""),
     Group(name="2", label=""),
-    Group(name="3", matches=[Match(wm_class=["Spotify"]),
-                             Match(title=["Spotify Premium"])], label=""),
+    Group(name="3", label=""),
     Group(name="4", label=""),
     Group(name="5", label=""),
 ]
