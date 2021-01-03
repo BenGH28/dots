@@ -7,6 +7,9 @@ sudo pacman -Syu - < $HOME/scripts/pacman-pkgs.txt
 #install those utilities that aren't on ARCH repos
 ##################################################
 
+#get the aur-packages
+yay -S - < $HOME/scripts/aur-pkgs.txt
+
 #get my version of dmenu
 echo "Cloning dmenu-plusplus from github"
 git clone https://github.com/BenGH28/dmenu-plusplus.git ~/.config/dmenu/ && cd ~/.config/dmenu && sudo make clean install && cd

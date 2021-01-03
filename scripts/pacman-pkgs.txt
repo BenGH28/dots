@@ -39,7 +39,6 @@ ttf-indic-otf
 ttf-joypixels
 ttf-jetbrains-mono
 ttf-liberation
-ttf-nerd-fonts-symbols
 xclip
 xfce4-power-manager
 zsh
