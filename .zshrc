@@ -10,7 +10,7 @@ export IPYTHONDIR="~/.config/ipython"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-ZSH_THEME="simple"
+ZSH_THEME="robbyrussell"
 
 # auto-correction.
 ENABLE_CORRECTION="true"
