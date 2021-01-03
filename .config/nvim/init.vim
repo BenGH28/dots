@@ -120,7 +120,7 @@ let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="Ben Hunt"
 
 "fzf 
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case"
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case --glob !.git/ --glob !.ccls-cache/"
 let $FZF_DEFAULT_OPTS="--height 35% --layout=reverse --preview 'cat {}'"
 let g:fzf_layout = {'down': '35%'}
 
@@ -136,8 +136,7 @@ let g:ale_sign_warning = '❗'
 
 "CoC
 source ~/.config/nvim/coc.vim
-let g:coc_global_extensions = [
-			\'coc-clangd',
+let g:coc_global_extensions = [ 
 			\'coc-pyright',
 			\'coc-json',
 			\'coc-marketplace',
