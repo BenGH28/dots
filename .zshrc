@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export EDITOR="nvim"
 export VIMRC="$HOME/.config/nvim/init.vim"
 export ZRC="$HOME/.zshrc"
