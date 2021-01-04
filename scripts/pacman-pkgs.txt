@@ -10,8 +10,6 @@ git
 htop
 i3-gaps
 i3blocks
-i3exit
-i3lock
 i3status
 kdiff3
 kitty
@@ -23,7 +21,6 @@ networkmanager
 nitrogen
 npm
 picom
-polybar
 qtile
 ranger
 ripgrep
@@ -42,4 +39,6 @@ ttf-liberation
 xclip
 xfce4-power-manager
 zsh
-nodejs-lts-erbium
+nodejs
+betterlockscreen
+bat
