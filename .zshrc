@@ -112,14 +112,14 @@ cat()
 ### The Kitty Terminal ###
 Atom()
 {
-	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/Atom.conf" && \
-		ln -sf ~/.config/kitty/kitty-themes/themes/Atom.conf ~/.config/kitty/theme.conf
+	kitty @set-colors -a "~/.config/kitty/MyOneDark.conf" && \
+		ln -sf ~/.config/kitty/MyOneDark.conf ~/.config/kitty/theme.conf
 }
 
 AtomOneLight()
 {
-	kitty @set-colors -a "~/.config/kitty/kitty-themes/themes/AtomOneLight.conf" && \
-		ln -sf ~/.config/kitty/kitty-themes/themes/AtomOneLight.conf ~/.config/kitty/theme.conf
+	kitty @set-colors -a "~/.config/kitty/MyOneLight.conf" && \
+		ln -sf ~/.config/kitty/MyOneLight.conf ~/.config/kitty/theme.conf
 }
 
 kitco()
