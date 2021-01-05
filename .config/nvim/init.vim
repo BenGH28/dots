@@ -175,7 +175,10 @@ endif
 "run make/binary
 nnoremap <Leader>m :!make<CR>
 nnoremap <Leader>c :!make clean<CR>
+"run binary
 nnoremap <Leader>rb :!./
+"run terminal command
+nnoremap <Leader><F1> :!
 
 "set background quickly if I'm not using alacritty
 nnoremap <silent> <Leader>bl :set background=light<CR>
