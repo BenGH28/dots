@@ -18,6 +18,7 @@ Plug 'suan/vim-instant-markdown'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 
 "Tools
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-commentary'
@@ -32,6 +33,7 @@ Plug 'unblevable/quick-scope'
 Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
+Plug 'liuchengxu/vim-which-key'
 if has("nvim-0.5.0")
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 endif
@@ -63,7 +65,7 @@ set laststatus=2
 set noshowmode "gets rid of the redundant --insert--
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
-set notimeout  timeoutlen=500 
+set timeoutlen=500 
 set cursorline
 set splitbelow
 set splitright
@@ -79,198 +81,90 @@ let g:python3_host_prog = '/bin/python3'
 "=============================================================
 "							Plugin-Configs
 "=============================================================
-"Vim-clang-format config
-let g:clang_format#code_style = 'google'
+"Vim-clang-format
+source $HOME/.config/nvim/plugins/vim-clang-format.vim
 
-"Rust-lang config
-let g:rustfmt_autosave = 1
+"Rust-lang
+source $HOME/.config/nvim/plugins/rust.vim
 
-"airline config
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#whitespace#checks = []
+"airline
+source $HOME/.config/nvim/plugins/airline.vim
 
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
+"Quick scope
+source $HOME/.config/nvim/plugins/quickscope.vim
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰ '
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.dirty='⚡'
-
-"Easy align config
-"easy align in visual mode (ex. vipga select inner paragraph easy align)
-xmap ga <Plug>(EasyAlign)
-"interactive mode for a motion/text object (ex.gaip = ga (easy align) inner
-"paragraph)
-nnoremap ga <Plug>(EasyAlign)
-
-"Quick scope config
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-let g:qs_max_chars=150
-
-"DoxygenToolkit config
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_authorName="Ben Hunt"
+"DoxygenToolkit
+source $HOME/.config/nvim/plugins/Doxygen.vim
 
 "fzf 
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-case --glob !.git/ --glob !.ccls-cache/"
-let $FZF_DEFAULT_OPTS="--height 35% --layout=reverse --preview 'cat {}'"
-let g:fzf_layout = {'down': '35%'}
+source $HOME/.config/nvim/plugins/fzf.vim
 
 "Ranger
-"to see dotfiles hit 'zh'
-let g:rnvimr_ex_enable = 1
+source $HOME/.config/nvim/plugins/ranger.vim
+
+"nerdtree
+source $HOME/.config/nvim/plugins/nerdtree.vim
 
 "Ale
-let g:ale_lint_on_text_changed = 1
-let g:ale_disable_lsp  = 1
-let g:ale_sign_error   = '✗'
-let g:ale_sign_warning = '❗'
+source $HOME/.config/nvim/plugins/ale.vim
 
 "CoC
-source ~/.config/nvim/coc.vim
-let g:coc_global_extensions = [ 
-			\'coc-pyright',
-			\'coc-json',
-			\'coc-marketplace',
-			\'coc-pairs',
-			\'coc-python',
-			\'coc-sh',
-			\'coc-vimlsp',
-			\'coc-yaml',
-			\'coc-syntax',
-			\'coc-snippets',
-			\]
+source $HOME/.config/nvim/plugins/coc.vim
 
 "Markdown
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_allow_external_content = 1
-let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-let g:instant_markdown_browser = "firefox --new-window"
-let g:instant_markdown_autoscroll = 0
+source $HOME/.config/nvim/plugins/markdown-preview.vim
 
 "tree-sitter
-if has("nvim-0.5.0")
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
+if has("nvim-0.5")
+	luafile $HOME/.config/nvim/plugins/treesitter.lua
 endif
+
+"rooter
+source $HOME/.config/nvim/plugins/rooter.vim
+
+"which-key
+source $HOME/.config/nvim/plugins/whichkey.vim
+
+"colorizer
+source $HOME/.config/nvim/plugins/colorizer.vim
 "=============================================================
 "							User Configs/Mappings
 "=============================================================
-"run make/binary
-nnoremap <Leader>m :!make<CR>
-nnoremap <Leader>c :!make clean<CR>
-nnoremap <Leader>rb :!./
+"run make
+source $HOME/.config/nvim/mappings/map-make.vim
 
-"set background quickly if I'm not using alacritty
-nnoremap <silent> <Leader>bl :set background=light<CR>
-nnoremap <silent> <Leader>bd :set background=dark<CR>
-
-"source vimrc
-nnoremap <Leader>so :source $MYVIMRC<CR>
+"Theme related stuff...kinda
+source $HOME/.config/nvim/mappings/map-theme.vim
 
 "split windows
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
-nmap <silent> <Leader>on :on<CR>
-
-"resizing splits
-nnoremap <Leader>h :vertical resize -3<CR>
-nnoremap <Leader>j :resize -3<CR>
-nnoremap <Leader>k :resize +3<CR>
-nnoremap <Leader>l :vertical resize +3<CR>
-nnoremap <Leader>= <C-W>=
-
-"launch Doxygen quickly
-nnoremap <Leader>do <ESC>:Dox<CR>
+source $HOME/.config/nvim/mappings/map-windows.vim
 
 "Vim-Plug bindings
-nnoremap <Leader>pi :so $MYVIMRC<CR> :PlugInstall<CR>
-nnoremap <Leader>pu :so $MYVIMRC<CR> :PlugUpdate<CR>
-nnoremap <Leader>pc :so $MYVIMRC<CR> :PlugClean<CR>
+source $HOME/.config/nvim/mappings/map-plugged.vim
 
 "lets not use ESC
-inoremap jk <ESC>
-inoremap kj <ESC>
+source $HOME/.config/nvim/mappings/map-esc.vim
 
-"formating if we can
-nnoremap <Leader>fo :Format<CR>
+"files 
+source $HOME/.config/nvim/mappings/map-files.vim
 
-"Go to the settings
-"_files -> _vim -> _dotfiles = fvd
-nnoremap <Leader>fvd :e $MYVIMRC<CR>
-
-"fuzzyfinder
-"_files -> _directory
-nnoremap <silent> <Leader>fd :Files<CR>
-"search from $HOME
-"_files -> _find
-nnoremap <silent> <Leader>ff :Files ~<CR>
-"_files -> _list
-nnoremap <silent> <Leader>fl :Buffers<CR>
-
-"Ranger
-"_files -> _ranger
-nnoremap <Leader>fr :RnvimrToggle<CR>"
-
-"_files -> _write
-nnoremap <Leader>fww :w<CR>
-nnoremap <Leader>fwq :wq<CR>
-nnoremap <Leader>fq :q<CR>
-
-nmap <Leader>gad :Gwrite<CR>
-nmap <Leader>gcm :Gcommit<CR>
-nmap <Leader>gps :Gpush<CR>
-
-"Tagbar
-nmap <Leader>ft :TagbarToggle<CR>
+"git
+source $HOME/.config/nvim/mappings/map-git.vim
 
 "Switch between buffers easier
-nnoremap <silent> <Leader>bn :bNext<CR>
-nnoremap <silent> <Leader>bp :bprevious<CR>
+source $HOME/.config/nvim/mappings/map-buffers.vim
 
 "Switch between Tabs easy-peasy
-nnoremap <silent> <Leader><Tab> :tabn<CR>
-nnoremap <silent> <Leader><S-Tab> :tabp<CR>
+source $HOME/.config/nvim/mappings/map-tabs.vim
 
-"substitute word under cursor
-nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+"miscellaneous mappings
+source $HOME/.config/nvim/mappings/map-misc.vim
 
-"CoC shortand
-nnoremap <Leader>com :CocList marketplace<CR>
-nnoremap <Leader>coc :CocConfig<CR>
-
-"alacritty themes
-nnoremap <Leader>al :call ToggleAlacrittyTheme()<CR>
-
-" Use <Tab> and <S-Tab> to navigate through completion popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"CoC 
+source $HOME/.config/nvim/mappings/map-coc.vim
 
 "Floaterm
-let g:floaterm_keymap_new = '<Leader>tn'
-let g:floaterm_keymap_prev = '<Leader>tp'
-let g:floaterm_keymap_next = '<Leader>tx'
-let g:floaterm_keymap_hide = '<Leader>th'
-let g:floaterm_keymap_toggle = '<Leader>tt'
-let g:floaterm_keymap_kill = '<Leader>tk'
+source $HOME/.config/nvim/mappings/map-floaterm.vim
 
-"rooter
-let g:rooter_manual_only = 0
+"Easy align 
+source $HOME/.config/nvim/mappings/map-easy-align.vim
