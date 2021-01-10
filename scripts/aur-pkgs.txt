@@ -1,3 +1,4 @@
 nerd-fonts-fira-code
 nerd-fonts-mononoki
 nerd-fonts-jetbrains-mono
+lazygit-git
