@@ -1,3 +1,8 @@
+"auto install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+			\https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
 "sourcing some funcs and autocommands
 source ~/.config/nvim/functions.vim
 source ~/.config/nvim/autocommands.vim
@@ -18,6 +23,8 @@ Plug 'suan/vim-instant-markdown'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 
 "Tools
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+Plug 'puremourning/vimspector'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
@@ -34,9 +41,7 @@ Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'liuchengxu/vim-which-key'
-if has("nvim-0.5.0")
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-endif
+Plug 'nvim-treesitter/nvim-treesitter', has('nvim-0.5') ? {'do':':TSUpdate'} : {'on': []}
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -127,6 +132,12 @@ source $HOME/.config/nvim/plugins/whichkey.vim
 
 "colorizer
 source $HOME/.config/nvim/plugins/colorizer.vim
+
+"signify
+source $HOME/.config/nvim/plugins/signify.vim
+
+"vimspector
+source $HOME/.config/nvim/plugins/vimspector.vim
 "=============================================================
 "							User Configs/Mappings
 "=============================================================
