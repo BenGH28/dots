@@ -124,6 +124,9 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
+"CoC formating if we can
+nnoremap <Leader>fo :Format<CR>
+
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
@@ -152,3 +155,9 @@ nnoremap <silent> <C-space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <C-space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>clp  :<C-u>CocListResume<CR>
+nnoremap <Leader>cm :CocList marketplace<CR>
+nnoremap <Leader>cc :CocConfig<CR>
+
+" Use <Tab> and <S-Tab> to navigate through completion popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

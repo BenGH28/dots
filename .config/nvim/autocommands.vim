@@ -13,7 +13,7 @@ augroup END
 augroup foldmethod-on-filetype
 	au!
 	au BufEnter *.py,*.sh,*.vim set foldmethod=indent
-	au BufLeave *.py,*.sh,*.vim set foldmethod=syntax
+	au BufLeave *.py,*.sh,*.vim set foldmethod=expr
 augroup END
 
 augroup quick-scope-colours
@@ -29,12 +29,16 @@ augroup cpp
 augroup END
 
 "auto PlugInstall
-autocmd VimEnter *
+augroup vim-plug
+	au!
+	au VimEnter *
 			\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 			\| PlugInstall --sync | q
 			\|endif
+augroup END
 
-" augroup keep-transparent-terminal
-" 	au!
-" 	au BufEnter * hi Normal guibg=NONE ctermbg=NONE
-" augroup END
+"whitespace must die
+augroup white-space
+	au!
+	au BufWritePre * %s/\s\+$//e
+augroup END

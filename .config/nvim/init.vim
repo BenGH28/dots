@@ -3,8 +3,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
 			\https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
-"sourcing some funcs and autocommands
-source ~/.config/nvim/functions.vim
+
+call MyFunctions#AlignAlacrittyBackground()
 source ~/.config/nvim/autocommands.vim
 
 "=============================================================
@@ -41,7 +41,17 @@ Plug 'mhinz/vim-signify'
 Plug 'voldikss/vim-floaterm'
 Plug 'kevinhwang91/rnvimr', {'branch': 'main'}
 Plug 'liuchengxu/vim-which-key'
+"sometimes nvim is finicky about treesitter resourcing init.vim seems to
+"satisfy it
 Plug 'nvim-treesitter/nvim-treesitter', has('nvim-0.5') ? {'do':':TSUpdate'} : {'on': []}
+:lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+}
+EOF
 "this needs to be called at the end to work correctly
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -70,7 +80,7 @@ set laststatus=2
 set noshowmode "gets rid of the redundant --insert--
 set mouse=a "allow mouse use in all modes
 set cmdheight=2 "command window height to 2 lines
-set timeoutlen=500 
+set timeoutlen=500
 set cursorline
 set splitbelow
 set splitright
@@ -82,100 +92,58 @@ set nowrap
 set noswapfile  "no more pesky .swp file warnings"
 set clipboard+=unnamedplus "the system clipboard is enabled"
 set inccommand=split
+set autochdir
+set scrolloff=8
+set nolazyredraw      "don't show me the execution of macros"
 let g:python3_host_prog = '/bin/python3'
 "=============================================================
-"							Plugin-Configs
+"		Vim Mappings Only
 "=============================================================
-"Vim-clang-format
-source $HOME/.config/nvim/plugins/vim-clang-format.vim
+inoremap jk <ESC>
+inoremap kj <ESC>
 
-"Rust-lang
-source $HOME/.config/nvim/plugins/rust.vim
+nnoremap <Leader>ma :make<CR>
+nnoremap <Leader>mc :make clean<CR>
 
-"airline
-source $HOME/.config/nvim/plugins/airline.vim
+"substitute word under cursor
+nnoremap <Leader>sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
-"Quick scope
-source $HOME/.config/nvim/plugins/quickscope.vim
+nnoremap <silent> <Leader>bn :bNext<CR>
+nnoremap <silent> <Leader>bp :bprevious<CR>
 
-"DoxygenToolkit
-source $HOME/.config/nvim/plugins/Doxygen.vim
+nnoremap <silent> <Leader>. :tabn<CR>
+nnoremap <silent> <Leader>, :tabp<CR>
 
-"fzf 
-source $HOME/.config/nvim/plugins/fzf.vim
+"set background quickly if I'm not using alacritty
+nnoremap <silent> <Leader>al :set background=light<CR>
+nnoremap <silent> <Leader>ad :set background=dark<CR>
 
-"Ranger
-source $HOME/.config/nvim/plugins/ranger.vim
+"alacritty themes
+nnoremap <silent> <Leader>at :call MyFunctions#ToggleAlacrittyTheme()<CR>
 
-"nerdtree
-source $HOME/.config/nvim/plugins/nerdtree.vim
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 
-"Ale
-source $HOME/.config/nvim/plugins/ale.vim
+"show only the current window
+nmap <silent> <Leader>wo :on<CR>
 
-"CoC
-source $HOME/.config/nvim/plugins/coc.vim
+"resizing splits
+nnoremap <silent> <Leader>wh :vertical resize -3<CR>
+nnoremap <silent> <Leader>wj :resize -3<CR>
+nnoremap <silent> <Leader>wk :resize +3<CR>
+nnoremap <silent> <Leader>wl :vertical resize +3<CR>
+nnoremap <silent> <Leader>w= <C-W>=
 
-"Markdown
-source $HOME/.config/nvim/plugins/markdown-preview.vim
+"Go to the settings
+"_files -> _vim -> _dotfiles = fvd
+nnoremap <Leader>fv :e $MYVIMRC<CR>
 
-"tree-sitter
-if has("nvim-0.5")
-	luafile $HOME/.config/nvim/plugins/treesitter.lua
-endif
+"_files -> _write
+nnoremap <Leader>fww :w<CR>
+nnoremap <Leader>fwq :wq<CR>
+nnoremap <Leader>fq :q<CR>
 
-"rooter
-source $HOME/.config/nvim/plugins/rooter.vim
-
-"which-key
-source $HOME/.config/nvim/plugins/whichkey.vim
-
-"colorizer
-source $HOME/.config/nvim/plugins/colorizer.vim
-
-"signify
-source $HOME/.config/nvim/plugins/signify.vim
-
-"vimspector
-source $HOME/.config/nvim/plugins/vimspector.vim
-"=============================================================
-"							User Configs/Mappings
-"=============================================================
-"run make
-source $HOME/.config/nvim/mappings/map-make.vim
-
-"Theme related stuff...kinda
-source $HOME/.config/nvim/mappings/map-theme.vim
-
-"split windows
-source $HOME/.config/nvim/mappings/map-windows.vim
-
-"Vim-Plug bindings
-source $HOME/.config/nvim/mappings/map-plugged.vim
-
-"lets not use ESC
-source $HOME/.config/nvim/mappings/map-esc.vim
-
-"files 
-source $HOME/.config/nvim/mappings/map-files.vim
-
-"git
-source $HOME/.config/nvim/mappings/map-git.vim
-
-"Switch between buffers easier
-source $HOME/.config/nvim/mappings/map-buffers.vim
-
-"Switch between Tabs easy-peasy
-source $HOME/.config/nvim/mappings/map-tabs.vim
-
-"miscellaneous mappings
-source $HOME/.config/nvim/mappings/map-misc.vim
-
-"CoC 
-source $HOME/.config/nvim/mappings/map-coc.vim
-
-"Floaterm
-source $HOME/.config/nvim/mappings/map-floaterm.vim
-
-"Easy align 
-source $HOME/.config/nvim/mappings/map-easy-align.vim
+"source vimrc
+nnoremap <Leader>v :source $MYVIMRC<CR>
