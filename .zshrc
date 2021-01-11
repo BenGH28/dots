@@ -16,9 +16,9 @@ ZSH_THEME="robbyrussell"
 ENABLE_CORRECTION="true"
 
 # Plugins
-# 
+#
 plugins=(
-	z 
+	z
 	themes
 	vi-mode
 	zsh_reload
@@ -32,7 +32,7 @@ autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-	 
+
 #	  ___    ___
 #    /   |  / (_)___ _________  _____
 #   / /| | / / / __ `/ ___/ _ \/ ___/
@@ -40,7 +40,7 @@ source $ZSH/oh-my-zsh.sh
 # /_/  |_/_/_/\__,_/____/\___/____/
 #
 alias gcm="git commit -m"
-alias gpl="git pull" 
+alias gpl="git pull"
 alias gps="git push"
 alias ga="git add"
 alias gstat="git status"
@@ -50,7 +50,7 @@ alias ..="cd .."
 alias pipes="pipes.sh"
 alias vimrc="$EDITOR $VIMRC"
 alias S="sudo pacman -S"
-alias Rs="sudo pacman -Rs" 
+alias Rs="sudo pacman -Rs"
 alias Ss="pacman -Ss"
 alias Q="pacman -Q"
 alias Syu="sudo pacman -Syu"
@@ -64,11 +64,12 @@ alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias da="dots add"
 alias dcm="dots commit -m"
 alias dp="dots push"
-alias dstat="dots status"  	 
+alias dstat="dots status"
 alias rn="ranger"
 alias atd="alacritty-theme change one_dark"
 alias atl="alacritty-theme change one_light"
 alias mirrorUpdate="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
+alias lg="lazygit"
 
 #  	 ______                 __  _
 #   / ____/_  ______  _____/ /_(_)___  ____  _____
@@ -102,7 +103,7 @@ ex ()
 cat()
 {
 	THEME=$(alacritty-theme current | sed '/C/d' | awk '{print $2}')
-	case $THEME in 
+	case $THEME in
 		one_light) bat --theme OneHalfLight $@;;
 		one_dark)  bat --theme OneHalfDark $@;;
 		*) 		   echo "I don't know what to do with '$THEME'";;
@@ -125,7 +126,7 @@ AtomOneLight()
 kitco()
 {
 	IN_KITTY=$(echo $TERM)
-	case $IN_KITTY:$1 in 
+	case $IN_KITTY:$1 in
 		xterm-kitty:dark) Atom ;;
 		xterm-kitty:light) AtomOneLight ;;
 		xterm-kitty:*) echo "this is not the theme you are looking for..." ;;
