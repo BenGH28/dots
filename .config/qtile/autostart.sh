@@ -5,4 +5,4 @@ nm-applet &
 xfce4-power-manager &
 pamac-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-betterlockscreen -u ~/Pictures/Wallpapers/sea_rocks_moss_132634_1920x1080.jpg -l blur --off 300 &
+betterlockscreen -u ~/Pictures/arcolinux/blue-earth-2880x1800.jpg
