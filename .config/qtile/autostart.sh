@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 picom &
-nitrogen --restore &
+nitrogen --set-auto --random &
 nm-applet &
 xfce4-power-manager &
 pamac-tray &
