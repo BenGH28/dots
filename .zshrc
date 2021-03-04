@@ -5,6 +5,7 @@ export VIMRC="$HOME/.config/nvim/init.vim"
 export ZRC="$HOME/.zshrc"
 export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

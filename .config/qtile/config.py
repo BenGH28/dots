@@ -6,7 +6,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Screen
 from libqtile.lazy import lazy
 
 import keybinding
