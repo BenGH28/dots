@@ -37,6 +37,7 @@ groups = [
     Group(name="3", label="", matches=[Match(wm_class=['spotify'])]),
     Group(name="4", label=""),
     Group(name="5", label="", matches=[Match(wm_class=['discord'])]),
+    Group(name="6", label=""),
 ]
 
 for i in groups:
