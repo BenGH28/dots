@@ -7,17 +7,19 @@ export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# ghcup-env
+[ -f "/home/ben/.ghcup/env" ] && source "/home/ben/.ghcup/env"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
+# Set name of the theme to load
 ZSH_THEME="robbyrussell"
 
 # auto-correction.
 ENABLE_CORRECTION="true"
 
 # Plugins
-#
 plugins=(
 	z
 	themes
@@ -33,7 +35,6 @@ autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 #	  ___    ___
 #    /   |  / (_)___ _________  _____
 #   / /| | / / / __ `/ ___/ _ \/ ___/

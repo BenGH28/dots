@@ -6,7 +6,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Screen
+from libqtile.config import Click, Drag, Match, Group, Key, Screen
 from libqtile.lazy import lazy
 
 import keybinding
@@ -15,7 +15,7 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = False
+is_dark = True
 # True for powerline-esque bar
 powerline = True
 
@@ -28,15 +28,15 @@ def start_once():
 
 
 # KEY BINDINGS
-keys = keybinding.GetKeys()
+keys = keybinding.get_keys()
 
 # Groups
 groups = [
     Group(name="1", label=""),
-    Group(name="2", label=""),
-    Group(name="3", label=""),
+    Group(name="2", label="", matches=[Match(wm_class=['firefox'])]),
+    Group(name="3", label="", matches=[Match(wm_class=['spotify'])]),
     Group(name="4", label=""),
-    Group(name="5", label=""),
+    Group(name="5", label="", matches=[Match(wm_class=['discord'])]),
 ]
 
 for i in groups:

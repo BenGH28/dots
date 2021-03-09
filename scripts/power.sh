@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cmd=$(echo -e "Lock\nLog out\nSuspend\nReboot\nShutdown" | dmenu -c -l 5 -bw 5) 
+cmd=$(echo -e "Lock\nLog out\nSuspend\nReboot\nShutdown" | dmenu -c -l 5 -bw 5)
 
 case $cmd in
 	Shutdown) shutdown now;;

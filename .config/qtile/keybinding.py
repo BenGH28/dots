@@ -3,10 +3,9 @@ from libqtile.config import Key
 from libqtile.lazy import lazy
 from constants import MOD, ALT, TERM
 
-
-def GetKeys() -> List[Key]:
+def get_keys():
     """Returns a list of Key bindings"""
-    keys = [
+    my_keys = [
         # Switch between windows in current stack pane
         Key([MOD], "j",
             lazy.layout.down()),
@@ -100,4 +99,4 @@ def GetKeys() -> List[Key]:
         Key([MOD], "p",
             lazy.spawn("/home/ben/scripts/power.sh")),
     ]
-    return keys
+    return my_keys
