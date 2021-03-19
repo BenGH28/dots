@@ -3,6 +3,7 @@ from libqtile.config import Key
 from libqtile.lazy import lazy
 from constants import MOD, ALT, TERM
 
+
 def get_keys():
     """Returns a list of Key bindings"""
     my_keys = [

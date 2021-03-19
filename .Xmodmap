@@ -1,2 +1,11 @@
 !make left backslash into shift on bilingual keyboard
 keycode 94 = Shift_L
+
+clear lock
+clear control
+
+!remap capslock to left ctrl
+keycode 66 = Control_L
+
+add control = Control_L
+add lock = Control_R

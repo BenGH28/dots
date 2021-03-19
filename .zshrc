@@ -1,11 +1,12 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export EDITOR="nvim"
-export VIMRC="$HOME/.config/nvim/init.vim"
+export VIMRC="$HOME/.config/nvim/init.lua"
 export ZRC="$HOME/.zshrc"
 export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export GOPATH=$HOME/.local/go
 
 # ghcup-env
 [ -f "/home/ben/.ghcup/env" ] && source "/home/ben/.ghcup/env"

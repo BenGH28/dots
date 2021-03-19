@@ -4,7 +4,7 @@ Various widgets based on colour theme
 import os
 from typing import Dict, Tuple
 
-from libqtile import widget
+from libqtile import widget, qtile
 
 from constants import TERM
 from themes import Dark, Light
@@ -12,10 +12,9 @@ from themes import Dark, Light
 
 def is_laptop() -> bool:
     """
-    Determines if the machine running the code is a laptop
-    by checking if it has a battery
-
-    returns True for battery, False otherwise
+    Checks if the the name of the computer.
+    Jotunheim is a desktop                => return false
+    while anything else is laptop for now => return true
     """
 
     result = os.popen('hostname').read()
@@ -79,34 +78,34 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
     if powerline:
         if is_laptop():
             return make_powerline_laptop_widgets(colours, style, powerline)
-        else:
-            return powerline_widgets(colours, style, powerline)
+        return powerline_widgets(colours, style, powerline)
     # This will return non laptop widgets (no battery/brightness)
     return no_powerline(colours, style, powerline)
 
 
 def set_images_for_widgets(style) -> Tuple[str, str, str]:
+    """set properly coloured widgets based on the style"""
     # use colours for One
-    if style == Dark.OneDark or style == Light.OneLight:
+    if style in (Dark.OneDark, Light.OneLight):
         begin_image = "~/.config/qtile/resources/GreenEnd.png"
         secondary_primary = "~/.config/qtile/resources/BlueGreen.png"
         primary_secondary = "~/.config/qtile/resources/GreenBlue.png"
 
         return(begin_image, secondary_primary, primary_secondary)
 
-    else:
-        # style == Dark.Dracula:
-        begin_image = "~/.config/qtile/resources/OrangeEnd.png"
-        secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
-        primary_secondary = "~/.config/qtile/resources/OrangePurple.png"
+    # style == Dark.Dracula:
+    begin_image = "~/.config/qtile/resources/OrangeEnd.png"
+    secondary_primary = "~/.config/qtile/resources/PurpleOrange.png"
+    primary_secondary = "~/.config/qtile/resources/OrangePurple.png"
 
-        return(begin_image, secondary_primary, primary_secondary)
+    return(begin_image, secondary_primary, primary_secondary)
 
 
 def set_widget_foreground(colours: Dict[str, str],
                           style,
                           powerline: bool) -> str:
-    if style == Dark.Dracula or style == Dark.OneDark and powerline:
+    """set a proper foreground"""
+    if style in (Dark.Dracula, Dark.OneDark) and powerline:
         widget_foreground = colours["background"]
     elif style == Light.OneLight and powerline:
         widget_foreground = colours["foreground"]
@@ -118,6 +117,7 @@ def set_widget_foreground(colours: Dict[str, str],
 
 def set_widget_background(colours: Dict[str, str],
                           powerline: bool) -> Tuple[str, str]:
+    """set a proper background"""
     # the background colours of the widgets
     if powerline:
         firstcolour = colours["secondary"]
@@ -130,15 +130,18 @@ def set_widget_background(colours: Dict[str, str],
 
 
 def make_image_widget(filename: str) -> widget.Image:
+    """make correct imaged widgets"""
     return widget.Image(filename=filename, margin=0, padding=0)
 
 
 def make_left_char() -> str:
+    """currently unused but perhaps used as a replacement for images"""
     left_arrow = ''
     return left_arrow
 
 
 def make_right_char() -> str:
+    """currently unused but perhaps used as a replacement for images"""
     right_arrow = ''
     return right_arrow
 
@@ -158,7 +161,7 @@ def powerline_widgets(colours: Dict[str, str],
 
     firstcolour, secondcolour = set_widget_background(colours, powerline)
 
-    myWidgets = [
+    my_widgets = [
         widget.GroupBox(
             this_current_screen_border=colours["secondary"],
             active=colours["foreground"],
@@ -170,7 +173,7 @@ def powerline_widgets(colours: Dict[str, str],
             background=firstcolour,
             format='CPU {load_percent}%',
             mouse_callbacks={
-                "Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
+                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")}
         ),
         make_image_widget(primary_secondary),
         widget.Memory(
@@ -178,7 +181,7 @@ def powerline_widgets(colours: Dict[str, str],
             background=secondcolour,
             format='{MemUsed}M',
             mouse_callbacks={
-                "Button1": lambda qtile: qtile.cmd_spawn(f"{TERM} -e htop")}
+                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")}
         ),
         make_image_widget(secondary_primary),
         widget.AGroupBox(
@@ -208,7 +211,7 @@ def powerline_widgets(colours: Dict[str, str],
         ),
     ]
 
-    return myWidgets
+    return my_widgets
 
 
 def no_powerline(colours: Dict[str, str],
@@ -220,6 +223,6 @@ def no_powerline(colours: Dict[str, str],
     """
     widgets = powerline_widgets(colours, style, powerline)
     for widg in widgets:
-        if type(widg) is widget.image.Image:
+        if isinstance(widg, widget.image.Image):
             widgets.remove(widg)
     return widgets

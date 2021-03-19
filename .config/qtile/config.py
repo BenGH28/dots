@@ -15,9 +15,9 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
 # True for dark theme in bar, False for light
-is_dark = True
-# True for powerline-esque bar
-powerline = True
+IS_DARK = True
+# True for POWERLINE-esque bar
+POWERLINE = True
 
 
 @hook.subscribe.startup_once
@@ -53,7 +53,7 @@ for i in groups:
     )
 
 
-if is_dark is True:
+if IS_DARK is True:
     colours, style = themes.SetOneDarkTheme()
 else:
     colours, style = themes.SetOneLightTheme()
@@ -61,8 +61,8 @@ else:
 widget_defaults = dict(font="JetBrainsMono", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
-widgets1 = widgets.initialize_widgets(colours, style, powerline)
-widgets2 = widgets.initialize_widgets(colours, style, powerline)
+widgets1 = widgets.initialize_widgets(colours, style, POWERLINE)
+widgets2 = widgets.initialize_widgets(colours, style, POWERLINE)
 
 layout_theme = {
     "border_width": 3,
@@ -131,14 +131,7 @@ cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of X client.
-        {"wmclass": "confirm"},
-        {"wmclass": "dialog"},
-        {"wmclass": "download"},
-        {"wmclass": "error"},
-        {"wmclass": "file_progress"},
-        {"wmclass": "notification"},
-        {"wmclass": "splash"},
-        {"wmclass": "toolbar"},
+        *layout.Floating.default_float_rules,
         {"wmclass": "confirmreset"},  # gitk
         {"wmclass": "makebranch"},  # gitk
         {"wmclass": "maketag"},  # gitk
