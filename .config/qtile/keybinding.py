@@ -1,7 +1,9 @@
 from typing import List
+
 from libqtile.config import Key
 from libqtile.lazy import lazy
-from constants import MOD, ALT, TERM
+
+from constants import ALT, MOD, TERM
 
 
 def get_keys():

@@ -4,7 +4,7 @@ Various widgets based on colour theme
 import os
 from typing import Dict, Tuple
 
-from libqtile import widget, qtile
+from libqtile import qtile, widget
 
 from constants import TERM
 from themes import Dark, Light

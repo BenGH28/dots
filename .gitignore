@@ -56,7 +56,6 @@
 .npm/
 .oh-my-zsh/
 .pki/
-.profile
 .rustup/
 .shell.pre-oh-my-zsh
 .ssh/

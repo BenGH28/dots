@@ -1,8 +1,8 @@
 """
 Various colour themes for the Qtile Bar
 """
-from typing import Tuple, Dict
 from enum import Enum
+from typing import Dict, Tuple
 
 
 class Light(Enum):
