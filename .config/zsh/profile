@@ -1,17 +1,25 @@
 #!/bin/zsh
 export PATH="$HOME/.local/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.node_modules/bin:$PATH"
+export PATH="$HOME/.local/node_modules/bin:$PATH"
+export npm_config_prefix=~/.local/node_modules
 export PATH="$PATH:/usr/local/go/bin"
 export ZDOTDIR="$HOME/.config/zsh/"
 
 export EDITOR="nvim"
-export VIMRC="$HOME/.config/nvim/init.lua"
-export ZRC="$ZDOTDIR/.zshrc"
 export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GOPATH=$HOME/.local/go
+export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
+export LUADIR=$HOME/.local/luarocks/
+export PREFIX=$HOME/.local/luarocks/lua
+export LIBDIR=$HOME/.local/luarocks/lib
+export BINDIR=$HOME/.local/luarocks/bin
+export CONFDIR=$HOME/.local/luarocks/conf
 
-export npm_config_prefix=~/.node_modules
 source "$HOME/.cargo/env"
+
+#personal variables
+export ZRC="$ZDOTDIR/.zshrc"
+export VIMRC="$HOME/.config/nvim/init.lua"

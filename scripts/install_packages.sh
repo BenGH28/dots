@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-#installing my favourite packages and utilities
+   #installing my favourite packages and utilities
 install_pkgs(){
     echo "installing pacman packages"
 	sudo pacman -Syu - < $HOME/scripts/pacman-pkgs.txt

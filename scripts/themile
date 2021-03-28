@@ -19,6 +19,7 @@ Setting the option '--all' will toggle both gtk and alacritty themes.
 """
 
 import os
+
 import click
 
 

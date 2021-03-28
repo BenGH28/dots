@@ -3,10 +3,10 @@ Ben Hunt's Qtile Config
 """
 import os
 import subprocess
+from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from typing import List  # noqa: F401
 from libqtile.lazy import lazy
 
 import keybinding
