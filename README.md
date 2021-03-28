@@ -2,10 +2,10 @@
 
 ## Install
 
+Get [yadm](https://github.com/TheLocehiliosan/yadm)
+
 ```sh
-alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-git clone --bare https://github.com/BenGH28/dots ~/.dotfiles
-dots checkout
+yadm clone https://github.com/BenGH28/dots
 
 #install packages related to the dotfiles
 cd scripts/
@@ -14,7 +14,7 @@ cd scripts/
 ```
 For more information about managing dotfiles with git checkout this Atlassian [tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 
-## Qtile Scrots
+## Preview
 
 ![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
 ![Qtile OneDark](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_OneDarkTheme.png)
@@ -27,7 +27,7 @@ Themile is a small script that will change the theme of 3 things:
 - gtk3
 - alacritty (be sure to `cargo install alacritty-theme` for this to work)
 
-Themile will change the theme of qtile by default but you can set options in the commandline to toggle 
+Themile will change the theme of qtile by default but you can set options in the commandline to toggle
 gtk, alacritty or both.
 
 ```sh
