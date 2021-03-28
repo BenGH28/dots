@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/sh
 picom &
-nitrogen --set-zoom-fill --random &
+nitrogen --restore &
 nm-applet &
 xfce4-power-manager &
 pamac-tray &

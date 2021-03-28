@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # link the appropriate scripts in the appropriate places
 echo "linking your scripts to your PATH (~/.local/bin)"
@@ -6,10 +6,10 @@ dir=$HOME/.local/bin
 check_if_in_path(){
 	result=$(echo $PATH | grep $dir)
 	case $result in
-		"") echo "$dir is not in your \$PATH please add it to \$PATH" 
+		"") echo "$dir is not in your \$PATH please add it to \$PATH"
 			exit
 			;;
-		$PATH) echo "$dir is in \$PATH" 
+		$PATH) echo "$dir is in \$PATH"
 			;;
 		*) echo "uh-oh";;
 	esac

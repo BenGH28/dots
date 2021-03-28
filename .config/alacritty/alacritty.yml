@@ -59,17 +59,17 @@ scrolling:
   multiplier: 3
 
 # Font configuration
-myfontsize: 
+myfontsize:
     fontsize: &fontsize
-        9
+        12
 
 myfontnames:
     MyFont: &MyFont
         FiraCode Nerd Font Mono
-        # JetBrainsMono Nerd Font 
+        # JetBrainsMono Nerd Font
         # Mononoki Nerd Font
 
-font: 
+font:
   normal:
     family: *MyFont
     style: Regular

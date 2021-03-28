@@ -39,6 +39,8 @@ ttf-liberation
 xclip
 xfce4-power-manager
 zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
 nodejs
 betterlockscreen
 bat

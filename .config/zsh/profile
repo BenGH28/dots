@@ -1,0 +1,17 @@
+#!/bin/zsh
+export PATH="$HOME/.local/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.node_modules/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
+export ZDOTDIR="$HOME/.config/zsh/"
+
+export EDITOR="nvim"
+export VIMRC="$HOME/.config/nvim/init.lua"
+export ZRC="$ZDOTDIR/.zshrc"
+export RANGER_LOAD_DEFAULT_RC=false
+export IPYTHONDIR="~/.config/ipython"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export GOPATH=$HOME/.local/go
+
+source "$HOME/.cargo/env"
+export npm_config_prefix=~/.node_modules
