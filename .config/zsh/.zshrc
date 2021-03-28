@@ -7,6 +7,8 @@ SAVEHIST=1000
 HISTFILE=$ZDOTDIR/.zsh_history
 
 set -o vi
+#reverse history search with Ctrl-R
+bindkey "^R" history-incremental-search-backward
 
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || \
