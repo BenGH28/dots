@@ -4,7 +4,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/node_modules/bin:$PATH"
 export npm_config_prefix=~/.local/node_modules
 export PATH="$PATH:/usr/local/go/bin"
-export ZDOTDIR="$HOME/.config/zsh/"
+export ZDOTDIR="$HOME/.config/zsh"
 
 export EDITOR="nvim"
 export RANGER_LOAD_DEFAULT_RC=false

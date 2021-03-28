@@ -3,6 +3,11 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
 setopt COMPLETE_ALIASES
 
+SAVEHIST=1000
+HISTFILE=$ZDOTDIR/.zsh_history
+
+set -o vi
+
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || \
     echo "missing zsh-syntax-highlighting"
