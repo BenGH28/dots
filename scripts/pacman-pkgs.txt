@@ -44,3 +44,4 @@ zsh-syntax-highlighting
 nodejs
 betterlockscreen
 bat
+exa

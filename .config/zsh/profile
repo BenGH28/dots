@@ -13,5 +13,5 @@ export IPYTHONDIR="~/.config/ipython"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GOPATH=$HOME/.local/go
 
-source "$HOME/.cargo/env"
 export npm_config_prefix=~/.node_modules
+source "$HOME/.cargo/env"
