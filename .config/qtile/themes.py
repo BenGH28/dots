@@ -29,7 +29,7 @@ def SetOneLightTheme() -> Tuple[Theme, Light]:
         "primary": "61afe0",
         "secondary": "98d379",
         "tertiary": "50a14f",
-        }
+    }
     return (OneLight, Light.OneLight)
 
 
@@ -45,7 +45,7 @@ def SetOneDarkTheme() -> Tuple[Theme, Dark]:
         "primary": "61afe0",
         "secondary": "98d379",
         "tertiary": "50a14f",
-        }
+    }
     return (OneDark, Dark.OneDark)
 
 
@@ -61,5 +61,5 @@ def SetDraculaTheme() -> Tuple[Theme, Dark]:
         "primary": "bd93f9",
         "secondary": "ffb86c",
         "tertiary": "50fa7b",
-        }
+    }
     return (dracula, Dark.Dracula)

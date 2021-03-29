@@ -5,13 +5,14 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
+from libqtile import bar, hook, layout
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+
 import keybinding
 import themes
 import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
-from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from libqtile.lazy import lazy
 
 # True for dark theme in bar, False for light
 IS_DARK = True

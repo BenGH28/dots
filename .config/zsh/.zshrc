@@ -5,7 +5,7 @@ setopt COMPLETE_ALIASES
 
 SAVEHIST=1000
 HISTFILE=$ZDOTDIR/zsh_history
-_Z_Data=$ZDOTDIR/z
+_Z_DATA=$ZDOTDIR/.z
 
 set -o vi
 #reverse history search with Ctrl-R
