@@ -4,7 +4,8 @@ zstyle ':completion:*' rehash true
 setopt COMPLETE_ALIASES
 
 SAVEHIST=1000
-HISTFILE=$ZDOTDIR/.zsh_history
+HISTFILE=$ZDOTDIR/zsh_history
+_Z_Data=$ZDOTDIR/z
 
 set -o vi
 #reverse history search with Ctrl-R
@@ -18,8 +19,9 @@ bindkey "^R" history-incremental-search-backward
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh || \
     echo "missing zsh-autosuggestions"
 
-source $HOME/.config/zsh/aliases.zsh
-source $HOME/.config/zsh/functions.zsh
+source $ZDOTDIR/plugins/z.sh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/functions.zsh
 
 #haskell stuff
 [ -f "/home/ben/.ghcup/env" ] && source "/home/ben/.ghcup/env"
