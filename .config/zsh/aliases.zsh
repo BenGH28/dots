@@ -32,16 +32,10 @@ alias lg="lazygit"
 alias src="source $ZDOTDIR/.zshrc"
 
 #some common aliases from oh-my-zsh
-alias ls='exa --color=always'     #size,sow type,human readable
-alias l='exa -lF --color=always'     #size,sow type,human readable
-alias la='exa -laF --color=always'   #long list,show almost all,show type,human readable
-alias lr='exa -tRF --color=always'   #sorted by date,recursive,show type,human readable
-alias lt='exa -ltF --color=always'   #long list,sorted by date,show type,human readable
-alias ll='exa -l --color=always'      #long list
-alias ldot='exa -ld --color=always .*'
-alias lS='exa -1FSs --color=always'
-alias lart='exa -1Fcart --color=always'
-alias lrt='exa -1Fcrt --color=always'
+alias ls='exa --color=always --group-directories-first'     #size,sow type,human readable
+alias l='exa -lF --color=always --group-directories-first'     #size,sow type,human readable
+alias la='exa -laF --color=always --group-directories-first'   #long list,show almost all,show type,human readable
+alias ll='exa -l --color=always --group-directories-first'      #long list
 
 alias grep='grep --color'
 
