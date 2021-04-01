@@ -30,12 +30,18 @@ alias atl="alacritty-theme change one_light"
 alias mirrorUpdate="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 alias lg="lazygit"
 alias src="source $ZDOTDIR/.zshrc"
+alias yadd="yadm add"
+alias yaddu="yadm add -u"
+alias ycm="yadm commit -m"
+alias yps="yadm push"
+alias ypl="yadm pull"
+alias ystat="yadm status"
 
-#some common aliases from oh-my-zsh
 alias ls='exa --color=always --group-directories-first'     #size,sow type,human readable
 alias l='exa -lF --color=always --group-directories-first'     #size,sow type,human readable
 alias la='exa -laF --color=always --group-directories-first'   #long list,show almost all,show type,human readable
 alias ll='exa -l --color=always --group-directories-first'      #long list
+alias lT='exa -lT --color=always --group-directories-first'      #long list, recurse into dirs
 
 alias grep='grep --color'
 
