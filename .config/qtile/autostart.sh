@@ -1,6 +1,11 @@
 #!/bin/sh
 picom &
-nitrogen --restore &
+if [ $HOSTNAME == 'Murtagh' ];then
+    echo "randomizing" >> ~/test.sh
+	nitrogen --random --set-scaled &
+else
+	nitrogen --restore &
+fi
 nm-applet &
 xfce4-power-manager &
 pamac-tray &
