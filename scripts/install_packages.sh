@@ -3,7 +3,7 @@
    #installing my favourite packages and utilities
 install_pkgs(){
     echo "installing pacman packages"
-	sudo pacman -Syu - < $HOME/scripts/pacman-pkgs.txt
+	sudo pacman -Syu --noconfirm --needed - < $HOME/scripts/pacman-pkgs.txt
 }
 
 ##################################################
@@ -12,7 +12,8 @@ install_pkgs(){
 
 #get the aur-packages
 install_aur_pkg(){
-    echo "installing aur packages" && yay -S - < $HOME/scripts/aur-pkgs.txt
+    echo "installing aur packages"
+    yay - < $HOME/scripts/aur-pkgs.txt
 }
 
 #get my version of dmenu

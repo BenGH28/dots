@@ -61,13 +61,12 @@ scrolling:
 # Font configuration
 myfontsize:
     fontsize: &fontsize
-        12
+        9
 
 myfontnames:
     MyFont: &MyFont
         FiraCode Nerd Font Mono
         # JetBrainsMono Nerd Font
-        # Mononoki Nerd Font
 
 font:
   normal:

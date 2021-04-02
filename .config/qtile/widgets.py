@@ -78,8 +78,8 @@ def initialize_widgets(colours: dict, style, powerline=True) -> list:
     if powerline:
         if is_laptop():
             return make_powerline_laptop_widgets(colours, style, powerline)
+        # This will return non laptop widgets (no battery/brightness)
         return powerline_widgets(colours, style, powerline)
-    # This will return non laptop widgets (no battery/brightness)
     return no_powerline(colours, style, powerline)
 
 
