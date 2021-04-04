@@ -1,7 +1,6 @@
 #!/bin/sh
 picom &
 if [ $HOSTNAME == 'Murtagh' ];then
-    echo "randomizing" >> ~/test.sh
 	nitrogen --random --set-scaled &
 else
 	nitrogen --restore &
