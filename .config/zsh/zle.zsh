@@ -20,13 +20,14 @@ zle -N zle-line-init
 git_or_yadm(){
     [ -d .git ] && git $@ || yadm $@
 }
+# \e = Alt
 status(){
     zle kill-whole-line
     git_or_yadm status
     zle accept-line
 }
 zle -N status
-bindkey '^g' status
+bindkey '\eg' status
 
 addu(){
     zle kill-whole-line
@@ -34,7 +35,7 @@ addu(){
     zle accept-line
 }
 zle -N addu
-bindkey '^a' addu
+bindkey '\ea' addu
 
 commit(){
     zle kill-whole-line
@@ -42,4 +43,4 @@ commit(){
     zle accept-line
 }
 zle -N commit
-bindkey '^m' commit
+bindkey '\em' commit
