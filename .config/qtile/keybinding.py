@@ -29,6 +29,7 @@ def get_keys():
 
         # Toggle floating
         Key([MOD], "n", lazy.window.toggle_floating()),
+        Key([MOD, 'shift'], "m", lazy.window.toggle_fullscreen()),
 
         # Switch window focus to other pane(s) of stack
         Key([MOD], "space",
