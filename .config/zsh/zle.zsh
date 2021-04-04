@@ -31,8 +31,11 @@ bindkey '\eg' status
 
 addu(){
     zle kill-whole-line
+    #add the normal stuff
     git_or_yadm add -u
     zle accept-line
+    #let me see that I added everything
+    git_or_yadm status
 }
 zle -N addu
 bindkey '\ea' addu
@@ -44,3 +47,11 @@ commit(){
 }
 zle -N commit
 bindkey '\em' commit
+
+push(){
+    zle kill-whole-line
+    git_or_yadm push
+    zle accept-line
+}
+zle -N push
+bindkey '\eps' push
