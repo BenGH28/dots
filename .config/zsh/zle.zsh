@@ -48,10 +48,20 @@ commit(){
 zle -N commit
 bindkey '\em' commit
 
+pull(){
+    zle kill-whole-line
+    git_or_yadm pull
+    zle accept-line
+}
+zle -N pull
+#Alt+p l
+bindkey '\epl' pull
+
 push(){
     zle kill-whole-line
     git_or_yadm push
     zle accept-line
 }
 zle -N push
+#Alt+p s
 bindkey '\eps' push
