@@ -37,6 +37,7 @@ zle -N addu
 bindkey '^a' addu
 
 commit(){
+    zle kill-whole-line
     git_or_yadm commit
     zle accept-line
 }
