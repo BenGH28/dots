@@ -65,7 +65,8 @@ myfontsize:
 
 myfontnames:
     MyFont: &MyFont
-        FiraCode Nerd Font Mono
+        # FiraCode Nerd Font Mono
+        Iosevka
         # JetBrainsMono Nerd Font
 
 font:
