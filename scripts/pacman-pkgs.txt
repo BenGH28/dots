@@ -45,3 +45,4 @@ nodejs
 betterlockscreen
 bat
 exa
+lazygit
