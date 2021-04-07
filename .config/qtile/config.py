@@ -58,7 +58,7 @@ if IS_DARK is True:
 else:
     colours, style = themes.SetOneLightTheme()
 
-widget_defaults = dict(font="JetBrainsMono", fontsize=18, padding=5,)
+widget_defaults = dict(font="Iosevka", fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
 widgets1 = widgets.initialize_widgets(colours, style, POWERLINE)

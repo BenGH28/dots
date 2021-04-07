@@ -19,7 +19,6 @@ Setting the option '--all' will toggle both gtk and alacritty themes.
 """
 
 import os
-
 import click
 
 
@@ -40,13 +39,13 @@ def toggle_qtile_theme(toggle: str) -> None:
     with open(file, 'r') as f:
         filelines = f.readlines()
 
-    # looking for is_dark
+    # looking for IS_DARK
     for i in range(0, len(filelines)):
-        if filelines[i].startswith("is_dark"):
+        if filelines[i].startswith("IS_DARK"):
             ls = filelines[i].split('=')
             if ls[1].strip() != str(boolean_toggle):
                 restart = True
-                filelines[i] = f"is_dark = {boolean_toggle}\n"
+                filelines[i] = f"IS_DARK = {boolean_toggle}\n"
                 break
 
     # rewrite the config
@@ -54,8 +53,8 @@ def toggle_qtile_theme(toggle: str) -> None:
         f.writelines(filelines)
 
     # execute a shell command to restart qtile
-    if restart:
-        os.system("qtile-cmd -o cmd -f restart 2> /dev/null")
+    if restart is True:
+        os.system("qtile cmd-obj -o cmd -f restart 2> /dev/null")
 
 
 def toggle_gtk_theme(toggle: str) -> None:
