@@ -1,7 +1,7 @@
 #!/bin/sh
 picom &
 if [ $HOSTNAME == 'Murtagh' ];then
-	nitrogen --random --set-zoom &
+	nitrogen --random --set-zoom-fill &
 else
 	nitrogen --restore &
 fi
