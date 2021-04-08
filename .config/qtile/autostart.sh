@@ -1,5 +1,5 @@
 #!/bin/sh
-picom &
+picom --experimental-backends &
 if [ $HOSTNAME == 'Murtagh' ];then
 	nitrogen --random --set-zoom-fill &
 else
