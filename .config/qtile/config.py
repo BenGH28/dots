@@ -52,7 +52,6 @@ for i in groups:
         ]
     )
 
-
 if IS_DARK is True:
     colours, style = themes.SetOneDarkTheme()
 else:
