@@ -1,12 +1,14 @@
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 setopt completealiases
 setopt autocd
 setopt nocaseglob
 setopt correct
 setopt correctall
+setopt nomatch
 
 SAVEHIST=1000
 HISTFILE=$ZDOTDIR/zsh_history
@@ -28,9 +30,8 @@ bindkey "^R" history-incremental-search-backward
 #haskell stuff
 [ -f "/home/ben/.ghcup/env" ] && source "/home/ben/.ghcup/env"
 
-source $ZDOTDIR/plugins/z.sh
-source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/zle.zsh
+for file in $ZDOTDIR/src/**/*(.); do
+    source $file
+done
 
 eval "$(starship init zsh)"
