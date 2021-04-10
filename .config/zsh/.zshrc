@@ -10,7 +10,7 @@ setopt correct
 setopt correctall
 setopt nomatch
 
-SAVEHIST=1000
+SAVEHIST=10000
 HISTFILE=$ZDOTDIR/zsh_history
 _Z_DATA=$ZDOTDIR/.z
 
