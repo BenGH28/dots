@@ -1,10 +1,6 @@
 #!/bin/sh
 picom --experimental-backends &
-if [ $HOSTNAME == 'Murtagh' ];then
-	nitrogen --random --set-zoom-fill &
-else
-	nitrogen --restore &
-fi
+nitrogen --restore &
 nm-applet &
 xfce4-power-manager &
 pamac-tray &
