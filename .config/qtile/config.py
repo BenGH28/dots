@@ -21,7 +21,7 @@ POWERLINE = True
 
 
 @hook.subscribe.startup_once
-def start_once():
+def start_once() -> None:
     """ Startup Applications """
     autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([autostart])
@@ -57,7 +57,8 @@ if IS_DARK is True:
 else:
     colours, style = themes.SetOneLightTheme()
 
-widget_defaults = dict(font="Iosevka", fontsize=18, padding=5,)
+widget_defaults = dict(font="Iosevka Extended Regular",
+                       fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
 widgets1 = widgets.initialize_widgets(colours, style, POWERLINE)
