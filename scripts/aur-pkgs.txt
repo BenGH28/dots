@@ -3,3 +3,4 @@ nerd-fonts-mononoki
 nerd-fonts-jetbrains-mono
 yadm
 ttf-iosevka
+picom-jonaburg-git
