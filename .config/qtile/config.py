@@ -57,7 +57,7 @@ if IS_DARK is True:
 else:
     colours, style = themes.SetOneLightTheme()
 
-widget_defaults = dict(font="Iosevka Extended Regular",
+widget_defaults = dict(font="Iosevka Extended",
                        fontsize=18, padding=5,)
 extension_defaults = widget_defaults.copy()
 
