@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 picom --experimental-backends &
 nitrogen --restore &
 nm-applet &

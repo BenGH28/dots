@@ -1,6 +1,7 @@
 """
 Ben Hunt's Qtile Config
 """
+# import logging
 import os
 import subprocess
 from typing import List  # noqa: F401
@@ -14,6 +15,9 @@ import themes
 import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
+# logging.basicConfig(filename='/home/ben/.config/qtile/config.log',
+#                     encoding='utf-8', level=logging.DEBUG)
+
 # True for dark theme in bar, False for light
 IS_DARK = True
 # True for POWERLINE-esque bar
@@ -25,6 +29,13 @@ def start_once() -> None:
     """ Startup Applications """
     autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([autostart])
+
+
+@hook.subscribe.client_managed
+def function(window) -> None:
+    my_windows = ['Spotify', 'firefox', 'discord']
+    if window.window.get_wm_class()[1] in my_windows:
+        window.group.cmd_toscreen()
 
 
 # KEY BINDINGS
@@ -143,12 +154,5 @@ floating_layout = layout.Floating(
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
+# for java stuff apparently
 wmname = "LG3D"
