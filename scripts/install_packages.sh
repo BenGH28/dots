@@ -75,11 +75,7 @@ linking_to_path(){
 
 check_if_in_path
 
-has_click=$(pip list | grep click | awk '{print $1}')
-case $has_click in
-	click)linking_to_path ;;
-	*)echo "pip module 'click' is not on this computer. run 'pip install click' and rerun this script";;
-esac
+linking_to_path
 
 echo "backing up your .profile and linking $HOME/.config/zsh/profile to .profile" && \
     ln -bfs $HOME/.config/zsh/profile $HOME/.profile
