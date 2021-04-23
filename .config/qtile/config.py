@@ -1,7 +1,6 @@
 """
 Ben Hunt's Qtile Config
 """
-# import logging
 import os
 import subprocess
 from typing import List  # noqa: F401
@@ -15,6 +14,7 @@ import themes
 import widgets
 from constants import BAR_SIZE, MOD, OPAQUE
 
+# import logging
 # logging.basicConfig(filename='/home/ben/.config/qtile/config.log',
 #                     encoding='utf-8', level=logging.DEBUG)
 
@@ -26,14 +26,15 @@ POWERLINE = True
 
 @hook.subscribe.startup_once
 def start_once() -> None:
-    """ Startup Applications """
+    """Startup Applications"""
     autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([autostart])
 
 
 @hook.subscribe.client_managed
-def function(window) -> None:
-    my_windows = ['Spotify', 'firefox', 'discord']
+def move_to_group(window) -> None:
+    """When that app opens we immediately switch to that group"""
+    my_windows = ['Spotify', 'firefox', 'discord', 'qutebrowser']
     if window.window.get_wm_class()[1] in my_windows:
         window.group.cmd_toscreen()
 
@@ -44,7 +45,8 @@ keys = keybinding.get_keys()
 # Groups
 groups = [
     Group(name="1", label=""),
-    Group(name="2", label="", matches=[Match(wm_class=['firefox'])]),
+    Group(name="2", label="", matches=[
+          Match(wm_class=['firefox']), Match(wm_class=['qutebrowser'])]),
     Group(name="3", label="", matches=[Match(wm_class=['spotify'])]),
     Group(name="4", label=""),
     Group(name="5", label="", matches=[Match(wm_class=['discord'])]),
