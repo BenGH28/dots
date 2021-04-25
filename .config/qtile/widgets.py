@@ -173,7 +173,7 @@ def powerline_widgets(colours: Dict[str, str],
             background=firstcolour,
             format='CPU {load_percent}%',
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")}
+                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e gotop")}
         ),
         make_image_widget(primary_secondary),
         widget.Memory(
@@ -181,7 +181,7 @@ def powerline_widgets(colours: Dict[str, str],
             background=secondcolour,
             format='{MemUsed}M',
             mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")}
+                "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e gotop")}
         ),
         make_image_widget(secondary_primary),
         widget.AGroupBox(
