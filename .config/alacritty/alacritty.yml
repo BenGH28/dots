@@ -155,7 +155,7 @@ color_schemes:
         cyan: '#56b6c2'
         white: '#ffffff'
 
-colors: *one_dark
+colors: *one_light
 
 # Background opacity
 #
@@ -216,7 +216,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
 
-  url:
+  hints:
     # URL launcher
     # When set to `None`, URL launching will be disabled completely.
     # Default:

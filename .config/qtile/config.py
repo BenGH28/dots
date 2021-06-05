@@ -33,9 +33,10 @@ def start_once() -> None:
 
 @hook.subscribe.client_managed
 def move_to_group(window) -> None:
-    """When that app opens we immediately switch to that group"""
+    """When that app opens we immediately switch to that group...ideally"""
     my_windows = ['Spotify', 'firefox', 'discord', 'qutebrowser']
     if window.window.get_wm_class()[1] in my_windows:
+        # logging.debug(f"********cmd_info: {window.cmd_info()}")
         window.group.cmd_toscreen()
 
 

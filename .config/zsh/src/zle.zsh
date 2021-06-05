@@ -27,6 +27,7 @@ status(){
     zle accept-line
 }
 zle -N status
+# Alt+g
 bindkey '\eg' status
 
 addu(){
@@ -38,6 +39,7 @@ addu(){
     git_or_yadm status
 }
 zle -N addu
+# Alt+a
 bindkey '\ea' addu
 
 commit(){
@@ -46,6 +48,7 @@ commit(){
     zle accept-line
 }
 zle -N commit
+# Alt+m
 bindkey '\em' commit
 
 pull(){

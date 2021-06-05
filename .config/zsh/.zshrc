@@ -10,10 +10,11 @@ setopt correct
 setopt correctall
 setopt nomatch
 
-SAVEHIST=10000
+SAVEHIST=100000
 HISTFILE=$ZDOTDIR/zsh_history
 _Z_DATA=$ZDOTDIR/.z
 
+#gofor vi-mode
 bindkey -v
 #reverse history search with Ctrl-R
 bindkey "^R" history-incremental-search-backward
