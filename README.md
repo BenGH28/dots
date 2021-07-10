@@ -6,11 +6,12 @@ Get [yadm](https://github.com/TheLocehiliosan/yadm) a git wrapper that handles y
 
 ```sh
 yadm clone https://github.com/BenGH28/dots
+```
 
-#install packages related to the dotfiles
-cd scripts/
-#note this is for arch-based distros
-./install_packages.sh
+install packages related to the dotfiles
+
+```sh
+scripts/install_packages.sh
 ```
 
 ## Preview

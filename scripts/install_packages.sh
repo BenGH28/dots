@@ -13,7 +13,7 @@ install_pkgs(){
 #get the aur-packages
 install_aur_pkg(){
     echo "installing aur packages"
-    yay - < $HOME/scripts/aur-pkgs.txt
+    yay -S < $HOME/scripts/aur-pkgs.txt
 }
 
 #get my version of dmenu
