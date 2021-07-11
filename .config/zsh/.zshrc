@@ -13,6 +13,7 @@ setopt nomatch
 SAVEHIST=100000
 HISTFILE=$ZDOTDIR/zsh_history
 _Z_DATA=$ZDOTDIR/.z
+EDITOR='nvim'
 
 #gofor vi-mode
 bindkey -v

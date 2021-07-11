@@ -34,7 +34,7 @@ def start_once() -> None:
 @hook.subscribe.client_managed
 def move_to_group(window) -> None:
     """When that app opens we immediately switch to that group...ideally"""
-    my_windows = ['Spotify', 'firefox', 'discord', 'qutebrowser']
+    my_windows = ["Spotify", "firefox", "discord", "qutebrowser"]
     if window.window.get_wm_class()[1] in my_windows:
         # logging.debug(f"********cmd_info: {window.cmd_info()}")
         window.group.cmd_toscreen()
@@ -46,11 +46,14 @@ keys = keybinding.get_keys()
 # Groups
 groups = [
     Group(name="1", label=""),
-    Group(name="2", label="", matches=[
-          Match(wm_class=['firefox']), Match(wm_class=['qutebrowser'])]),
-    Group(name="3", label="", matches=[Match(wm_class=['spotify'])]),
+    Group(
+        name="2",
+        label="",
+        matches=[Match(wm_class=["firefox"]), Match(wm_class=["qutebrowser"])],
+    ),
+    Group(name="3", label="", matches=[Match(wm_class=["spotify"])]),
     Group(name="4", label=""),
-    Group(name="5", label="", matches=[Match(wm_class=['discord'])]),
+    Group(name="5", label="", matches=[Match(wm_class=["discord"])]),
     Group(name="6", label=""),
 ]
 
@@ -58,11 +61,9 @@ for i in groups:
     keys.extend(
         [
             # MOD4 + letter of group = switch to group
-            Key([MOD], i.name,
-                lazy.group[i.name].toscreen()),
+            Key([MOD], i.name, lazy.group[i.name].toscreen()),
             # MOD4 + shift + num of group = switch and move window to group
-            Key([MOD, "shift"], i.name,
-                lazy.window.togroup(i.name, switch_group=True)),
+            Key([MOD, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
         ]
     )
 
@@ -71,8 +72,11 @@ if IS_DARK is True:
 else:
     colours, style = themes.SetOneLightTheme()
 
-widget_defaults = dict(font="Iosevka Extended",
-                       fontsize=18, padding=5,)
+widget_defaults = dict(
+    font="Iosevka Extended",
+    fontsize=18,
+    padding=5,
+)
 extension_defaults = widget_defaults.copy()
 
 widgets1 = widgets.initialize_widgets(colours, style, POWERLINE)
@@ -82,7 +86,7 @@ layout_theme = {
     "border_width": 3,
     "margin": 10,
     "border_focus": colours["primary"],
-    "border_normal": colours["background"]
+    "border_normal": colours["background"],
 }
 
 layouts = [
@@ -94,28 +98,36 @@ layouts = [
 
 if widgets.is_laptop():
     screens = [
-        Screen(top=bar.Bar(
-            widgets1,
-            size=BAR_SIZE,
-            opacity=OPAQUE,
-            background=colours["background"],
-            foreground=colours["foreground"]))
+        Screen(
+            top=bar.Bar(
+                widgets1,
+                size=BAR_SIZE,
+                opacity=OPAQUE,
+                background=colours["background"],
+                foreground=colours["foreground"],
+            )
+        )
     ]
 else:
     screens = [
-        Screen(top=bar.Bar(
-            widgets1,
-            size=BAR_SIZE,
-            opacity=OPAQUE,
-            background=colours["background"],
-            foreground=colours["foreground"],
-        )),
-        Screen(top=bar.Bar(
-            widgets2,
-            size=BAR_SIZE,
-            opacity=OPAQUE,
-            background=colours["background"],
-            foreground=colours["foreground"],)),
+        Screen(
+            top=bar.Bar(
+                widgets1,
+                size=BAR_SIZE,
+                opacity=OPAQUE,
+                background=colours["background"],
+                foreground=colours["foreground"],
+            )
+        ),
+        Screen(
+            top=bar.Bar(
+                widgets2,
+                size=BAR_SIZE,
+                opacity=OPAQUE,
+                background=colours["background"],
+                foreground=colours["foreground"],
+            )
+        ),
     ]
 
 
@@ -128,10 +140,7 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [MOD],
-        "Button3",
-        lazy.window.set_size_floating(),
-        start=lazy.window.get_size()
+        [MOD], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
     Click([MOD], "Button2", lazy.window.bring_to_front()),
 ]
@@ -152,7 +161,8 @@ floating_layout = layout.Floating(
         {"wname": "branchdialog"},  # gitk
         {"wname": "pinentry"},  # GPG key password entry
         {"wmclass": "ssh-askpass"},  # ssh-askpass
-    ], **layout_theme
+    ],
+    **layout_theme
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"

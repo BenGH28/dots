@@ -1,3 +1,4 @@
+#!/bin/zsh
 export PATH="$HOME/.local/go/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH"
@@ -5,7 +6,6 @@ export PATH="$HOME/.local/node_modules/bin:$PATH"
 export npm_config_prefix="$HOME/.local/node_modules"
 export ZDOTDIR="$HOME/.config/zsh"
 
-export EDITOR="nvim"
 export RANGER_LOAD_DEFAULT_RC=false
 export IPYTHONDIR="~/.config/ipython"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -16,7 +16,6 @@ export PREFIX=$HOME/.local/luarocks/lua
 export LIBDIR=$HOME/.local/luarocks/lib
 export BINDIR=$HOME/.local/luarocks/bin
 export CONFDIR=$HOME/.local/luarocks/conf
-
 
 #personal variables
 export ZRC="$ZDOTDIR/.zshrc"
