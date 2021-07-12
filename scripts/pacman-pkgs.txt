@@ -1,6 +1,5 @@
 alacritty
 bat
-betterlockscreen
 clang
 cmake
 emacs

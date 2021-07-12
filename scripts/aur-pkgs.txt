@@ -5,3 +5,4 @@ yadm
 ttf-iosevka
 picom-jonaburg-git
 gotop
+betterlockscreen

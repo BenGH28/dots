@@ -35,6 +35,7 @@ alias ycm="yadm commit -m"
 alias yps="yadm push"
 alias ypl="yadm pull"
 alias ystat="yadm status"
+alias cht="cht.sh"
 
 alias ls='exa --color=always --group-directories-first'     #size,sow type,human readable
 alias l='exa -lF --color=always --group-directories-first'     #size,sow type,human readable

@@ -31,7 +31,7 @@ window:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
-startup_mode: Fullscreen
+startup_mode: Windowed
 
 # Window title
 title: Alacritty
@@ -47,7 +47,7 @@ general: Alacritty
 #
 # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
 # Set this to `None` to use the default theme variant.
-gtk_theme_variant: None
+gtk_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
