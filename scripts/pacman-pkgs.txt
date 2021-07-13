@@ -42,6 +42,7 @@ ttf-joypixels
 ttf-liberation
 xclip
 xfce4-power-manager
+yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
