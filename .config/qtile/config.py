@@ -2,6 +2,7 @@
 Ben Hunt's Qtile Config
 """
 import os
+
 import subprocess
 from typing import List  # noqa: F401
 
@@ -49,7 +50,8 @@ groups = [
     Group(
         name="2",
         label="",
-        matches=[Match(wm_class=["firefox"]), Match(wm_class=["qutebrowser"])],
+        matches=[Match(wm_class=["firefox"]),
+                 Match(wm_class=["qutebrowser"])],
     ),
     Group(name="3", label="", matches=[Match(wm_class=["spotify"])]),
     Group(name="4", label=""),
@@ -58,14 +60,13 @@ groups = [
 ]
 
 for i in groups:
-    keys.extend(
-        [
-            # MOD4 + letter of group = switch to group
-            Key([MOD], i.name, lazy.group[i.name].toscreen()),
-            # MOD4 + shift + num of group = switch and move window to group
-            Key([MOD, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
-        ]
-    )
+    keys.extend([
+        # MOD4 + letter of group = switch to group
+        Key([MOD], i.name, lazy.group[i.name].toscreen()),
+        # MOD4 + shift + num of group = switch and move window to group
+        Key([MOD, "shift"], i.name,
+            lazy.window.togroup(i.name, switch_group=True)),
+    ])
 
 if IS_DARK is True:
     colours, style = themes.SetOneDarkTheme()
@@ -95,41 +96,33 @@ layouts = [
     layout.Max(),
 ]
 
-
 if widgets.is_laptop():
     screens = [
-        Screen(
-            top=bar.Bar(
-                widgets1,
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
-            )
-        )
+        Screen(top=bar.Bar(
+            widgets1,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"],
+        ))
     ]
 else:
     screens = [
-        Screen(
-            top=bar.Bar(
-                widgets1,
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
-            )
-        ),
-        Screen(
-            top=bar.Bar(
-                widgets2,
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
-            )
-        ),
+        Screen(top=bar.Bar(
+            widgets1,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"],
+        )),
+        Screen(top=bar.Bar(
+            widgets2,
+            size=BAR_SIZE,
+            opacity=OPAQUE,
+            background=colours["background"],
+            foreground=colours["foreground"],
+        )),
     ]
-
 
 # Drag floating layouts
 mouse = [
@@ -139,9 +132,10 @@ mouse = [
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
-    Drag(
-        [MOD], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
-    ),
+    Drag([MOD],
+         "Button3",
+         lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
     Click([MOD], "Button2", lazy.window.bring_to_front()),
 ]
 
@@ -155,15 +149,26 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of X client.
         *layout.Floating.default_float_rules,
-        {"wmclass": "confirmreset"},  # gitk
-        {"wmclass": "makebranch"},  # gitk
-        {"wmclass": "maketag"},  # gitk
-        {"wname": "branchdialog"},  # gitk
-        {"wname": "pinentry"},  # GPG key password entry
-        {"wmclass": "ssh-askpass"},  # ssh-askpass
+        {
+            "wmclass": "confirmreset"
+        },  # gitk
+        {
+            "wmclass": "makebranch"
+        },  # gitk
+        {
+            "wmclass": "maketag"
+        },  # gitk
+        {
+            "wname": "branchdialog"
+        },  # gitk
+        {
+            "wname": "pinentry"
+        },  # GPG key password entry
+        {
+            "wmclass": "ssh-askpass"
+        },  # ssh-askpass
     ],
-    **layout_theme
-)
+    **layout_theme)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

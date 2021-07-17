@@ -33,7 +33,7 @@ cat()
 	case $THEME in
 		one_light) bat --theme OneHalfLight $@;;
 		one_dark)  bat --theme OneHalfDark $@;;
-		*) 		   echo "I don't know what to do with '$THEME'";;
+		*) bat $@;;
 	esac
 }
 
