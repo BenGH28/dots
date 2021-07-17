@@ -17,8 +17,12 @@ EDITOR='nvim'
 
 #gofor vi-mode
 bindkey -v
+
 #reverse history search with Ctrl-R
 bindkey "^R" history-incremental-search-backward
+
+#Ctrl-Backspace deletes the word behind the cursor
+bindkey "^\b" backward-delete-word
 
 #plugins
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
