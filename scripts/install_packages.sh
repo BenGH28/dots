@@ -77,6 +77,6 @@ check_if_in_path
 
 linking_to_path
 
-echo "backing up your .profile and linking $HOME/.config/zsh/profile to .profile" && \
-    ln -bfs $HOME/.config/zsh/profile $HOME/.profile
+echo "backing up your .profile and linking $HOME/.config/zsh/profile to .zprofile" && \
+    ln -bfs $HOME/.config/zsh/profile $HOME/.zprofile
 
