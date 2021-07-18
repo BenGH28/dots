@@ -22,7 +22,7 @@ from constants import BAR_SIZE, MOD, OPAQUE
 # True for dark theme in bar, False for light
 IS_DARK = True
 # True for POWERLINE-esque bar
-POWERLINE = True
+POWERLINE = False
 
 
 @hook.subscribe.startup_once
@@ -145,30 +145,7 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of X client.
-        *layout.Floating.default_float_rules,
-        {
-            "wmclass": "confirmreset"
-        },  # gitk
-        {
-            "wmclass": "makebranch"
-        },  # gitk
-        {
-            "wmclass": "maketag"
-        },  # gitk
-        {
-            "wname": "branchdialog"
-        },  # gitk
-        {
-            "wname": "pinentry"
-        },  # GPG key password entry
-        {
-            "wmclass": "ssh-askpass"
-        },  # ssh-askpass
-    ],
-    **layout_theme)
+floating_layout = layout.Floating(**layout_theme)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 

@@ -6,7 +6,7 @@ from libqtile.lazy import lazy
 from constants import ALT, MOD, TERM
 
 
-def get_keys():
+def get_keys() -> List[Key]:
     """Returns a list of Key bindings"""
     my_keys = [
         # Switch between windows in current stack pane
