@@ -32,7 +32,7 @@ def start_once() -> None:
     subprocess.call([autostart])
 
 
-@hook.subscribe.client_managed
+# @hook.subscribe.client_managed
 def move_to_group(window) -> None:
     """When that app opens we immediately switch to that group...ideally"""
     my_windows = ["Spotify", "firefox", "discord", "qutebrowser"]
@@ -80,7 +80,7 @@ def init_colours_and_style() -> tuple:
 
 def init_widget_defaults() -> dict:
     widget_defaults = dict(
-        font="Iosevka Extended",
+        font="JetBrainsMono Nerd Font",
         fontsize=18,
         padding=5,
     )
