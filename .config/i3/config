@@ -59,14 +59,14 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #Window compositor
-exec_always --no-startup-id picom 
+exec_always --no-startup-id picom
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal (this uses alacritty but use whatever you want)
 set $terminal alacritty
-bindsym $mod+Return exec $terminal 
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -190,7 +190,7 @@ mode "$mode_system" {
 }
 
 
-# resize window 
+# resize window
 bindsym $alt h resize grow width 10 px or 10 ppt
 bindsym $alt j resize grow height 10 px or 10 ppt
 bindsym $alt k resize shrink height 10 px or 10 ppt
@@ -223,7 +223,7 @@ client.background       #F8F8F2
 # User defined bindings
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+m exec --no-startup-id spotify
-bindsym $mod+f exec thunar 
+bindsym $mod+f exec thunar
 bindsym $mod+F3 exec $terminal -e nvim  ~/.config/i3/config
 bindsym $mod+z exec $terminal -e nvim ~/.zshrc
 bindsym $mod+Shift+d exec --no-startup-id discord
@@ -236,10 +236,10 @@ exec lshift
 for_window [class="Spotify"] move container to workspace $ws3; workspace $ws3
 for_window [class="Lxappearance"] floating enable
 # for_window [class="Skype"] floating enable
-assign [class="firefox"] $ws1 
+assign [class="firefox"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="Skype"] $ws5
-assign [class="discord"] $ws5 
+assign [class="discord"] $ws5
 
 
 #where certian workspaces should go

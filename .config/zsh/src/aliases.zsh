@@ -37,9 +37,9 @@ alias ypl="yadm pull"
 alias ystat="yadm status"
 alias cht="cht.sh"
 
-alias ls='exa --color=always --group-directories-first'     #size,sow type,human readable
-alias l='exa -lF --color=always --group-directories-first'     #size,sow type,human readable
-alias la='exa -laF --color=always --group-directories-first'   #long list,show almost all,show type,human readable
+alias ls='exa --color=always --group-directories-first'     #size,show type,
+alias l='exa -lF --color=always --group-directories-first'     #size,show type,
+alias la='exa -laF --color=always --group-directories-first'   #long list,show almost all,show type,
 alias ll='exa -l --color=always --group-directories-first'      #long list
 alias lT='exa -lT --color=always --group-directories-first'      #long list, recurse into dirs
 
