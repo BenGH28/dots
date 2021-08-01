@@ -148,6 +148,9 @@ scripts/__pycache__/
 .config/variety/
 .config/vivaldi/
 .config/yad.conf
+.config/balena-etcher/
+.config/plasma*
+.config/kde*
 .face
 .fehbg
 .ghc/
@@ -166,3 +169,4 @@ neovim/
 package-lock.json
 package.json
 rustlings/
+go/

@@ -10,56 +10,41 @@ def get_keys() -> List[Key]:
     """Returns a list of Key bindings"""
     my_keys = [
         # Switch between windows in current stack pane
-        Key([MOD], "j",
-            lazy.layout.down()),
-        Key([MOD], "k",
-            lazy.layout.up()),
+        Key([MOD], "j", lazy.layout.down()),
+        Key([MOD], "k", lazy.layout.up()),
 
         # Move windows up or down in current stack
-        Key([MOD, "shift"], "j",
-            lazy.layout.shuffle_down()),
-        Key([MOD, "shift"], "k",
-            lazy.layout.shuffle_up()),
+        Key([MOD, "shift"], "j", lazy.layout.shuffle_down()),
+        Key([MOD, "shift"], "k", lazy.layout.shuffle_up()),
 
         # change window size
-        Key([MOD], "h",
-            lazy.layout.grow()),
-        Key([MOD], "l",
-            lazy.layout.shrink()),
+        Key([MOD], "h", lazy.layout.grow()),
+        Key([MOD], "l", lazy.layout.shrink()),
 
         # Toggle floating
         Key([MOD], "n", lazy.window.toggle_floating()),
         Key([MOD, 'shift'], "m", lazy.window.toggle_fullscreen()),
 
         # Switch window focus to other pane(s) of stack
-        Key([MOD], "space",
-            lazy.layout.next()),
+        Key([MOD], "space", lazy.layout.next()),
 
         # Toggle between different layouts as defined below
-        Key([MOD], "Tab",
-            lazy.next_layout()),
+        Key([MOD], "Tab", lazy.next_layout()),
 
         # Close Windows
-        Key([MOD], "q",
-            lazy.window.kill()),
+        Key([MOD], "q", lazy.window.kill()),
 
         # Restart and Shutdown Qtile
-        Key([MOD, "shift"], "r",
-            lazy.restart()),
-        Key([MOD, "shift"], "q",
-            lazy.shutdown()),
+        Key([MOD, "shift"], "r", lazy.restart()),
+        Key([MOD, "shift"], "q", lazy.shutdown()),
 
         # Screen focus
-        Key([ALT], "h",
-            lazy.to_screen(0)),
-        Key([ALT], "l",
-            lazy.to_screen(1)),
+        Key([ALT], "h", lazy.to_screen(0)),
+        Key([ALT], "l", lazy.to_screen(1)),
 
         # screen brightness
-        Key([], "XF86MonBrightnessUp",
-            lazy.spawn("xbacklight -inc 10")),
-        Key([], "XF86MonBrightnessDown",
-            lazy.spawn("xbacklight -dec 10")),
+        Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
+        Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
 
         # Audio Control
         Key([], "XF86AudioRaiseVolume",
@@ -68,37 +53,23 @@ def get_keys() -> List[Key]:
             lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")),
         Key([], "XF86AudioMute",
             lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-        Key([], "XF86AudioPlay",
-            lazy.spawn("playerctl play-pause")),
-        Key([], "XF86AudioNext",
-            lazy.spawn("playerctl next")),
-        Key([], "XF86AudioPrev",
-            lazy.spawn("playerctl previous")),
+        Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+        Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+        Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
 
         # Key bindings for applications
-        Key([MOD], "Return",
-            lazy.spawn(TERM)),
-        Key([MOD], "w",
-            lazy.spawn("firefox")),
-        Key([MOD], "space",
-            lazy.spawn("dmenu_run -h 30")),
-        Key([ALT], "Tab",
-            lazy.spawn("rofi -show window")),
-        Key([MOD], "m",
-            lazy.spawn("com.spotify.Client")),
-        Key([MOD], "f",
-            lazy.spawn("pcmanfm")),
-        Key([MOD], "z",
-            lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
+        Key([MOD], "Return", lazy.spawn(f"{TERM}")),
+        Key([MOD], "w", lazy.spawn("firefox")),
+        Key([MOD], "space", lazy.spawn("dmenu_run -h 30")),
+        Key([ALT], "Tab", lazy.spawn("rofi -show window")),
+        Key([MOD], "m", lazy.spawn("com.spotify.Client")),
+        Key([MOD], "f", lazy.spawn("pcmanfm")),
+        Key([MOD], "z", lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
         Key([MOD], "F3",
             lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
-        Key([MOD], "F1",
-            lazy.spawn("sgtk-menu -f -a")),
-        Key([MOD], "e",
-            lazy.spawn('emacsclient -c -a"emacs"')),
-        Key([MOD, "shift"], "l",
-            lazy.spawn("betterlockscreen -l blur")),
-        Key([MOD], "p",
-            lazy.spawn("/home/ben/scripts/power.sh")),
+        Key([MOD], "F1", lazy.spawn("sgtk-menu -f -a")),
+        Key([MOD], "e", lazy.spawn('emacsclient -c -a"emacs"')),
+        Key([MOD, "shift"], "l", lazy.spawn("betterlockscreen -l blur")),
+        Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
     ]
     return my_keys
