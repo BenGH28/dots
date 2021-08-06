@@ -51,7 +51,7 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_image_widget(primary_secondary, powerline),
         widget.Memory(foreground=widget_foreground,
                       background=secondcolour,
-                      format=' {MemUsed}M',
+                      format=' {MemUsed:.0f}M',
                       mouse_callbacks={
                           "Button1":
                           lambda: qtile.cmd_spawn(f"{TERM} -e gotop")
