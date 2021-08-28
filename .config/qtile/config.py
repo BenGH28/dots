@@ -13,16 +13,11 @@ from libqtile.lazy import lazy
 import keybinding
 import themes
 import widgets
-from constants import BAR_SIZE, MOD, OPAQUE
+from constants import BAR_SIZE, MOD, OPAQUE, IS_DARK, POWERLINE
 
 # import logging
 # logging.basicConfig(filename='/home/ben/.config/qtile/config.log',
 #                     encoding='utf-8', level=logging.DEBUG)
-
-# True for dark theme in bar, False for light
-IS_DARK = True
-# True for POWERLINE-esque bar
-POWERLINE = False
 
 
 @hook.subscribe.startup_once

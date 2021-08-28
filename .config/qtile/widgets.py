@@ -2,7 +2,7 @@
 Various widgets based on colour theme
 """
 import os
-from typing import Dict, Tuple, Optional
+from typing import Dict, Tuple
 
 from libqtile import qtile, widget
 
@@ -27,7 +27,7 @@ def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "e06c75"
+        foreground = "#e06c75"
     return widget.CPU(foreground=foreground,
                       background=firstcolour,
                       format=' {load_percent}%',
@@ -41,7 +41,7 @@ def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "98c379"
+        foreground = "#98c379"
 
     return widget.Memory(foreground=foreground,
                          background=secondcolour,
@@ -56,7 +56,7 @@ def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "d19a66"
+        foreground = "#d19a66"
     return widget.AGroupBox(foreground=foreground,
                             background=firstcolour,
                             borderwidth=0)
@@ -66,7 +66,7 @@ def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "61afef"
+        foreground = "#61afef"
     return widget.Volume(
         foreground=foreground,
         background=firstcolour,
@@ -78,7 +78,7 @@ def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "56b6c2"
+        foreground = "#56b6c2"
 
     return widget.Battery(
         foreground=foreground,
@@ -94,7 +94,7 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "e06c75"
+        foreground = "#e06c75"
     return widget.Backlight(
         foreground=foreground,
         background=secondcolour,
@@ -108,7 +108,7 @@ def make_clock_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
     else:
-        foreground = "c768dd"
+        foreground = "#c768dd"
     return widget.Clock(foreground=foreground,
                         background=secondcolour,
                         format="%d/%m/%y %H:%M")
@@ -149,8 +149,7 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_image_widget(blue_green, powerline),
         make_agroupbox_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
-        widget.CurrentLayoutIcon(foreground=widget_foreground,
-                                 background=secondcolour),
+        widget.CurrentLayoutIcon(foreground="000000", background=secondcolour),
         make_image_widget(blue_green, powerline),
         make_volume_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
