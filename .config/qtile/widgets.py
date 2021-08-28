@@ -2,6 +2,7 @@
 Various widgets based on colour theme
 """
 import os
+from os.path import exists
 from typing import Dict, Tuple
 
 from libqtile import qtile, widget
@@ -17,10 +18,10 @@ def is_laptop() -> bool:
     while anything else is laptop for now => return true
     """
 
-    result = os.popen('hostname').read()
-    if result.strip() == 'Jotunheim':
-        return False
-    return True
+    batt_file = "/sys/class/power_supply/BAT0/model_name"
+    if exists(batt_file):
+        return True
+    return False
 
 
 def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
