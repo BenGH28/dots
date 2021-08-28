@@ -26,18 +26,18 @@ bindkey "^\b" backward-delete-word
 
 #plugins
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ||
-	echo "missing zsh-syntax-highlighting"
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ||
+    echo "missing zsh-syntax-highlighting"
 
 [ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ||
-	echo "missing zsh-autosuggestions"
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ||
+    echo "missing zsh-autosuggestions"
 
 #haskell stuff
 [ -f "/home/ben/.ghcup/env" ] && source "/home/ben/.ghcup/env"
 
 for file in $ZDOTDIR/src/**/*(.); do
-	source $file
+    source $file
 done
 
 # get tmux up and running
