@@ -1,7 +1,6 @@
 """
 Various widgets based on colour theme
 """
-import os
 from os.path import exists
 from typing import Dict, Tuple
 
@@ -13,9 +12,9 @@ from themes import Dark, Light
 
 def is_laptop() -> bool:
     """
-    Checks if the the name of the computer.
-    Jotunheim is a desktop                => return false
-    while anything else is laptop for now => return true
+    Check for the existance of a battery file
+
+    return True if file exist False otherwise
     """
 
     batt_file = "/sys/class/power_supply/BAT0/model_name"
@@ -81,14 +80,13 @@ def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
     else:
         foreground = "#56b6c2"
 
-    return widget.Battery(
-        foreground=foreground,
-        background=firstcolour,
-        charge_char="",
-        discharge_char="",
-        full_char="",
-        format="{char} {percent:2.0%}",
-    )
+    return widget.Battery(foreground=foreground,
+                          background=firstcolour,
+                          charge_char="",
+                          discharge_char="",
+                          full_char="",
+                          format="{char}  {percent:2.0%}",
+                          notify_below=30)
 
 
 def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
