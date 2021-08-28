@@ -23,6 +23,107 @@ def is_laptop() -> bool:
     return True
 
 
+def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "e06c75"
+    return widget.CPU(foreground=foreground,
+                      background=firstcolour,
+                      format=' {load_percent}%',
+                      mouse_callbacks={
+                          "Button1":
+                          lambda: qtile.cmd_spawn(f"{TERM} -e gotop")
+                      })
+
+
+def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "98c379"
+
+    return widget.Memory(foreground=foreground,
+                         background=secondcolour,
+                         format=' {MemUsed:.0f}M',
+                         mouse_callbacks={
+                             "Button1":
+                             lambda: qtile.cmd_spawn(f"{TERM} -e gotop")
+                         })
+
+
+def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "d19a66"
+    return widget.AGroupBox(foreground=foreground,
+                            background=firstcolour,
+                            borderwidth=0)
+
+
+def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "61afef"
+    return widget.Volume(
+        foreground=foreground,
+        background=firstcolour,
+        fmt="{}",
+    )
+
+
+def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "56b6c2"
+
+    return widget.Battery(
+        foreground=foreground,
+        background=firstcolour,
+        charge_char="",
+        discharge_char="",
+        full_char="",
+        format="{char} {percent:2.0%}",
+    )
+
+
+def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "e06c75"
+    return widget.Backlight(
+        foreground=foreground,
+        background=secondcolour,
+        backlight_name="intel_backlight",
+        brightness_file="/sys/class/backlight/intel_backlight/brightness",
+        fmt=" {}",
+    )
+
+
+def make_clock_widget(widget_foreground, secondcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+    else:
+        foreground = "c768dd"
+    return widget.Clock(foreground=foreground,
+                        background=secondcolour,
+                        format="%d/%m/%y %H:%M")
+
+
+def make_image_widget(filename: str, powerline: bool):
+    """make correct imaged widgets
+        returns either an widget.Image or widget.Spacer depending on powerline
+    """
+    # breakpoint
+    if powerline:
+        return widget.Image(filename=filename, margin=0, padding=0)
+    return widget.Spacer(background='#282A36', length=10)
+
+
 def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
     """
     style is an enumeration of Light or Dark
@@ -42,41 +143,18 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
                         inactive=colours["inactive"]),
         widget.WindowName(foreground=colours["foreground"]),
         make_image_widget(black_green, powerline),
-        widget.CPU(foreground=widget_foreground,
-                   background=firstcolour,
-                   format=' {load_percent}%',
-                   mouse_callbacks={
-                       "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e gotop")
-                   }),
+        make_cpu_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
-        widget.Memory(foreground=widget_foreground,
-                      background=secondcolour,
-                      format=' {MemUsed:.0f}M',
-                      mouse_callbacks={
-                          "Button1":
-                          lambda: qtile.cmd_spawn(f"{TERM} -e gotop")
-                      }),
+        make_ram_widget(widget_foreground, secondcolour, powerline),
         make_image_widget(blue_green, powerline),
-        widget.AGroupBox(
-            foreground=widget_foreground,
-            background=firstcolour,
-            borderwidth=0,
-        ),
+        make_agroupbox_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
-        widget.CurrentLayoutIcon(
-            foreground=widget_foreground,
-            background=secondcolour,
-        ),
+        widget.CurrentLayoutIcon(foreground=widget_foreground,
+                                 background=secondcolour),
         make_image_widget(blue_green, powerline),
-        widget.Volume(
-            foreground=widget_foreground,
-            background=firstcolour,
-            fmt="{}",
-        ),
+        make_volume_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
-        widget.Clock(foreground=widget_foreground,
-                     background=secondcolour,
-                     format="%d/%m/%y %H:%M"),
+        make_clock_widget(widget_foreground, secondcolour, powerline),
         widget.Systray(background=secondcolour),
     ]
 
@@ -101,22 +179,9 @@ def make_laptop_widgets(colours: Dict[str, str], style,
 
     laptop_exclusive = [
         make_image_widget(green_blue, powerline),
-        widget.Backlight(
-            foreground=widget_foreground,
-            background=secondcolour,
-            backlight_name="intel_backlight",
-            brightness_file="/sys/class/backlight/intel_backlight/brightness",
-            fmt=" {}",
-        ),
+        make_brightness_widget(widget_foreground, secondcolour, powerline),
         make_image_widget(blue_green, powerline),
-        widget.Battery(
-            foreground=widget_foreground,
-            background=firstcolour,
-            charge_char="",
-            discharge_char="",
-            full_char="",
-            format="{char} {percent:2.0%}",
-        ),
+        make_battery_widget(widget_foreground, firstcolour, powerline),
     ]
 
     widgets = base_widgets(colours, style, powerline)
@@ -175,12 +240,3 @@ def set_widget_background(colours: Dict[str, str],
         secondcolour = firstcolour
 
     return (firstcolour, secondcolour)
-
-
-def make_image_widget(filename: str,
-                      powerline: bool) -> Optional[widget.Image]:
-    """make correct imaged widgets"""
-    # breakpoint
-    if powerline:
-        return widget.Image(filename=filename, margin=0, padding=0)
-    return widget.Spacer(background='#282A36', length=10)

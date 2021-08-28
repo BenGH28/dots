@@ -56,7 +56,8 @@ kitco() {
 	esac
 }
 
-# short for tmux attach -- technically will also start new tmux if necessary
+# if tmux is executable and not inside a tmux session, then try to attach.
+# if attachment fails, start a new session
 go_tmux() {
 	[ -x "$(command -v tmux)" ] &&
 		[ -z "${TMUX}" ] &&

@@ -24,9 +24,6 @@ bindkey "^R" history-incremental-search-backward
 #Ctrl-Backspace deletes the word behind the cursor
 bindkey "^\b" backward-delete-word
 
-# if tmux is executable and not inside a tmux session, then try to attach.
-# if attachment fails, start a new session
-
 #plugins
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ||
@@ -43,7 +40,7 @@ for file in $ZDOTDIR/src/**/*(.); do
 	source $file
 done
 
-# attach to tmux
+# get tmux up and running
 go_tmux
 
 eval "$(starship init zsh)"

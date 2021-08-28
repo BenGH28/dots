@@ -22,7 +22,7 @@ from constants import BAR_SIZE, MOD, OPAQUE
 # True for dark theme in bar, False for light
 IS_DARK = True
 # True for POWERLINE-esque bar
-POWERLINE = True
+POWERLINE = False
 
 
 @hook.subscribe.startup_once
