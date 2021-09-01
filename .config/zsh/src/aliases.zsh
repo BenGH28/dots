@@ -28,7 +28,7 @@ alias qconf="$EDITOR $HOME/.config/qtile/config.py"
 alias vimrc="$EDITOR $VIMRC"
 alias zrc="$EDITOR $ZDOTDIR/.zshrc"
 
-alias vim="$EDITOR"
+alias vim="$EDITOR --startuptime /tmp/nvim-startuptime"
 alias rn="ranger"
 
 alias atd="alacritty-theme change one_dark"
