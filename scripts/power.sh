@@ -6,7 +6,7 @@ case $cmd in
     Shutdown) shutdown now ;;
     "Log out") qtile cmd-obj -o cmd -f shutdown ;;
     Reboot) reboot ;;
-    Lock) betterlockscreen -l blur ;;
+    Lock) slock ;;
     Suspend) systemctl suspend ;;
     *) ;;
 esac
