@@ -68,8 +68,7 @@ def get_keys() -> List[Key]:
         Key([MOD], "F3",
             lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")),
         Key([MOD], "F1", lazy.spawn("sgtk-menu -f -a")),
-        Key([MOD], "e", lazy.spawn('emacsclient -c -a"emacs"')),
-        Key([MOD, "shift"], "l", lazy.spawn("betterlockscreen -l blur")),
+        Key([MOD, "shift"], "l", lazy.spawn("slock")),
         Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
     ]
     return my_keys
