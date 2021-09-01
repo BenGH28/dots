@@ -1,9 +1,9 @@
+acpilight
 alacritty
 bat
 clang
 cmake
 dunst
-emacs
 exa
 fd
 firefox
@@ -30,6 +30,7 @@ qtile
 ranger
 ripgrep
 rofi
+slock
 tldr
 ttf-bitstream-vera
 ttf-droid
@@ -43,7 +44,6 @@ ttf-joypixels
 ttf-liberation
 xclip
 xfce4-power-manager
-xorg-xbacklight
 yarn
 zsh
 zsh-autosuggestions
