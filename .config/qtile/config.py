@@ -7,7 +7,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 
 import keybinding
@@ -114,7 +114,6 @@ def init_screens(colours, style) -> List[Screen]:
                 foreground=colours["foreground"],
             ))
         ]
-        return screens
     else:
         screens = [
             Screen(top=bar.Bar(
@@ -132,7 +131,7 @@ def init_screens(colours, style) -> List[Screen]:
                 foreground=colours["foreground"],
             )),
         ]
-        return screens
+    return screens
 
 
 def init_mouse():

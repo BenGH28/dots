@@ -9,6 +9,8 @@ from libqtile import qtile, widget
 from constants import TERM
 from themes import Dark, Light
 
+BACKGROUND = "#191a21"
+
 
 def is_laptop() -> bool:
     """
@@ -26,10 +28,12 @@ def is_laptop() -> bool:
 def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = firstcolour
     else:
         foreground = "#e06c75"
+        background = BACKGROUND
     return widget.CPU(foreground=foreground,
-                      background=firstcolour,
+                      background=background,
                       format=' {load_percent}%',
                       mouse_callbacks={
                           "Button1":
@@ -40,11 +44,13 @@ def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
 def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = secondcolour
     else:
         foreground = "#98c379"
+        background = BACKGROUND
 
     return widget.Memory(foreground=foreground,
-                         background=secondcolour,
+                         background=background,
                          format=' {MemUsed:.0f}M',
                          mouse_callbacks={
                              "Button1":
@@ -55,21 +61,25 @@ def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
 def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = firstcolour
     else:
         foreground = "#d19a66"
+        background = BACKGROUND
     return widget.AGroupBox(foreground=foreground,
-                            background=firstcolour,
+                            background=background,
                             borderwidth=0)
 
 
 def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = firstcolour
     else:
         foreground = "#61afef"
+        background = BACKGROUND
     return widget.Volume(
         foreground=foreground,
-        background=firstcolour,
+        background=background,
         fmt="{}",
     )
 
@@ -77,11 +87,13 @@ def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
 def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = firstcolour
     else:
         foreground = "#56b6c2"
+        background = BACKGROUND
 
     return widget.Battery(foreground=foreground,
-                          background=firstcolour,
+                          background=background,
                           charge_char="",
                           discharge_char="",
                           full_char="",
@@ -92,11 +104,13 @@ def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
 def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        backgrond = secondcolour
     else:
         foreground = "#e06c75"
+        backgrond = BACKGROUND
     return widget.Backlight(
         foreground=foreground,
-        background=secondcolour,
+        background=backgrond,
         backlight_name="intel_backlight",
         brightness_file="/sys/class/backlight/intel_backlight/brightness",
         fmt=" {}",
@@ -106,10 +120,12 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
 def make_clock_widget(widget_foreground, secondcolour, powerline: bool):
     if powerline:
         foreground = widget_foreground
+        background = secondcolour
     else:
         foreground = "#c768dd"
+        background = BACKGROUND
     return widget.Clock(foreground=foreground,
-                        background=secondcolour,
+                        background=background,
                         format="%d/%m/%y %H:%M")
 
 
@@ -117,10 +133,56 @@ def make_image_widget(filename: str, powerline: bool):
     """make correct imaged widgets
         returns either an widget.Image or widget.Spacer depending on powerline
     """
-    # breakpoint
     if powerline:
         return widget.Image(filename=filename, margin=0, padding=0)
-    return widget.Spacer(background='#282A36', length=10)
+    return widget.Spacer(background=BACKGROUND, length=10)
+
+
+def make_systray_widget(secondcolour: str, powerline: bool):
+    if powerline:
+        background = secondcolour
+    else:
+        background = BACKGROUND
+    return widget.Systray(background=background)
+
+
+def make_groupbox_widget(colours: dict, powerline: bool):
+    border_colour = colours["secondary"]
+    active_colour = colours["foreground"]
+    inactive_colour = colours["inactive"]
+    if powerline:
+        background = None
+    else:
+        background = BACKGROUND
+    return widget.GroupBox(this_current_screen_border=border_colour,
+                           background=background,
+                           active=active_colour,
+                           inactive=inactive_colour)
+
+
+def make_layout_icon_widget(secondcolour, powerline: bool):
+    if powerline:
+        background = secondcolour
+    else:
+        background = BACKGROUND
+    return widget.CurrentLayoutIcon(foreground="000000", background=background)
+
+
+def make_glyph(secondcolour, powerline: bool, left: bool):
+    if powerline:
+        background = '#282c34'
+        return widget.Spacer(background=background, length=10)
+    else:
+        background = BACKGROUND
+        if left:
+            return widget.TextBox(fmt="◤",
+                                  foreground=background,
+                                  padding=0,
+                                  fontsize=60)
+        return widget.TextBox(fmt="◢",
+                              foreground=background,
+                              padding=0,
+                              fontsize=60)
 
 
 def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
@@ -137,10 +199,10 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
 
     # list of widgets that may be a mix of widget and None
     my_widgets = [
-        widget.GroupBox(this_current_screen_border=colours["secondary"],
-                        active=colours["foreground"],
-                        inactive=colours["inactive"]),
+        make_groupbox_widget(colours, powerline),
+        make_glyph(secondcolour, powerline, True),
         widget.WindowName(foreground=colours["foreground"]),
+        make_glyph(secondcolour, powerline, False),
         make_image_widget(black_green, powerline),
         make_cpu_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
@@ -148,12 +210,12 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_image_widget(blue_green, powerline),
         make_agroupbox_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
-        widget.CurrentLayoutIcon(foreground="000000", background=secondcolour),
+        make_layout_icon_widget(secondcolour, powerline),
         make_image_widget(blue_green, powerline),
         make_volume_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
         make_clock_widget(widget_foreground, secondcolour, powerline),
-        widget.Systray(background=secondcolour),
+        make_systray_widget(secondcolour, powerline)
     ]
 
     return my_widgets
