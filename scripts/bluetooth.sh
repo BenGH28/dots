@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 
-#Dmenu script to connect to available bluetooth devices
+# Dmenu script to connect to available bluetooth devices
+# depends on bluetoothctl
+# optionally improved by having the blueman-applet
 
 # catch any errors
 set -o errexit
 set -o nounset
 set -o pipefail
 
-device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "connect: ")
+declare -a options=(
+    "connect"
+    "disconnect"
+)
 
-mac_addr=$(echo $device | awk '{print $2}')
+choice=$(printf '%s\n' "${options[@]}" | dmenu -c -l -5 -bw 5 -p 'options:' "${@}")
 
-notification=$(bluetoothctl connect $mac_addr | grep "successful")
+device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "select: ")
 
-if [ -n "$notification" ]; then
-    notify-send "bluetooth" "successful connection"
+if [ "$choice" == "connect" ]; then
+    mac_addr=$(echo $device | awk '{print $2}')
+    bluetoothctl connect $mac_addr >/dev/null 2>&1
 else
-    notify-send "bluetooth" "failed connection"
+    mac_addr=$(echo $device | awk '{print $2}')
+    bluetoothctl disconnect $mac_addr >/dev/null 2>&1
 fi
