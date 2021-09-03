@@ -2,6 +2,7 @@
 picom --experimental-backends &
 nitrogen --restore &
 nm-applet &
+blueman-applet &
 xfce4-power-manager &
 pamac-tray &
 accountable2you &
