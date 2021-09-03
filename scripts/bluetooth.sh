@@ -7,7 +7,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5)
+device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "connect: ")
 
 mac_addr=$(echo $device | awk '{print $2}')
 
