@@ -170,7 +170,7 @@ def make_layout_icon_widget(secondcolour, powerline: bool):
 
 def make_glyph(secondcolour, powerline: bool, left: bool):
     if powerline:
-        background = '#282c34'
+        background = secondcolour
         return widget.Spacer(background=background, length=10)
     else:
         background = BACKGROUND
@@ -200,9 +200,9 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
     # list of widgets that may be a mix of widget and None
     my_widgets = [
         make_groupbox_widget(colours, powerline),
-        make_glyph(secondcolour, powerline, True),
+        make_glyph(widget_foreground, powerline, True),
         widget.WindowName(foreground=colours["foreground"]),
-        make_glyph(secondcolour, powerline, False),
+        make_glyph(widget_foreground, powerline, False),
         make_image_widget(black_green, powerline),
         make_cpu_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
