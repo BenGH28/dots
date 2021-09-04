@@ -62,7 +62,7 @@ def get_keys() -> List[Key]:
         Key([MOD], "w", lazy.spawn("firefox")),
         Key([MOD], "space", lazy.spawn("dmenu_run -h 30")),
         Key([ALT], "Tab", lazy.spawn("rofi -show window")),
-        Key([MOD], "m", lazy.spawn("com.spotify.Client")),
+        Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("pcmanfm")),
         Key([MOD], "z", lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
         Key([MOD], "F3",
