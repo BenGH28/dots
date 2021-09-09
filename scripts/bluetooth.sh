@@ -10,18 +10,40 @@ set -o nounset
 set -o pipefail
 
 declare -a options=(
+    "on"
+    "off"
     "connect"
     "disconnect"
 )
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -c -l -5 -bw 5 -p 'options:' "${@}")
+mac_addr=""
 
-device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "select: ")
-
-if [ "$choice" == "connect" ]; then
+on() {
+    bluetooth on
+}
+off() {
+    bluetooth off
+}
+get_address() {
+    device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "select: ")
     mac_addr=$(echo $device | awk '{print $2}')
+}
+connect() {
+    get_address
     bluetoothctl connect $mac_addr >/dev/null 2>&1
-else
-    mac_addr=$(echo $device | awk '{print $2}')
+}
+disconnect() {
+    get_address
     bluetoothctl disconnect $mac_addr >/dev/null 2>&1
-fi
+}
+
+run() {
+    choice=$(printf '%s\n' "${options[@]}" | dmenu -c -l -5 -bw 5 -p 'options:' "${@}")
+    case $choice in
+        "on") on ;;
+        "off") off ;;
+        "connect") connect ;;
+        "disconnect") disconnect ;;
+    esac
+}
+run
