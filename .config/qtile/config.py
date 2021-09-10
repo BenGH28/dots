@@ -7,7 +7,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 import keybinding
@@ -47,7 +47,9 @@ def init_groups() -> List[Group]:
                 Match(wm_class=["qutebrowser"])
             ],
         ),
-        Group(name="3", label="", matches=[Match(wm_class=["spotify"])]),
+        Group(name="3",
+              label="",
+              matches=[Match(wm_class=["spotify", "Spotify"])]),
         Group(name="4", label=""),
         Group(name="5", label="", matches=[Match(wm_class=["discord"])]),
         Group(name="6", label=""),
