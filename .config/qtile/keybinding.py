@@ -70,6 +70,7 @@ def get_keys() -> List[Key]:
         Key([MOD], "F1", lazy.spawn("sgtk-menu -f -a")),
         Key([MOD, "shift"], "l", lazy.spawn("slock")),
         Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
-        Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh"))
+        Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
+        Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui"))
     ]
     return my_keys
