@@ -1,5 +1,6 @@
 acpilight
 alacritty
+base-devel
 bat
 blueman
 bluez-utils
@@ -50,3 +51,4 @@ yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
+shfmt
