@@ -29,10 +29,12 @@ nitrogen
 nodejs
 npm
 pcmanfm
+playerctl
 qtile
 ranger
 ripgrep
 rofi
+shfmt
 slock
 tldr
 ttf-bitstream-vera
@@ -51,4 +53,3 @@ yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-shfmt

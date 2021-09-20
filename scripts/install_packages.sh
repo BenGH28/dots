@@ -39,8 +39,12 @@ install_starship_prompt() {
     echo "installing starship..." && curl -fsSL https://starship.rs/install.sh | bash
 }
 
+install_psutil() {
+    echo "installing psutil for Qtile..." && pip install psutil
+}
+
 install_tpm() {
-    echo "installing Tmux Plugin Manager" && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    echo "installing Tmux Plugin Manager..." && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 install_pkgs
@@ -50,6 +54,7 @@ install_rust
 install_alacritty_theme
 install_starship_prompt
 install_tpm
+install_psutil
 
 echo "backing up your .zprofile and linking $HOME/.config/zsh/profile to .zprofile" &&
     ln -bfs $HOME/.config/zsh/profile $HOME/.zprofile
