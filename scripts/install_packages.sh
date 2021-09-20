@@ -40,7 +40,7 @@ install_starship_prompt() {
 }
 
 install_tpm() {
-    echo "installing Tmux Plugin Manager" && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins
+    echo "installing Tmux Plugin Manager" && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 install_pkgs
