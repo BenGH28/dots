@@ -1,4 +1,3 @@
-
 # Quick guide for making ssh keys for GitHub
 
 ## Generate an SSH key
@@ -18,6 +17,7 @@ eval "$(ssh-agent -s)"
 ```
 
 add to the agent
+
 ```sh
 ssh-add ~/.ssh/id_ed25519
 ```
@@ -25,6 +25,3 @@ ssh-add ~/.ssh/id_ed25519
 ## Add SSH key to Github
 
 copy over ~/.ssh/id_ed25519.pub and paste into field for SSH keys in `SSH and GPG keys` under user settings.
-
-
-
