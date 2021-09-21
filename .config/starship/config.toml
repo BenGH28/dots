@@ -9,3 +9,6 @@ success_symbol = "[ᛰ](bold green)"
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[git_branch]
+symbol = " "
