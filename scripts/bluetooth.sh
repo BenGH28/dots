@@ -21,17 +21,21 @@ mac_addr=""
 on() {
     bluetooth on
 }
+
 off() {
     bluetooth off
 }
+
 get_address() {
     device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "select: ")
     mac_addr=$(echo $device | awk '{print $2}')
 }
+
 connect() {
     get_address
     bluetoothctl connect $mac_addr >/dev/null 2>&1
 }
+
 disconnect() {
     get_address
     bluetoothctl disconnect $mac_addr >/dev/null 2>&1
@@ -46,4 +50,5 @@ run() {
         "disconnect") disconnect ;;
     esac
 }
+
 run
