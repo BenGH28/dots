@@ -47,9 +47,17 @@ install_tpm() {
     echo "installing Tmux Plugin Manager..." && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
+install_nvim() {
+    echo "installing my nvim config..." && curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
+}
+
 setup_xbacklight() {
     echo "adding '$USER' to the video group..." && sudo usermod -a -G video $USER
     echo "setup acpibacklight..." && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
+}
+
+change_shell() {
+    echo "changing shell to zsh..." && chsh -s /bin/zsh
 }
 
 install_pkgs
@@ -60,10 +68,6 @@ install_alacritty_theme
 install_starship_prompt
 install_tpm
 install_psutil
+install_nvim
 setup_xbacklight
-
-echo "backing up your .zprofile and linking $HOME/.config/zsh/profile to .zprofile" &&
-    ln -bfs $HOME/.config/zsh/profile $HOME/.zprofile
-
-echo "backing up your .profile and linking $HOME/.config/zsh/profile to .profile" &&
-    ln -bfs $HOME/.config/zsh/profile $HOME/.profile
+change_shell
