@@ -37,6 +37,7 @@ rofi
 shfmt
 slock
 tldr
+tmux
 ttf-bitstream-vera
 ttf-droid
 ttf-fira-code
