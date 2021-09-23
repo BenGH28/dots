@@ -13,7 +13,7 @@ install_pkgs() {
 #get the aur-packages
 install_aur_pkg() {
     echo "installing aur packages"
-    yay -S <~/scripts/aur-pkgs.txt
+    yay -S - <~/scripts/aur-pkgs.txt
 }
 
 #get my version of dmenu
@@ -47,6 +47,11 @@ install_tpm() {
     echo "installing Tmux Plugin Manager..." && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
+setup_xbacklight() {
+    echo "adding '$USER' to the video group..." && sudo usermod -a -G video $USER
+    echo "setup acpibacklight..." && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
+}
+
 install_pkgs
 install_aur_pkg
 install_dmenu
@@ -55,6 +60,10 @@ install_alacritty_theme
 install_starship_prompt
 install_tpm
 install_psutil
+setup_xbacklight
 
 echo "backing up your .zprofile and linking $HOME/.config/zsh/profile to .zprofile" &&
     ln -bfs $HOME/.config/zsh/profile $HOME/.zprofile
+
+echo "backing up your .profile and linking $HOME/.config/zsh/profile to .profile" &&
+    ln -bfs $HOME/.config/zsh/profile $HOME/.profile
