@@ -102,6 +102,17 @@ def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
 
 
 def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
+    intel_bright_file = "/sys/class/backlight/intel_backlight/brightness"
+    amd_bright_file = "/sys/class/backlight/amdgpu_bl0/brightness"
+    backlight_name = ""
+    bright_file = ""
+    if exists(intel_bright_file):
+        bright_file = intel_bright_file
+        backlight_name = "intel_backlight"
+    else:
+        bright_file = amd_bright_file
+        backlight_name = "amdgpu_bl0"
+
     if powerline:
         foreground = widget_foreground
         backgrond = secondcolour
@@ -111,8 +122,8 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
     return widget.Backlight(
         foreground=foreground,
         background=backgrond,
-        backlight_name="intel_backlight",
-        brightness_file="/sys/class/backlight/intel_backlight/brightness",
+        backlight_name=backlight_name,
+        brightness_file=bright_file,
         fmt=" {}",
     )
 
