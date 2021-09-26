@@ -1,9 +1,10 @@
-#Dots
+# Dots
 
-##Install Arch WSL
+## Install Arch WSL
+
 You can get Arch for WSL [here](https://github.com/yuk7/ArchWSL)
 
-##Setup Arch
+## Setup Arch
 
 **set root password**
 
