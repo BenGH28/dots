@@ -5,6 +5,8 @@
 # /_/  |_/_/_/\__,_/____/\___/____/
 #
 
+alias cat="bat"
+
 alias ga="git add"
 alias gcm="git commit -m"
 alias gco="git checkout"
