@@ -61,7 +61,7 @@ scrolling:
 # Font configuration
 myfontsize:
     fontsize: &fontsize
-        9
+        12
 
 myfontnames:
     MyFont: &MyFont
