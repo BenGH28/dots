@@ -63,3 +63,6 @@ alias grep='grep --color'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+alias winhome="cd /mnt/c/Users/bigbe/"
+alias huali="cd /mnt/c/Users/bigbe/OneDrive/CPSC18/Final\ 4\ Classes/Fall\ 2021/CS-4210\ System\ Design"
