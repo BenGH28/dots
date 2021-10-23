@@ -170,7 +170,8 @@ if __name__ in ["config", "__main__"]:
     follow_mouse_focus = True
     bring_front_click = False
     cursor_warp = False
-    floating_layout = layout.Floating(**layout_theme)
+    floating_layout = layout.Floating(
+        float_rules=[*layout.Floating.default_float_rules], **layout_theme)
     auto_fullscreen = True
     focus_on_window_activation = "smart"
 
