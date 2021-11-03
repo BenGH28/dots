@@ -86,8 +86,8 @@ def init_widget_defaults() -> dict:
 
 def init_layout_theme(colours) -> dict:
     layout_theme = {
-        "border_width": 3,
-        "margin": 10,
+        "border_width": 2,
+        "margin": 5,
         "border_focus": colours["primary"],
         "border_normal": colours["background"],
     }
