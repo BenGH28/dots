@@ -25,7 +25,7 @@ alias Syu="sudo pacman -Syu"
 alias pi="ssh pi@192.168.1.63"
 
 # common configs
-alias alconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
+alias alconf="$EDITOR /mnt/c/Users/bigbe/AppData/Roaming/alacritty/alacritty.yml"
 alias vimrc="$EDITOR $VIMRC"
 alias zrc="$EDITOR $ZDOTDIR/.zshrc"
 
