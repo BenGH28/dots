@@ -158,7 +158,7 @@ def make_systray_widget(secondcolour: str, powerline: bool):
 
 
 def make_groupbox_widget(colours: dict, powerline: bool):
-    border_colour = colours["secondary"]
+    border_colour = colours["primary"]
     active_colour = colours["foreground"]
     inactive_colour = colours["inactive"]
     if powerline:
@@ -167,6 +167,8 @@ def make_groupbox_widget(colours: dict, powerline: bool):
         background = BACKGROUND
     return widget.GroupBox(this_current_screen_border=border_colour,
                            background=background,
+                           highlight_method="line",
+                           rounded=False,
                            active=active_colour,
                            inactive=inactive_colour)
 
