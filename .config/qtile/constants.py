@@ -1,6 +1,7 @@
 """all the constants that I use in my Qtile config"""
 MOD = "mod4"
 ALT = "mod1"
+CTRL = "control"
 TERM = "kitty"
 OPAQUE = 1
 BAR_SIZE = 30

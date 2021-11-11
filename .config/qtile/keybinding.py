@@ -3,7 +3,7 @@ from typing import List
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
-from constants import ALT, MOD, TERM
+from constants import ALT, MOD, TERM, CTRL
 
 
 def get_keys() -> List[Key]:
@@ -60,7 +60,7 @@ def get_keys() -> List[Key]:
         # Key bindings for applications
         Key([MOD], "Return", lazy.spawn(f"{TERM}")),
         Key([MOD], "w", lazy.spawn("firefox")),
-        Key([MOD], "space", lazy.spawn("dmenu_run -h 30")),
+        Key([CTRL], "space", lazy.spawn("dmenu_run -h 30")),
         Key([ALT], "Tab", lazy.spawn("rofi -show window")),
         Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("pcmanfm")),
