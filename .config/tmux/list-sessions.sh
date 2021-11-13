@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-tmux list-sessions |
+choice=$(tmux list-sessions |
     sed -E 's/:.*$//' |
     grep -v \"^$(tmux display-message -p '#S')\$\" |
-    fzf --reverse --prompt="session:" |
-    xargs tmux switch-client -t
+    fzf --reverse --prompt="session:")
+
+# exit gracefully with no tmux complaint
+[ -n $choice ] && exit 0
+
+tmux switch-client -t $choice

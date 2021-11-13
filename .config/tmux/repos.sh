@@ -2,11 +2,14 @@
 
 choice=$(/usr/bin/ls -A $HOME/repos | fzf --reverse --prompt="project: ")
 
+[ -n $choice ] && exit 0
+
 exists=$(tmux list-sessions | grep "$choice" | awk '{print $1}' | sed 's/://')
 
-if [ $exists == $choice ]; then
-    tmux switch-client -t $choice
-else
-    tmux new-session -d -c $HOME/repos/$choice -s $choice
-    tmux switch-client -t $choice
-fi
+case $exists in
+    $choice) tmux switch-client -t $choice ;;
+    *)
+        tmux new-session -d -c $HOME/repos/$choice -s $choice
+        tmux switch-client -t $choice
+        ;;
+esac
