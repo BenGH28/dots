@@ -2,6 +2,7 @@
 Ben Hunt's Qtile Config
 """
 import os
+import asyncio
 
 import subprocess
 from typing import List  # noqa: F401
@@ -16,8 +17,9 @@ import widgets
 from constants import BAR_SIZE, MOD, OPAQUE, IS_DARK, POWERLINE
 
 # import logging
-# logging.basicConfig(filename='/home/ben/.config/qtile/config.log',
-#                     encoding='utf-8', level=logging.DEBUG)
+# logging.basicConfig(filename='/home/ben/.config/qtile/log.log',
+#                     encoding='utf-8',
+#                     level=logging.DEBUG)
 
 
 @hook.subscribe.startup_once
@@ -27,13 +29,26 @@ def start_once() -> None:
     subprocess.call([autostart])
 
 
-# @hook.subscribe.client_managed
-def move_to_group(window) -> None:
-    """When that app opens we immediately switch to that group...ideally"""
-    my_windows = ["Spotify", "firefox", "discord", "qutebrowser"]
-    if window.window.get_wm_class()[1] in my_windows:
-        # logging.debug(f"********cmd_info: {window.cmd_info()}")
-        window.group.cmd_toscreen()
+@hook.subscribe.client_new
+async def move_spotify(client) -> None:
+    """ move spotify to workspace 3 """
+
+    # NOTE: spotify is slow on setting properties so you need to sleep async to load the window properties
+    # see issue 2406 in qtile's github
+    await asyncio.tasks.sleep(0.1)
+    if client.name == "Spotify":
+        client.togroup("3")
+
+
+@hook.subscribe.client_managed
+def go_to_group(window):
+    """move to the screen to the group when the window is opened"""
+    win_name = window.window.get_wm_class()[1]
+    windows = {"Spotify": "3", "firefox": "2", "discord": "5"}
+    if win_name in windows:
+        # NOTE: toggle=False is important else you will switch screens if you are already on that group
+        # this doesn't seem to work for spofify...of course :(
+        window.group.cmd_toscreen(toggle=False)
 
 
 def init_groups() -> List[Group]:
