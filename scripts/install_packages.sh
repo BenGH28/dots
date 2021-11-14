@@ -60,14 +60,24 @@ change_shell() {
     echo "changing shell to zsh..." && chsh -s /bin/zsh
 }
 
-install_pkgs
-install_aur_pkg
-install_dmenu
-install_rust
-install_alacritty_theme
-install_starship_prompt
-install_tpm
-install_psutil
-install_nvim
-setup_xbacklight
-change_shell
+install_ranger_devicons() {
+    # could add as a submodule but yadm seems mangle those ... or I do
+    echo "adding devicons plugin for ranger..." && git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+}
+
+main() {
+    install_pkgs
+    install_aur_pkg
+    install_dmenu
+    install_rust
+    install_alacritty_theme
+    install_starship_prompt
+    install_tpm
+    install_psutil
+    install_nvim
+    install_ranger_devicons
+    setup_xbacklight
+    change_shell
+}
+
+main

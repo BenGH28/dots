@@ -54,3 +54,4 @@ yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
+ueberzug
