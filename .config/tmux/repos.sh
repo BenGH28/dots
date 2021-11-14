@@ -2,7 +2,7 @@
 
 choice=$(/usr/bin/ls -A $HOME/repos | fzf --reverse --prompt="project: ")
 
-[ -n $choice ] && exit 0
+[ -z $choice ] && exit 0
 
 exists=$(tmux list-sessions | grep "$choice" | awk '{print $1}' | sed 's/://')
 

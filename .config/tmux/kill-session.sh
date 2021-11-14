@@ -6,6 +6,6 @@ choice=$(tmux list-sessions |
     fzf --reverse --prompt="kill:")
 
 # we can Ctrl-C the window and not get a fleeting error from tmux
-[ -n $choice ] && exit 0
+[ -z $choice ] && exit 0
 
 tmux kill-session -t $choice

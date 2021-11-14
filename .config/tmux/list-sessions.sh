@@ -6,6 +6,6 @@ choice=$(tmux list-sessions |
     fzf --reverse --prompt="session:")
 
 # exit gracefully with no tmux complaint
-[ -n $choice ] && exit 0
+[ -z $choice ] && exit 0
 
 tmux switch-client -t $choice
