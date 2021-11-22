@@ -31,5 +31,5 @@ ex() {
 go_tmux() {
     [ -x "$(command -v tmux)" ] &&
         [ -z "${TMUX}" ] &&
-        { tmux attach || tmux; } >/dev/null 2>&1
+        { tmux attach || tmux new-session -s "Home"; } >/dev/null 2>&1
 }
