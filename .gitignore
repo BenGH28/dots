@@ -137,7 +137,6 @@ scripts/__pycache__/
 .config/fontconfig/
 .config/gpick/
 .config/inkscape/
-.config/lazygit/
 .config/lua-language-server/
 .config/nomacs/
 .config/nvim/

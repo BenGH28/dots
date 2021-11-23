@@ -35,7 +35,7 @@ cat() {
     esac
 }
 
-### The Kitty Terminal ###
+### The Kitty Terminal ### doesn't work in TMUX :( withouth some extra work that I don't have the energy for
 Atom() {
     kitty @set-colors -a "~/.config/kitty/MyOneDark.conf" &&
         ln -sf ~/.config/kitty/MyOneDark.conf ~/.config/kitty/theme.conf
@@ -47,8 +47,7 @@ AtomOneLight() {
 }
 
 kitco() {
-    IN_KITTY=$(echo $TERM)
-    case $IN_KITTY:$1 in
+    case $TERM:$1 in
         xterm-kitty:dark) Atom ;;
         xterm-kitty:light) AtomOneLight ;;
         xterm-kitty:*) echo "this is not the theme you are looking for..." ;;
