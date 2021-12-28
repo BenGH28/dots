@@ -156,7 +156,7 @@ color_schemes:
         cyan: '#56b6c2'
         white: '#ffffff'
 
-colors: *one_light
+colors: *one_dark
 
 # Background opacity
 #

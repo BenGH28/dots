@@ -1,20 +1,18 @@
 """
 Ben Hunt's Qtile Config
 """
-import os
 import asyncio
-
+import os
 import subprocess
 from typing import List  # noqa: F401
-
-from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from libqtile.lazy import lazy
 
 import keybinding
 import themes
 import widgets
-from constants import BAR_SIZE, MOD, OPAQUE, IS_DARK, POWERLINE
+from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, POWERLINE
+from libqtile import bar, hook, layout
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
 
 # import logging
 # logging.basicConfig(filename='/home/ben/.config/qtile/log.log',
