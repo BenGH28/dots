@@ -45,7 +45,8 @@ general: Alacritty
 
 # GTK theme variant (Linux/BSD only)
 #
-# Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
+# Override the variant of the GTK theme.
+# Commonly supported values are `dark` and `light`.
 # Set this to `None` to use the default theme variant.
 gtk_theme_variant: dark
 
@@ -60,15 +61,15 @@ scrolling:
 
 # Font configuration
 myfontsize:
-    fontsize: &fontsize
-        12
+  fontsize: &fontsize 12
 
 myfontnames:
-    MyFont: &MyFont
-        # FiraCode Nerd Font Mono
-        Iosevka Term
-        # JetBrainsMono Nerd Font
-        # Source Code Pro
+  MyFont:
+    &MyFont
+    # FiraCode Nerd Font Mono
+    Iosevka Term
+    # JetBrainsMono Nerd Font
+    # Source Code Pro
 
 font:
   normal:
@@ -106,55 +107,55 @@ font:
 draw_bold_text_with_bright_colors: true
 
 color_schemes:
-    one_light: &one_light
-      primary:
-        foreground: '#282c34'
-        background: '#ffffff'
+  one_light: &one_light
+    primary:
+      foreground: "#282c34"
+      background: "#ffffff"
 
-      normal:
-        black: '#282c34'
-        red: '#e06c75'
-        green: '#98c379'
-        yellow: '#d19a66'
-        blue: '#61afef'
-        magenta: '#c678dd'
-        cyan: '#56b6c2'
-        white: '#abb2bf'
+    normal:
+      black: "#282c34"
+      red: "#e06c75"
+      green: "#98c379"
+      yellow: "#d19a66"
+      blue: "#61afef"
+      magenta: "#c678dd"
+      cyan: "#56b6c2"
+      white: "#abb2bf"
 
-      bright:
-        black: '#5c6370'
-        red: '#e06c75'
-        green: '#98c379'
-        yellow: '#d19a66'
-        blue: '#61afef'
-        magenta: '#c678dd'
-        cyan: '#56b6c2'
-        white: '#ffffff'
+    bright:
+      black: "#5c6370"
+      red: "#e06c75"
+      green: "#98c379"
+      yellow: "#d19a66"
+      blue: "#61afef"
+      magenta: "#c678dd"
+      cyan: "#56b6c2"
+      white: "#ffffff"
 
-    one_dark: &one_dark
-      primary:
-        foreground: '#ffffff'
-        background: '#282c34'
+  one_dark: &one_dark
+    primary:
+      foreground: "#ffffff"
+      background: "#282c34"
 
-      normal:
-        black: '#282c34'
-        red: '#e06c75'
-        green: '#98c379'
-        yellow: '#d19a66'
-        blue: '#61afef'
-        magenta: '#c678dd'
-        cyan: '#56b6c2'
-        white: '#abb2bf'
+    normal:
+      black: "#282c34"
+      red: "#e06c75"
+      green: "#98c379"
+      yellow: "#d19a66"
+      blue: "#61afef"
+      magenta: "#c678dd"
+      cyan: "#56b6c2"
+      white: "#abb2bf"
 
-      bright:
-        black: '#5c6370'
-        red: '#e06c75'
-        green: '#98c379'
-        yellow: '#d19a66'
-        blue: '#61afef'
-        magenta: '#c678dd'
-        cyan: '#56b6c2'
-        white: '#ffffff'
+    bright:
+      black: "#5c6370"
+      red: "#e06c75"
+      green: "#98c379"
+      yellow: "#d19a66"
+      blue: "#61afef"
+      magenta: "#c678dd"
+      cyan: "#56b6c2"
+      white: "#ffffff"
 
 colors: *one_dark
 
@@ -167,7 +168,7 @@ background_opacity: 1.0
 selection:
   emantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  # save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
 window_dynamic_title: true
@@ -182,7 +183,7 @@ cursor:
   style: Block
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  # unfocused_hollow: true
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -197,7 +198,7 @@ live_config_reload: true
 #   - (Windows) powershell
 shell:
   program: /bin/zsh
-  #args:
+  # args:
   #  - --login
 
 # Startup directory
@@ -212,8 +213,8 @@ mouse:
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  double_click: { threshold: 300 }
-  #triple_click: { threshold: 300 }
+  double_click: {threshold: 300}
+  # triple_click: { threshold: 300 }
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
 
@@ -230,7 +231,8 @@ mouse:
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    #modifiers: None
+    modifiers: None
+
 # Mouse bindings
 # Each mouse binding will specify a:
 # - `mouse`:
@@ -242,15 +244,15 @@ mouse:
 # And optionally:
 # - `mods` (see key bindings)
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - {mouse: Middle, action: PasteSelection}
 
 key_bindings:
-  #(Windows, Linux, and BSD only)
-  - { key: V, mods: Control|Shift, action: Paste }
-  - { key: C, mods: Control|Shift, action: Copy }
-  - { key: Insert, mods: Shift, action: PasteSelection }
-  - { key: Key0, mods: Control, action: ResetFontSize }
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
-  - { key: NumpadAdd, mods: Control, action: IncreaseFontSize }
-  - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
-  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  # (Windows, Linux, and BSD only)
+  - {key: V, mods: Control|Shift, action: Paste}
+  - {key: C, mods: Control|Shift, action: Copy}
+  - {key: Insert, mods: Shift, action: PasteSelection}
+  - {key: Key0, mods: Control, action: ResetFontSize}
+  - {key: Equals, mods: Control, action: IncreaseFontSize}
+  - {key: NumpadAdd, mods: Control, action: IncreaseFontSize}
+  - {key: NumpadSubtract, mods: Control, action: DecreaseFontSize}
+  - {key: Minus, mods: Control, action: DecreaseFontSize}
