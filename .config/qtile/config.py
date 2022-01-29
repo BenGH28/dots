@@ -14,17 +14,24 @@ from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
-# import logging
-# logging.basicConfig(filename='/home/ben/.config/qtile/log.log',
-#                     encoding='utf-8',
-#                     level=logging.DEBUG)
-
 
 @hook.subscribe.startup_once
-def start_once() -> None:
-    """Startup Applications"""
+async def start_once() -> None:
+    """
+    Startup Applications
+
+    Need this to be async otherwise the script
+    can hang Qtile on initial startup
+    """
     autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
-    subprocess.call([autostart])
+    proc = await asyncio.create_subprocess_shell(autostart,
+                                                 stderr=asyncio.subprocess.PIPE,
+                                                 stdout=asyncio.subprocess.PIPE)
+    _, stderr = proc.communicate()
+    if stderr:
+        # let me know if something goes wrong with the autostart
+        subprocess.call(
+            ["notify-send", "-u", "critical",  f"{stderr.decode()}"])
 
 
 @hook.subscribe.client_new

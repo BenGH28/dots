@@ -64,7 +64,9 @@ def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
     else:
         foreground = "#d19a66"
         background = BACKGROUND
-    return widget.AGroupBox(foreground=foreground, background=background, borderwidth=0)
+    return widget.AGroupBox(foreground=foreground,
+                            background=background,
+                            borderwidth=0)
 
 
 def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
