@@ -46,7 +46,6 @@
 .dir_colors
 .dmrc
 .dotfiles/
-.gitconfig
 .gnupg/
 .gtkrc-2.0
 .icons/

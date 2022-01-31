@@ -52,7 +52,7 @@ def go_to_group(window):
     windows = {"Spotify": "3", "firefox": "2", "discord": "5"}
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you are already on that group
-        # this doesn't seem to work for spofify...of course :(
+        # this doesn't seem to work for spotify...of course :(
         window.group.cmd_toscreen(toggle=False)
 
 
