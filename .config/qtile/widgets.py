@@ -211,7 +211,6 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
 
     firstcolour, secondcolour = set_widget_background(colours, powerline)
 
-    # list of widgets that may be a mix of widget and None
     my_widgets = [
         make_groupbox_widget(colours, powerline),
         make_glyph(widget_foreground, powerline, True),
@@ -229,7 +228,6 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_volume_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
         make_clock_widget(widget_foreground, secondcolour, powerline),
-        make_systray_widget(secondcolour, powerline),
     ]
 
     return my_widgets
