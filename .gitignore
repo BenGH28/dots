@@ -83,7 +83,6 @@ vcpkg/
 .dotfiles
 .config/qtile/__pycache__/
 .config/GIMP/
-.config/awesome/
 .config/bpytop/
 .config/ipython/
 .config/libreoffice/

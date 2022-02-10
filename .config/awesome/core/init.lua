@@ -1,0 +1,8 @@
+require("core.errors")
+require("core.variables")
+require("core.menu")
+require("core.bar")
+require("core.mouse")
+require("core.keyboard")
+require("core.rules")
+require("core.signals")
