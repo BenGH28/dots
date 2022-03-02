@@ -6,7 +6,7 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
-from libqtile import bar, hook, layout
+from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -130,14 +130,36 @@ def init_screens(colours, style) -> List[Screen]:
     # attach the systray to only one bar
     widgets2.append(systray)
 
+    my_background = colours['background']
+    my_foreground = colours['foreground']
+
+    # for use later
+    bottom_bar1 = bar.Bar([widget.DF(fmt='{}',
+                                     visible_on_warn=False,
+                                     background=my_background,
+                          foreground=my_foreground)],
+                          size=20,
+                          opacity=OPAQUE,
+                          background=my_background,
+                          foreground=my_foreground)
+
+    bottom_bar2 = bar.Bar([widget.DF(fmt='{}',
+                                     visible_on_warn=False,
+                                     background=my_background,
+                          foreground=my_foreground)],
+                          size=20,
+                          opacity=OPAQUE,
+                          background=my_background,
+                          foreground=my_foreground)
+
     if widgets.is_laptop():
         screens = [
             Screen(top=bar.Bar(
                 widgets1,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
+                background=my_background,
+                foreground=my_foreground
             ))
         ]
     else:
@@ -146,16 +168,15 @@ def init_screens(colours, style) -> List[Screen]:
                 widgets1,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
+                background=my_background,
+                foreground=my_foreground
             )),
             Screen(top=bar.Bar(
                 widgets2,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
-                background=colours["background"],
-                foreground=colours["foreground"],
-            )),
+                background=my_background,
+                foreground=my_foreground))
         ]
     return screens
 

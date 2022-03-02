@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%a-%s</b>\n%b"
+    format = "<b><u>%a</u> - %s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -253,7 +253,7 @@
     # * close_all: Close all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
+    mouse_left_click = do_action close_current
     mouse_right_click = close_all
 
 # Experimental features that may or may not work correctly. Do not expect them
