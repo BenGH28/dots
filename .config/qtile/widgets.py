@@ -2,10 +2,12 @@
 Various widgets based on colour theme
 """
 from os.path import exists
+from subprocess import PIPE, run
 from typing import Dict, Tuple
 
-from constants import TERM
 from libqtile import qtile, widget
+
+from constants import TERM
 from themes import Dark, Light
 
 BACKGROUND = "#191a21"
@@ -36,7 +38,7 @@ def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
         background=background,
         format=" {load_percent}%",
         mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e gotop")},
+            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -53,7 +55,7 @@ def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
         background=background,
         format=" {MemUsed:.0f}M",
         mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e gotop")},
+            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -199,6 +201,23 @@ def make_glyph(secondcolour, powerline: bool, left: bool):
         return widget.TextBox(fmt="◢", foreground=background, padding=0, fontsize=60)
 
 
+def make_kernel_widget(widget_foreground, secondcolour, powerline):
+    if powerline:
+        background = secondcolour
+        foreground = widget_foreground
+    else:
+        background = BACKGROUND
+        foreground = "#c768dd"
+
+    cmd = ['uname', '-r']
+    kernel_as_bytes = run(cmd, stdout=PIPE).stdout
+    kernel_str = kernel_as_bytes.decode('utf-8')[:4]
+
+    return widget.TextBox(background=background,
+                          foreground=foreground,
+                          fmt=f" {kernel_str}")
+
+
 def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
     """
     style is an enumeration of Light or Dark
@@ -220,6 +239,8 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_cpu_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),
         make_ram_widget(widget_foreground, secondcolour, powerline),
+        make_image_widget(primary_secondary, powerline),
+        make_kernel_widget(colours["primary"], secondcolour, powerline),
         make_image_widget(blue_green, powerline),
         make_agroupbox_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),

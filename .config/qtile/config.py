@@ -13,7 +13,7 @@ from libqtile.lazy import lazy
 import keybinding
 import themes
 import widgets
-from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, POWERLINE
+from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, POWERLINE, TERM
 
 
 @hook.subscribe.startup_once
@@ -42,7 +42,7 @@ async def move_spotify(client) -> None:
 def go_to_group(window):
     """move to the screen to the group when the window is opened"""
     win_name = window.window.get_wm_class()[1]
-    windows = {"Spotify": "3", "firefox": "2", "discord": "5"}
+    windows = {"Spotify": "3", "firefox": "2", "discord": "5", TERM: "1", }
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you
         # are already on that group this doesn't seem to work for spotify
@@ -51,7 +51,12 @@ def go_to_group(window):
 
 def init_groups() -> List[Group]:
     groups = [
-        Group(name="1", label=""),
+        Group(name="1",
+              label="",
+              matches=[
+                  Match(wm_class=[TERM])
+              ]
+              ),
         Group(
             name="2",
             label="",
@@ -132,25 +137,6 @@ def init_screens(colours, style) -> List[Screen]:
 
     my_background = colours['background']
     my_foreground = colours['foreground']
-
-    # for use later
-    bottom_bar1 = bar.Bar([widget.DF(fmt='{}',
-                                     visible_on_warn=False,
-                                     background=my_background,
-                          foreground=my_foreground)],
-                          size=20,
-                          opacity=OPAQUE,
-                          background=my_background,
-                          foreground=my_foreground)
-
-    bottom_bar2 = bar.Bar([widget.DF(fmt='{}',
-                                     visible_on_warn=False,
-                                     background=my_background,
-                          foreground=my_foreground)],
-                          size=20,
-                          opacity=OPAQUE,
-                          background=my_background,
-                          foreground=my_foreground)
 
     if widgets.is_laptop():
         screens = [
