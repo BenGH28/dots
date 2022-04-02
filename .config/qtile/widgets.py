@@ -8,6 +8,7 @@ from typing import Dict, Tuple
 from libqtile import qtile, widget
 
 from constants import TERM
+from spotify import Spotify
 from themes import Dark, Light
 
 BACKGROUND = "#191a21"
@@ -24,6 +25,20 @@ def is_laptop() -> bool:
     if exists(batt_file):
         return True
     return False
+
+
+def make_spotify_widget(widget_foreground, firstcolour, powerline: bool):
+    if powerline:
+        foreground = widget_foreground
+        background = firstcolour
+    else:
+        foreground = "#e06c75"
+        background = BACKGROUND
+
+    return Spotify(foreground=foreground,
+                   background=background,
+                   format="{icon} {artist} - {track}"
+                   )
 
 
 def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
@@ -241,6 +256,7 @@ def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
         make_ram_widget(widget_foreground, secondcolour, powerline),
         make_image_widget(primary_secondary, powerline),
         make_kernel_widget(colours["primary"], secondcolour, powerline),
+        # make_spotify_widget(colours["secondary"], firstcolour, powerline),
         make_image_widget(blue_green, powerline),
         make_agroupbox_widget(widget_foreground, firstcolour, powerline),
         make_image_widget(primary_secondary, powerline),

@@ -4,6 +4,7 @@ Ben Hunt's Qtile Config
 import asyncio
 import os
 import subprocess
+from subprocess import run
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout, widget
@@ -26,7 +27,7 @@ def start_once() -> None:
 
 
 @hook.subscribe.client_new
-async def move_spotify(client) -> None:
+async def move_spotify(window) -> None:
     """ move spotify to workspace 3 """
 
     # NOTE: spotify is slow on setting properties so you need to sleep async
@@ -34,13 +35,14 @@ async def move_spotify(client) -> None:
     # see issue 2406 in qtile's github
 
     await asyncio.tasks.sleep(0.1)
-    if client.name == "Spotify":
-        client.togroup("3")
+    if window.name == "Spotify":
+        window.togroup("3")
 
 
 @hook.subscribe.client_managed
 def go_to_group(window):
     """move to the screen to the group when the window is opened"""
+    # window is XWindow
     win_name = window.window.get_wm_class()[1]
     windows = {"Spotify": "3", "firefox": "2", "discord": "5", TERM: "1", }
     if win_name in windows:
@@ -146,7 +148,8 @@ def init_screens(colours, style) -> List[Screen]:
                 opacity=OPAQUE,
                 background=my_background,
                 foreground=my_foreground
-            ))
+            ),
+            )
         ]
     else:
         screens = [
@@ -156,7 +159,24 @@ def init_screens(colours, style) -> List[Screen]:
                 opacity=OPAQUE,
                 background=my_background,
                 foreground=my_foreground
-            )),
+            ),
+                bottom=bar.Bar(
+                    widgets=[
+                        widget.Spacer(length=int(1920/3)),
+                        widgets.make_glyph(
+                            colours['secondary'], POWERLINE, False),
+                        widgets.make_spotify_widget(
+                            colours['secondary'], my_background, POWERLINE),
+                        widgets.make_glyph(
+                            colours['secondary'], POWERLINE, True),
+                        widget.Spacer(length=int(1920/3)),
+                    ],
+                    size=BAR_SIZE,
+                    opacity=OPAQUE,
+                    background=my_background,
+                    foreground=my_foreground
+            )
+            ),
             Screen(top=bar.Bar(
                 widgets2,
                 size=BAR_SIZE,
