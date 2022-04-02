@@ -14,5 +14,4 @@ scripts/install_packages.sh
 
 ## Preview
 
-![Qtile Layout](https://github.com/BenGH28/dots/blob/master/.screenshots/qconf_conf1.png)
-![Qtile OneDark](https://github.com/BenGH28/dots/blob/master/.screenshots/qtile_OneDarkTheme.png)
+![image](https://user-images.githubusercontent.com/45215137/161371797-e23ff8de-0dff-4562-a34c-4069fe250228.png)
