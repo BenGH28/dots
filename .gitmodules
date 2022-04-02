@@ -1,0 +1,3 @@
+[submodule ".config/qtile/spotify"]
+	path = .config/qtile/spotify
+	url = https://github.com/BenGH28/qtile-spotify-widget
