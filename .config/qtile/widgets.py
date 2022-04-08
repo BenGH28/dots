@@ -27,27 +27,18 @@ def is_laptop() -> bool:
     return False
 
 
-def make_spotify_widget(widget_foreground, firstcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = firstcolour
-    else:
-        foreground = "#e06c75"
-        background = BACKGROUND
+def make_spotify_widget(widget_foreground):
+    foreground = "#e06c75"
 
     return Spotify(foreground=foreground,
-                   background=background,
+                   background=BACKGROUND,
                    format="{icon} {artist} - {track}"
                    )
 
 
 def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = firstcolour
-    else:
-        foreground = "#e06c75"
-        background = BACKGROUND
+    foreground = "#e06c75"
+    background = BACKGROUND
     return widget.CPU(
         foreground=foreground,
         background=background,
@@ -58,12 +49,8 @@ def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
 
 
 def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = secondcolour
-    else:
-        foreground = "#98c379"
-        background = BACKGROUND
+    foreground = "#98c379"
+    background = BACKGROUND
 
     return widget.Memory(
         foreground=foreground,
@@ -75,24 +62,16 @@ def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
 
 
 def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = firstcolour
-    else:
-        foreground = "#d19a66"
-        background = BACKGROUND
+    foreground = "#d19a66"
+    background = BACKGROUND
     return widget.AGroupBox(foreground=foreground,
                             background=background,
                             borderwidth=0)
 
 
 def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = firstcolour
-    else:
-        foreground = "#61afef"
-        background = BACKGROUND
+    foreground = "#61afef"
+    background = BACKGROUND
     return widget.Volume(
         foreground=foreground,
         background=background,
@@ -103,12 +82,8 @@ def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
 
 
 def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = firstcolour
-    else:
-        foreground = "#56b6c2"
-        background = BACKGROUND
+    foreground = "#56b6c2"
+    background = BACKGROUND
 
     return widget.Battery(
         foreground=foreground,
@@ -133,12 +108,8 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
         bright_file = amd_bright_file
         backlight_name = "amdgpu_bl0"
 
-    if powerline:
-        foreground = widget_foreground
-        backgrond = secondcolour
-    else:
-        foreground = "#e06c75"
-        backgrond = BACKGROUND
+    foreground = "#e06c75"
+    backgrond = BACKGROUND
     return widget.Backlight(
         foreground=foreground,
         background=backgrond,
@@ -149,12 +120,8 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
 
 
 def make_clock_widget(widget_foreground, secondcolour, powerline: bool):
-    if powerline:
-        foreground = widget_foreground
-        background = secondcolour
-    else:
-        foreground = "#c768dd"
-        background = BACKGROUND
+    foreground = "#c768dd"
+    background = BACKGROUND
     return widget.Clock(
         foreground=foreground, background=background, format="%d/%m/%y %H:%M"
     )
@@ -164,16 +131,11 @@ def make_image_widget(filename: str, powerline: bool):
     """make correct imaged widgets
     returns either an widget.Image or widget.Spacer depending on powerline
     """
-    if powerline:
-        return widget.Image(filename=filename, margin=0, padding=0)
     return widget.Spacer(background=BACKGROUND, length=10)
 
 
 def make_systray_widget(secondcolour: str, powerline: bool):
-    if powerline:
-        background = secondcolour
-    else:
-        background = BACKGROUND
+    background = BACKGROUND
     return widget.Systray(background=background)
 
 
@@ -181,10 +143,7 @@ def make_groupbox_widget(colours: dict, powerline: bool):
     border_colour = colours["primary"]
     active_colour = colours["foreground"]
     inactive_colour = colours["inactive"]
-    if powerline:
-        background = None
-    else:
-        background = BACKGROUND
+    background = BACKGROUND
     return widget.GroupBox(
         this_current_screen_border=border_colour,
         background=background,
@@ -196,33 +155,22 @@ def make_groupbox_widget(colours: dict, powerline: bool):
 
 
 def make_layout_icon_widget(secondcolour, powerline: bool):
-    if powerline:
-        background = secondcolour
-    else:
-        background = BACKGROUND
+    background = BACKGROUND
     return widget.CurrentLayoutIcon(foreground="000000", background=background)
 
 
 def make_glyph(secondcolour, powerline: bool, left: bool):
-    if powerline:
-        background = secondcolour
-        return widget.Spacer(background=background, length=10)
-    else:
-        background = BACKGROUND
-        if left:
-            return widget.TextBox(
-                fmt="◤", foreground=background, padding=0, fontsize=60
-            )
-        return widget.TextBox(fmt="◢", foreground=background, padding=0, fontsize=60)
+    background = BACKGROUND
+    if left:
+        return widget.TextBox(
+            fmt="◤", foreground=background, padding=0, fontsize=60
+        )
+    return widget.TextBox(fmt="◢", foreground=background, padding=0, fontsize=60)
 
 
 def make_kernel_widget(widget_foreground, secondcolour, powerline):
-    if powerline:
-        background = secondcolour
-        foreground = widget_foreground
-    else:
-        background = BACKGROUND
-        foreground = "#c768dd"
+    background = BACKGROUND
+    foreground = "#c768dd"
 
     cmd = ['uname', '-r']
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
@@ -338,11 +286,7 @@ def set_widget_foreground(colours: Dict[str, str], style, powerline: bool) -> st
 def set_widget_background(colours: Dict[str, str], powerline: bool) -> Tuple[str, str]:
     """set a proper background"""
     # the background colours of the widgets
-    if powerline:
-        firstcolour = colours["secondary"]
-        secondcolour = colours["primary"]
-    else:
-        firstcolour = colours["background"]
-        secondcolour = firstcolour
+    firstcolour = colours["background"]
+    secondcolour = firstcolour
 
     return (firstcolour, secondcolour)

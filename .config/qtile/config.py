@@ -165,8 +165,7 @@ def init_screens(colours, style) -> List[Screen]:
                         widget.Spacer(length=int(1920/3)),
                         widgets.make_glyph(
                             colours['secondary'], POWERLINE, False),
-                        widgets.make_spotify_widget(
-                            colours['secondary'], my_background, POWERLINE),
+                        widgets.make_spotify_widget(colours['secondary']),
                         widgets.make_glyph(
                             colours['secondary'], POWERLINE, True),
                         widget.Spacer(length=int(1920/3)),
