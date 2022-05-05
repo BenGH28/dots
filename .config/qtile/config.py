@@ -4,7 +4,6 @@ Ben Hunt's Qtile Config
 import asyncio
 import os
 import subprocess
-from subprocess import run
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout, widget
