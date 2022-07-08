@@ -64,3 +64,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias activate='source ./.venv/bin/activate'
+#
+# make venvs easier
+alias mkvenv='python3 -m venv .venv && source ./.venv/bin/activate && pip install --upgrade pip'
