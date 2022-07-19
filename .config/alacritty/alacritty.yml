@@ -19,7 +19,7 @@ window:
     x: 0
     y: 0
 
-  opacity: 1.0
+  opacity: 0.95
 
   # Window decorations
   #
@@ -66,10 +66,9 @@ myfontsize:
   fontsize: &fontsize 12
 
 myfontnames:
-  MyFont:
-    &MyFont
-    # FiraCode Nerd Font Mono
-    Iosevka Term
+  MyFont: &MyFont
+    FiraCode Nerd Font Mono
+    # Iosevka Term
     # JetBrainsMono Nerd Font
     # Source Code Pro
 

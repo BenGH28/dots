@@ -64,7 +64,7 @@ def check_gtk_themes(theme_name: str) -> bool:
     :return true if theme exist, false otherwise.
     """
     theme_path = f'/usr/share/themes/{theme_name}/gtk-3.0'
-    return os.path.isdir('theme_path')
+    return os.path.isdir(theme_path)
 
 
 def set_gtk_theme(file_lines: list, theme_name: str, toggle: str) -> None:
