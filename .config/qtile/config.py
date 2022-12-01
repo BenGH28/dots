@@ -140,7 +140,7 @@ def init_screens(colours, style) -> List[Screen]:
     my_foreground = colours['foreground']
 
     if widgets.is_laptop():
-        screens = [
+        return [
             Screen(top=bar.Bar(
                 widgets1,
                 size=BAR_SIZE,
@@ -151,7 +151,7 @@ def init_screens(colours, style) -> List[Screen]:
             )
         ]
     else:
-        screens = [
+        return [
             Screen(top=bar.Bar(
                 widgets1,
                 size=BAR_SIZE,
@@ -182,11 +182,10 @@ def init_screens(colours, style) -> List[Screen]:
                 background=my_background,
                 foreground=my_foreground))
         ]
-    return screens
 
 
 def init_mouse():
-    mouse = [
+    return [
         Drag(
             [MOD],
             "Button1",
@@ -199,7 +198,6 @@ def init_mouse():
              start=lazy.window.get_size()),
         Click([MOD], "Button2", lazy.window.bring_to_front()),
     ]
-    return mouse
 
 
 if __name__ in ["config", "__main__"]:
