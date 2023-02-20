@@ -3,7 +3,7 @@ from typing import List
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
-from constants import ALT, MOD, TERM, CTRL
+from constants import ALT, CTRL, MOD, TERM
 
 
 def get_keys() -> List[Key]:
@@ -59,7 +59,8 @@ def get_keys() -> List[Key]:
         Key(
             [CTRL],
             "space",
-            lazy.spawn('rofi -show combi -modes combi -combi-modes "window,drun,run"')),
+            lazy.spawn('rofi -show combi -modes combi -combi-modes "window,drun"'),
+        ),
         # Key([CTRL], "space", lazy.spawn("dmenu_run -h 30")),
         Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("pcmanfm")),

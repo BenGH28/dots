@@ -19,7 +19,7 @@ window:
     x: 0
     y: 0
 
-  opacity: 0.95
+  opacity: 1
 
   # Window decorations
   #
@@ -69,9 +69,9 @@ myfontnames:
   MyFont: &MyFont
     # FiraCode Nerd Font Mono
     # Iosevka Term
-    # JetBrainsMono Nerd Font
+    JetBrainsMono Nerd Font
     # Source Code Pro
-    Hasklug Nerd Font
+    # Hasklug Nerd Font
 
 
 font:
@@ -138,10 +138,10 @@ color_schemes:
   one_dark: &one_dark
     primary:
       foreground: "#ffffff"
-      background: "#282c34"
+      background: "#1f2329"
 
     normal:
-      black: "#282c34"
+      black: "#1f2329"
       red: "#e06c75"
       green: "#98c379"
       yellow: "#d19a66"
