@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmd=$(echo -e "Lock\nLog out\nSuspend\nReboot\nShutdown" | dmenu -c -l 5 -bw 5)
+cmd=$(echo -e "Lock|Log out|Suspend|Reboot|Shutdown" | rofi -sep '|' -dmenu -i -l 5) 
 
 case $cmd in
     Shutdown) shutdown now ;;
