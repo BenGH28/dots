@@ -16,3 +16,4 @@ run accountable2you
 run /usr/lib/polkit-kde-authentication-agent-1
 run dunst
 run xmodmap ~/.Xmodmap
+run flameshot

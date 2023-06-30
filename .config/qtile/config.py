@@ -1,6 +1,4 @@
-"""
-Ben Hunt's Qtile Config
-"""
+""" Ben Hunt's Qtile Config """
 import asyncio
 import os
 import subprocess
@@ -13,21 +11,19 @@ from libqtile.lazy import lazy
 import keybinding
 import themes
 import widgets
-from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, POWERLINE, TERM
+from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, TERM
 
 
 @hook.subscribe.startup_once
 def start_once() -> None:
-    """
-    Startup Applications
-    """
+    """Startup Applications"""
     autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([autostart])
 
 
 @hook.subscribe.client_new
 async def move_spotify(window) -> None:
-    """ move spotify to workspace 3 """
+    """move spotify to workspace 3"""
 
     # NOTE: spotify is slow on setting properties so you need to sleep async
     # to load the window properties
@@ -43,7 +39,12 @@ def go_to_group(window):
     """move to the screen to the group when the window is opened"""
     # window is XWindow
     win_name = window.window.get_wm_class()[1]
-    windows = {"Spotify": "3", "firefox": "2", "discord": "5", TERM: "1", }
+    windows = {
+        "Spotify": "3",
+        "firefox": "2",
+        "discord": "5",
+        TERM: "1",
+    }
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you
         # are already on that group this doesn't seem to work for spotify
@@ -52,23 +53,13 @@ def go_to_group(window):
 
 def init_groups() -> List[Group]:
     groups = [
-        Group(name="1",
-              label="",
-              matches=[
-                  Match(wm_class=[TERM])
-              ]
-              ),
+        Group(name="1", label="", matches=[Match(wm_class=[TERM])]),
         Group(
             name="2",
             label="",
-            matches=[
-                Match(wm_class=["firefox"]),
-                Match(wm_class=["qutebrowser"])
-            ],
+            matches=[Match(wm_class=["firefox"]), Match(wm_class=["qutebrowser"])],
         ),
-        Group(name="3",
-              label="",
-              matches=[Match(wm_class=["spotify", "Spotify"])]),
+        Group(name="3", label="", matches=[Match(wm_class=["spotify", "Spotify"])]),
         Group(name="4", label=""),
         Group(name="5", label="", matches=[Match(wm_class=["discord"])]),
         Group(name="6", label=""),
@@ -78,13 +69,18 @@ def init_groups() -> List[Group]:
 
 def extend_keys_for_group(keys: List[Key]) -> None:
     for i in groups:
-        keys.extend([
-            # MOD4 + letter of group = switch to group
-            Key([MOD], i.name, lazy.group[i.name].toscreen()),
-            # MOD4 + shift + num of group = switch and move window to group
-            Key([MOD, "shift"], i.name,
-                lazy.window.togroup(i.name, switch_group=True)),
-        ])
+        keys.extend(
+            [
+                # MOD4 + letter of group = switch to group
+                Key([MOD], i.name, lazy.group[i.name].toscreen()),
+                # MOD4 + shift + num of group = switch and move window to group
+                Key(
+                    [MOD, "shift"],
+                    i.name,
+                    lazy.window.togroup(i.name, switch_group=True),
+                ),
+            ]
+        )
 
 
 def init_colours_and_style() -> tuple:
@@ -122,66 +118,65 @@ def init_layouts(layout_theme: dict) -> List:
     return layouts
 
 
-def init_screens(colours, style) -> List[Screen]:
-    _, secondcolour = widgets.set_widget_background(
-        colours, POWERLINE)
-
+def init_screens(colours) -> List[Screen]:
     # will not display for multiple screens/bars
-    systray = widgets.make_systray_widget(secondcolour, POWERLINE)
+    systray = widgets.make_systray_widget()
 
-    widgets1 = widgets.initialize_widgets(colours, style, POWERLINE)
-    widgets2 = widgets.initialize_widgets(
-        colours, style, POWERLINE)
+    widgets1 = widgets.initialize_widgets(colours)
+    widgets2 = widgets.initialize_widgets(colours)
 
     # attach the systray to only one bar
     widgets2.append(systray)
 
-    my_background = colours['background']
-    my_foreground = colours['foreground']
+    my_background = colours["background"]
+    my_foreground = colours["foreground"]
 
     if widgets.is_laptop():
         return [
-            Screen(top=bar.Bar(
-                widgets1,
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=my_background,
-                foreground=my_foreground
-            ),
-            )
-        ]
-    else:
-        return [
-            Screen(top=bar.Bar(
-                widgets1,
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=my_background,
-                foreground=my_foreground
-            ),
-                bottom=bar.Bar(
-                    widgets=[
-                        widget.Spacer(length=int(1920/3)),
-                        widgets.make_glyph(
-                            colours['secondary'], POWERLINE, False),
-                        widgets.make_spotify_widget(colours['secondary']),
-                        widgets.make_glyph(
-                            colours['secondary'], POWERLINE, True),
-                        widget.Spacer(length=int(1920/3)),
-                    ],
+            Screen(
+                top=bar.Bar(
+                    widgets1,
                     size=BAR_SIZE,
                     opacity=OPAQUE,
                     background=my_background,
-                    foreground=my_foreground
+                    foreground=my_foreground,
+                ),
             )
+        ]
+
+    return [
+        Screen(
+            top=bar.Bar(
+                widgets1,
+                size=BAR_SIZE,
+                opacity=OPAQUE,
+                background=my_background,
+                foreground=my_foreground,
             ),
-            Screen(top=bar.Bar(
+            bottom=bar.Bar(
+                widgets=[
+                    widget.Spacer(length=int(1920 / 3)),
+                    widgets.make_glyph(False),
+                    widgets.make_spotify_widget(),
+                    widgets.make_glyph(True),
+                    widget.Spacer(length=int(1920 / 3)),
+                ],
+                size=BAR_SIZE,
+                opacity=OPAQUE,
+                background=my_background,
+                foreground=my_foreground,
+            ),
+        ),
+        Screen(
+            top=bar.Bar(
                 widgets2,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
                 background=my_background,
-                foreground=my_foreground))
-        ]
+                foreground=my_foreground,
+            )
+        ),
+    ]
 
 
 def init_mouse():
@@ -192,16 +187,18 @@ def init_mouse():
             lazy.window.set_position_floating(),
             start=lazy.window.get_position(),
         ),
-        Drag([MOD],
-             "Button3",
-             lazy.window.set_size_floating(),
-             start=lazy.window.get_size()),
+        Drag(
+            [MOD],
+            "Button3",
+            lazy.window.set_size_floating(),
+            start=lazy.window.get_size(),
+        ),
         Click([MOD], "Button2", lazy.window.bring_to_front()),
     ]
 
 
 if __name__ in ["config", "__main__"]:
-    colours, style = init_colours_and_style()
+    colours, _ = init_colours_and_style()
     groups = init_groups()
     keys = keybinding.get_keys()
     extend_keys_for_group(keys)
@@ -209,7 +206,7 @@ if __name__ in ["config", "__main__"]:
     extension_defaults = widget_defaults.copy()
     layout_theme = init_layout_theme(colours)
     layouts = init_layouts(layout_theme)
-    screens = init_screens(colours, style)
+    screens = init_screens(colours)
     mouse = init_mouse()
     dgroups_key_binder = None
     dgroups_app_rules = []  # type: List
@@ -218,7 +215,8 @@ if __name__ in ["config", "__main__"]:
     bring_front_click = False
     cursor_warp = False
     floating_layout = layout.Floating(
-        float_rules=[*layout.Floating.default_float_rules], **layout_theme)
+        float_rules=[*layout.Floating.default_float_rules], **layout_theme
+    )
     auto_fullscreen = True
     focus_on_window_activation = "smart"
 

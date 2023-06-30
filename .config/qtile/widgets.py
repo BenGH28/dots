@@ -7,87 +7,69 @@ from typing import Dict, Tuple
 
 from libqtile import qtile, widget
 
-from constants import TERM
+from constants import TERM, IS_DARK
 from spotify import Spotify
 from themes import Dark, Light
 
-BACKGROUND = "#191a21"
+BACKGROUND = "#191a21" if IS_DARK else "#f0f0f4"
 
 
 def is_laptop() -> bool:
-    """
-    Check for the existance of a battery file
-
+    """Check for the existance of a battery file
     return True if file exist False otherwise
     """
-
     batt_file = "/sys/class/power_supply/BAT0/model_name"
-    if exists(batt_file):
-        return True
-    return False
+    return exists(batt_file)
 
 
-def make_spotify_widget(widget_foreground):
+def make_spotify_widget():
     foreground = "#e06c75"
-
-    return Spotify(foreground=foreground,
-                   background=BACKGROUND,
-                   format="{icon} {artist} - {track}"
-                   )
+    return Spotify(
+        foreground=foreground, background=BACKGROUND, format="{icon} {artist} - {track}"
+    )
 
 
-def make_cpu_widget(widget_foreground, firstcolour, powerline: bool):
+def make_cpu_widget():
     foreground = "#e06c75"
-    background = BACKGROUND
     return widget.CPU(
         foreground=foreground,
-        background=background,
+        background=BACKGROUND,
         format=" {load_percent}%",
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
-def make_ram_widget(widget_foreground, secondcolour, powerline: bool):
+def make_ram_widget():
     foreground = "#98c379"
-    background = BACKGROUND
-
     return widget.Memory(
         foreground=foreground,
-        background=background,
+        background=BACKGROUND,
         format=" {MemUsed:.0f}M",
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
-def make_agroupbox_widget(widget_foreground, firstcolour, powerline: bool):
+def make_agroupbox_widget():
     foreground = "#d19a66"
-    background = BACKGROUND
-    return widget.AGroupBox(foreground=foreground,
-                            background=background,
-                            borderwidth=0)
+    return widget.AGroupBox(foreground=foreground, background=BACKGROUND, borderwidth=0)
 
 
-def make_volume_widget(widget_foreground, firstcolour, powerline: bool):
+def make_volume_widget():
     foreground = "#61afef"
-    background = BACKGROUND
     return widget.Volume(
         foreground=foreground,
-        background=background,
+        background=BACKGROUND,
         fmt="{}",
         # right click launches pavucontrol
         mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     )
 
 
-def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
+def make_battery_widget():
     foreground = "#56b6c2"
-    background = BACKGROUND
-
     return widget.Battery(
         foreground=foreground,
-        background=background,
+        background=BACKGROUND,
         charge_char="",
         discharge_char="",
         full_char="",
@@ -96,7 +78,7 @@ def make_battery_widget(widget_foreground, firstcolour, powerline: bool):
     )
 
 
-def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
+def make_brightness_widget():
     intel_bright_file = "/sys/class/backlight/intel_backlight/brightness"
     amd_bright_file = "/sys/class/backlight/amdgpu_bl0/brightness"
     backlight_name = ""
@@ -109,44 +91,40 @@ def make_brightness_widget(widget_foreground, secondcolour, powerline: bool):
         backlight_name = "amdgpu_bl0"
 
     foreground = "#e06c75"
-    backgrond = BACKGROUND
     return widget.Backlight(
         foreground=foreground,
-        background=backgrond,
+        background=BACKGROUND,
         backlight_name=backlight_name,
         brightness_file=bright_file,
         fmt=" {}",
     )
 
 
-def make_clock_widget(widget_foreground, secondcolour, powerline: bool):
+def make_clock_widget():
     foreground = "#c768dd"
-    background = BACKGROUND
     return widget.Clock(
-        foreground=foreground, background=background, format="%d/%m/%y %H:%M"
+        foreground=foreground, background=BACKGROUND, format="%D/%m/%y %H:%M"
     )
 
 
-def make_image_widget(filename: str, powerline: bool):
+def make_image_widget():
     """make correct imaged widgets
     returns either an widget.Image or widget.Spacer depending on powerline
     """
     return widget.Spacer(background=BACKGROUND, length=10)
 
 
-def make_systray_widget(secondcolour: str, powerline: bool):
-    background = BACKGROUND
-    return widget.Systray(background=background)
+def make_systray_widget():
+    return widget.Systray(background=BACKGROUND)
 
 
-def make_groupbox_widget(colours: dict, powerline: bool):
+def make_groupbox_widget(colours: Dict[str, str]):
     border_colour = colours["primary"]
     active_colour = colours["foreground"]
     inactive_colour = colours["inactive"]
-    background = BACKGROUND
     return widget.GroupBox(
         this_current_screen_border=border_colour,
-        background=background,
+        background=BACKGROUND,
         highlight_method="line",
         rounded=False,
         active=active_colour,
@@ -154,103 +132,81 @@ def make_groupbox_widget(colours: dict, powerline: bool):
     )
 
 
-def make_layout_icon_widget(secondcolour, powerline: bool):
-    background = BACKGROUND
-    return widget.CurrentLayoutIcon(foreground="000000", background=background)
+def make_layout_icon_widget():
+    return widget.CurrentLayoutIcon(foreground="000000", background=BACKGROUND)
 
 
-def make_glyph(secondcolour, powerline: bool, left: bool):
-    background = BACKGROUND
+def make_glyph(left: bool):
     if left:
-        return widget.TextBox(
-            fmt="◤", foreground=background, padding=0, fontsize=60
-        )
-    return widget.TextBox(fmt="◢", foreground=background, padding=0, fontsize=60)
+        return widget.TextBox(fmt="◤", foreground=BACKGROUND, padding=0, fontsize=60)
+    return widget.TextBox(fmt="◢", foreground=BACKGROUND, padding=0, fontsize=60)
 
 
-def make_kernel_widget(widget_foreground, secondcolour, powerline):
-    background = BACKGROUND
+def make_kernel_widget():
     foreground = "#c768dd"
-
-    cmd = ['uname', '-r']
+    cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
-    kernel_str = kernel_as_bytes.decode('utf-8')[:4]
+    kernel_str = kernel_as_bytes.decode("utf-8")[:4]
 
-    return widget.TextBox(background=background,
-                          foreground=foreground,
-                          fmt=f" {kernel_str}")
+    return widget.TextBox(
+        background=BACKGROUND, foreground=foreground, fmt=f" {kernel_str}"
+    )
 
 
-def base_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
-    """
-    style is an enumeration of Light or Dark
-
-    returns list of widgets
-    """
-    black_green, blue_green, primary_secondary = set_images_for_widgets(style)
-
-    widget_foreground = set_widget_foreground(colours, style, powerline)
-
-    firstcolour, secondcolour = set_widget_background(colours, powerline)
-
+def base_widgets(colours: Dict[str, str]):
+    """returns list of widgets"""
     my_widgets = [
-        make_groupbox_widget(colours, powerline),
-        make_glyph(widget_foreground, powerline, True),
+        make_groupbox_widget(colours),
+        make_glyph(True),
         widget.WindowName(foreground=colours["foreground"]),
-        make_glyph(widget_foreground, powerline, False),
-        make_image_widget(black_green, powerline),
-        make_cpu_widget(widget_foreground, firstcolour, powerline),
-        make_image_widget(primary_secondary, powerline),
-        make_ram_widget(widget_foreground, secondcolour, powerline),
-        make_image_widget(primary_secondary, powerline),
-        make_kernel_widget(colours["primary"], secondcolour, powerline),
+        make_glyph(False),
+        make_image_widget(),
+        make_cpu_widget(),
+        make_image_widget(),
+        make_ram_widget(),
+        make_image_widget(),
+        make_kernel_widget(),
         # make_spotify_widget(colours["secondary"], firstcolour, powerline),
-        make_image_widget(blue_green, powerline),
-        make_agroupbox_widget(widget_foreground, firstcolour, powerline),
-        make_image_widget(primary_secondary, powerline),
-        make_layout_icon_widget(secondcolour, powerline),
-        make_image_widget(blue_green, powerline),
-        make_volume_widget(widget_foreground, firstcolour, powerline),
-        make_image_widget(primary_secondary, powerline),
-        make_clock_widget(widget_foreground, secondcolour, powerline),
+        make_image_widget(),
+        make_agroupbox_widget(),
+        make_image_widget(),
+        make_layout_icon_widget(),
+        make_image_widget(),
+        make_volume_widget(),
+        make_image_widget(),
+        make_clock_widget(),
     ]
 
     return my_widgets
 
 
-def make_laptop_widgets(colours: Dict[str, str], style, powerline: bool) -> list:
-    """
-    Make a list of widgets that do no have battery or brightnesss.
+def make_laptop_widgets(colours: Dict[str, str]) -> list:
+    """Make a list of widgets that do no have battery or brightnesss.
     I use the same config between a laptop and desktop and I am
     tired of (un)commenting out the same widgets everytime I
     update my config.
 
     returns list of widgets
     """
-    _, blue_green, green_blue = set_images_for_widgets(style)
-
-    widget_foreground = set_widget_foreground(colours, style, powerline)
-
-    firstcolour, secondcolour = set_widget_background(colours, powerline)
 
     laptop_exclusive = [
-        make_image_widget(green_blue, powerline),
-        make_brightness_widget(widget_foreground, secondcolour, powerline),
-        make_image_widget(blue_green, powerline),
-        make_battery_widget(widget_foreground, firstcolour, powerline),
+        make_image_widget(),
+        make_brightness_widget(),
+        make_image_widget(),
+        make_battery_widget(),
     ]
 
-    widgets = base_widgets(colours, style, powerline)
+    widgets = base_widgets(colours)
     for item in laptop_exclusive:
         widgets.insert(-3, item)
     return widgets
 
 
-def initialize_widgets(colours: dict, style, powerline=True):
+def initialize_widgets(colours: dict):
     """return list of widgets based on a colour scheme"""
     if is_laptop():
-        return make_laptop_widgets(colours, style, powerline)
-    return base_widgets(colours, style, powerline)
+        return make_laptop_widgets(colours)
+    return base_widgets(colours)
 
 
 def set_images_for_widgets(style) -> Tuple[str, str, str]:
@@ -263,7 +219,7 @@ def set_images_for_widgets(style) -> Tuple[str, str, str]:
 
         return (black_green, blue_green, green_blue)
 
-    # style == Dark.Dracula:
+    # style = Dark.Dracula:
     black_orange = "~/.config/qtile/resources/OrangeEnd.png"
     purple_orange = "~/.config/qtile/resources/PurpleOrange.png"
     orange_purple = "~/.config/qtile/resources/OrangePurple.png"
@@ -283,7 +239,7 @@ def set_widget_foreground(colours: Dict[str, str], style, powerline: bool) -> st
     return widget_foreground
 
 
-def set_widget_background(colours: Dict[str, str], powerline: bool) -> Tuple[str, str]:
+def set_widget_background(colours: Dict[str, str]) -> Tuple[str, str]:
     """set a proper background"""
     # the background colours of the widgets
     firstcolour = colours["background"]
