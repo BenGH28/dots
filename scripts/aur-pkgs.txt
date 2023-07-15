@@ -1,6 +1,2 @@
-nerd-fonts-fira-code
-nerd-fonts-mononoki
-nerd-fonts-jetbrains-mono
-nerd-fonts-iosevka
 picom-jonaburg-git
 gotop

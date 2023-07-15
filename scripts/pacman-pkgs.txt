@@ -13,6 +13,7 @@ firefox
 fzf
 gcc
 git
+go
 htop
 i3-gaps
 i3blocks
@@ -48,10 +49,12 @@ ttf-indic-otf
 ttf-jetbrains-mono
 ttf-joypixels
 ttf-liberation
+ueberzug
+unzip
 xclip
 xfce4-power-manager
 yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-ueberzug
+starship

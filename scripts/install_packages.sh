@@ -12,31 +12,18 @@ install_pkgs() {
 
 #get the aur-packages
 install_aur_pkg() {
+    echo "installing paru..."
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
     echo "installing aur packages"
-    yay -S - <~/scripts/aur-pkgs.txt
+    paru -S - <~/scripts/aur-pkgs.txt
 }
 
-#get my version of dmenu
-install_dmenu() {
-    echo "Cloning dmenu-plusplus from github"
-    git clone https://github.com/BenGH28/dmenu-plusplus.git ~/.config/dmenu/
-    cd ~/.config/dmenu
-    sudo make clean install
-    cd
-}
 
 # install rustup to gain access to cargo
 install_rust() {
     echo "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-}
-
-# installing commandline to for changing your alacritty theme
-install_alacritty_theme() {
-    echo "Installing alacritty-theme from cargo" && ~/.cargo/bin/cargo install alacritty-theme
-}
-
-install_starship_prompt() {
-    echo "installing starship..." && curl -fsSL https://starship.rs/install.sh | bash
 }
 
 install_psutil() {
@@ -68,10 +55,7 @@ install_ranger_devicons() {
 main() {
     install_pkgs
     install_aur_pkg
-    install_dmenu
     install_rust
-    install_alacritty_theme
-    install_starship_prompt
     install_tpm
     install_psutil
     install_nvim
@@ -81,3 +65,4 @@ main() {
 }
 
 main
+
