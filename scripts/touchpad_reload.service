@@ -1,0 +1,10 @@
+[Unit]
+Description=Reload the touchpad kernel module
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=sh -c '/usr/bin/reload_touchpad.sh'
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target multi-user.target

@@ -1,12 +1,12 @@
-#/usr/bin/env bash
+#/bin/sh
 MY_MOD=i2c_hid_acpi
 
 remove_mod(){
-    sudo rmmod $MY_MOD
+    rmmod $MY_MOD
 }
 
 add_mod(){
-    sudo modprobe $MY_MOD
+    modprobe $MY_MOD
 }
 
 main(){
