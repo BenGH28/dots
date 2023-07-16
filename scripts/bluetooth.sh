@@ -27,7 +27,7 @@ off() {
 }
 
 get_address() {
-	device=$(bluetoothctl devices | rofi -dmenu  -l 4 -p "select: ")
+	device=$(bluetoothctl devices | rofi -dmenu -l 4 -p "select: ")
 	mac_addr=$(echo $device | awk '{print $2}')
 }
 
