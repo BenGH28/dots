@@ -35,7 +35,8 @@ def make_cpu_widget():
         foreground=foreground,
         background=BACKGROUND,
         format=" {load_percent}%",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={
+            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -45,7 +46,8 @@ def make_ram_widget():
         foreground=foreground,
         background=BACKGROUND,
         format=" {MemUsed:.0f}M",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={
+            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -103,7 +105,7 @@ def make_brightness_widget():
 def make_clock_widget():
     foreground = "#c768dd"
     return widget.Clock(
-        foreground=foreground, background=BACKGROUND, format="%D/%m/%y %H:%M"
+        foreground=foreground, background=BACKGROUND, format="%Y/%m/%d %H:%M"
     )
 
 
@@ -146,7 +148,7 @@ def make_kernel_widget():
     foreground = "#c768dd"
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
-    kernel_str = kernel_as_bytes.decode("utf-8")[:4]
+    kernel_str = kernel_as_bytes.decode("utf-8").split('-')[0]
 
     return widget.TextBox(
         background=BACKGROUND, foreground=foreground, fmt=f" {kernel_str}"
