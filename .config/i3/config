@@ -65,7 +65,7 @@ exec_always --no-startup-id picom
 floating_modifier $mod
 
 # start a terminal (this uses alacritty but use whatever you want)
-set $terminal alacritty
+set $terminal kitty
 bindsym $mod+Return exec $terminal
 
 # kill focused window
@@ -74,7 +74,7 @@ bindsym $mod+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run
 
-# change focus
+# change focusty
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
