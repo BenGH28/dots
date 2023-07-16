@@ -27,7 +27,7 @@ off() {
 }
 
 get_address() {
-	device=$(bluetoothctl devices | dmenu -c -l 5 -bw 5 -p "select: ")
+	device=$(bluetoothctl devices | rofi -dmenu  -l 4 -p "select: ")
 	mac_addr=$(echo $device | awk '{print $2}')
 }
 
@@ -42,7 +42,7 @@ disconnect() {
 }
 
 run() {
-	choice=$(printf '%s\n' "${options[@]}" | dmenu -c -l -5 -bw 5 -p 'options:' "${@}")
+	choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -l 4 -p 'options:' "${@}")
 	case $choice in
 	"on") on ;;
 	"off") off ;;
