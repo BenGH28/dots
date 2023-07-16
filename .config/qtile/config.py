@@ -117,6 +117,20 @@ def init_layouts(layout_theme: dict) -> List:
     ]
     return layouts
 
+def bottom_bar(background, foreground):
+    return bar.Bar(
+        widgets=[
+            widget.Spacer(length=int(1920 / 3)),
+            widgets.make_glyph(False),
+            widgets.make_spotify_widget(),
+            widgets.make_glyph(True),
+            widget.Spacer(length=int(1920 / 3)),
+        ],
+        size=BAR_SIZE,
+        opacity=OPAQUE,
+        background=background,
+        foreground=foreground,
+    )
 
 def init_screens(colours) -> List[Screen]:
     # will not display for multiple screens/bars
@@ -135,12 +149,13 @@ def init_screens(colours) -> List[Screen]:
         return [
             Screen(
                 top=bar.Bar(
-                    widgets1,
+                    widgets2,
                     size=BAR_SIZE,
                     opacity=OPAQUE,
                     background=my_background,
                     foreground=my_foreground,
                 ),
+                bottom=bottom_bar(my_background, my_foreground),
             )
         ]
 
@@ -153,19 +168,7 @@ def init_screens(colours) -> List[Screen]:
                 background=my_background,
                 foreground=my_foreground,
             ),
-            bottom=bar.Bar(
-                widgets=[
-                    widget.Spacer(length=int(1920 / 3)),
-                    widgets.make_glyph(False),
-                    widgets.make_spotify_widget(),
-                    widgets.make_glyph(True),
-                    widget.Spacer(length=int(1920 / 3)),
-                ],
-                size=BAR_SIZE,
-                opacity=OPAQUE,
-                background=my_background,
-                foreground=my_foreground,
-            ),
+            bottom=bottom_bar(my_background, my_foreground),
         ),
         Screen(
             top=bar.Bar(

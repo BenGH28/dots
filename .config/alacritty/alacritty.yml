@@ -63,14 +63,14 @@ scrolling:
 
 # Font configuration
 myfontsize:
-  fontsize: &fontsize 12
+  fontsize: &fontsize 9
 
 myfontnames:
   MyFont: &MyFont
     # FiraCode Nerd Font Mono
     # Iosevka Term
-    JetBrainsMono Nerd Font
-    # Source Code Pro
+    # JetBrainsMono Nerd Font
+    Source Code Pro
     # Hasklug Nerd Font
 
 
