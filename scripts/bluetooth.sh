@@ -28,26 +28,26 @@ off() {
 
 get_address() {
 	device=$(bluetoothctl devices | rofi -dmenu -l 4 -p "select: ")
-	mac_addr=$(echo $device | awk '{print $2}')
+	mac_addr=$(echo "$device" | awk '{print $2}')
 }
 
 connect() {
 	get_address
-	bluetoothctl connect $mac_addr >/dev/null 2>&1
+	bluetoothctl connect "$mac_addr" >/dev/null 2>&1
 }
 
 disconnect() {
 	get_address
-	bluetoothctl disconnect $mac_addr >/dev/null 2>&1
+	bluetoothctl disconnect "$mac_addr" >/dev/null 2>&1
 }
 
 run() {
 	choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -l 4 -p 'options:' "${@}")
 	case $choice in
-	"on") on ;;
-	"off") off ;;
-	"connect") connect ;;
-	"disconnect") disconnect ;;
+		"on") on ;;
+		"off") off ;;
+		"connect") connect ;;
+		"disconnect") disconnect ;;
 	esac
 }
 

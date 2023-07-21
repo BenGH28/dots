@@ -39,12 +39,7 @@ def go_to_group(window):
     """move to the screen to the group when the window is opened"""
     # window is XWindow
     win_name = window.window.get_wm_class()[1]
-    windows = {
-        "Spotify": "3",
-        "firefox": "2",
-        "discord": "5",
-        TERM: "1",
-    }
+    windows = {"Spotify": "3", "firefox": "2", "discord": "5", TERM: "1", }
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you
         # are already on that group this doesn't seem to work for spotify
@@ -57,9 +52,11 @@ def init_groups() -> List[Group]:
         Group(
             name="2",
             label="",
-            matches=[Match(wm_class=["firefox"]), Match(wm_class=["qutebrowser"])],
+            matches=[Match(wm_class=["firefox"]),
+                     Match(wm_class=["qutebrowser"])],
         ),
-        Group(name="3", label="", matches=[Match(wm_class=["spotify", "Spotify"])]),
+        Group(name="3", label="", matches=[
+              Match(wm_class=["spotify", "Spotify"])]),
         Group(name="4", label=""),
         Group(name="5", label="", matches=[Match(wm_class=["discord"])]),
         Group(name="6", label=""),
@@ -117,6 +114,7 @@ def init_layouts(layout_theme: dict) -> List:
     ]
     return layouts
 
+
 def bottom_bar(background, foreground):
     return bar.Bar(
         widgets=[
@@ -131,6 +129,7 @@ def bottom_bar(background, foreground):
         background=background,
         foreground=foreground,
     )
+
 
 def init_screens(colours) -> List[Screen]:
     # will not display for multiple screens/bars

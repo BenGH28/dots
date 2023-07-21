@@ -38,7 +38,7 @@ install_nvim() {
 }
 
 setup_xbacklight() {
-	echo "adding '$USER' to the video group..." && sudo usermod -a -G video $USER
+	echo "adding '$USER' to the video group..." && sudo usermod -a -G video "$USER"
 	echo "setup acpibacklight..." && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
 }
 
