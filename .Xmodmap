@@ -4,8 +4,5 @@ keycode 94 = Shift_L
 clear lock
 clear control
 
-!remap capslock to left ctrl
-keycode 66 = Control_L
-
-add control = Control_L
-add lock = Control_R
+add control = Caps_Lock Control_L Control_R
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol
