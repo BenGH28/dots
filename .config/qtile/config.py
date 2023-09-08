@@ -39,7 +39,12 @@ def go_to_group(window):
     """move to the screen to the group when the window is opened"""
     # window is XWindow
     win_name = window.window.get_wm_class()[1]
-    windows = {"Spotify": "3", "firefox": "2", "discord": "5", TERM: "1", }
+    windows = {
+        "Spotify": "3",
+        "firefox": "2",
+        "discord": "5",
+        TERM: "1",
+    }
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you
         # are already on that group this doesn't seem to work for spotify
@@ -47,21 +52,22 @@ def go_to_group(window):
 
 
 def init_groups() -> List[Group]:
-    groups = [
-        Group(name="1", label="", matches=[Match(wm_class=[TERM])]),
+    return [
+        Group(name="1", label="", matches=[Match(wm_class=TERM)]),
         Group(
             name="2",
             label="",
-            matches=[Match(wm_class=["firefox"]),
-                     Match(wm_class=["qutebrowser"])],
+            matches=[Match(wm_class="firefox"), Match(wm_class="qutebrowser")],
         ),
-        Group(name="3", label="", matches=[
-              Match(wm_class=["spotify", "Spotify"])]),
+        Group(
+            name="3",
+            label="",
+            matches=[Match(wm_class="spotify"), Match(wm_class="Spotify")],
+        ),
         Group(name="4", label=""),
-        Group(name="5", label="", matches=[Match(wm_class=["discord"])]),
+        Group(name="5", label="", matches=[Match(wm_class="discord")]),
         Group(name="6", label=""),
     ]
-    return groups
 
 
 def extend_keys_for_group(keys: List[Key]) -> None:
@@ -81,38 +87,32 @@ def extend_keys_for_group(keys: List[Key]) -> None:
 
 
 def init_colours_and_style() -> tuple:
-    if IS_DARK is True:
-        return themes.SetOneDarkTheme()
-    else:
-        return themes.SetOneLightTheme()
+    return themes.SetOneDarkTheme() if IS_DARK else themes.SetOneLightTheme()
 
 
 def init_widget_defaults() -> dict:
-    widget_defaults = dict(
+    return dict(
         font="JetBrainsMono Nerd Font",
         fontsize=18,
         padding=5,
     )
-    return widget_defaults
 
 
 def init_layout_theme(colours) -> dict:
-    layout_theme = {
+    return {
         "border_width": 2,
         "margin": 5,
         "border_focus": colours["primary"],
         "border_normal": colours["background"],
     }
-    return layout_theme
 
 
 def init_layouts(layout_theme: dict) -> List:
-    layouts = [
+    return [
         layout.MonadTall(**layout_theme),
         layout.MonadWide(**layout_theme),
         layout.Max(),
     ]
-    return layouts
 
 
 def bottom_bar(background, foreground):
@@ -200,12 +200,12 @@ def init_mouse():
 
 
 if __name__ in ["config", "__main__"]:
-    colours, _ = init_colours_and_style()
     groups = init_groups()
     keys = keybinding.get_keys()
     extend_keys_for_group(keys)
     widget_defaults = init_widget_defaults()
     extension_defaults = widget_defaults.copy()
+    colours, _ = init_colours_and_style()
     layout_theme = init_layout_theme(colours)
     layouts = init_layouts(layout_theme)
     screens = init_screens(colours)

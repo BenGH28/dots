@@ -7,7 +7,7 @@ from typing import Dict, Tuple
 
 from libqtile import qtile, widget
 
-from constants import TERM, IS_DARK
+from constants import IS_DARK, TERM
 from spotify import Spotify
 from themes import Dark, Light
 
@@ -35,8 +35,7 @@ def make_cpu_widget():
         foreground=foreground,
         background=BACKGROUND,
         format=" {load_percent}%",
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -46,8 +45,7 @@ def make_ram_widget():
         foreground=foreground,
         background=BACKGROUND,
         format=" {MemUsed:.0f}M",
-        mouse_callbacks={
-            "Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -148,7 +146,7 @@ def make_kernel_widget():
     foreground = "#c768dd"
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
-    kernel_str = kernel_as_bytes.decode("utf-8").split('-')[0]
+    kernel_str = kernel_as_bytes.decode("utf-8").split("-")[0]
 
     return widget.TextBox(
         background=BACKGROUND, foreground=foreground, fmt=f" {kernel_str}"
@@ -157,7 +155,7 @@ def make_kernel_widget():
 
 def base_widgets(colours: Dict[str, str]):
     """returns list of widgets"""
-    my_widgets = [
+    return [
         make_groupbox_widget(colours),
         make_glyph(True),
         widget.WindowName(foreground=colours["foreground"]),
@@ -178,8 +176,6 @@ def base_widgets(colours: Dict[str, str]):
         make_image_widget(),
         make_clock_widget(),
     ]
-
-    return my_widgets
 
 
 def make_laptop_widgets(colours: Dict[str, str]) -> list:
@@ -227,24 +223,3 @@ def set_images_for_widgets(style) -> Tuple[str, str, str]:
     orange_purple = "~/.config/qtile/resources/OrangePurple.png"
 
     return (black_orange, purple_orange, orange_purple)
-
-
-def set_widget_foreground(colours: Dict[str, str], style, powerline: bool) -> str:
-    """set a proper foreground"""
-    if style in (Dark.Dracula, Dark.OneDark) and powerline:
-        widget_foreground = colours["background"]
-    elif style == Light.OneLight and powerline:
-        widget_foreground = colours["foreground"]
-    else:
-        widget_foreground = colours["tertiary"]
-
-    return widget_foreground
-
-
-def set_widget_background(colours: Dict[str, str]) -> Tuple[str, str]:
-    """set a proper background"""
-    # the background colours of the widgets
-    firstcolour = colours["background"]
-    secondcolour = firstcolour
-
-    return (firstcolour, secondcolour)

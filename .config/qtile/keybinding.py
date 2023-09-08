@@ -8,7 +8,7 @@ from constants import ALT, CTRL, MOD, TERM
 
 def get_keys() -> List[Key]:
     """Returns a list of Key bindings"""
-    my_keys = [
+    return [
         # Switch between windows in current stack pane
         Key([MOD], "j", lazy.layout.down()),
         Key([MOD], "k", lazy.layout.up()),
@@ -73,4 +73,3 @@ def get_keys() -> List[Key]:
         Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
     ]
-    return my_keys

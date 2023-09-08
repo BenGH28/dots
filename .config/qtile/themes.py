@@ -1,6 +1,4 @@
-"""
-Various colour themes for the Qtile Bar
-"""
+""" Various colour themes for the Qtile Bar """
 from enum import Enum
 from typing import Dict, Tuple
 
@@ -22,7 +20,7 @@ def SetOneLightTheme() -> Tuple[Theme, Light]:
     Set a light theme based on One-Light
     Return a tuple of dictionary and enum describing the dictionary
     """
-    OneLight = {
+    one_light = {
         "foreground": "#282A36",
         "background": "#ffffff",
         "inactive": "#d8d8d2",
@@ -30,7 +28,7 @@ def SetOneLightTheme() -> Tuple[Theme, Light]:
         "secondary": "#98d379",
         "tertiary": "#50a14f",
     }
-    return (OneLight, Light.OneLight)
+    return (one_light, Light.OneLight)
 
 
 def SetOneDarkTheme() -> Tuple[Theme, Dark]:
@@ -38,7 +36,7 @@ def SetOneDarkTheme() -> Tuple[Theme, Dark]:
     Set a Dark theme based on One-Dark
     Return a tuple of dictionary and enum describing the dictionary
     """
-    OneDark = {
+    one_dark = {
         "foreground": "#ffffff",
         "background": "#282A36",
         "inactive": "#9f9a9a",
@@ -46,7 +44,7 @@ def SetOneDarkTheme() -> Tuple[Theme, Dark]:
         "secondary": "#98d379",
         "tertiary": "#50a14f",
     }
-    return (OneDark, Dark.OneDark)
+    return (one_dark, Dark.OneDark)
 
 
 def SetDraculaTheme() -> Tuple[Theme, Dark]:
