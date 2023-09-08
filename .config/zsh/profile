@@ -20,6 +20,10 @@ export LIBDIR=$HOME/.local/luarocks/lib
 export BINDIR=$HOME/.local/luarocks/bin
 export CONFDIR=$HOME/.local/luarocks/conf
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 #personal variables
 export ZRC="$ZDOTDIR/.zshrc"
 export VIMRC="$HOME/.config/nvim/init.lua"
