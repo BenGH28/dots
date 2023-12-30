@@ -63,7 +63,7 @@ def get_keys() -> List[Key]:
         ),
         # Key([CTRL], "space", lazy.spawn("dmenu_run -h 30")),
         Key([MOD], "m", lazy.spawn("Spotify")),
-        Key([MOD], "f", lazy.spawn("pcmanfm")),
+        Key([MOD], "f", lazy.spawn("dolphin")),
         Key([MOD], "z", lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
         Key(
             [MOD], "F3", lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")
