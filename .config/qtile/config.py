@@ -48,7 +48,7 @@ def go_to_group(window):
     if win_name in windows:
         # NOTE: toggle=False is important else you will switch screens if you
         # are already on that group this doesn't seem to work for spotify
-        window.group.cmd_toscreen(toggle=False)
+        window.group.toscreen(toggle=False)
 
 
 def init_groups() -> List[Group]:

@@ -160,13 +160,10 @@ def base_widgets(colours: Dict[str, str]):
         make_glyph(True),
         widget.WindowName(foreground=colours["foreground"]),
         make_glyph(False),
-        make_image_widget(),
         make_cpu_widget(),
-        make_image_widget(),
         make_ram_widget(),
         make_image_widget(),
         make_kernel_widget(),
-        # make_spotify_widget(colours["secondary"], firstcolour, powerline),
         make_image_widget(),
         make_agroupbox_widget(),
         make_image_widget(),
@@ -205,21 +202,3 @@ def initialize_widgets(colours: dict):
     if is_laptop():
         return make_laptop_widgets(colours)
     return base_widgets(colours)
-
-
-def set_images_for_widgets(style) -> Tuple[str, str, str]:
-    """set properly coloured widgets based on the style"""
-    # use colours for One
-    if style in (Dark.OneDark, Light.OneLight):
-        black_green = "~/.config/qtile/resources/GreenEnd.png"
-        blue_green = "~/.config/qtile/resources/BlueGreen.png"
-        green_blue = "~/.config/qtile/resources/GreenBlue.png"
-
-        return (black_green, blue_green, green_blue)
-
-    # style = Dark.Dracula:
-    black_orange = "~/.config/qtile/resources/OrangeEnd.png"
-    purple_orange = "~/.config/qtile/resources/PurpleOrange.png"
-    orange_purple = "~/.config/qtile/resources/OrangePurple.png"
-
-    return (black_orange, purple_orange, orange_purple)
