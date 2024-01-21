@@ -62,7 +62,7 @@ def get_keys() -> List[Key]:
             lazy.spawn('rofi -show combi -modes combi -combi-modes "window,drun"'),
         ),
         # Key([CTRL], "space", lazy.spawn("dmenu_run -h 30")),
-        Key([MOD], "m", lazy.spawn("Spotify")),
+        Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("dolphin")),
         Key([MOD], "z", lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
         Key(
