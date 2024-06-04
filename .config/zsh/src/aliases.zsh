@@ -23,7 +23,7 @@ alias Syu="sudo pacman -Syu"
 alias pi="ssh pi@192.168.1.63"
 
 # common configs
-alias alconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
+alias alconf="$EDITOR $HOME/.config/alacritty/alacritty.toml"
 alias qconf="$EDITOR $HOME/.config/qtile/config.py"
 alias vimrc="$EDITOR $VIMRC"
 alias zrc="$EDITOR $ZDOTDIR/.zshrc"
