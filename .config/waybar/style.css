@@ -8,6 +8,7 @@
 window#waybar {
     background: transparent;
     margin: 5px;
+    color: #797a7c
 }
 
 .modules-right {
