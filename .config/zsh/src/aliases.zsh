@@ -46,6 +46,7 @@ alias ycm="yadm commit -m"
 alias yps="yadm push"
 alias ypl="yadm pull"
 alias ystat="yadm status"
+alias yel="yadm enter lazygit"
 
 alias tm="go_tmux"
 alias cht="cht.sh"
