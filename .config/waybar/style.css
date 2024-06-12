@@ -76,6 +76,10 @@ window#waybar {
     color: #5fd1fa;
 }
 
+#window {
+    margin-right: 5px;
+}
+
 #battery {
     border-radius: 0 15px 15px 0;
     padding-right: 15px;
