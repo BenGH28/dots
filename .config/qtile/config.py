@@ -1,4 +1,5 @@
-""" Ben Hunt's Qtile Config """
+"""Ben Hunt's Qtile Config"""
+
 import asyncio
 import os
 import subprocess
@@ -11,7 +12,7 @@ from libqtile.lazy import lazy
 import keybinding
 import themes
 import widgets
-from constants import BAR_SIZE, IS_DARK, MOD, OPAQUE, TERM
+from constants import BAR_SIZE, MOD, OPAQUE, TERM
 
 
 @hook.subscribe.startup_once
@@ -87,7 +88,7 @@ def extend_keys_for_group(keys: List[Key]) -> None:
 
 
 def init_colours_and_style() -> tuple:
-    return themes.SetOneDarkTheme() if IS_DARK else themes.SetOneLightTheme()
+    return themes.SetOneDarkTheme()
 
 
 def init_widget_defaults() -> dict:
@@ -205,7 +206,7 @@ if __name__ in ["config", "__main__"]:
     extend_keys_for_group(keys)
     widget_defaults = init_widget_defaults()
     extension_defaults = widget_defaults.copy()
-    colours, _ = init_colours_and_style()
+    colours, _ = themes.SetOneDarkTheme()
     layout_theme = init_layout_theme(colours)
     layouts = init_layouts(layout_theme)
     screens = init_screens(colours)

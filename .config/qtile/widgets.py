@@ -1,17 +1,23 @@
 """
 Various widgets based on colour theme
 """
+
 from os.path import exists
 from subprocess import PIPE, run
-from typing import Dict, Tuple
+from typing import Dict
 
 from libqtile import qtile, widget
 
-from constants import IS_DARK, TERM
+from constants import TERM
 from spotify import Spotify
-from themes import Dark, Light
 
-BACKGROUND = "#191a21" if IS_DARK else "#f0f0f4"
+RED = "#e06c75"
+GREEN = "#98c379"
+ORANGE = "#d19a66"
+BLUE = "#61afef"
+TEAL = "#56b6c2"
+PURPLE = "#c768dd"
+BACKGROUND = "#191a21"
 
 
 def is_laptop() -> bool:
@@ -23,16 +29,14 @@ def is_laptop() -> bool:
 
 
 def make_spotify_widget():
-    foreground = "#e06c75"
     return Spotify(
-        foreground=foreground, background=BACKGROUND, format="{icon} {artist} - {track}"
+        foreground=RED, background=BACKGROUND, format="{icon} {artist} - {track}"
     )
 
 
 def make_cpu_widget():
-    foreground = "#e06c75"
     return widget.CPU(
-        foreground=foreground,
+        foreground=RED,
         background=BACKGROUND,
         format=" {load_percent}%",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
@@ -40,9 +44,8 @@ def make_cpu_widget():
 
 
 def make_ram_widget():
-    foreground = "#98c379"
     return widget.Memory(
-        foreground=foreground,
+        foreground=GREEN,
         background=BACKGROUND,
         format=" {MemUsed:.0f}M",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
@@ -50,14 +53,12 @@ def make_ram_widget():
 
 
 def make_agroupbox_widget():
-    foreground = "#d19a66"
-    return widget.AGroupBox(foreground=foreground, background=BACKGROUND, borderwidth=0)
+    return widget.AGroupBox(foreground=ORANGE, background=BACKGROUND, borderwidth=0)
 
 
 def make_volume_widget():
-    foreground = "#61afef"
     return widget.Volume(
-        foreground=foreground,
+        foreground=BLUE,
         background=BACKGROUND,
         fmt="{}",
         # right click launches pavucontrol
@@ -66,9 +67,8 @@ def make_volume_widget():
 
 
 def make_battery_widget():
-    foreground = "#56b6c2"
     return widget.Battery(
-        foreground=foreground,
+        foreground=TEAL,
         background=BACKGROUND,
         charge_char="",
         discharge_char="",
@@ -81,8 +81,6 @@ def make_battery_widget():
 def make_brightness_widget():
     intel_bright_file = "/sys/class/backlight/intel_backlight/brightness"
     amd_bright_file = "/sys/class/backlight/amdgpu_bl0/brightness"
-    backlight_name = ""
-    bright_file = ""
     if exists(intel_bright_file):
         bright_file = intel_bright_file
         backlight_name = "intel_backlight"
@@ -90,9 +88,8 @@ def make_brightness_widget():
         bright_file = amd_bright_file
         backlight_name = "amdgpu_bl0"
 
-    foreground = "#e06c75"
     return widget.Backlight(
-        foreground=foreground,
+        foreground=RED,
         background=BACKGROUND,
         backlight_name=backlight_name,
         brightness_file=bright_file,
@@ -101,9 +98,8 @@ def make_brightness_widget():
 
 
 def make_clock_widget():
-    foreground = "#c768dd"
     return widget.Clock(
-        foreground=foreground, background=BACKGROUND, format="%Y/%m/%d %H:%M"
+        foreground=PURPLE, background=BACKGROUND, format="%Y/%m/%d %H:%M"
     )
 
 
@@ -143,13 +139,12 @@ def make_glyph(left: bool):
 
 
 def make_kernel_widget():
-    foreground = "#c768dd"
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
     kernel_str = kernel_as_bytes.decode("utf-8").split("-")[0]
 
     return widget.TextBox(
-        background=BACKGROUND, foreground=foreground, fmt=f" {kernel_str}"
+        background=BACKGROUND, foreground=PURPLE, fmt=f" {kernel_str}"
     )
 
 

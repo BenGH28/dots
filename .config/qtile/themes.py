@@ -1,4 +1,5 @@
-""" Various colour themes for the Qtile Bar """
+"""Various colour themes for the Qtile Bar"""
+
 from enum import Enum
 from typing import Dict, Tuple
 
