@@ -6,12 +6,9 @@ function run {
     fi
 }
 
-run waybar
+run waybar -l debug >~/.config/hypr/waybar_debug.log
 run hyprpaper
 run hypridle
-run nm-applet
 run blueman-applet
-run pamac-tray
 run accountable2you
 run /usr/lib/polkit-kde-authentication-agent-1
-run flameshot

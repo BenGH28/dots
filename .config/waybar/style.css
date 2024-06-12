@@ -31,11 +31,16 @@ window#waybar {
     background: #000000;
 }
 
+#workspaces button:hover {
+    margin: 2px;
+}
+
 #workspaces button.active {
     color: #abb2bf
 }
 
 #battery,
+#bluetooth,
 #pulseaudio,
 #network,
 #disk,
@@ -73,6 +78,7 @@ window#waybar {
 
 #battery {
     border-radius: 0 15px 15px 0;
+    padding-right: 15px;
 }
 
 #battery.charging {
@@ -95,6 +101,9 @@ window#waybar {
     animation-direction: alternate;
 }
 
+#power-profiles-daemon {
+    margin-right: 10px;
+}
 
 @keyframes blink {
     to {
