@@ -26,24 +26,16 @@ ex() {
     fi
 }
 
-cat() {
-    THEME=$(alacritty-theme current | sed '/C/d' | awk '{print $2}')
-    case $THEME in
-        one_light) bat --theme OneHalfLight $@ ;;
-        one_dark) bat --theme OneHalfDark $@ ;;
-        *) bat $@ ;;
-    esac
-}
 
 ### The Kitty Terminal ### doesn't work in TMUX :( withouth some extra work that I don't have the energy for
 Atom() {
-    kitty @set-colors -a "~/.config/kitty/MyOneDark.conf" &&
-        ln -sf ~/.config/kitty/MyOneDark.conf ~/.config/kitty/theme.conf
+    kitty @set-colors -a "~/.config/kitty/onedark.conf" &&
+        ln -sf ~/.config/kitty/onedark.conf ~/.config/kitty/theme.conf
 }
 
 AtomOneLight() {
-    kitty @set-colors -a "~/.config/kitty/MyOneLight.conf" &&
-        ln -sf ~/.config/kitty/MyOneLight.conf ~/.config/kitty/theme.conf
+    kitty @set-colors -a "~/.config/kitty/onelight.conf" &&
+        ln -sf ~/.config/kitty/onelight.conf ~/.config/kitty/theme.conf
 }
 
 kitco() {
