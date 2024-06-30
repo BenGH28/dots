@@ -3,9 +3,14 @@
 # error out if anything goes wrong
 set -e
 
+message() {
+    echo "***********************"
+    echo "$@"
+    echo "***********************"
+}
 #installing my favourite packages and utilities
 install_pkgs() {
-    echo "installing pacman packages"
+    message "installing pacman packages"
     sudo pacman -Syu --noconfirm --needed - <./pacman-pkgs.txt
 }
 
@@ -15,50 +20,50 @@ install_pkgs() {
 
 #get the aur-packages
 install_aur_pkg() {
-    echo "installing paru..."
+    message "installing paru..."
     git clone https://aur.archlinux.org/paru.git
     cd paru || return
     makepkg -si
-    echo "installing aur packages"
+    message "installing aur packages"
     paru -S - <./aur-pkgs.txt
 }
 
 # install rustup to gain access to cargo
 install_rust() {
-    echo "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    message "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 install_psutil() {
-    echo "installing psutil for Qtile..." && pip install psutil
+    message "installing psutil for Qtile..." && pip install psutil
 }
 
 install_tpm() {
-    echo "installing Tmux Plugin Manager..." \
+    message "installing Tmux Plugin Manager..." \
         && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 install_nvim() {
-    echo "installing my nvim config..." \
+    message "installing my nvim config..." \
         && curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
 }
 
 setup_xbacklight() {
-    echo "adding '$USER' to the video group..." \
+    message "adding '$USER' to the video group..." \
         && sudo usermod -a -G video "$USER" \
-        && echo "setup acpibacklight..." \
+        && message "setup acpibacklight..." \
         && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
 }
 
 change_shell() {
     # see if zsh is installed and if so then change to zsh
     if command -v zsh 2>/dev/null; then
-        echo "zsh is installed"
+        message "zsh is installed"
     else
-        echo "zsh is not installed"
+        message "zsh is not installed"
         return
     fi
 
-    echo "changing shell to zsh..." && chsh -s /bin/zsh || return
+    message "changing shell to zsh..." && chsh -s /bin/zsh || return
 
 }
 
