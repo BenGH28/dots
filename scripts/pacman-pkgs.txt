@@ -10,6 +10,7 @@ dunst
 eza
 fd
 firefox
+flameshot
 fzf
 gcc
 git
@@ -31,12 +32,14 @@ nodejs
 npm
 pcmanfm
 playerctl
+python-pip
 qtile
 ranger
 ripgrep
 rofi
 shfmt
 slock
+starship
 tldr
 tmux
 ttf-bitstream-vera
@@ -57,5 +60,3 @@ yarn
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-starship
-flameshot

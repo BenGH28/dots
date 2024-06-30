@@ -70,9 +70,9 @@ install_snaps() {
 
 main() {
     install_pkgs
+    install_rust
     install_aur_pkg
     install_snaps
-    install_rust
     install_tpm
     install_psutil
     install_nvim
