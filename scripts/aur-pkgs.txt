@@ -1,2 +1,3 @@
 picom-jonaburg-git
+snapd
 gotop

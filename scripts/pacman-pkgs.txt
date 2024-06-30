@@ -59,4 +59,3 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 starship
 flameshot
-snapd
