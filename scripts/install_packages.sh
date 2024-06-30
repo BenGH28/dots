@@ -2,8 +2,8 @@
 
 #installing my favourite packages and utilities
 install_pkgs() {
-	echo "installing pacman packages"
-	sudo pacman -Syu --noconfirm --needed - <~/scripts/pacman-pkgs.txt
+    echo "installing pacman packages"
+    sudo pacman -Syu --noconfirm --needed - <./pacman-pkgs.txt
 }
 
 ##################################################
@@ -12,66 +12,69 @@ install_pkgs() {
 
 #get the aur-packages
 install_aur_pkg() {
-	echo "installing paru..."
-	git clone https://aur.archlinux.org/paru.git
-	cd paru
-	makepkg -si
-	echo "installing aur packages"
-	paru -S - <~/scripts/aur-pkgs.txt
+    echo "installing paru..."
+    git clone https://aur.archlinux.org/paru.git
+    cd paru || return
+    makepkg -si
+    echo "installing aur packages"
+    paru -S - <./aur-pkgs.txt
 }
 
 # install rustup to gain access to cargo
 install_rust() {
-	echo "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    echo "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 install_psutil() {
-	echo "installing psutil for Qtile..." && pip install psutil
+    echo "installing psutil for Qtile..." && pip install psutil
 }
 
 install_tpm() {
-	echo "installing Tmux Plugin Manager..." && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    echo "installing Tmux Plugin Manager..." \
+        && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 install_nvim() {
-	echo "installing my nvim config..." && curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
+    echo "installing my nvim config..." \
+        && curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
 }
 
 setup_xbacklight() {
-	echo "adding '$USER' to the video group..." && sudo usermod -a -G video "$USER"
-	echo "setup acpibacklight..." && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
+    echo "adding '$USER' to the video group..." \
+        && sudo usermod -a -G video "$USER" \
+        && echo "setup acpibacklight..." \
+        && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
 }
 
 change_shell() {
-	echo "changing shell to zsh..." && chsh -s /bin/zsh
-}
+    # see if zsh is installed and if so then change to zsh
+    if command -v zsh 2>/dev/null; then
+        echo "zsh is installed"
+    else
+        echo "zsh is not installed"
+        return
+    fi
 
-install_ranger_devicons() {
-	# could add as a submodule but yadm seems mangle those ... or I do
-	echo "adding devicons plugin for ranger..." && git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-}
+    echo "changing shell to zsh..." && chsh -s /bin/zsh || return
 
-_enable_snapd() {
-	sudo systemctl enable snapd && sudo systemctl start start snapd
 }
 
 install_snaps() {
-	_enable_snapd
-	sudo snap install spotify discord accountable2you
-
+    sudo systemctl enable snapd \
+        && sudo systemctl start start snapd \
+        && sudo snap install spotify discord accountable2you
 }
 
 main() {
-	install_pkgs
-	install_aur_pkg
-	install_snaps
-	install_rust
-	install_tpm
-	install_psutil
-	install_nvim
-	install_ranger_devicons
-	setup_xbacklight
-	change_shell
+    install_pkgs
+    install_aur_pkg
+    install_snaps
+    install_rust
+    install_tpm
+    install_psutil
+    install_nvim
+    setup_xbacklight
+    change_shell
 }
 
 main

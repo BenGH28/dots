@@ -7,7 +7,7 @@ bluez-utils
 clang
 cmake
 dunst
-exa
+eza
 fd
 firefox
 fzf
