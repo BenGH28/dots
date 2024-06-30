@@ -30,7 +30,7 @@ install_aur_pkg() {
 
 # install rustup to gain access to cargo
 install_rust() {
-    message "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    message "Installing rust" && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 }
 
 install_psutil() {
