@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# error out if anything goes wrong
+set -e
+
 #installing my favourite packages and utilities
 install_pkgs() {
     echo "installing pacman packages"
