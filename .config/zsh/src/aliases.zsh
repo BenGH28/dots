@@ -28,11 +28,9 @@ alias qconf="$EDITOR $HOME/.config/qtile/config.py"
 alias vimrc="$EDITOR $VIMRC"
 alias zrc="$EDITOR $ZDOTDIR/.zshrc"
 
-alias vim="$EDITOR"
-alias rn="ranger"
+alias aliases="$EDITOR $ZDOTDIR/src/aliases.zsh"
 
-alias atd="alacritty-theme change one_dark"
-alias atl="alacritty-theme change one_light"
+alias vim="$EDITOR"
 
 alias mirrorUpdate="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 alias lg="lazygit"
