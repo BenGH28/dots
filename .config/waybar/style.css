@@ -8,7 +8,11 @@
 window#waybar {
     background: transparent;
     margin: 5px;
-    color: #797a7c
+    color: #919c9f
+}
+
+#workspaces button.active {
+    color: #abb2bf
 }
 
 .modules-right {
@@ -35,9 +39,6 @@ window#waybar {
     margin: 2px;
 }
 
-#workspaces button.active {
-    color: #abb2bf
-}
 
 #battery,
 #bluetooth,
