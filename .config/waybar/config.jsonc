@@ -2,33 +2,31 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 5, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "battery",
-        "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "backlight",
+        "group/hardware",
+        "wlr/taskbar",
         "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "mpris"
     ],
     "modules-right": [
+        "hyprland/workspaces",
         "pulseaudio",
         "network",
         "clock",
-        "tray"
+        "tray",
+        "group/group_power"
     ],
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
-        "format": "{name}: {icon}",
+        "format": "{icon}",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format-icons": {
@@ -58,12 +56,27 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d %H:%M}"
     },
+    "group/hardware": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "hardware",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "battery",
+            "power-profiles-daemon",
+            "cpu",
+            "memory",
+            "backlight"
+        ]
+    },
     "cpu": {
-        "format": "{usage}% ",
+        "format": " :{usage}%",
         "tooltip": true
     },
     "memory": {
-        "format": "{}% "
+        "format": " :{}%"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -79,7 +92,7 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{icon}:{percent}%",
         "format-icons": [
             "",
             "",
@@ -103,8 +116,6 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": [
             "",
             "",
@@ -129,20 +140,51 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": " ",
+        "tooltip-format": "{essid} ({signalStrength}%)  ",
         "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "on-click-right": "nm-connection-editor"
     },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Papirus",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "album-len": 10,
+        "ignored-players": ["firefox"],
+        "dynamic-order": [
+            "title",
+            "artist",
+            "album"
+        ],
+        "player-icons": {
+            "default": "▶",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        }
+    },
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
+    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-muted": " ",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -159,5 +201,43 @@
             ]
         },
         "on-click": "pavucontrol"
+    },
+    "group/group_power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power", // First element is the "group leader" and won't ever be hidden
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot"
+        ]
+    },
+    "custom/quit": {
+        "format": " 󰗼 ",
+        "tooltip": true,
+        "tooltip-format": "logout",
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/lock": {
+        "format": " 󰌾 ",
+        "tooltip": true,
+        "tooltip-format": "lock screen",
+        "on-click": "hyprlock"
+    },
+    "custom/reboot": {
+        "format": " 󰜉 ",
+        "tooltip": true,
+        "tooltip-format": "reboot",
+        "on-click": "reboot"
+    },
+    "custom/power": {
+        "format": "  ",
+        "tooltip-format": "shutdown",
+        "tooltip": true,
+        "on-click": "shutdown now"
     }
 }
