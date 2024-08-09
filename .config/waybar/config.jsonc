@@ -2,19 +2,19 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    // "width": 1280, // Waybar width
     "spacing": 5, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": [
         "group/hardware",
+        "hyprland/workspaces",
         "wlr/taskbar",
         "hyprland/window"
     ],
     "modules-center": [
         "mpris"
+
     ],
     "modules-right": [
-        "hyprland/workspaces",
+        "custom/weather",
         "pulseaudio",
         "network",
         "clock",
@@ -66,6 +66,7 @@
         "modules": [
             "battery",
             "power-profiles-daemon",
+            "temperature",
             "cpu",
             "memory",
             "backlight"
@@ -83,7 +84,7 @@
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
+        "format": "{icon}:{temperatureC}°C",
         "format-icons": [
             "",
             "",
@@ -139,7 +140,6 @@
         }
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " ",
         "tooltip-format": "{essid} ({signalStrength}%)  ",
         "format-ethernet": "{ipaddr}/{cidr} ",
@@ -150,7 +150,7 @@
     },
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 14,
+        "icon-size": 16,
         "icon-theme": "Papirus",
         "tooltip-format": "{title}",
         "on-click": "activate",
@@ -160,18 +160,20 @@
         "format": "{player_icon} {dynamic}",
         "format-paused": "{status_icon} <i>{dynamic}</i>",
         "album-len": 10,
-        "ignored-players": ["firefox"],
+        "ignored-players": [
+            "firefox"
+        ],
         "dynamic-order": [
             "title",
             "artist",
             "album"
         ],
         "player-icons": {
-            "default": "▶",
+            "default": "⏸",
             "mpv": "🎵"
         },
         "status-icons": {
-            "paused": "⏸"
+            "paused": "▶"
         }
     },
     "pulseaudio/slider": {
@@ -235,9 +237,16 @@
         "on-click": "reboot"
     },
     "custom/power": {
-        "format": "  ",
+        "format": "   ",
         "tooltip-format": "shutdown",
         "tooltip": true,
         "on-click": "shutdown now"
+    },
+    "custom/weather": {
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "format": "{}",
+        "return-type": "json",
+        "tooltip": true,
+        "interval": 3600
     }
 }
