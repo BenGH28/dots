@@ -168,3 +168,4 @@ package.json
 rustlings/
 go/
 .undo/
+.config/tmux/plugins
