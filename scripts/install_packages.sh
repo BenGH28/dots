@@ -8,24 +8,21 @@ message() {
     echo "$@"
     echo "***********************"
 }
-#installing my favourite packages and utilities
-install_pkgs() {
-    message "installing pacman packages"
-    sudo pacman -Syu --noconfirm --needed - <./pacman-pkgs.txt
-}
 
 ##################################################
 #install those utilities that aren't on ARCH repos
 ##################################################
 
-#get the aur-packages
-install_aur_pkg() {
+install_paru() {
     message "installing paru..."
     git clone https://aur.archlinux.org/paru.git
     cd paru || return
     makepkg -si
-    message "installing aur packages"
-    paru -S - <./aur-pkgs.txt
+}
+
+install_system_pkgs() {
+    message "installing packages"
+    sudo paru -Syu --noconfirm --needed - <"$HOME/scripts/packages.txt"
 }
 
 # install rustup to gain access to cargo
@@ -38,20 +35,20 @@ install_psutil() {
 }
 
 install_tpm() {
-    message "installing Tmux Plugin Manager..." \
-        && git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+    message "installing Tmux Plugin Manager..." &&
+        git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 install_nvim() {
-    message "installing my nvim config..." \
-        && curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
+    message "installing my nvim config..." &&
+        curl https://raw.githubusercontent.com/BenGH28/nvim/main/bootstrap.sh | sh
 }
 
 setup_xbacklight() {
-    message "adding '$USER' to the video group..." \
-        && sudo usermod -a -G video "$USER" \
-        && message "setup acpibacklight..." \
-        && sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
+    message "adding '$USER' to the video group..." &&
+        sudo usermod -a -G video "$USER" &&
+        message "setup acpibacklight..." &&
+        sudo cp backlight.rules /etc/udev/rules.d/90-backlight.rules
 }
 
 change_shell() {
@@ -68,15 +65,15 @@ change_shell() {
 }
 
 install_snaps() {
-    sudo systemctl enable snapd \
-        && sudo systemctl start start snapd \
-        && sudo snap install spotify discord accountable2you
+    sudo systemctl enable snapd &&
+        sudo systemctl start start snapd &&
+        sudo snap install spotify discord accountable2you
 }
 
 main() {
-    install_pkgs
     install_rust
-    install_aur_pkg
+    install_paru
+    install_system_pkgs
     install_snaps
     install_tpm
     install_psutil
