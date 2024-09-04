@@ -13,3 +13,4 @@ run blueman-applet
 run accountable2you
 run /usr/lib/polkit-kde-authentication-agent-1
 run wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+run hyprpm reload
