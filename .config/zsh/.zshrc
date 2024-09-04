@@ -7,15 +7,18 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 setopt completealiases
 setopt autocd
+setopt autopushd
 setopt nocaseglob
 setopt correct
 setopt correctall
 setopt nomatch
+setopt sharehistory
 
 SAVEHIST=100000
 HISTFILE=$ZDOTDIR/zsh_history
 _Z_DATA=$ZDOTDIR/.z
 EDITOR='nvim'
+VISUAL='nvim'
 
 #gofor vi-mode
 bindkey -v
