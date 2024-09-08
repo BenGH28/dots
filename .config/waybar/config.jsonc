@@ -13,7 +13,6 @@
         "mpris"
     ],
     "modules-right": [
-        "custom/weather",
         "pulseaudio",
         "network",
         "clock",
