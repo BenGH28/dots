@@ -155,7 +155,7 @@ def init_screens(colours) -> List[Screen]:
                     background=my_background,
                     foreground=my_foreground,
                 ),
-                bottom=bottom_bar(my_background, my_foreground),
+                # bottom=bottom_bar(my_background, my_foreground),
             )
         ]
 

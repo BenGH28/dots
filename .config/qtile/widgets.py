@@ -99,7 +99,7 @@ def make_brightness_widget():
 
 def make_clock_widget():
     return widget.Clock(
-        foreground=PURPLE, background=BACKGROUND, format="%Y/%m/%d %H:%M"
+        foreground=PURPLE, background=BACKGROUND, format="%Y-%m-%d %H:%M"
     )
 
 
