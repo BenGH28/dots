@@ -6,7 +6,7 @@ function run {
     fi
 }
 
-run picom --experimental-backends
+run picom
 run nitrogen --restore
 run nm-applet
 run blueman-applet
