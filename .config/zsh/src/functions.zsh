@@ -50,7 +50,10 @@ kitco() {
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
 go_tmux() {
-    [ -x "$(command -v tmux)" ] &&
-        [ -z "${TMUX}" ] &&
-        { tmux attach || tmux new-session -s home; } >/dev/null 2>&1
+    if [[ $(tty) != *"tty"* ]]; then
+        [ -x "$(command -v tmux)" ] &&
+            [ -z "${TMUX}" ] &&
+            { tmux attach || tmux new-session -s home; } >/dev/null 2>&1
+    fi
 }
+

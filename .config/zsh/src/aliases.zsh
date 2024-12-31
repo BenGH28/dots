@@ -38,6 +38,7 @@ alias lg="lazygit"
 alias src="source $ZDOTDIR/.zshrc"
 
 # yadm
+alias y=yadm
 alias yadd="yadm add"
 alias yaddu="yadm add -u"
 alias ycm="yadm commit -m"

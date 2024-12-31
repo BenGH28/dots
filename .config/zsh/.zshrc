@@ -48,7 +48,10 @@ done
 # get tmux up and running
 go_tmux
 
-eval "$(starship init zsh)"
+
+if [[ $(tty) != *"tty"* ]]; then
+    eval "$(starship init zsh)"
+fi
 eval "$(glow completion zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"
