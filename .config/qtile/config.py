@@ -120,9 +120,9 @@ def bottom_bar(background, foreground):
     return bar.Bar(
         widgets=[
             widget.Spacer(length=int(1920 / 3)),
-            widgets.make_glyph(False),
-            widgets.make_spotify_widget(),
-            widgets.make_glyph(True),
+            widgets.wedge(False),
+            widgets.spotify(),
+            widgets.wedge(True),
             widget.Spacer(length=int(1920 / 3)),
         ],
         size=BAR_SIZE,
@@ -134,7 +134,7 @@ def bottom_bar(background, foreground):
 
 def init_screens(colours) -> List[Screen]:
     # will not display for multiple screens/bars
-    systray = widgets.make_systray_widget()
+    systray = widgets.systray()
 
     widgets1 = widgets.initialize_widgets(colours)
     widgets2 = widgets.initialize_widgets(colours)
