@@ -68,7 +68,7 @@ bindkey '\eps' push # Alt+p s
 
 fzf_open_in_nvim() {
     local selected_file
-    selected_file=$(fd -H  --exclude "*.png" --type f . ~ | fzf -m --preview='bat --color=always {}')
+    selected_file=$(fd -H  --exclude "*.png" --exclude ".git" --type f . | fzf -m --preview='bat --color=always {}')
     if [[ -n "$selected_file" ]]; then
         # take a multiline string turn it into an array
         selected_file=("${(@f)selected_file}")
