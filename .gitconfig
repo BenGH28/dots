@@ -1,6 +1,7 @@
+# vim: noexpandtab
 [user]
-    email = bnjmnhnt.git@gmail.com
-    name = Ben Hunt
+	email = bnjmnhnt.git@gmail.com
+	name = Ben Hunt
 
 [core]
 	editor = nvim
@@ -8,3 +9,11 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[alias]
+	sw = switch
+	st = status
+	br = branch
+	co = checkout
+	cob = checkout -b
+	z = fzf
+	root = "rev-parse --show-toplevel"
