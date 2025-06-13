@@ -26,27 +26,6 @@ ex() {
     fi
 }
 
-
-### The Kitty Terminal ### doesn't work in TMUX :( withouth some extra work that I don't have the energy for
-Atom() {
-    kitty @set-colors -a "~/.config/kitty/onedark.conf" &&
-        ln -sf ~/.config/kitty/onedark.conf ~/.config/kitty/theme.conf
-}
-
-AtomOneLight() {
-    kitty @set-colors -a "~/.config/kitty/onelight.conf" &&
-        ln -sf ~/.config/kitty/onelight.conf ~/.config/kitty/theme.conf
-}
-
-kitco() {
-    case $TERM:$1 in
-        xterm-kitty:dark) Atom ;;
-        xterm-kitty:light) AtomOneLight ;;
-        xterm-kitty:*) echo "this is not the theme you are looking for..." ;;
-        *) echo "this is not kitty" ;;
-    esac
-}
-
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
 go_tmux() {
