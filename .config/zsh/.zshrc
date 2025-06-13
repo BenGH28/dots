@@ -9,16 +9,17 @@ setopt completealiases
 setopt autocd
 setopt autopushd
 setopt nocaseglob
-setopt correct
-setopt correctall
+unsetopt correctall
 setopt nomatch
 setopt sharehistory
 
-SAVEHIST=100000
-HISTFILE=$ZDOTDIR/zsh_history
-_Z_DATA=$ZDOTDIR/.z
-EDITOR='nvim'
-VISUAL='nvim'
+export SAVEHIST=100000
+export HISTFILE=$ZDOTDIR/zsh_history
+export _Z_DATA=$ZDOTDIR/.z
+export EDITOR='nvim'
+export VISUAL='nvim'
+export FZF_DEFAULT_OPTS="--ansi --style full"
+
 
 #gofor vi-mode
 bindkey -v
