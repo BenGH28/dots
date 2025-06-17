@@ -1,0 +1,31 @@
+theme = "gruvbox"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+color-modes = true
+popup-border = "all"
+clipboard-provider = "x-clip"
+end-of-line-diagnostics = "hint"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.whitespace]
+render = "all"
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+
+[editor.inline-diagnostics]
+cursor-line = "warning" # show warnings and errors on the cursorline inline
+
