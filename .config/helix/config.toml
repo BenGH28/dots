@@ -9,7 +9,7 @@ clipboard-provider = "x-clip"
 end-of-line-diagnostics = "hint"
 
 [editor.lsp]
-display-inlay-hints = true
+# display-inlay-hints = true
 
 [editor.whitespace]
 render = "all"
@@ -21,10 +21,10 @@ skip-levels = 1
 
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control"]
+left = ["mode", "spinner", "version-control", "diagnostics"]
 center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
-separator = "│"
+right = ["selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│ "
 
 [editor.inline-diagnostics]
 cursor-line = "warning" # show warnings and errors on the cursorline inline
