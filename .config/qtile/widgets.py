@@ -9,14 +9,6 @@ from constants import TERM
 from spotify import Spotify
 from colours import Palette
 
-RED = "#e06c75"
-GREEN = "#98c379"
-ORANGE = "#d19a66"
-BLUE = "#61afef"
-TEAL = "#56b6c2"
-PURPLE = "#c768dd"
-BACKGROUND = "#191a21"
-
 
 def is_laptop() -> bool:
     """Check for the existance of a battery file
@@ -26,25 +18,31 @@ def is_laptop() -> bool:
     return exists(batt_file)
 
 
-def spotify():
+def spotify(palette: Palette):
     return Spotify(
-        foreground=RED, background=BACKGROUND, format="{icon} {artist} - {track}"
+        foreground=palette.red,
+        background=palette.background,
+        format="{icon} {artist} - {track}",
     )
 
 
-def cpu():
+def cpu(palette: Palette):
     return widget.CPU(
-        foreground=RED,
-        background=BACKGROUND,
+        foreground=palette.red,
+        background=palette.background,
         format="  {load_percent:.0f}%",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
-def launch_bar():
+def mpris(palette: Palette):
+    return widget.Mpris2(background=palette.background)
+
+
+def launch_bar(palette: Palette):
     return widget.LaunchBar(
         default_icon="/usr/share/icons/manjaro/maia/128x128.png",
-        background=BACKGROUND,
+        background=palette.background,
         progs=[
             (
                 "Start",
@@ -55,38 +53,38 @@ def launch_bar():
     )
 
 
-def ram():
+def ram(palette: Palette):
     return widget.Memory(
-        foreground=GREEN,
-        background=BACKGROUND,
+        foreground=palette.green,
+        background=palette.background,
         measure_mem="M",
         format=" {MemUsed:.0f}{mm}",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
-def agroupbox():
+def agroupbox(palette: Palette):
     return widget.AGroupBox(
-        foreground=ORANGE,
-        background=BACKGROUND,
+        foreground=palette.orange,
+        background=palette.background,
         borderwidth=0,
     )
 
 
-def volume():
+def volume(palette: Palette):
     return widget.Volume(
-        foreground=ORANGE,
-        background=BACKGROUND,
+        foreground=palette.orange,
+        background=palette.background,
         fmt=" {}",
         # right click launches pavucontrol
         mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     )
 
 
-def battery():
+def battery(palette: Palette):
     return widget.Battery(
-        foreground=TEAL,
-        background=BACKGROUND,
+        foreground=palette.teal,
+        background=palette.background,
         charge_char="",
         discharge_char="",
         full_char="",
@@ -95,7 +93,7 @@ def battery():
     )
 
 
-def brightness():
+def brightness(palette: Palette):
     intel_bright_file = "/sys/class/backlight/intel_backlight/brightness"
     amd_bright_file = "/sys/class/backlight/amdgpu_bl0/brightness"
     if exists(intel_bright_file):
@@ -106,38 +104,40 @@ def brightness():
         backlight_name = "amdgpu_bl0"
 
     return widget.Backlight(
-        foreground=RED,
-        background=BACKGROUND,
+        foreground=palette.red,
+        background=palette.background,
         backlight_name=backlight_name,
         brightness_file=bright_file,
         fmt=" {}",
     )
 
 
-def clock():
+def clock(palette: Palette):
     return widget.Clock(
-        foreground=PURPLE, background=BACKGROUND, format="%a %d %b %H:%M"
+        foreground=palette.purple,
+        background=palette.background,
+        format="%a %d %b %H:%M",
     )
 
 
-def image():
+def image(palette: Palette):
     """make correct imaged widgets
     returns either an widget.Image or widget.Spacer depending on powerline
     """
-    return widget.Spacer(background=BACKGROUND, length=10)
+    return widget.Spacer(background=palette.background, length=10)
 
 
-def systray():
-    return widget.Systray(background=BACKGROUND)
+def systray(palette):
+    return widget.Systray(background=palette.background)
 
 
-def groupbox(colours: Palette):
-    border_colour = colours.primary
-    active_colour = colours.foreground
-    inactive_colour = colours.inactive
+def groupbox(palette: Palette):
+    border_colour = palette.primary
+    active_colour = palette.foreground
+    inactive_colour = palette.inactive
     return widget.GroupBox(
         this_current_screen_border=border_colour,
-        background=BACKGROUND,
+        background=palette.background,
         highlight_method="line",
         rounded=True,
         active=active_colour,
@@ -146,43 +146,44 @@ def groupbox(colours: Palette):
     )
 
 
-def layout_icon():
-    return widget.CurrentLayoutIcon(foreground="000000", background=BACKGROUND)
+def layout_icon(palette: Palette):
+    return widget.CurrentLayoutIcon(foreground="000000", background=palette.background)
 
 
-def kernel():
+def kernel(palette: Palette):
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
     kernel_str = kernel_as_bytes.decode("utf-8").split("-")[0]
     return widget.TextBox(
-        background=BACKGROUND, foreground=PURPLE, fmt=f" {kernel_str}"
+        background=palette.background, foreground=palette.purple, fmt=f" {kernel_str}"
     )
 
 
-def tasklist():
+def tasklist(palette: Palette):
     return widget.TaskList(
-        background=BACKGROUND,
+        background=palette.background,
         txt_floating="🗗 ",
         highlight_method="block",
         max_title_width=200,
     )
 
 
-def base_widgets(colours: Palette) -> list:
+def base_widgets(palette: Palette) -> list:
     """returns list of widgets"""
     return [
-        launch_bar(),
-        groupbox(colours),
-        tasklist(),
-        cpu(),
-        ram(),
-        volume(),
-        image(),
-        clock(),
+        launch_bar(palette),
+        groupbox(palette),
+        tasklist(palette),
+        mpris(palette),
+        cpu(palette),
+        ram(palette),
+        volume(palette),
+        image(palette),
+        clock(palette),
     ]
 
 
-def laptops(colours: Palette) -> list:
+def laptops(palette: Palette) -> list:
     """Make a list of widgets that do no have battery or brightnesss.
     I use the same config between a laptop and desktop and I am
     tired of (un)commenting out the same widgets everytime I
@@ -192,20 +193,20 @@ def laptops(colours: Palette) -> list:
     """
 
     laptop_exclusive = [
-        image(),
-        brightness(),
-        image(),
-        battery(),
+        image(palette),
+        brightness(palette),
+        image(palette),
+        battery(palette),
     ]
 
-    widgets = base_widgets(colours)
+    widgets = base_widgets(palette)
     for item in laptop_exclusive:
         widgets.insert(-3, item)
     return widgets
 
 
-def initialize_widgets(colours: Palette) -> list:
+def initialize_widgets(palette: Palette) -> list:
     """return list of widgets based on a colour scheme"""
     if is_laptop():
-        return laptops(colours)
-    return base_widgets(colours)
+        return laptops(palette)
+    return base_widgets(palette)

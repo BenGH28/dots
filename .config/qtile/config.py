@@ -11,7 +11,7 @@ from libqtile.lazy import lazy
 
 import keybinding
 import widgets
-from colours import Palette
+import colours
 from constants import BAR_SIZE, MOD, OPAQUE, TERM
 
 
@@ -104,12 +104,12 @@ def init_widget_defaults() -> dict[str, Any]:
     }
 
 
-def init_layout_theme(colours: Palette) -> dict[str, Any]:
+def init_layout_theme(palette: colours.Palette) -> dict[str, Any]:
     return {
         "border_width": 2,
         "margin": 5,
-        "border_focus": colours.primary,
-        "border_normal": colours.background,
+        "border_focus": palette.primary,
+        "border_normal": palette.background,
     }
 
 
@@ -121,32 +121,32 @@ def init_layouts(layout_theme: dict[str, str]) -> list:
     ]
 
 
-def bottom_bar(background: str, foreground: str) -> bar.Bar:
+def bottom_bar(palette: colours.Palette) -> bar.Bar:
     return bar.Bar(
         widgets=[
             widget.Spacer(length=int(1920 / 3)),
-            widgets.spotify(),
+            widgets.spotify(palette),
             widget.Spacer(length=int(1920 / 3)),
         ],
         size=BAR_SIZE,
         opacity=OPAQUE,
-        background=background,
-        foreground=foreground,
+        background=palette.background,
+        foreground=palette.foreground,
     )
 
 
-def init_screens(colours: Palette) -> list[Screen]:
+def init_screens(palette: colours.Palette) -> list[Screen]:
     # will not display for multiple screens/bars
-    systray = widgets.systray()
+    systray = widgets.systray(palette)
 
-    widgets1 = widgets.initialize_widgets(colours)
-    widgets2 = widgets.initialize_widgets(colours)
+    widgets1 = widgets.initialize_widgets(palette)
+    widgets2 = widgets.initialize_widgets(palette)
 
     # attach the systray to only one bar
     widgets2.append(systray)
 
-    my_background = colours.background
-    my_foreground = colours.foreground
+    back = palette.background
+    fore = palette.foreground
 
     if widgets.is_laptop():
         return [
@@ -155,8 +155,8 @@ def init_screens(colours: Palette) -> list[Screen]:
                     widgets2,
                     size=BAR_SIZE,
                     opacity=OPAQUE,
-                    background=my_background,
-                    foreground=my_foreground,
+                    background=back,
+                    foreground=fore,
                 ),
                 # bottom=bottom_bar(my_background, my_foreground),
             )
@@ -168,18 +168,17 @@ def init_screens(colours: Palette) -> list[Screen]:
                 widgets1,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
-                background=my_background,
-                foreground=my_foreground,
+                background=back,
+                foreground=fore,
             ),
-            bottom=bottom_bar(my_background, my_foreground),
         ),
         Screen(
             top=bar.Bar(
                 widgets2,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
-                background=my_background,
-                foreground=my_foreground,
+                background=back,
+                foreground=fore,
             )
         ),
     ]
@@ -210,11 +209,10 @@ if __name__ in ["config", "__main__"]:
 
     widget_defaults = init_widget_defaults()
     extension_defaults = widget_defaults.copy()
-
-    colours = Palette("#ffffff", "#282A36", "#9f9a9a", "#61afe0", "#98d379", "#50a14f")
-    layout_theme = init_layout_theme(colours)
+    palette = colours.GRUVBOX_DARK
+    layout_theme = init_layout_theme(palette)
     layouts = init_layouts(layout_theme)
-    screens = init_screens(colours)
+    screens = init_screens(palette)
     mouse = init_mouse()
     dgroups_key_binder = None
     dgroups_app_rules: list = []
