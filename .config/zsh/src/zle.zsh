@@ -66,9 +66,9 @@ zle -N push
 bindkey '\eps' push # Alt+p s
 
 
-fzf_open_in_editor() {
-    fd -H  --exclude "*.png" --exclude ".git" --type f . | fzf -m --preview='bat --color=always {}' --bind "enter:become($EDITOR {+})"
+fuzzy_edit() {
+    fd -H  --exclude "*.png" --exclude ".git" --exclude "__pycache__" --type f . | fzf -m --preview='bat --color=always {}' --bind "enter:become($EDITOR {+})"
     zle accept-line
 }
-zle -N fzf_open_in_editor
-bindkey '^O' fzf_open_in_editor
+zle -N fuzzy_edit
+bindkey '^O' fuzzy_edit

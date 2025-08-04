@@ -1,9 +1,8 @@
-#	  ___    ___
+#     ___    ___
 #    /   |  / (_)___ _________  _____
 #   / /| | / / / __ `/ ___/ _ \/ ___/
 #  / ___ |/ / / /_/ (__  )  __(__  )
 # /_/  |_/_/_/\__,_/____/\___/____/
-#
 
 alias ga="git add"
 alias gcm="git commit -m"
@@ -11,7 +10,6 @@ alias gco="git checkout"
 alias gpl="git pull"
 alias gps="git push"
 alias gstat="git status"
-
 alias open="xdg-open"
 
 alias Q="pacman -Q"
@@ -31,6 +29,7 @@ alias zrc="$EDITOR $ZDOTDIR/.zshrc"
 alias aliases="$EDITOR $ZDOTDIR/src/aliases.zsh"
 
 alias vim="$EDITOR"
+alias hx=helix
 
 alias mirrorUpdate="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 alias lg="lazygit"

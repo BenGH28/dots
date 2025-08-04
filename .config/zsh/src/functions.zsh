@@ -28,7 +28,7 @@ ex() {
 
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
-go_tmux() {
+clever_tmux() {
     if [[ $(tty) != *"tty"* ]]; then
         [ -x "$(command -v tmux)" ] &&
             [ -z "${TMUX}" ] &&
