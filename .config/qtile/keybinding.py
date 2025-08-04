@@ -3,7 +3,7 @@ from typing import List
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
-from constants import ALT, CTRL, MOD, TERM
+from constants import ALT, CTRL, MOD, TERM, BROWSER
 
 
 def get_keys() -> List[Key]:
@@ -31,8 +31,8 @@ def get_keys() -> List[Key]:
         Key([MOD, "shift"], "r", lazy.restart()),
         Key([MOD, "shift"], "q", lazy.shutdown()),
         # Screen focus
-        Key([ALT], "h", lazy.to_screen(0)),
-        Key([ALT], "l", lazy.to_screen(1)),
+        Key([MOD, ALT], "h", lazy.to_screen(0)),
+        Key([MOD, ALT], "l", lazy.to_screen(1)),
         # screen brightness
         Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
         Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
@@ -54,17 +54,17 @@ def get_keys() -> List[Key]:
         Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
         Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
         # Key bindings for applications
-        Key([MOD], "Return", lazy.spawn(f"{TERM}")),
-        Key([MOD], "w", lazy.spawn("firefox")),
+        Key([MOD], "Return", lazy.spawn(TERM)),
+        Key([MOD], "w", lazy.spawn(BROWSER)),
         Key(
             [CTRL],
             "space",
-            lazy.spawn('rofi -show combi -modes combi -combi-modes "window,drun"'),
+            lazy.spawn(
+                "rofi -show combi -modes combi -combi-modes 'window,drun' -markup -transient-window -sorting-method 'fzf' -sort",
+            ),
         ),
-        # Key([CTRL], "space", lazy.spawn("dmenu_run -h 30")),
         Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("dolphin")),
-        Key([MOD], "z", lazy.spawn(f"{TERM} -e nvim /home/ben/.zshrc")),
         Key(
             [MOD], "F3", lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")
         ),
