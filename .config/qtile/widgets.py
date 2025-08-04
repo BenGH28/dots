@@ -48,7 +48,7 @@ def launch_bar():
         progs=[
             (
                 "Start",
-                'rofi -show combi -modes combi -combi-modes "window,drun"',
+                "rofi -show combi -modes combi -combi-modes 'window,drun' -markup -transient-window -sorting-method 'fzf' -sort",
                 "Find software",
             )
         ],
@@ -66,7 +66,11 @@ def ram():
 
 
 def agroupbox():
-    return widget.AGroupBox(foreground=ORANGE, background=BACKGROUND, borderwidth=0)
+    return widget.AGroupBox(
+        foreground=ORANGE,
+        background=BACKGROUND,
+        borderwidth=0,
+    )
 
 
 def volume():
@@ -135,9 +139,10 @@ def groupbox(colours: Palette):
         this_current_screen_border=border_colour,
         background=BACKGROUND,
         highlight_method="line",
-        rounded=False,
+        rounded=True,
         active=active_colour,
         inactive=inactive_colour,
+        hide_unused=True,
     )
 
 
@@ -149,7 +154,6 @@ def kernel():
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
     kernel_str = kernel_as_bytes.decode("utf-8").split("-")[0]
-
     return widget.TextBox(
         background=BACKGROUND, foreground=PURPLE, fmt=f" {kernel_str}"
     )
@@ -157,7 +161,10 @@ def kernel():
 
 def tasklist():
     return widget.TaskList(
-        background=BACKGROUND, txt_floating="🗗 ", highlight_method="block"
+        background=BACKGROUND,
+        txt_floating="🗗 ",
+        highlight_method="block",
+        max_title_width=200,
     )
 
 
