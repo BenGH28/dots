@@ -119,3 +119,62 @@ CATPPUCCIN_MOCHA = Palette(
     purple="#CBA6F7",
 )
 
+TOKYO_NIGHT = Palette(
+    background="#1a1b26",
+    foreground="#a9b1d6",
+    inactive="#414868",
+    primary="#7aa2f7",      # Blue
+    secondary="#bb9af7",     # Purple
+    tertiary="#e0af68",     # Orange
+    red="#f7768e",
+    green="#9ece6a",
+    orange="#ff9e64",
+    blue="#7aa2f7",
+    teal="#7dcfff",
+    purple="#bb9af7",
+)
+
+MATERIAL_OCEAN = Palette(
+    background="#0F111A",
+    foreground="#8F93A2",
+    inactive="#3B3F51",
+    primary="#82AAFF",      # Blue
+    secondary="#C3E88D",     # Green
+    tertiary="#FFCB6B",     # Yellow
+    red="#F07178",
+    green="#C3E88D",
+    orange="#F78C6C",
+    blue="#82AAFF",
+    teal="#89DDFF",
+    purple="#C792EA",
+)
+
+AYU_DARK = Palette(
+    background="#0A0E14",
+    foreground="#B3B1AD",
+    inactive="#3E4451",
+    primary="#59C2FF",      # Blue
+    secondary="#E6B450",     # Yellow
+    tertiary="#FFD173",     # Light Yellow
+    red="#F07178",
+    green="#C2D94C",
+    orange="#FF8F40",
+    blue="#59C2FF",
+    teal="#95E6CB",
+    purple="#D2A6FF",
+)
+
+PALENIGHT = Palette(
+    background="#292D3E",
+    foreground="#A6ACCD",
+    inactive="#676E95",
+    primary="#82AAFF",      # Blue
+    secondary="#C3E88D",     # Green
+    tertiary="#F78C6C",     # Orange
+    red="#F07178",
+    green="#C3E88D",
+    orange="#F78C6C",
+    blue="#82AAFF",
+    teal="#89DDFF",
+    purple="#C792EA",
+)
