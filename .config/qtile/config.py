@@ -92,7 +92,7 @@ def extend_keys_for_group(keys: list[Key]) -> None:
 
 def init_widget_defaults() -> dict[str, Any]:
     return {
-        "font": "Cantarell",
+        "font": "Noto Sans",
         "fontsize": 16,
         "padding": 5,
     }
