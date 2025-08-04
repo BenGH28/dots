@@ -43,6 +43,8 @@ def go_to_group(window):
         "Spotify": "3",
         "firefox": "2",
         "discord": "5",
+        "Signal": "5",
+        "zen": "2",
         TERM: "1",
     }
     if win_name in windows:
@@ -57,7 +59,11 @@ def init_groups() -> list[Group]:
         Group(
             name="2",
             label="2:WEB",
-            matches=[Match(wm_class="firefox"), Match(wm_class="qutebrowser")],
+            matches=[
+                Match(wm_class="firefox"),
+                Match(wm_class="zen"),
+                Match(wm_class="qutebrowser"),
+            ],
         ),
         Group(
             name="3",
@@ -68,7 +74,7 @@ def init_groups() -> list[Group]:
         Group(
             name="5",
             label="5:COMMS",
-            matches=[Match(wm_class="discord")],
+            matches=[Match(wm_class="discord"), Match(wm_class="signal")],
         ),
         Group(name="6", label="6:MISC"),
     ]
