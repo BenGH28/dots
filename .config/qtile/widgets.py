@@ -2,12 +2,12 @@
 
 from os.path import exists
 from subprocess import PIPE, run
-from typing import Dict
 
 from libqtile import qtile, widget
 
 from constants import TERM
 from spotify import Spotify
+from colours import Palette
 
 RED = "#e06c75"
 GREEN = "#98c379"
@@ -41,11 +41,26 @@ def cpu():
     )
 
 
+def launch_bar():
+    return widget.LaunchBar(
+        default_icon="/usr/share/icons/manjaro/maia/128x128.png",
+        background=BACKGROUND,
+        progs=[
+            (
+                "Start",
+                'rofi -show combi -modes combi -combi-modes "window,drun"',
+                "Find software",
+            )
+        ],
+    )
+
+
 def ram():
     return widget.Memory(
         foreground=GREEN,
         background=BACKGROUND,
-        format=" {MemUsed:.0f}M",
+        measure_mem="M",
+        format=" {MemUsed:.0f}{mm}",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
@@ -112,10 +127,10 @@ def systray():
     return widget.Systray(background=BACKGROUND)
 
 
-def groupbox(colours: Dict[str, str]):
-    border_colour = colours["primary"]
-    active_colour = colours["foreground"]
-    inactive_colour = colours["inactive"]
+def groupbox(colours: Palette):
+    border_colour = colours.primary
+    active_colour = colours.foreground
+    inactive_colour = colours.inactive
     return widget.GroupBox(
         this_current_screen_border=border_colour,
         background=BACKGROUND,
@@ -130,11 +145,6 @@ def layout_icon():
     return widget.CurrentLayoutIcon(foreground="000000", background=BACKGROUND)
 
 
-def wedge(left: bool):
-    fmt = "◤" if left else "◢"
-    return widget.TextBox(fmt=fmt, foreground=BACKGROUND, padding=0, fontsize=60)
-
-
 def kernel():
     cmd = ["uname", "-r"]
     kernel_as_bytes = run(cmd, stdout=PIPE).stdout
@@ -145,13 +155,18 @@ def kernel():
     )
 
 
-def base_widgets(colours: Dict[str, str]):
+def tasklist():
+    return widget.TaskList(
+        background=BACKGROUND, txt_floating="🗗 ", highlight_method="block"
+    )
+
+
+def base_widgets(colours: Palette) -> list:
     """returns list of widgets"""
     return [
+        launch_bar(),
         groupbox(colours),
-        wedge(True),
-        widget.TaskList(),
-        wedge(False),
+        tasklist(),
         cpu(),
         ram(),
         volume(),
@@ -160,7 +175,7 @@ def base_widgets(colours: Dict[str, str]):
     ]
 
 
-def laptops(colours: Dict[str, str]) -> list:
+def laptops(colours: Palette) -> list:
     """Make a list of widgets that do no have battery or brightnesss.
     I use the same config between a laptop and desktop and I am
     tired of (un)commenting out the same widgets everytime I
@@ -182,7 +197,7 @@ def laptops(colours: Dict[str, str]) -> list:
     return widgets
 
 
-def initialize_widgets(colours: dict):
+def initialize_widgets(colours: Palette) -> list:
     """return list of widgets based on a colour scheme"""
     if is_laptop():
         return laptops(colours)

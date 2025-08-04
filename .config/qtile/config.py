@@ -3,15 +3,15 @@
 import asyncio
 import os
 import subprocess
-from typing import List  # noqa: F401
+from typing import Any
 
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 import keybinding
-import themes
 import widgets
+from colours import Palette
 from constants import BAR_SIZE, MOD, OPAQUE, TERM
 
 
@@ -22,7 +22,6 @@ def start_once() -> None:
     subprocess.call([autostart])
 
 
-@hook.subscribe.client_new
 async def move_spotify(window) -> None:
     """move spotify to workspace 3"""
 
@@ -52,26 +51,30 @@ def go_to_group(window):
         window.group.toscreen(toggle=False)
 
 
-def init_groups() -> List[Group]:
+def init_groups() -> list[Group]:
     return [
-        Group(name="1", label="", matches=[Match(wm_class=TERM)]),
+        Group(name="1", label="1:TERM", matches=[Match(wm_class=TERM)]),
         Group(
             name="2",
-            label="",
+            label="2:WEB",
             matches=[Match(wm_class="firefox"), Match(wm_class="qutebrowser")],
         ),
         Group(
             name="3",
-            label="",
+            label="3:MUSIC",
             matches=[Match(wm_class="spotify"), Match(wm_class="Spotify")],
         ),
-        Group(name="4", label=""),
-        Group(name="5", label="", matches=[Match(wm_class="discord")]),
-        Group(name="6", label=""),
+        Group(name="4", label="4:DOCS"),
+        Group(
+            name="5",
+            label="5:COMMS",
+            matches=[Match(wm_class="discord")],
+        ),
+        Group(name="6", label="6:MISC"),
     ]
 
 
-def extend_keys_for_group(keys: List[Key]) -> None:
+def extend_keys_for_group(keys: list[Key]) -> None:
     for i in groups:
         keys.extend(
             [
@@ -87,28 +90,24 @@ def extend_keys_for_group(keys: List[Key]) -> None:
         )
 
 
-def init_colours_and_style() -> tuple:
-    return themes.SetOneDarkTheme()
-
-
-def init_widget_defaults() -> dict:
-    return dict(
-        font="JetBrainsMono Nerd Font",
-        fontsize=18,
-        padding=5,
-    )
-
-
-def init_layout_theme(colours) -> dict:
+def init_widget_defaults() -> dict[str, Any]:
     return {
-        "border_width": 2,
-        "margin": 5,
-        "border_focus": colours["primary"],
-        "border_normal": colours["background"],
+        "font": "Cantarell",
+        "fontsize": 16,
+        "padding": 5,
     }
 
 
-def init_layouts(layout_theme: dict) -> List:
+def init_layout_theme(colours: Palette) -> dict[str, Any]:
+    return {
+        "border_width": 2,
+        "margin": 5,
+        "border_focus": colours.primary,
+        "border_normal": colours.background,
+    }
+
+
+def init_layouts(layout_theme: dict[str, str]) -> list:
     return [
         layout.MonadTall(**layout_theme),
         layout.MonadWide(**layout_theme),
@@ -116,13 +115,11 @@ def init_layouts(layout_theme: dict) -> List:
     ]
 
 
-def bottom_bar(background, foreground):
+def bottom_bar(background: str, foreground: str) -> bar.Bar:
     return bar.Bar(
         widgets=[
             widget.Spacer(length=int(1920 / 3)),
-            widgets.wedge(False),
             widgets.spotify(),
-            widgets.wedge(True),
             widget.Spacer(length=int(1920 / 3)),
         ],
         size=BAR_SIZE,
@@ -132,7 +129,7 @@ def bottom_bar(background, foreground):
     )
 
 
-def init_screens(colours) -> List[Screen]:
+def init_screens(colours: Palette) -> list[Screen]:
     # will not display for multiple screens/bars
     systray = widgets.systray()
 
@@ -142,8 +139,8 @@ def init_screens(colours) -> List[Screen]:
     # attach the systray to only one bar
     widgets2.append(systray)
 
-    my_background = colours["background"]
-    my_foreground = colours["foreground"]
+    my_background = colours.background
+    my_foreground = colours.foreground
 
     if widgets.is_laptop():
         return [
@@ -204,15 +201,17 @@ if __name__ in ["config", "__main__"]:
     groups = init_groups()
     keys = keybinding.get_keys()
     extend_keys_for_group(keys)
+
     widget_defaults = init_widget_defaults()
     extension_defaults = widget_defaults.copy()
-    colours, _ = themes.SetOneDarkTheme()
+
+    colours = Palette("#ffffff", "#282A36", "#9f9a9a", "#61afe0", "#98d379", "#50a14f")
     layout_theme = init_layout_theme(colours)
     layouts = init_layouts(layout_theme)
     screens = init_screens(colours)
     mouse = init_mouse()
     dgroups_key_binder = None
-    dgroups_app_rules = []  # type: List
+    dgroups_app_rules: list = []
     main = None
     follow_mouse_focus = True
     bring_front_click = False
