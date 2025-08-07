@@ -9,6 +9,8 @@ from constants import TERM
 from spotify import Spotify
 from colours import Palette
 
+__all__ = ["is_laptop", "initialize_widgets", "systray"]
+
 
 def is_laptop() -> bool:
     """Check for the existance of a battery file
@@ -30,7 +32,7 @@ def cpu(palette: Palette):
     return widget.CPU(
         foreground=palette.red,
         background=palette.background,
-        format="  {load_percent:.0f}%",
+        format="💻  {load_percent:.0f}%",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
@@ -58,7 +60,7 @@ def ram(palette: Palette):
         foreground=palette.green,
         background=palette.background,
         measure_mem="M",
-        format=" {MemUsed:.0f}{mm}",
+        format="🧠 {MemUsed:.0f}{mm}",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
@@ -75,7 +77,7 @@ def volume(palette: Palette):
     return widget.Volume(
         foreground=palette.orange,
         background=palette.background,
-        fmt=" {}",
+        fmt=" 🔉{}",
         # right click launches pavucontrol
         mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     )
@@ -85,9 +87,9 @@ def battery(palette: Palette):
     return widget.Battery(
         foreground=palette.teal,
         background=palette.background,
-        charge_char="",
-        discharge_char="",
-        full_char="",
+        charge_char="🌩️",
+        discharge_char="🔋",
+        full_char="🔌",
         format="{char} {percent:2.0%}",
         notify_below=30,
     )
@@ -108,7 +110,7 @@ def brightness(palette: Palette):
         background=palette.background,
         backlight_name=backlight_name,
         brightness_file=bright_file,
-        fmt=" {}",
+        fmt="🔆 {}",
     )
 
 
@@ -120,10 +122,7 @@ def clock(palette: Palette):
     )
 
 
-def image(palette: Palette):
-    """make correct imaged widgets
-    returns either an widget.Image or widget.Spacer depending on powerline
-    """
+def spacer(palette: Palette):
     return widget.Spacer(background=palette.background, length=10)
 
 
@@ -178,7 +177,7 @@ def base_widgets(palette: Palette) -> list:
         cpu(palette),
         ram(palette),
         volume(palette),
-        image(palette),
+        spacer(palette),
         clock(palette),
     ]
 
@@ -193,15 +192,13 @@ def laptops(palette: Palette) -> list:
     """
 
     laptop_exclusive = [
-        image(palette),
         brightness(palette),
-        image(palette),
         battery(palette),
     ]
 
     widgets = base_widgets(palette)
     for item in laptop_exclusive:
-        widgets.insert(-3, item)
+        widgets.insert(-2, item)
     return widgets
 
 

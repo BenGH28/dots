@@ -5,7 +5,7 @@ import os
 import subprocess
 from typing import Any
 
-from libqtile import bar, hook, layout, widget
+from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
@@ -121,20 +121,6 @@ def init_layouts(layout_theme: dict[str, str]) -> list:
     ]
 
 
-def bottom_bar(palette: colours.Palette) -> bar.Bar:
-    return bar.Bar(
-        widgets=[
-            widget.Spacer(length=int(1920 / 3)),
-            widgets.spotify(palette),
-            widget.Spacer(length=int(1920 / 3)),
-        ],
-        size=BAR_SIZE,
-        opacity=OPAQUE,
-        background=palette.background,
-        foreground=palette.foreground,
-    )
-
-
 def init_screens(palette: colours.Palette) -> list[Screen]:
     # will not display for multiple screens/bars
     systray = widgets.systray(palette)
@@ -158,7 +144,6 @@ def init_screens(palette: colours.Palette) -> list[Screen]:
                     background=back,
                     foreground=fore,
                 ),
-                # bottom=bottom_bar(my_background, my_foreground),
             )
         ]
 
