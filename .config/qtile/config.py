@@ -6,13 +6,13 @@ import subprocess
 from typing import Any
 
 from libqtile import bar, hook, layout
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Match, Screen
 from libqtile.lazy import lazy
 
 import keybinding
 import widgets
-import colours
-from constants import BAR_SIZE, MOD, OPAQUE, TERM
+
+from constants import BAR_SIZE, MOD, OPAQUE, TERM, FONT, FONT_SIZE, PALETTE
 
 
 @hook.subscribe.startup_once
@@ -53,7 +53,7 @@ def go_to_group(window):
         window.group.toscreen(toggle=False)
 
 
-def init_groups() -> list[Group]:
+def get_groups() -> list[Group]:
     return [
         Group(name="1", label="1:TERM", matches=[Match(wm_class=TERM)]),
         Group(
@@ -80,59 +80,44 @@ def init_groups() -> list[Group]:
     ]
 
 
-def extend_keys_for_group(keys: list[Key]) -> None:
-    for i in groups:
-        keys.extend(
-            [
-                # MOD4 + letter of group = switch to group
-                Key([MOD], i.name, lazy.group[i.name].toscreen()),
-                # MOD4 + shift + num of group = switch and move window to group
-                Key(
-                    [MOD, "shift"],
-                    i.name,
-                    lazy.window.togroup(i.name, switch_group=True),
-                ),
-            ]
-        )
-
-
-def init_widget_defaults() -> dict[str, Any]:
+def get_widget_defaults() -> dict[str, Any]:
     return {
-        "font": "Noto Sans",
-        "fontsize": 16,
+        "font": FONT,
+        "fontsize": FONT_SIZE,
         "padding": 5,
     }
 
 
-def init_layout_theme(palette: colours.Palette) -> dict[str, Any]:
+def init_layout_theme() -> dict[str, Any]:
     return {
         "border_width": 2,
         "margin": 5,
-        "border_focus": palette.primary,
-        "border_normal": palette.background,
+        "border_focus": PALETTE.primary,
+        "border_normal": PALETTE.background,
     }
 
 
-def init_layouts(layout_theme: dict[str, str]) -> list:
+def get_layouts() -> list:
+    theme = init_layout_theme()
     return [
-        layout.MonadTall(**layout_theme),
-        layout.MonadWide(**layout_theme),
+        layout.MonadTall(**theme),
+        layout.MonadWide(**theme),
         layout.Max(),
     ]
 
 
-def init_screens(palette: colours.Palette) -> list[Screen]:
+def get_screens() -> list[Screen]:
     # will not display for multiple screens/bars
-    systray = widgets.systray(palette)
+    systray = widgets.systray(PALETTE)
 
-    widgets1 = widgets.initialize_widgets(palette)
-    widgets2 = widgets.initialize_widgets(palette)
+    widgets1 = widgets.initialize_widgets(PALETTE)
+    widgets2 = widgets.initialize_widgets(PALETTE)
 
     # attach the systray to only one bar
     widgets2.append(systray)
 
-    back = palette.background
-    fore = palette.foreground
+    back = PALETTE.background
+    fore = PALETTE.foreground
 
     if widgets.is_laptop():
         return [
@@ -169,7 +154,7 @@ def init_screens(palette: colours.Palette) -> list[Screen]:
     ]
 
 
-def init_mouse():
+def get_mouse():
     return [
         Drag(
             [MOD],
@@ -188,17 +173,13 @@ def init_mouse():
 
 
 if __name__ in ["config", "__main__"]:
-    groups = init_groups()
-    keys = keybinding.get_keys()
-    extend_keys_for_group(keys)
-
-    widget_defaults = init_widget_defaults()
+    groups = get_groups()
+    keys = keybinding.get_keys(groups)
+    widget_defaults = get_widget_defaults()
     extension_defaults = widget_defaults.copy()
-    palette = colours.GRUVBOX_DARK
-    layout_theme = init_layout_theme(palette)
-    layouts = init_layouts(layout_theme)
-    screens = init_screens(palette)
-    mouse = init_mouse()
+    layouts = get_layouts()
+    screens = get_screens()
+    mouse = get_mouse()
     dgroups_key_binder = None
     dgroups_app_rules: list = []
     main = None
@@ -206,7 +187,7 @@ if __name__ in ["config", "__main__"]:
     bring_front_click = False
     cursor_warp = False
     floating_layout = layout.Floating(
-        float_rules=[*layout.Floating.default_float_rules], **layout_theme
+        float_rules=[*layout.Floating.default_float_rules], **init_layout_theme()
     )
     auto_fullscreen = True
     focus_on_window_activation = "smart"
