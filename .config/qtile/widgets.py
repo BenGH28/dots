@@ -126,7 +126,7 @@ def spacer(palette: Palette):
     return widget.Spacer(background=palette.background, length=10)
 
 
-def systray(palette):
+def systray(palette: Palette):
     return widget.Systray(background=palette.background)
 
 
