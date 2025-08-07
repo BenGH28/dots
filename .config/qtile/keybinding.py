@@ -6,9 +6,26 @@ from libqtile.lazy import lazy
 from constants import ALT, CTRL, MOD, TERM, BROWSER
 
 
-def get_keys() -> List[Key]:
+def _groupify(keys, groups):
+    for i in groups:
+        keys.extend(
+            [
+                # MOD4 + letter of group = switch to group
+                Key([MOD], i.name, lazy.group[i.name].toscreen()),
+                # MOD4 + shift + num of group = switch and move window to group
+                Key(
+                    [MOD, "shift"],
+                    i.name,
+                    lazy.window.togroup(i.name, switch_group=True),
+                ),
+            ]
+        )
+    return keys
+
+
+def get_keys(groups) -> List[Key]:
     """Returns a list of Key bindings"""
-    return [
+    keys = [
         # Switch between windows in current stack pane
         Key([MOD], "j", lazy.layout.down()),
         Key([MOD], "k", lazy.layout.up()),
@@ -73,3 +90,4 @@ def get_keys() -> List[Key]:
         Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
     ]
+    return _groupify(keys, groups)
