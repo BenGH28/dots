@@ -89,5 +89,6 @@ def get_keys(groups) -> List[Key]:
         Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
         Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
+        Key([MOD], "t", lazy.spawn("/home/ben/.config/qtile/themer.sh")),
     ]
     return _groupify(keys, groups)

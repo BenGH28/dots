@@ -1,6 +1,6 @@
 """all the constants that I use in my Qtile config"""
 
-import colours
+from colours import *
 
 
 MOD = "mod4"
@@ -12,4 +12,4 @@ OPAQUE = 0.85
 BAR_SIZE = 35
 FONT = "Noto Sans"
 FONT_SIZE = 18
-PALETTE = colours.GRUVBOX_DARK
+PALETTE = GRUVBOX_DARK
