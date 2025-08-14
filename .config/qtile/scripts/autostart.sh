@@ -6,6 +6,7 @@ function run {
     fi
 }
 
+run kwalletd6
 run picom
 run nitrogen --restore
 run nm-applet

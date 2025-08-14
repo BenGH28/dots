@@ -18,7 +18,7 @@ from constants import BAR_SIZE, MOD, OPAQUE, TERM, FONT, FONT_SIZE, PALETTE
 @hook.subscribe.startup_once
 def start_once() -> None:
     """Startup Applications"""
-    autostart = os.path.expanduser("~/.config/qtile/autostart.sh")
+    autostart = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     subprocess.call([autostart])
 
 
@@ -187,7 +187,11 @@ if __name__ in ["config", "__main__"]:
     bring_front_click = False
     cursor_warp = False
     floating_layout = layout.Floating(
-        float_rules=[*layout.Floating.default_float_rules], **init_layout_theme()
+        float_rules=[
+            *layout.Floating.default_float_rules,
+            Match(wm_class="float-term"),
+        ],
+        **init_layout_theme(),
     )
     auto_fullscreen = True
     focus_on_window_activation = "smart"

@@ -76,9 +76,7 @@ def get_keys(groups) -> List[Key]:
         Key(
             [CTRL],
             "space",
-            lazy.spawn(
-                "rofi -show combi -modes combi -combi-modes 'window,drun' -markup -transient-window -sorting-method 'fzf' -sort",
-            ),
+            lazy.spawn("/home/ben/.config/qtile/scripts/menu.sh"),
         ),
         Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("dolphin")),
@@ -89,6 +87,5 @@ def get_keys(groups) -> List[Key]:
         Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
         Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
-        Key([MOD], "t", lazy.spawn("/home/ben/.config/qtile/themer.sh")),
     ]
     return _groupify(keys, groups)

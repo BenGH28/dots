@@ -48,7 +48,7 @@ def launch_bar(palette: Palette):
         progs=[
             (
                 "Start",
-                "rofi -show combi -modes combi -combi-modes 'window,drun' -markup -transient-window -sorting-method 'fzf' -sort",
+                "/home/ben/.config/qtile/scripts/menu.sh",
                 "Find software",
             )
         ],
@@ -87,7 +87,7 @@ def battery(palette: Palette):
     return widget.Battery(
         foreground=palette.teal,
         background=palette.background,
-        charge_char="🌩️",
+        charge_char="⚡",
         discharge_char="🔋",
         full_char="🔌",
         format="{char} {percent:2.0%}",

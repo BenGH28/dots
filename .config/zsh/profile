@@ -31,7 +31,6 @@ export VIMRC="$HOME/.config/nvim/init.lua"
 
 #start the gnome keyring so that I don't always give my password for the wifi
 if [ -n "$DESKTOP_SESSION" ];then
-	eval $(gnome-keyring-daemon --start)
 	export SSH_AUTH_SOCK
 fi
 source "$HOME/.cargo/env"
