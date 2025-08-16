@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Rofi color theme
+
+   Based on the Palenight color scheme
+   File: palenight.rasi
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+
+    /* Palenight colors */
+    palenight-bg:              #292D3E;
+    palenight-fg:              #A6ACCD;
+    palenight-red:             #F07178;
+    palenight-red-light:       #FF5370;
+    palenight-orange:          #F78C6C;
+    palenight-yellow:          #FFCB6B;
+    palenight-comment:         #676E95;
+    palenight-active:          #414863;
+    palenight-contrast:        #202331;
+
+
+    /* Theme colors */
+    background:                  @palenight-bg;
+    background-color:            @background;
+    foreground:                  @palenight-fg;
+    border-color:                @palenight-comment;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @palenight-contrast;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @palenight-active;
+    selected-normal-foreground:  @palenight-fg;
+
+    active-background:           @palenight-orange;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @palenight-yellow;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @palenight-red;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @palenight-red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+@import "common.rasi"

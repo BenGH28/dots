@@ -1,17 +1,3 @@
-__all__ = [
-    "GRUVBOX_DARK",
-    "ONE_DARK",
-    "DRACULA",
-    "SOLARIZED_DARK",
-    "NORD",
-    "CATPPUCCIN_MOCHA",
-    "TOKYO_NIGHT",
-    "AYU_DARK",
-    "MATERIAL_OCEAN",
-    "PALENIGHT",
-]
-
-
 class Palette:
     def __init__(
         self,
@@ -88,20 +74,6 @@ DRACULA = Palette(
     purple="#bd93f9",
 )
 
-SOLARIZED_DARK = Palette(
-    background="#002b36",
-    foreground="#839496",
-    inactive="#586e75",
-    primary="#268bd2",  # Blue
-    secondary="#859900",  # Green
-    tertiary="#2aa198",  # Cyan
-    red="#dc322f",
-    green="#859900",
-    orange="#cb4b16",
-    blue="#268bd2",
-    teal="#2aa198",
-    purple="#6c71c4",
-)
 
 NORD = Palette(
     background="#2E3440",
@@ -192,4 +164,3 @@ PALENIGHT = Palette(
     teal="#89DDFF",
     purple="#C792EA",
 )
-

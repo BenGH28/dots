@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Rofi color theme
+
+   Based on the Tokyo Night color scheme
+   File: tokyo-night.rasi
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+
+    /* Tokyo Night colors */
+    tokyo-bg:              #1a1b26;
+    tokyo-fg:              #c0caf5;
+    tokyo-red:             #f7768e;
+    tokyo-orange:          #e0af68;
+    tokyo-gutter:          #414868;
+    tokyo-comments:        #24283b;
+
+
+    /* Theme colors */
+    background:                  @tokyo-bg;
+    background-color:            @background;
+    foreground:                  @tokyo-fg;
+    border-color:                @tokyo-gutter;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @tokyo-comments;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @tokyo-gutter;
+    selected-normal-foreground:  @tokyo-fg;
+
+    active-background:           @tokyo-orange;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @tokyo-orange;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @tokyo-red;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @tokyo-red;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+@import "common.rasi"

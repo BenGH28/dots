@@ -38,7 +38,12 @@ def cpu(palette: Palette):
 
 
 def mpris(palette: Palette):
-    return widget.Mpris2(background=palette.background)
+    return widget.Mpris2(
+        background=palette.background,
+        scroll_fixed_width=True,
+        max_chars=40,
+        paused_text="󰏤 {track}",
+    )
 
 
 def launch_bar(palette: Palette):

@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Rofi color theme
+
+   Based on the Material Ocean color scheme
+   File: material-ocean.rasi
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold italic;
+    scrollbar: true;
+
+    /* Material Ocean colors */
+    material-bg:              #263238;
+    material-fg:              #B0BEC5;
+    material-red:             #FF5370;
+    material-red-light:       #F07178;
+    material-orange:          #F78C6C;
+    material-yellow:          #FFCB6B;
+    material-text:            #607D8B;
+    material-selection:       #546E7A;
+
+
+    /* Theme colors */
+    background:                  @material-bg;
+    background-color:            @background;
+    foreground:                  @material-fg;
+    border-color:                @material-text;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @material-selection;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @material-text;
+    selected-normal-foreground:  @material-fg;
+
+    active-background:           @material-orange;
+    active-foreground:           @background;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @material-yellow;
+    selected-active-foreground:  @active-foreground;
+
+    urgent-background:           @material-red;
+    urgent-foreground:           @background;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @material-red-light;
+    selected-urgent-foreground:  @urgent-foreground;
+}
+@import "common.rasi"

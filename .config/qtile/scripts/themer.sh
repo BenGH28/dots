@@ -1,14 +1,63 @@
 #!/usr/bin/env bash
-CONSTS="$HOME/.config/qtile/constants.py"
-COLOURS="$HOME/.config/qtile/colours.py"
 
-themes=$(grep -e '^[A-Z].* ' "$COLOURS" | awk '{print $1}' | tr '[:upper:]' '[:lower:]' | tr '[=_=]' ' ' | sort -u)
+CONFIG_DIR=$HOME/.config
+NVIM_DIR=$HOME/.config/nvim
+KITTY_DIR=$CONFIG_DIR/kitty
+QTILE_DIR=$CONFIG_DIR/qtile
 
-current_theme=$(grep -e "^PALETTE = .*" "$CONSTS" | awk '{print $3}' | tr '[:upper:]' '[:lower:]' | tr '[=_=]' ' ')
-selected_theme=$(echo "$themes" | rofi -dmenu -p "Theme ($current_theme)")
-if [ -n "$selected_theme" ]; then
-    selected_theme="$(echo "$selected_theme" | tr '[:lower:]' '[:upper:]' | tr '[= =]' '_')"
-    sed -i "s/^PALETTE = .*/PALETTE = $selected_theme/" "$CONSTS"
+ROFI_DIR=$CONFIG_DIR/rofi
+
+CONSTS="$QTILE_DIR/constants.py"
+COLOURS="$QTILE_DIR/colours.py"
+
+CURRENT_THEME=$(grep -e "^PALETTE = .*" "$CONSTS" | awk '{print $3}' | tr '[:upper:]' '[:lower:]' | tr '[=_=]' ' ')
+
+go_qtile() {
+    theme="$1"
+    qtile_theme="$(echo "$theme" | tr '[:lower:]' '[:upper:]' | tr '[= =]' '_')"
+    sed -i "s/^PALETTE = .*/PALETTE = $qtile_theme/" "$CONSTS"
     qtile cmd-obj -o cmd -f restart
-    exit 0
-fi
+}
+
+go_kitty() {
+    theme="$1"
+    kitty_theme="${theme// /}"
+    ln -sf "$KITTY_DIR/themes/$kitty_theme.conf" "$KITTY_DIR/theme.conf"
+}
+
+go_rofi() {
+    theme="$1"
+    rofi_theme="${theme// /-}"
+    ln -sf "$ROFI_DIR/themes/$rofi_theme.rasi" "$ROFI_DIR/theme.rasi"
+}
+
+go_nvim() {
+    theme="$1"
+    nvim_theme="${theme// /-}"
+    case "$theme" in
+    *gruvbox*) nvim_theme="gruvbox" ;;
+    "material ocean") nvim_theme="material-oceanic" ;;
+    palenight) nvim_theme=palenightfall ;;
+    "one dark") nvim_theme=onedark ;;
+    "tokyo night") nvim_theme=tokyonight ;;
+    *) ;;
+    esac
+
+    echo "vim.cmd.colorscheme('$nvim_theme')" >"$NVIM_DIR/lua/theme.lua"
+}
+
+main() {
+    themes=$(grep -e '^[A-Z].* ' "$COLOURS" | awk '{print $1}' | tr '[:upper:]' '[:lower:]' | tr '[=_=]' ' ' | sort -u)
+    len=$(echo "$themes" | wc -l)
+    selected_theme=$(echo "$themes" | rofi -dmenu -p "Theme ($CURRENT_THEME)" -l "$len")
+    if [ -z "$selected_theme" ]; then
+        exit 0
+    fi
+    go_qtile "$selected_theme"
+    go_rofi "$selected_theme"
+    go_kitty "$selected_theme"
+    go_nvim "$selected_theme"
+    notify-send "Theme changed to '$selected_theme...'"
+}
+
+main

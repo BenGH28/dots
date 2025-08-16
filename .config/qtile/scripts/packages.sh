@@ -1,14 +1,15 @@
 run() {
-    kitty --class=float-term sh -c "$@"
+    kitty -o initial_window_width=80c -o initial_window_height=40c --class=float-term sh -c "$@"
 }
+fzf_preview_window="--preview-window=up,50%"
 install() {
-    run 'paru -Slq | fzf -m --preview "paru -Si {+}" --bind "enter:execute(paru -S {+})"'
+    run "paru -Slq | fzf -m '$fzf_preview_window' --preview 'paru -Si {+}' --bind 'enter:execute(paru -S {+})'"
 }
 remove() {
-    run 'paru -Q | fzf -m --preview "paru -Qi {1}" --bind "enter:execute(paru -R {+})"'
+    run "paru -Q | fzf -m '$fzf_preview_window' --preview 'paru -Qi {1}' --bind 'enter:execute(paru -R {+})'"
 }
 update() {
-    run 'paru -Syu'
+    run "sudo pacman -Syu"
 }
 
 declare -A commands

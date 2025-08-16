@@ -6,7 +6,7 @@ SCRIPTS_DIR=$QTILE_DIR/scripts
 
 #make a list of commands to run that can be selected with rofi
 open_config() {
-    kitty sh -c "nvim $CONFIG_DIR"
+    kitty sh -c "cd $QTILE_DIR && nvim $QTILE_DIR"
 }
 
 look_and_feel() {
@@ -22,7 +22,7 @@ packages() {
 }
 
 execute() {
-    rofi -show combi -modes combi -combi-modes 'window,drun'
+    rofi -show combi -modes combi -combi-modes 'window,drun,'
 }
 
 emoji() {

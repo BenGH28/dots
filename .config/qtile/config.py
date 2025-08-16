@@ -194,6 +194,7 @@ if __name__ in ["config", "__main__"]:
         **init_layout_theme(),
     )
     auto_fullscreen = True
+    auto_minimize = True
     focus_on_window_activation = "smart"
 
     # for java stuff apparently
