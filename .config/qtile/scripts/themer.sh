@@ -23,6 +23,10 @@ go_kitty() {
     theme="$1"
     kitty_theme="${theme// /}"
     ln -sf "$KITTY_DIR/themes/$kitty_theme.conf" "$KITTY_DIR/theme.conf"
+    for sock in /tmp/kitty-*; do
+        [ -S "$sock" ] || continue
+        kitty @ --to "unix:$sock" set-colors -a "$KITTY_DIR/theme.conf"
+    done
 }
 
 go_rofi() {
@@ -44,6 +48,12 @@ go_nvim() {
     esac
 
     echo "vim.cmd.colorscheme('$nvim_theme')" >"$NVIM_DIR/lua/theme.lua"
+
+    # make any instances of nvim update colorscheme
+    for sock in /run/user/1000/nvim.*; do
+        [ -S "$sock" ] || continue
+        nvim --server "$sock" --remote-send ":source $NVIM_DIR/lua/theme.lua<CR>"
+    done
 }
 
 main() {

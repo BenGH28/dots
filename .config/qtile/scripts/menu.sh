@@ -22,7 +22,7 @@ packages() {
 }
 
 execute() {
-    rofi -show combi -modes combi -combi-modes 'window,drun,'
+    rofi -show drun -display-drun ""
 }
 
 emoji() {
