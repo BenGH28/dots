@@ -14,9 +14,9 @@ update() {
 
 declare -A commands
 commands=(
-    ["💾 Install"]=install
-    ["🗑 Remove"]=remove
-    ["💫 Update"]=update
+    ["󰆓  Install"]=install
+    ["  Remove"]=remove
+    ["󰚰  Update"]=update
 )
 
 sorted_keys=$(for key in "${!commands[@]}"; do

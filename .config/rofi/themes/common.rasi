@@ -35,11 +35,12 @@ listview {
     border-color: @separatorcolor;
     spacing:      2px;
     scrollbar:    @scrollbar;
+    lines: 8;
 }
 
 element {
     border:  0;
-    padding: 2px;
+    padding: 5px;
 }
 
 element.normal.normal {
@@ -73,8 +74,8 @@ element.selected.active {
 }
 
 element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
 }
 
 element.alternate.urgent {
@@ -88,10 +89,10 @@ element.alternate.active {
 }
 
 scrollbar {
-    width:        4px;
+    width:        2px;
     border:       0;
     handle-color: @scrollbar-handle;
-    handle-width: 8px;
+    handle-width: 4px;
     padding:      0;
 }
 
@@ -125,6 +126,9 @@ textbox-prompt-sep {
     str:        ":";
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
+}
+element-icon{
+    size: 3ch;
 }
 element-text, element-icon {
     background-color: inherit;

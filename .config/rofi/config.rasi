@@ -1,121 +1,3 @@
-
-* {
-    border: 1px;
-    border-radius: 10px;
-}
-
-
-window {
-    padding:          5;
-    background-color: var(background);
-    border:           1;
-}
-
-mainbox {
-    padding: 0;
-    border:  0;
-}
-message {
-    padding:      1px ;
-    border-color: var(separatorcolor);
-    border:       1px dash 0px 0px ;
-}
-textbox {
-    text-color: var(foreground);
-}
-listview {
-    padding:      2px 0px 0px ;
-    scrollbar:    false;
-    border-color: var(separatorcolor);
-    spacing:      2px ;
-    fixed-height: 0;
-    border:       2px dash 0px 0px ;
-}
-element {
-    padding: 1px ;
-    border:  0;
-}
-element-icon{
-    size: 1.5em;
-}
-element normal.normal {
-    background-color: var(normal-background);
-    text-color:       var(normal-foreground);
-}
-element normal.urgent {
-    background-color: var(urgent-background);
-    text-color:       var(urgent-foreground);
-}
-element normal.active {
-    background-color: var(active-background);
-    text-color:       var(active-foreground);
-}
-element selected.normal {
-    background-color: var(selected-normal-background);
-    text-color:       var(selected-normal-foreground);
-}
-element selected.urgent {
-    background-color: var(selected-urgent-background);
-    text-color:       var(selected-urgent-foreground);
-}
-element selected.active {
-    background-color: var(selected-active-background);
-    text-color:       var(selected-active-foreground);
-}
-element alternate.normal {
-    background-color: var(alternate-normal-background);
-    text-color:       var(alternate-normal-foreground);
-}
-element alternate.urgent {
-    background-color: var(alternate-urgent-background);
-    text-color:       var(alternate-urgent-foreground);
-}
-element alternate.active {
-    background-color: var(alternate-active-background);
-    text-color:       var(alternate-active-foreground);
-}
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-scrollbar {
-    width:        4px ;
-    padding:      0;
-    handle-width: 8px ;
-    border:       0;
-}
-mode-switcher {
-    border-color: var(separatorcolor);
-    border:       2px dash 0px 0px ;
-}
-button selected {
-    background-color: var(selected-normal-background);
-    text-color:       var(selected-normal-foreground);
-}
-inputbar {
-    padding:    1px ;
-    spacing:    0;
-    text-color: var(normal-foreground);
-    children:   [ "prompt","textbox-prompt-colon","entry","case-indicator" ];
-}
-case-indicator {
-    spacing:    0;
-    text-color: var(normal-foreground);
-}
-entry {
-    spacing:    0;
-    text-color: var(normal-foreground);
-}
-prompt {
-    spacing:    0;
-    text-color: var(normal-foreground);
-}
-textbox-prompt-colon {
-    margin:     0px 0.3000em 0.0000em 0.0000em ;
-    expand:     false;
-    str:        "->";
-    text-color: var(normal-foreground);
-}
 configuration {
 	modes: "window,drun,filebrowser,combi,ssh,emoji";
     font: "Noto Sans 14";
@@ -129,7 +11,7 @@ configuration {
 	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
 	run-command: "{cmd}";
 	run-list-command: "";
-	run-shell-command: "{terminal} -e {cmd}";
+	run-shell-command: "{terminal} -e zsh -ic '{cmd} && read'";
 	window-command: "wmctrl -i -R {window}";
 	window-match-fields: "all";
 	icon-theme: "Papirus";
@@ -268,5 +150,4 @@ configuration {
   }
 }
 
-// @theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
 @theme "./theme.rasi"

@@ -4,12 +4,17 @@ CONFIG_DIR=$HOME/.config/
 QTILE_DIR=$CONFIG_DIR/qtile/
 SCRIPTS_DIR=$QTILE_DIR/scripts
 
+source "$SCRIPTS_DIR/utils.sh"
+
 #make a list of commands to run that can be selected with rofi
 open_config() {
-    kitty sh -c "cd $QTILE_DIR && nvim $QTILE_DIR"
+    selection=$(fd -H --exclude "*.png" --exclude ".git" --exclude "__pycache__" --exclude "mypy*" --type f . "$CONFIG_DIR" | rofi -dmenu -sorting-method 'fzf')
+    if [ -n "$selection" ]; then
+        kitty sh -c "nvim $selection"
+    fi
 }
 
-look_and_feel() {
+style() {
     bash "$SCRIPTS_DIR/themer.sh"
 }
 
@@ -21,22 +26,27 @@ packages() {
     bash "$SCRIPTS_DIR/packages.sh"
 }
 
-execute() {
-    rofi -show drun -display-drun ""
+launch() {
+    bash "$SCRIPTS_DIR/rofi-drun.sh"
 }
 
 emoji() {
     rofi -show emoji
 }
 
+windows() {
+    rofi -show window
+}
+
 declare -A commands
 commands=(
-    ["🔧 Config"]=open_config
-    ["👓 Look & Feel"]=look_and_feel
-    ["📦 Packages"]=packages
-    ["⚡ Power"]=power
-    ["🚀 Run"]=execute
-    ["🤌 Emoji"]=emoji
+    ["  Config"]=open_config
+    ["  Style"]=style
+    ["  Packages"]=packages
+    ["󱐋  Power"]=power
+    ["󱓞  Launch"]=launch
+    ["  Emoji"]=emoji
+    ["  windows"]=windows
 )
 
 # Build a sorted list by value (second column)
