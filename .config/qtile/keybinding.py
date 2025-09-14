@@ -84,7 +84,7 @@ def get_keys(groups) -> List[Key]:
             [MOD], "F3", lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")
         ),
         Key([MOD, "shift"], "l", lazy.spawn("slock")),
-        Key([MOD], "p", lazy.spawn("/home/ben/scripts/power.sh")),
+        Key([MOD], "p", lazy.spawn("/home/ben/.config/qtile/scripts/power.sh")),
         Key([MOD], "r", lazy.spawn("/home/ben/.config/qtile/scripts/rofi-drun.sh")),
         Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
