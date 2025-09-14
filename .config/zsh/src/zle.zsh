@@ -67,8 +67,22 @@ bindkey '\eps' push # Alt+p s
 
 
 fuzzy_edit() {
-    fd -H  --exclude "*.png" --exclude ".git" --exclude "__pycache__" --type f . | fzf -m --preview='bat --color=always {}' --bind "enter:become($EDITOR {+})"
+    fd -H  --exclude "*.png" \
+        --exclude ".git"  \
+        --exclude ".venv"\
+        --exclude "__pycache__" \
+        --exclude ".mypy*" \
+        --type f . | fzf -m --preview='bat --color=always {}' --bind "enter:execute($EDITOR {+})"
     zle accept-line
 }
 zle -N fuzzy_edit
 bindkey '^O' fuzzy_edit
+
+projects() {
+    dir=$(command ls "$HOME/repos" | fzf --ansi --preview="eza -l --color=always $HOME/repos/{} --icons")
+    cd "$HOME/repos/$dir"
+    zle reset-prompt
+}
+
+zle -N projects
+bindkey '^P' projects
