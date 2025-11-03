@@ -5,9 +5,9 @@ from subprocess import PIPE, run
 
 from libqtile import qtile, widget
 
+from colours import Palette
 from constants import TERM
 from spotify import Spotify
-from colours import Palette
 
 __all__ = ["is_laptop", "initialize_widgets", "systray"]
 
@@ -32,7 +32,7 @@ def cpu(palette: Palette):
     return widget.CPU(
         foreground=palette.red,
         background=palette.background,
-        format="💻  {load_percent:.0f}%",
+        format="💻 {load_percent:2.0f}%",
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 

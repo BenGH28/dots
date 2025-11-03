@@ -55,10 +55,10 @@ def go_to_group(window):
 
 def get_groups() -> list[Group]:
     return [
-        Group(name="1", label="1:TERM", matches=[Match(wm_class=TERM)]),
+        Group(name="1", label="1:TERM ", matches=[Match(wm_class=TERM)]),
         Group(
             name="2",
-            label="2:WEB",
+            label="2:WEB 󰖟",
             matches=[
                 Match(wm_class="firefox"),
                 Match(wm_class="zen"),
@@ -67,13 +67,13 @@ def get_groups() -> list[Group]:
         ),
         Group(
             name="3",
-            label="3:MUSIC",
+            label="3:MUSIC 🎵",
             matches=[Match(wm_class="spotify"), Match(wm_class="Spotify")],
         ),
-        Group(name="4", label="4:DOCS"),
+        Group(name="4", label="4:DOCS 󱇧"),
         Group(
             name="5",
-            label="5:COMMS",
+            label="5:COMMS 󰍡",
             matches=[Match(wm_class="discord"), Match(wm_class="signal")],
         ),
         Group(name="6", label="6:MISC"),

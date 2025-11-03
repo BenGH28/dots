@@ -47,7 +47,7 @@ for file in $ZDOTDIR/src/**/*(.); do
 done
 
 # get tmux up and running
-# clever_tmux
+clever_tmux
 
 
 if [[ $(tty) != *"tty"* ]]; then
