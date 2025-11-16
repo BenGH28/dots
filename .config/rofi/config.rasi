@@ -1,5 +1,5 @@
 configuration {
-    modes: "window,drun,filebrowser,combi,ssh,emoji";
+    modes: "window,run,drun,filebrowser,combi,ssh,emoji";
     font: "JetBrainsMono Nerd Font Medium 10";
     location: 0;
     yoffset: 0;
@@ -33,7 +33,7 @@ configuration {
     parse-hosts: false;
     parse-known-hosts: true;
     combi-modes: [ window, drun, run ];
-    matching: "normal";
+    matching: "fuzzy";
     tokenize: true;
     m: "-5";
     // filter: ;
@@ -169,9 +169,6 @@ configuration {
     }
 }
 
-window {
-    transparency: "real";
-}
 
 mainbox {
     children: [inputbar, listview];
@@ -185,13 +182,12 @@ inputbar {
 
 entry {
     background-color: inherit;
-    padding: 12px 3px;
+    padding: 12px  3px;
 }
 
 prompt {
     background-color: inherit;
-    padding: 12px;
-
+    padding: 10px;
 }
 
 listview {
@@ -211,8 +207,8 @@ element-text {
     padding: 10px 0;
 }
 
-element-text selected {
-    text-color: @inherit;
+element-text-selected {
+    text-color: inherit;
 }
 
 @import "./theme.rasi"
