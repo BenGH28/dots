@@ -135,7 +135,7 @@ def get_screens() -> list[Screen]:
     return [
         Screen(
             top=bar.Bar(
-                widgets1,
+                widgets2,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
                 background=back,
@@ -144,7 +144,7 @@ def get_screens() -> list[Screen]:
         ),
         Screen(
             top=bar.Bar(
-                widgets2,
+                widgets1,
                 size=BAR_SIZE,
                 opacity=OPAQUE,
                 background=back,
