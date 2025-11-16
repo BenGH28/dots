@@ -40,6 +40,7 @@ def cpu(palette: Palette):
 def mpris(palette: Palette):
     return widget.Mpris2(
         background=palette.background,
+        foreground=palette.foreground,
         scroll_fixed_width=True,
         max_chars=40,
         paused_text="󰏤 {track}",
@@ -72,7 +73,7 @@ def ram(palette: Palette):
 
 def agroupbox(palette: Palette):
     return widget.AGroupBox(
-        foreground=palette.orange,
+        foreground=palette.foreground,
         background=palette.background,
         borderwidth=0,
     )
@@ -136,16 +137,13 @@ def systray(palette: Palette):
 
 
 def groupbox(palette: Palette):
-    border_colour = palette.primary
-    active_colour = palette.foreground
-    inactive_colour = palette.inactive
     return widget.GroupBox(
-        this_current_screen_border=border_colour,
+        this_current_screen_border=palette.tertiary,
         background=palette.background,
-        highlight_method="line",
-        rounded=True,
-        active=active_colour,
-        inactive=inactive_colour,
+        highlight_method="border",
+        # highlight_color=[palette.secondary, palette.tertiary],
+        active=palette.foreground,
+        inactive=palette.inactive,
         hide_unused=True,
     )
 
@@ -166,8 +164,10 @@ def kernel(palette: Palette):
 def tasklist(palette: Palette):
     return widget.TaskList(
         background=palette.background,
+        foreground=palette.foreground,
+        border=palette.tertiary,
         txt_floating="🗗 ",
-        highlight_method="block",
+        highlight_method="line",
         max_title_width=200,
     )
 

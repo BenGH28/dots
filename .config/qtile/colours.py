@@ -90,6 +90,20 @@ NORD = Palette(
     purple="#B48EAD",
 )
 
+CATPPUCCIN_LATTE = Palette(
+    background="#eff1f5",
+    foreground="#4c4f69",
+    inactive="#acb0be",
+    primary="#1e66f5",  # Blue
+    secondary="#40a02b",  # Green
+    tertiary="#fe640b",  # Peach
+    red="#d20f39",
+    green="#40a02b",
+    orange="#fe640b",
+    blue="#1e66f5",
+    teal="#04a5e5",
+    purple="#ea76cb",
+)
 CATPPUCCIN_MOCHA = Palette(
     background="#1E1E2E",
     foreground="#CDD6F4",
@@ -164,3 +178,86 @@ PALENIGHT = Palette(
     teal="#89DDFF",
     purple="#C792EA",
 )
+
+
+# ---------------------------------------------------------------------------- #
+#                                 Light Themes                                 #
+# ---------------------------------------------------------------------------- #
+
+GRUVBOX_LIGHT = Palette(
+    background="#FBF1C7",
+    foreground="#3C3836",
+    inactive="#928374",
+    primary="#458588",
+    secondary="#B16286",
+    tertiary="#689D6A",
+    red="#CC241D",
+    green="#98971A",
+    orange="#D65D0E",
+    blue="#458588",
+    teal="#689D6A",
+    purple="#B16286",
+)
+
+ONE_LIGHT = Palette(
+    background="#fafafa",
+    foreground="#383a42",
+    inactive="#a0a0a0",
+    primary="#4271ae",  # Blue
+    secondary="#718c00",  # Green
+    tertiary="#f5871f",  # Orange
+    red="#c82829",
+    green="#718c00",
+    orange="#f5871f",
+    blue="#4271ae",
+    teal="#008080",
+    purple="#8959a8",
+)
+
+
+
+TOKYO_DAY = Palette(
+    background="#d5d6db",
+    foreground="#373844",
+    inactive="#9b9ca3",
+    primary="#3d67c7",
+    secondary="#8264c7",
+    tertiary="#c78d43",
+    red="#c7546a",
+    green="#6aa343",
+    orange="#d97c3f",
+    blue="#3d67c7",
+    teal="#43a3c7",
+    purple="#8264c7",
+)
+
+MATERIAL_LIGHT = Palette(
+    background="#FAFAFA",
+    foreground="#546E7A",
+    inactive="#94A7B0",
+    primary="#82AAFF",
+    secondary="#C3E88D",
+    tertiary="#FFCB6B",
+    red="#F07178",
+    green="#C3E88D",
+    orange="#F78C6C",
+    blue="#82AAFF",
+    teal="#89DDFF",
+    purple="#C792EA",
+)
+
+AYU_LIGHT = Palette(
+    background="#FCFCFC",
+    foreground="#5C6166",
+    inactive="#787B80",
+    primary="#399EE6",
+    secondary="#F2AE49",
+    tertiary="#55B4D4",
+    red="#F07171",
+    green="#86B300",
+    orange="#FA8D3E",
+    blue="#399EE6",
+    teal="#4CBF99",
+    purple="#A37ACC",
+)
+

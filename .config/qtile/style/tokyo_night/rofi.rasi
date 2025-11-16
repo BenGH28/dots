@@ -1,8 +1,8 @@
 /* ==========================================================================
    Rofi color theme
 
-   Based on the Catppuccin Mocha color scheme
-   File: catppuccin-mocha.rasi
+   Based on the Tokyo Night color scheme
+   File: tokyo-night.rasi
    ========================================================================== */
 
 * {
@@ -10,46 +10,41 @@
     highlight: bold italic;
     scrollbar: true;
 
-    /* Catppuccin Mocha colors */
-    ctp-base:      #1e1e2e;
-    ctp-mantle:    #181825;
-    ctp-surface0:  #313244;
-    ctp-text:      #cdd6f4;
-    ctp-subtext1:  #bac2de;
-    ctp-red:       #f38ba8;
-    ctp-maroon:    #eba0ac;
-    ctp-peach:     #fab387;
-    ctp-yellow:    #f9e2af;
-    ctp-overlay0:  #6c7086;
+    /* Tokyo Night colors */
+    tokyo-bg:              #1a1b26;
+    tokyo-fg:              #c0caf5;
+    tokyo-red:             #f7768e;
+    tokyo-orange:          #e0af68;
+    tokyo-gutter:          #414868;
+    tokyo-comments:        #24283b;
 
 
     /* Theme colors */
-    background:                  @ctp-base;
+    background:                  @tokyo-bg;
     background-color:            @background;
-    foreground:                  @ctp-text;
-    border-color:                @ctp-overlay0;
+    foreground:                  @tokyo-fg;
+    border-color:                @tokyo-gutter;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @ctp-mantle;
+    alternate-normal-background: @tokyo-comments;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @ctp-surface0;
-    selected-normal-foreground:  @ctp-subtext1;
+    selected-normal-background:  @tokyo-gutter;
+    selected-normal-foreground:  @tokyo-fg;
 
-    active-background:           @ctp-peach;
+    active-background:           @tokyo-orange;
     active-foreground:           @background;
     alternate-active-background: @active-background;
     alternate-active-foreground: @active-foreground;
-    selected-active-background:  @ctp-yellow;
+    selected-active-background:  @tokyo-orange;
     selected-active-foreground:  @active-foreground;
 
-    urgent-background:           @ctp-red;
+    urgent-background:           @tokyo-red;
     urgent-foreground:           @background;
     alternate-urgent-background: @urgent-background;
     alternate-urgent-foreground: @urgent-foreground;
-    selected-urgent-background:  @ctp-maroon;
+    selected-urgent-background:  @tokyo-red;
     selected-urgent-foreground:  @urgent-foreground;
 }
-@import "common.rasi"

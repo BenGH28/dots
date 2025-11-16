@@ -12,4 +12,6 @@ OPAQUE = 1
 BAR_SIZE = 35
 FONT = "Fira Code"
 FONT_SIZE = 18
-PALETTE = CATPPUCCIN_MOCHA
+PALETTE = DRACULA
+
+QTILE_DIR = "/home/ben/.config/qtile/"

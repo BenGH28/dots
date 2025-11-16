@@ -2,11 +2,15 @@ run() {
     kitty -o initial_window_width=80c -o initial_window_height=40c --class=float-term sh -c "$@"
 }
 fzf_preview_window="--preview-window=up,50%"
-install() {
+install_arch() {
+    run "pacman -Slq | fzf -m '$fzf_preview_window' --preview 'pacman -Si {+}' --bind 'enter:execute(pacman -S {+})'"
+}
+
+install_aur() {
     run "paru -Slq | fzf -m '$fzf_preview_window' --preview 'paru -Si {+}' --bind 'enter:execute(paru -S {+})'"
 }
 remove() {
-    run "paru -Q | fzf -m '$fzf_preview_window' --preview 'paru -Qi {1}' --bind 'enter:execute(paru -R {+})'"
+    run "pacman -Q | fzf -m '$fzf_preview_window' --preview 'pacman -Qi {1}' --bind 'enter:execute(pacman -R {+})'"
 }
 update() {
     run "sudo pacman -Syu"
@@ -14,7 +18,8 @@ update() {
 
 declare -A commands
 commands=(
-    ["󰆓  Install"]=install
+    ["󰆓  Install - Arch"]=install_arch
+    ["󰆓  Install - AUR"]=install_aur
     ["  Remove"]=remove
     ["󰚰  Update"]=update
 )

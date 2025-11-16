@@ -1,8 +1,8 @@
 /* ==========================================================================
    Rofi color theme
 
-   Based on the Nord color scheme
-   File: nord.rasi
+   Based on the Catppuccin Mocha color scheme
+   File: catppuccin-mocha.rasi
    ========================================================================== */
 
 * {
@@ -10,50 +10,45 @@
     highlight: bold italic;
     scrollbar: true;
 
-    /* Nord colors */
-    nord0:     #2E3440;
-    nord1:     #3B4252;
-    nord2:     #434C5E;
-    nord3:     #4C566A;
-    nord4:     #D8DEE9;
-    nord5:     #E5E9F0;
-    nord6:     #ECEFF4;
-    nord7:     #8FBCBB;
-    nord8:     #88C0D0;
-    nord9:     #81A1C1;
-    nord10:    #5E81AC;
-    nord-red:  #BF616A;
-    nord-yellow: #EBCB8B;
+    /* Catppuccin Mocha colors */
+    ctp-base:      #eff1f5;
+    ctp-mantle:    #e6e9ef;
+    ctp-surface0:  #ccd0da;
+    ctp-text:      #4c4f69;
+    ctp-subtext1:  #5c5f77;
+    ctp-red:       #d20f39;
+    ctp-maroon:    #e64553;
+    ctp-peach:     #fe640b;
+    ctp-yellow:    #df8e1d;
+    ctp-overlay0:  #9ca0b0;
 
 
     /* Theme colors */
-    background:                  @nord0;
+    background:                  @ctp-base;
     background-color:            @background;
-    foreground:                  @nord4;
-    border-color:                @nord3;
+    foreground:                  @ctp-text;
+    border-color:                @ctp-overlay0;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @nord1;
+    alternate-normal-background: @ctp-mantle;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @nord2;
-    selected-normal-foreground:  @nord5;
+    selected-normal-background:  @ctp-surface0;
+    selected-normal-foreground:  @ctp-subtext1;
 
-    active-background:           @nord8;
+    active-background:           @ctp-peach;
     active-foreground:           @background;
     alternate-active-background: @active-background;
     alternate-active-foreground: @active-foreground;
-    selected-active-background:  @nord10;
+    selected-active-background:  @ctp-yellow;
     selected-active-foreground:  @active-foreground;
 
-    urgent-background:           @nord-red;
+    urgent-background:           @ctp-red;
     urgent-foreground:           @background;
     alternate-urgent-background: @urgent-background;
     alternate-urgent-foreground: @urgent-foreground;
-    selected-urgent-background:  @nord-red;
+    selected-urgent-background:  @ctp-maroon;
     selected-urgent-foreground:  @urgent-foreground;
 }
-@import "common.rasi"
-@import "common.rasi"

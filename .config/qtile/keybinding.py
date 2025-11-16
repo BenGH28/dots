@@ -3,7 +3,10 @@ from typing import List
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
-from constants import ALT, CTRL, MOD, TERM, BROWSER
+from constants import ALT, CTRL, MOD, TERM, BROWSER, QTILE_DIR
+
+
+scripts_dir = f"{QTILE_DIR}/scripts"
 
 
 def _groupify(keys, groups):
@@ -74,19 +77,18 @@ def get_keys(groups) -> List[Key]:
         Key([MOD], "Return", lazy.spawn(TERM)),
         Key([MOD], "w", lazy.spawn(BROWSER)),
         Key(
-            [CTRL],
-            "space",
-            lazy.spawn("/home/ben/.config/qtile/scripts/menu.sh"),
+            [CTRL, MOD],
+            "space", lazy.spawn(f"/{scripts_dir}/menu.sh"),
         ),
         Key([MOD], "m", lazy.spawn("spotify")),
         Key([MOD], "f", lazy.spawn("dolphin")),
         Key(
-            [MOD], "F3", lazy.spawn(f"{TERM} -e nvim /home/ben/.config/qtile/config.py")
+            [MOD], "F3", lazy.spawn(f"{TERM} -e nvim {QTILE_DIR}/config.py")
         ),
         Key([MOD, "shift"], "l", lazy.spawn("slock")),
-        Key([MOD], "p", lazy.spawn("/home/ben/.config/qtile/scripts/power.sh")),
-        Key([MOD], "r", lazy.spawn("/home/ben/.config/qtile/scripts/rofi-drun.sh")),
-        Key([MOD, "shift"], "b", lazy.spawn("/home/ben/scripts/bluetooth.sh")),
+        Key([MOD], "p", lazy.spawn(f"{scripts_dir}/power.sh")),
+        Key([CTRL], "space", lazy.spawn(f"{scripts_dir}/rofi-drun.sh")),
+        Key([MOD, "shift"], "b", lazy.spawn(f"{TERM} -e bluetui")),
         Key([MOD, "shift"], "v", lazy.spawn("/opt/cisco/anyconnect/bin/vpnui")),
     ]
     return _groupify(keys, groups)
