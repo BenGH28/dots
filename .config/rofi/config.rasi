@@ -1,5 +1,5 @@
 configuration {
-    modes: "window,run,drun,filebrowser,combi,ssh,emoji";
+    modes: "drun,run,window,filebrowser,combi,ssh,emoji";
     font: "JetBrainsMono Nerd Font Medium 10";
     location: 0;
     yoffset: 0;
@@ -169,24 +169,30 @@ configuration {
     }
 }
 
+*{
+    background-color: inherit;
+}
 
 mainbox {
-    children: [inputbar, listview];
+    children: [inputbar, listview, sidebar];
+}
+
+sidebar{
+    padding: 5px;
+    border: 0px;
 }
 
 inputbar {
-    background-color: inherit;
-    border: 4px;
+    border: 0px;
     children: [prompt, entry];
 }
 
 entry {
-    background-color: inherit;
     padding: 12px  3px;
+    hide-cursor-on-empty: true;
 }
 
 prompt {
-    background-color: inherit;
     padding: 10px;
 }
 
@@ -205,10 +211,6 @@ element-icon {
 
 element-text {
     padding: 10px 0;
-}
-
-element-text-selected {
-    text-color: inherit;
 }
 
 @import "./theme.rasi"
