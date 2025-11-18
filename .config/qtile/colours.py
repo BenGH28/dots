@@ -119,7 +119,7 @@ CATPPUCCIN_MOCHA = Palette(
     purple="#CBA6F7",
 )
 
-TOKYO_NIGHT = Palette(
+TOKYONIGHT = Palette(
     background="#1a1b26",
     foreground="#a9b1d6",
     inactive="#414868",
