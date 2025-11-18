@@ -41,12 +41,34 @@ go_nvim() {
     local theme="$1"
     theme="${theme// /_}"
     cat "$STYLE_DIR/$theme/nvim.lua" >"$theme_file"
+    sleep 1
+
+    # 1. Try to extract the `name = "…"` attribute
+    local plugin_name
+    plugin_name=$(awk -F'"' '
+        /name[[:space:]]*=/ {
+            for (i=1; i<=NF; i++)
+                if ($i ~ /^[A-Za-z0-9_.-]+$/) { print $i; exit }
+        }
+    ' "$theme_file")
+
+    # 2. If no name attribute, fall back to repo name
+    if [ -z "$plugin_name" ]; then
+        plugin_full=$(awk -F'"' '
+            {
+                for(i=1;i<=NF;i++)
+                    if ($i ~ /.+\/.+/) { print $i; exit }
+            }
+        ' "$theme_file")
+
+        plugin_name=${plugin_full#*/} # keep only the repo part
+    fi
 
     # make any instances of nvim update colorscheme
-    # for sock in /run/user/1000/nvim.*; do
-    #     [ -S "$sock" ] || continue
-    #     nvim --server "$sock" --remote-send ": CR>"
-    # done
+    for sock in /run/user/1000/nvim.*; do
+        [ -S "$sock" ] || continue
+        nvim --server "$sock" --remote-send ":Lazy reload $plugin_name"
+    done
 }
 
 main() {
@@ -60,7 +82,7 @@ main() {
     go_rofi "$selected_theme"
     go_kitty "$selected_theme"
     go_nvim "$selected_theme"
-    notify-send "Theme changed to '$selected_theme...'"
+    notify-send "Theme changed to '$selected_theme!'"
 }
 
 main
