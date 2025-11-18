@@ -5,7 +5,7 @@ char="|"
 num=$(grep -o "$char" <<<"$opts" | wc -l)
 
 len=$(("$num" + 1))
-cmd=$(echo -e "$opts" | rofi -sep '|' -dmenu -i -l "$len" -p "system" -theme-str 'window {width: 400px;}')
+cmd=$(echo -e "$opts" | rofi -sep '|' -dmenu -i -l "$len" -p "" -theme-str 'window {width: 400px;}')
 case $cmd in
     *Shutdown*) shutdown now ;;
     "*Log out*") qtile cmd-obj -o cmd -f shutdown ;;
