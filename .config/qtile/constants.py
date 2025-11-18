@@ -12,6 +12,6 @@ OPAQUE = 1
 BAR_SIZE = 35
 FONT = "JetBrainsMono Nerd Font Medium"
 FONT_SIZE = 16
-PALETTE = CATPPUCCIN_LATTE
+PALETTE = PALENIGHT
 
 QTILE_DIR = "/home/ben/.config/qtile/"
