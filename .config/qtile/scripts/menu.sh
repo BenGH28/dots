@@ -30,14 +30,6 @@ launch() {
     bash "$SCRIPTS_DIR/rofi-drun.sh"
 }
 
-emoji() {
-    rofi -show emoji
-}
-
-windows() {
-    rofi -show window
-}
-
 declare -A commands
 commands=(
     ["  Config"]=open_config
@@ -45,8 +37,6 @@ commands=(
     ["  Packages"]=packages
     ["󱐋  Power"]=power
     ["󱓞  Launch"]=launch
-    ["  Emoji"]=emoji
-    ["  windows"]=windows
 )
 
 # Build a sorted list by value (second column)
