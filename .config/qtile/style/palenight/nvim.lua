@@ -1,8 +1,8 @@
 return {
   {
     "JoosepAlviste/palenightfall.nvim",
-    lazy = false
-    opts = function()
+    lazy = false,
+    config = function()
       vim.cmd.colorscheme("palenightfall")
     end
   },
