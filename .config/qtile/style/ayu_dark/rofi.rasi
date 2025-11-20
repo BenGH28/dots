@@ -12,6 +12,7 @@
 
     /* Ayu Dark colors */
     ayu-bg:              #0F1419;
+    ayu-bg-alt:          #0b0117;
     ayu-fg:              #E6E1CF;
     ayu-pink:            #F07178;
     ayu-orange:          #FF7733;
@@ -31,7 +32,7 @@
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @ayu-inactive;
+    alternate-normal-background: @ayu-bg-alt;
     alternate-normal-foreground: @foreground;
     selected-normal-background:  @ayu-selection;
     selected-normal-foreground:  @ayu-fg;

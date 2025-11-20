@@ -11,14 +11,15 @@
     scrollbar: true;
 
     /* One Dark colors */
-    onedark-bg:              #f8f8f8;
+    onedark-bg:              #fafafa;
+    onedark-bg-alt:          #e6e6e6;
     onedark-fg:              #2a2b33;
     onedark-red-light:       #e06c75;
     onedark-red-dark:        #be5046;
     onedark-yellow-light:    #e5c07b;
     onedark-yellow-dark:     #d19a66;
     onedark-gray:            #5c6370;
-    onedark-gutter-gray:     #4b5263;
+    onedark-gutter-gray:     #c9c9c9;
 
 
     /* Theme colors */
@@ -31,9 +32,9 @@
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @onedark-gutter-gray;
+    alternate-normal-background: @onedark-bg-alt;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @onedark-gray;
+    selected-normal-background:  @onedark-gutter-gray;
     selected-normal-foreground:  @onedark-fg;
 
     active-background:           @onedark-yellow-dark;

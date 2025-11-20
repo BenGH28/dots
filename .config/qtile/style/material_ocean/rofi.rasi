@@ -12,13 +12,14 @@
 
     /* Material Ocean colors */
     material-bg:              #263238;
+    material-bg2:             #22424a;
     material-fg:              #B0BEC5;
     material-red:             #FF5370;
     material-red-light:       #F07178;
     material-orange:          #F78C6C;
     material-yellow:          #FFCB6B;
     material-text:            #607D8B;
-    material-selection:       #546E7A;
+    material-selection:       #747E8A;
 
 
     /* Theme colors */
@@ -31,9 +32,9 @@
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @material-selection;
+    alternate-normal-background: @material-bg2;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @material-text;
+    selected-normal-background:  @material-selection;
     selected-normal-foreground:  @material-fg;
 
     active-background:           @material-orange;

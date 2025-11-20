@@ -71,10 +71,19 @@ go_nvim() {
     done
 }
 
+go_bat() {
+    local theme=$1
+    if [[ $theme == *"light"* ]]; then
+        export BAT_THEME=OneHalfLight
+    else
+        export BAT_THEME=OneHalfDark
+    fi
+}
+
 main() {
     themes=$(find "$STYLE_DIR" -type d ! -path "$STYLE_DIR" | awk -v base="$STYLE_DIR/" '{sub(base, ""); print $1}' | tr '[:upper:]' '[:lower:]' | tr '[=_=]' ' ' | sort -u)
     len=$(echo "$themes" | wc -l)
-    selected_theme=$(echo "$themes" | rofi -dmenu -p "Theme ($CURRENT_THEME)" -l "$len")
+    selected_theme=$(echo "$themes" | rofi -dmenu -p " ($CURRENT_THEME):" -l "$len")
     if [ -z "$selected_theme" ]; then
         exit 0
     fi

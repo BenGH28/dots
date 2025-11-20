@@ -38,7 +38,7 @@
     normal-foreground:           @foreground;
     alternate-normal-background: @nord1;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @nord2;
+    selected-normal-background:  @nord3;
     selected-normal-foreground:  @nord5;
 
     active-background:           @nord8;

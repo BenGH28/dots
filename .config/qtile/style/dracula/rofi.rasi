@@ -10,16 +10,22 @@
     highlight: bold italic;
     scrollbar: true;
 
-    /* Dracula colors */
-    dracula-bg:              #282a36;
-    dracula-fg:              #f8f8f2;
-    dracula-red:             #ff5555;
-    dracula-pink:            #ff79c6;
-    dracula-orange:          #ffb86c;
-    dracula-yellow:          #f1fa8c;
-    dracula-comment:         #6272a4;
-    dracula-current-line:    #44475a;
-
+    dracula-bg: #282A36;
+    dracula-bg-lighter: #424450;
+    dracula-bg-light: #343746;
+    dracula-bg1: #21222C;
+    dracula-bg2: #191A21;
+    dracula-current-line: #6272A4;
+    dracula-selection: #44475A;
+    dracula-fg: #F8F8F2;
+    dracula-comment: #6272A4;
+    dracula-red: #FF5555;
+    dracula-orange: #FFB86C;
+    dracula-yellow: #F1FA8C;
+    dracula-green: #50FA7B;
+    dracula-cyan: #8BE9FD;
+    dracula-purple: #BD93F9;
+    dracula-pink: #FF79C6;
 
     /* Theme colors */
     background:                  @dracula-bg;
@@ -31,9 +37,9 @@
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @dracula-current-line;
+    alternate-normal-background: @dracula-bg1;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @dracula-comment;
+    selected-normal-background:  @dracula-selection;
     selected-normal-foreground:  @dracula-fg;
 
     active-background:           @dracula-orange;
