@@ -3,10 +3,9 @@
 from os.path import exists
 from subprocess import PIPE, run
 
-from libqtile import qtile, widget
-
 from colours import Palette
 from constants import TERM
+from libqtile import qtile, widget
 
 __all__ = ["is_laptop", "initialize_widgets", "systray"]
 
@@ -94,13 +93,13 @@ def battery(palette: Palette):
 
 def brightness(palette: Palette):
     intel_bright_file = "/sys/class/backlight/intel_backlight/brightness"
-    amd_bright_file = "/sys/class/backlight/amdgpu_bl0/brightness"
+    amd_bright_file = "/sys/class/backlight/amdgpu_bl1/brightness"
     if exists(intel_bright_file):
         bright_file = intel_bright_file
         backlight_name = "intel_backlight"
     else:
         bright_file = amd_bright_file
-        backlight_name = "amdgpu_bl0"
+        backlight_name = "amdgpu_bl1"
 
     return widget.Backlight(
         foreground=palette.red,
