@@ -49,12 +49,12 @@ alias yel="yadm enter lazygit"
 alias tm="go_tmux"
 alias cht="cht.sh"
 
-# exa
-alias ls='exa --color=always --group-directories-first --icons'      #size,show type,
-alias l='exa -lF --color=always --group-directories-first --icons'   #size,show type,
-alias la='exa -laF --color=always --group-directories-first --icons' #long list,show almost all,show type,
-alias ll='exa -l --color=always --group-directories-first --icons'   #long list
-alias lT='exa -lT --color=always --group-directories-first --icons'  #long list, recurse into dirs
+# eza
+alias ls='eza --color=always --group-directories-first --icons auto'      #size,show type,
+alias l='eza -lF --color=always --group-directories-first --icons auto'   #size,show type,
+alias la='eza -laF --color=always --group-directories-first --icons auto' #long list,show almost all,show type,
+alias ll='eza -l --color=always --group-directories-first --icons auto'   #long list
+alias lT='eza -lT --color=always --group-directories-first --icons auto'  #long list, recurse into dirs
 
 alias grep='grep --color'
 
