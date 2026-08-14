@@ -7,7 +7,6 @@ from libqtile import qtile, widget
 
 from colours import Palette
 from constants import TERM
-from spotify import Spotify
 
 __all__ = ["is_laptop", "initialize_widgets", "systray"]
 
@@ -20,20 +19,12 @@ def is_laptop() -> bool:
     return exists(batt_file)
 
 
-def spotify(palette: Palette):
-    return Spotify(
-        foreground=palette.red,
-        background=palette.background,
-        format="{icon} {artist} - {track}",
-    )
-
-
 def cpu(palette: Palette):
     return widget.CPU(
         foreground=palette.red,
         background=palette.background,
         format="💻 {load_percent:2.0f}%",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        # mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -67,7 +58,7 @@ def ram(palette: Palette):
         background=palette.background,
         measure_mem="M",
         format="🧠 {MemUsed:.0f}{mm}",
-        mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
+        # mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(f"{TERM} -e htop")},
     )
 
 
@@ -85,7 +76,7 @@ def volume(palette: Palette):
         background=palette.background,
         fmt=" 🔉{}",
         # right click launches pavucontrol
-        mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
+        # mouse_callbacks={"Button3": lambda: qtile.cmd_spawn("pavucontrol")},
     )
 
 

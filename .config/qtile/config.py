@@ -5,14 +5,12 @@ import os
 import subprocess
 from typing import Any
 
+import keybinding
+import widgets
+from constants import BAR_SIZE, FONT, FONT_SIZE, MOD, OPAQUE, PALETTE, TERM
 from libqtile import bar, hook, layout
 from libqtile.config import Click, Drag, Group, Match, Screen
 from libqtile.lazy import lazy
-
-import keybinding
-import widgets
-
-from constants import BAR_SIZE, MOD, OPAQUE, TERM, FONT, FONT_SIZE, PALETTE
 
 
 @hook.subscribe.startup_once

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
+# Start Xephyr on :99
+Xephyr -br -ac -noreset -screen 1280x720 :99 &
 
-#to test the qtile config run this and then
-Xephyr -br -ac -noreset -screen 1280x720 :1 &
-
-DISPLAY=:1 exec qtile start
+# Explicitly tell Qtile to use the X11 backend on :99
+DISPLAY=:99 qtile start -b x11

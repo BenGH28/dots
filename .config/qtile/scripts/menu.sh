@@ -8,7 +8,7 @@ source "$SCRIPTS_DIR/utils.sh"
 
 #make a list of commands to run that can be selected with rofi
 open_config() {
-    selection=$(fd -H --exclude "*.png" --exclude ".git" --exclude "__pycache__" --exclude "mypy*" --type f . "$CONFIG_DIR" | rofi -dmenu -sorting-method 'fzf')
+    selection=$(fd -H --exclude "*.png" --exclude ".git" --exclude "__pycache__" --exclude "mypy*" --type f . "$CONFIG_DIR" | rofi -dmenu -sorting-method 'fzf' -p " ")
     if [ -n "$selection" ]; then
         kitty sh -c "nvim $selection"
     fi
