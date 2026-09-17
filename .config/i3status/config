@@ -62,7 +62,7 @@ tztime local {
 cpu_temperature 0 {
 	format = "T: %degrees C"
 	path ="/sys/devices/platform/coretemp.0/subsystem/devices/coretemp.0/hwmon/hwmon1/temp1_input"
-} 
+}
 cpu_usage {
 	format = "CPU: %usage"
 }
