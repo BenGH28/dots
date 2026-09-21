@@ -30,6 +30,13 @@ launch() {
     bash "$SCRIPTS_DIR/rofi-drun.sh"
 }
 
+screenshot() {
+    path="$HOME/Pictures/Screenshots/$(date +%s).png"
+    sleep 0.5 # enough time for rofi to close?
+    maim | tee "$path" | xclip -selection clipboard -t image/png
+    notify-send "screen shot saved at $path"
+}
+
 declare -A commands
 commands=(
     ["  Config"]=open_config
@@ -37,6 +44,8 @@ commands=(
     ["  Packages"]=packages
     ["󱐋  Power"]=power
     ["󱓞  Launch"]=launch
+    ["  Screenshot"]=screenshot
+
 )
 
 # Build a sorted list by value (second column)
