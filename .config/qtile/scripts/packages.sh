@@ -3,7 +3,7 @@ run() {
 }
 fzf_preview_window="--preview-window=up,50%"
 install_arch() {
-    run "pacman -Slq | fzf -m '$fzf_preview_window' --preview 'pacman -Si {+}' --bind 'enter:execute(pacman -S {+})'"
+    run "pacman -Slq | fzf -m '$fzf_preview_window' --preview 'pacman -Si {+}' --bind 'enter:execute(sudo pacman -S {+})'"
 }
 
 install_aur() {
