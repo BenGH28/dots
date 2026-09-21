@@ -1,4 +1,23 @@
+#!/usr/bin/env bash
 xset r rate 210 40
+
+function run {
+    if ! pgrep -f "$1"; then
+        "$@" &
+    fi
+}
+
+run kwalletd6
+run picom
+run nitrogen --restore
+run nm-applet
+run blueman-applet
+run xfce4-power-manager
+run pamac-tray
+run accountable2you
+run /usr/lib/polkit-kde-authentication-agent-1
+run dunst
+run xmodmap ~/.Xmodmap
 
 for file in /sys/class/power_supply/BAT?/model_name; do
     if [ ! -e "$file" ]; then

@@ -13,13 +13,6 @@ from libqtile.config import Click, Drag, Group, Match, Screen
 from libqtile.lazy import lazy
 
 
-@hook.subscribe.startup_once
-def start_once() -> None:
-    """Startup Applications"""
-    autostart = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
-    subprocess.call([autostart])
-
-
 async def move_spotify(window) -> None:
     """move spotify to workspace 3"""
 
